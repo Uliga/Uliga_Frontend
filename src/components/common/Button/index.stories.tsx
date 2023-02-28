@@ -8,23 +8,27 @@ export default {
   decorators: [withKnobs], // 애드온 적용
 };
 
-// // knobs
-// export const Button = () => {
-//   // knobs 만들기
-//   const big = boolean("big", false);
-//   const name = text("name", "Storybook");
-//   return <Button name={name} big={big} />;
-// };
-// hello.story = {
-//   name: "Default",
-// };
-
 export function Primary() {
-  return <Button title="Button" theme="primary" />;
+  return <Button title="Primary" size="medium" theme="primary" />;
 }
-// export const Secondary = () => <Button title="Button" />;
-// export const Tertiary = () => <Button title="Button" />;
-// export const Unfocus = () => <Button title="Button" />;
-// export const Disabled = () => <Button title="Button" />;
-// export const FullWidth = () => <Button title="Button" />;
-// export const CustomWidth = () => <Button title="Button" />;
+export function Secondary() {
+  return <Button title="Secondary" size="medium" theme="secondary" />;
+}
+export function Tertiary() {
+  return <Button title="Tertiary" size="medium" theme="tertiary" />;
+}
+export function Unfocus() {
+  return <Button title="Unfocus" size="medium" theme="unfocus" />;
+}
+export function Disabled() {
+  return <Button title="Disabled" size="medium" disabled />;
+}
+export function Large() {
+  return <Button title="Large" size="large" />;
+}
+export function Medium() {
+  return <Button title="Medium" size="medium" />;
+}
+export function Small() {
+  return <Button title="Small" size="small" />;
+}
