@@ -20,6 +20,9 @@ export const GREEN = {
 };
 
 export const BLUE = "#7798FC";
-export const YELLOW = "#FFC144";
 export const MEDIUM_BLUE = "#ADC1FF";
 export const LIGHT_BLUE = "#E9EEFF";
+export const DARK_BLUE = "#5C76C4";
+
+export const YELLOW = "#FFC144";
+export const LIGHT_YELLOW = "#FFD37A";
