@@ -8,6 +8,9 @@ export default {
   decorators: [withKnobs], // 애드온 적용
 };
 
-export function Input2() {
-  return <Input size={30} labelExist label="내용" />;
+export function DefaultInput() {
+  return <Input size={100} />;
+}
+export function LabelInput() {
+  return <Input size={30} value="label" labelExist label="label" />;
 }

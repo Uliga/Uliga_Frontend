@@ -26,13 +26,21 @@ const InputWrapper = styled.input<{
 `;
 
 type InputProps = {
+  /** input 안의 초깃값 */
   value?: string;
+  /** 변화가 일어났을떄 호출되는 함수 */
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  /** input type : ex> text,password,checkbox etc. */
   type?: string;
+  /** 자리표시자 */
   placeholder?: string;
+  /** label 유무 */
   labelExist?: boolean;
+  /** label 내용 */
   label?: string;
+  /** input 너비 */
   size?: number;
+  /** 필수로 채워야하는 필드 */
   required?: boolean;
   className?: string;
 };
@@ -41,11 +49,11 @@ export default function Input({
   value,
   onChange,
   type,
-  placeholder = "내용을 입력해주세요.",
+  placeholder = "내용을입력해주세요",
   labelExist,
   label,
   size = 35,
-  required,
+  required = false,
   className,
 }: InputProps) {
   return (
