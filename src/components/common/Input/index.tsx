@@ -49,7 +49,7 @@ export default function Input({
   value,
   onChange,
   type,
-  placeholder = "내용을 입력해주세요.",
+  placeholder = "내용을 입력해주세요",
   labelExist,
   label,
   size = 35,
