@@ -10,20 +10,20 @@ export default {
 };
 
 export function Check() {
-  return <Icon className="checkFill" color={colors.BLUE} />;
+  return <Icon iconName="checkFill" color={colors.BLUE} />;
 }
 export function Book() {
-  return <Icon className="book" color={colors.GREY[600]} />;
+  return <Icon iconName="book" color={colors.GREY[600]} />;
 }
 export function Pig() {
-  return <Icon className="pig" color={colors.GREY[600]} />;
+  return <Icon iconName="pig" color={colors.GREY[600]} />;
 }
 export function Chart() {
-  return <Icon className="chart" color={colors.GREY[600]} />;
+  return <Icon iconName="chart" color={colors.GREY[600]} />;
 }
 export function Bank() {
-  return <Icon className="bank" color={colors.GREY[600]} />;
+  return <Icon iconName="bank" color={colors.GREY[600]} />;
 }
 export function PersonGear() {
-  return <Icon className="personGear" color={colors.GREY[600]} />;
+  return <Icon iconName="personGear" color={colors.GREY[600]} />;
 }
