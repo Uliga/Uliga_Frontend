@@ -12,7 +12,7 @@ import {
   BLACK,
 } from "../../../constants/color";
 import Icons from "../../../constants/icon";
-import Wrapper from "./index.styles";
+import { Wrapper, StyledIcon } from "./index.styles";
 
 type ButtonTheme = "normal" | "primary" | "secondary" | "tertiary";
 
@@ -41,11 +41,6 @@ type IconButtonProps = {
   border?: number;
 };
 
-const StyledIcon = styled.i<{ border: number }>`
-  ${({ border }) => `
-   -webkit-text-stroke: ${border}px;
-`}
-`;
 export default function IconButton({
   title,
   theme = "primary",
