@@ -9,6 +9,7 @@ const ICONS: IconProps = {
   chart: "bi bi-clipboard-data",
   bank: "bi bi-bank",
   personGear: "bi bi-person-gear",
+  list: "bi bi-list",
 };
 
 export default ICONS;
