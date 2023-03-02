@@ -43,6 +43,16 @@ export function Teritiary() {
     />
   );
 }
+export function Reverse() {
+  return (
+    <IconButton
+      reverseIconButton
+      title="작성"
+      theme="normal"
+      iconName="checkFill"
+    />
+  );
+}
 export function OnlyBook() {
   return <IconButton iconOnly iconName="book" />;
 }

@@ -39,6 +39,8 @@ type IconButtonProps = {
   color?: string;
   /** border 조정 */
   border?: number;
+  /** icon, text 위치 반전 */
+  reverseIconButton?: boolean;
 };
 
 export default function IconButton({
@@ -53,6 +55,7 @@ export default function IconButton({
   color,
   border = 0.1,
   className,
+  reverseIconButton = false,
 }: IconButtonProps) {
   return (
     <Wrapper
@@ -62,13 +65,27 @@ export default function IconButton({
       ButtonTheme={theme}
       onClick={onClick}
       disabled={disabled}
+      reverseIconButton={reverseIconButton}
     >
-      <StyledIcon
-        className={Icons[iconName]}
-        style={{ fontSize: iconSize, color }}
-        border={border}
-      />
-      {title}
+      {reverseIconButton === false ? (
+        <>
+          <StyledIcon
+            className={Icons[iconName]}
+            style={{ fontSize: iconSize, color }}
+            border={border}
+          />
+          {title}
+        </>
+      ) : (
+        <>
+          {title}
+          <StyledIcon
+            className={Icons[iconName]}
+            style={{ fontSize: iconSize, color }}
+            border={border}
+          />
+        </>
+      )}
     </Wrapper>
   );
 }
