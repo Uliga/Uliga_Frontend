@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import Logo from "../../../../assets/logo";
-import * as colors from "../../../../constants/color";
-import Icon from "../../Icon";
+import Logo from "../../../assets/logo";
+import * as colors from "../../../constants/color";
+import Icon from "../../common/Icon";
 
 const Container = styled.div`
   width: 100%;
@@ -20,9 +20,11 @@ const Wrapper = styled.div`
   gap: 0.4rem;
   align-items: center;
   margin-left: 2rem;
+  cursor: pointer;
 `;
 const StyledIcon = styled(Icon)`
   margin-left: 4rem;
+  cursor: pointer;
 `;
 
 const Title = styled.div`

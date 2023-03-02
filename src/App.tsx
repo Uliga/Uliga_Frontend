@@ -3,7 +3,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import styled from "styled-components";
 import Button from "./components/common/Button";
 import Input from "./components/common/Input";
-import Header from "./components/common/Main/Header";
+import Header from "./components/main/Header";
 
 const queryClient = new QueryClient();
 
