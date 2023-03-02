@@ -16,7 +16,6 @@ export function Normal() {
       theme="normal"
       iconName="book"
       widthSize={6.0625}
-      heightSize={1.7}
       iconSize="1.1rem"
     />
   );
