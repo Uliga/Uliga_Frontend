@@ -4,7 +4,6 @@ import {
   BLUE,
   YELLOW,
   MEDIUM_BLUE,
-  LIGHT_BLUE,
   LIGHT_YELLOW,
   DARK_BLUE,
   WHITE,

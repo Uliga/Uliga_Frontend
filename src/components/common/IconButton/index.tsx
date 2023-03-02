@@ -1,16 +1,4 @@
 import React from "react";
-import styled from "styled-components";
-import {
-  BLUE,
-  YELLOW,
-  MEDIUM_BLUE,
-  LIGHT_BLUE,
-  LIGHT_YELLOW,
-  DARK_BLUE,
-  WHITE,
-  GREY,
-  BLACK,
-} from "../../../constants/color";
 import Icons from "../../../constants/icon";
 import { Wrapper, StyledIcon } from "./index.styles";
 
