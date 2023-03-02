@@ -8,6 +8,7 @@ import * as colors from "./constants/color";
 import Icon from "./components/common/Icon";
 import Header from "./components/main/Header";
 import Person from "./assets/person";
+import SideBar from "./components/main/SideBar";
 
 const queryClient = new QueryClient();
 
@@ -22,7 +23,7 @@ const Full = styled.div`
 
 const Inner = styled.div`
   width: 140.8rem;
-  padding-top: 8rem;
+  padding-top: 5.5rem;
   background-color: white;
 `;
 
@@ -31,92 +32,9 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <Full>
         <Header />
-
         <Inner>
+          <SideBar />
           <Person />
-          <Input size={40} labelExist label="내용" />
-          <br />
-          <Button title="Primary" size="large" theme="primary" />
-          <br />
-          <Button title="Secondary" size="large" theme="secondary" />
-          <br />
-          <Button title="Tertiary" size="large" theme="tertiary" />
-          <br />
-          <Button title="Unfocus" size="large" theme="unfocus" />
-          <br />
-          <Button title="Disabled" size="large" disabled />
-          <br />
-          <Button title="Large" size="large" />
-          <br />
-          <Button title="Medium" size="medium" />
-          <br />
-          <Button title="Small" size="small" />
-          <br />
-
-          <Input size={40} labelExist label="내용" />
-          <br />
-          <Button title="Primary" size="large" theme="primary" />
-          <br />
-          <Button title="Secondary" size="large" theme="secondary" />
-          <br />
-          <Button title="Tertiary" size="large" theme="tertiary" />
-          <br />
-          <Button title="Unfocus" size="large" theme="unfocus" />
-          <br />
-          <Button title="Disabled" size="large" disabled />
-          <br />
-          <Button title="Large" size="large" />
-          <br />
-          <Button title="Medium" size="medium" />
-          <br />
-          <Button title="Small" size="small" />
-          <br />
-
-          <Input size={40} labelExist label="내용" />
-          <br />
-          <Button title="Primary" size="large" theme="primary" />
-          <br />
-          <Button title="Secondary" size="large" theme="secondary" />
-          <br />
-          <Button title="Tertiary" size="large" theme="tertiary" />
-          <br />
-          <Button title="Unfocus" size="large" theme="unfocus" />
-          <br />
-          <Button title="Disabled" size="large" disabled />
-          <br />
-          <Button title="Large" size="large" />
-          <br />
-          <Button title="Medium" size="medium" />
-          <br />
-          <Button title="Small" size="small" />
-          <br />
-          <IconButton
-            title="가계부"
-            theme="normal"
-            iconName="book"
-            widthSize={6.0625}
-            iconSize="1.1rem"
-          />
-          <br />
-          <IconButton
-            title="구성원 추가하기"
-            theme="primary"
-            iconName="personGear"
-          />
-          <br />
-          <IconButton
-            title="구성원 추가하기"
-            theme="secondary"
-            iconName="personGear"
-          />
-          <br />
-          <IconButton
-            title="윤채현님의 가계부"
-            theme="tertiary"
-            iconName="checkFill"
-          />
-          <br />
-          <Icon iconName="checkFill" color={colors.BLUE} />
         </Inner>
       </Full>
     </QueryClientProvider>
