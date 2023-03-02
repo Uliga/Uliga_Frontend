@@ -4,6 +4,7 @@ import styled from "styled-components";
 import Button from "./components/common/Button";
 import Input from "./components/common/Input";
 import Header from "./components/main/Header";
+import Person from "./assets/person";
 
 const queryClient = new QueryClient();
 
@@ -27,7 +28,9 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <Full>
         <Header />
+
         <Inner>
+          <Person />
           <Input size={40} labelExist label="내용" />
           <br />
           <Button title="Primary" size="large" theme="primary" />
