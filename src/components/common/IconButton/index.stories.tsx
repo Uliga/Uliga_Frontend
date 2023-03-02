@@ -1,7 +1,6 @@
 import React from "react";
 import { withKnobs, text, boolean } from "@storybook/addon-knobs";
 import IconButton from "./index";
-import * as colors from "../../../constants/color";
 
 export default {
   title: "components|basic/IconButton", // 스토리북에서 보여질 그룹과 경로를 명시
@@ -39,6 +38,16 @@ export function Teritiary() {
     <IconButton
       title="윤채현님의 가계부"
       theme="tertiary"
+      iconName="checkFill"
+    />
+  );
+}
+export function Reverse() {
+  return (
+    <IconButton
+      reverseIconButton
+      title="작성"
+      theme="normal"
       iconName="checkFill"
     />
   );

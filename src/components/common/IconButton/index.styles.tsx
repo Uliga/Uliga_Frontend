@@ -4,7 +4,6 @@ import {
   BLUE,
   YELLOW,
   MEDIUM_BLUE,
-  LIGHT_BLUE,
   LIGHT_YELLOW,
   DARK_BLUE,
   WHITE,
@@ -20,6 +19,7 @@ const Wrapper = styled.button<{
   disabled: boolean;
   iconName?: string;
   iconOnly: boolean;
+  reverseIconButton: boolean;
 }>`
   ${({ widthSize, ButtonTheme, iconOnly }) => `
     font-size: 1.125rem;

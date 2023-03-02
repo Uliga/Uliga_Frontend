@@ -10,6 +10,7 @@ const ICONS: IconProps = {
   bank: "bi bi-bank",
   personGear: "bi bi-person-gear",
   list: "bi bi-list",
+  arrowRight: "bi bi-chevron-right",
 };
 
 export default ICONS;
