@@ -36,9 +36,9 @@ const Wrapper = styled.button<{
         ? "none"
         : {
             normal: "0",
-            primary: "1rem 1rem",
-            secondary: "1rem 1rem",
-            tertiary: "1rem 1rem",
+            primary: "1rem 1.2rem",
+            secondary: "1rem 1.2rem",
+            tertiary: "1rem 1.2rem",
           }[ButtonTheme]
     }
     };
