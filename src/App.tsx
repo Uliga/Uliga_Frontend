@@ -3,6 +3,9 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import styled from "styled-components";
 import Button from "./components/common/Button";
 import Input from "./components/common/Input";
+import IconButton from "./components/common/IconButton";
+import * as colors from "./constants/color";
+import Icon from "./components/common/Icon";
 import Header from "./components/main/Header";
 import Person from "./assets/person";
 
@@ -87,6 +90,34 @@ function App() {
           <br />
           <Button title="Small" size="small" />
           <br />
+          <IconButton
+            title="가계부"
+            theme="normal"
+            iconName="book"
+            widthSize={6.0625}
+            heightSize={1.7}
+            iconSize="1.1rem"
+          />
+          <br />
+          <IconButton
+            title="구성원 추가하기"
+            theme="primary"
+            iconName="personGear"
+          />
+          <br />
+          <IconButton
+            title="구성원 추가하기"
+            theme="secondary"
+            iconName="personGear"
+          />
+          <br />
+          <IconButton
+            title="윤채현님의 가계부"
+            theme="tertiary"
+            iconName="checkFill"
+          />
+          <br />
+          <Icon iconName="checkFill" color={colors.BLUE} />
         </Inner>
       </Full>
     </QueryClientProvider>
