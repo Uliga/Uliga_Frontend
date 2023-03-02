@@ -85,4 +85,9 @@ const Wrapper = styled.button<{
   border-radius: 0.625rem;
 `;
 
-export default Wrapper;
+const StyledIcon = styled.i<{ border: number }>`
+  ${({ border }) => `
+   -webkit-text-stroke: ${border}px;
+`}
+`;
+export { StyledIcon, Wrapper };
