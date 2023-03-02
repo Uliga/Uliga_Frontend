@@ -8,7 +8,7 @@ import * as colors from "./constants/color";
 import Icon from "./components/common/Icon";
 import Header from "./components/main/Header";
 import Person from "./assets/person";
-import SideBar from "./components/main/SideBar";
+import SideBar from "./components/main/SideBar/menu";
 
 const queryClient = new QueryClient();
 
