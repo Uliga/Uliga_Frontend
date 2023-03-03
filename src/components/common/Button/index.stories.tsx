@@ -1,5 +1,5 @@
 import React from "react";
-import { withKnobs, text, boolean } from "@storybook/addon-knobs";
+import { withKnobs } from "@storybook/addon-knobs";
 import Button from "./index";
 
 export default {
