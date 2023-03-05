@@ -16,6 +16,8 @@ const Inner = styled.div`
   width: 140.8rem;
   height: 100vh;
   padding-top: 5.5rem;
+  display: flex;
+  justify-content: center;
 `;
 
 export default function DefaultLayout() {

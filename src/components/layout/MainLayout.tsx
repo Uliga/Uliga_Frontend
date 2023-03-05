@@ -18,14 +18,19 @@ const Inner = styled.div`
   padding-top: 5.5rem;
   background-color: white;
 `;
-
+const Container = styled.div`
+  display: flex;
+  justify-content: center;
+`;
 export default function MainLayout() {
   return (
     <Full>
       <Header />
       <Inner>
         <SideBar />
-        <Outlet />
+        <Container>
+          <Outlet />
+        </Container>
       </Inner>
     </Full>
   );
