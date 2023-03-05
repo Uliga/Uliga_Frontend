@@ -1,14 +1,5 @@
 import styled from "styled-components";
-import {
-  BLUE,
-  YELLOW,
-  MEDIUM_BLUE,
-  LIGHT_YELLOW,
-  DARK_BLUE,
-  WHITE,
-  GREY,
-  BLACK,
-} from "../../../constants/color";
+import COLORS from "../../../constants/color";
 
 type ButtonTheme = "normal" | "primary" | "secondary" | "tertiary";
 
@@ -26,9 +17,12 @@ const Wrapper = styled.button<{
     background-color:  ${
       iconOnly === true
         ? "transparent"
-        : { normal: WHITE, primary: BLUE, secondary: YELLOW, tertiary: WHITE }[
-            ButtonTheme
-          ]
+        : {
+            normal: COLORS.WHITE,
+            primary: COLORS.BLUE,
+            secondary: COLORS.YELLOW,
+            tertiary: COLORS.WHITE,
+          }[ButtonTheme]
     }};
     padding: ${
       iconOnly === true
@@ -41,15 +35,20 @@ const Wrapper = styled.button<{
           }[ButtonTheme]
     }
     };
-     border: ${ButtonTheme === "tertiary" ? `0.08rem solid ${BLUE} ` : "none"};
+     border: ${
+       ButtonTheme === "tertiary" ? `0.08rem solid ${COLORS.BLUE} ` : "none"
+     };
      gap: ${ButtonTheme === "normal" ? "0.6rem" : "0.5rem"};
 
      color:  ${
        iconOnly === true
          ? "none"
-         : { normal: BLACK, primary: WHITE, secondary: WHITE, tertiary: BLUE }[
-             ButtonTheme
-           ]
+         : {
+             normal: COLORS.BLACK,
+             primary: COLORS.WHITE,
+             secondary: COLORS.WHITE,
+             tertiary: COLORS.BLUE,
+           }[ButtonTheme]
      }};
     &:hover{
       background-color:  ${
@@ -57,9 +56,9 @@ const Wrapper = styled.button<{
           ? "none"
           : {
               normal: "transparent",
-              primary: MEDIUM_BLUE,
-              secondary: LIGHT_YELLOW,
-              tertiary: WHITE,
+              primary: COLORS.MEDIUM_BLUE,
+              secondary: COLORS.LIGHT_YELLOW,
+              tertiary: COLORS.WHITE,
             }[ButtonTheme]
       };
    
@@ -67,10 +66,10 @@ const Wrapper = styled.button<{
         iconOnly === true
           ? "none"
           : {
-              normal: GREY[400],
-              primary: WHITE,
-              secondary: WHITE,
-              tertiary: DARK_BLUE,
+              normal: COLORS.GREY[400],
+              primary: COLORS.WHITE,
+              secondary: COLORS.WHITE,
+              tertiary: COLORS.DARK_BLUE,
             }[ButtonTheme]
       }};
      cursor: pointer;

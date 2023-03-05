@@ -9,8 +9,8 @@ export default {
 };
 
 export function DefaultInput() {
-  return <Input size={100} />;
+  return <Input value="TEST" labelHidden size={100} />;
 }
 export function LabelInput() {
-  return <Input size={30} value="label" labelExist label="label" />;
+  return <Input size={30} value="label" label="label" />;
 }

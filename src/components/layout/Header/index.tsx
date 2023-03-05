@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Logo from "../../../assets/logo";
-import * as colors from "../../../constants/color";
+import COLORS from "../../../constants/color";
 import Icon from "../../common/Icon";
 
 const Container = styled.div`
@@ -10,7 +10,7 @@ const Container = styled.div`
   background-color: white;
   display: flex;
   align-items: center;
-  border-bottom: 0.1rem solid ${colors.GREY[200]};
+  border-bottom: 0.1rem solid ${COLORS.GREY[200]};
   position: fixed;
   top: 0;
 `;
@@ -29,7 +29,7 @@ const StyledIcon = styled(Icon)`
 
 const Title = styled.div`
   font-weight: 700;
-  color: ${colors.BLUE};
+  color: ${COLORS.BLUE};
 `;
 
 export default function Header() {
@@ -39,7 +39,7 @@ export default function Header() {
         iconName="list"
         size="2rem"
         border={1}
-        color={colors.GREY[500]}
+        color={COLORS.GREY[500]}
       />
       <Wrapper>
         <Logo />
