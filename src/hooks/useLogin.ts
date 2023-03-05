@@ -7,11 +7,13 @@ import { authLogin } from "../api/auth";
 export default function useLogin() {
   const [email, onChangeEmail] = useInput("");
   const [password, onChangePassword] = useInput("");
+  const [passwordCheck, onChangePasswordCheck] = useInput("");
   const [isValidate, setIsValidate] = useState(true);
 
   useEffect(() => {
     setIsValidate(REGEX.ID.test(email));
-  }, [email]);
+    setIsValidate(REGEX.PASSWORD.test(password));
+  }, [email, password, passwordCheck]);
 
   const mutateLogin = useMutation(["login"], authLogin, {
     onSuccess: () => {
@@ -29,8 +31,10 @@ export default function useLogin() {
     isValidate,
     email,
     password,
+    passwordCheck,
     onChangeEmail,
     onChangePassword,
     mutateLogin,
+    onChangePasswordCheck,
   };
 }
