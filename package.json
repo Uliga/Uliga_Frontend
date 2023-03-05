@@ -36,7 +36,7 @@
     "react-test": "react-scripts test",
     "compile-main": "tsc ./public/electron.ts",
     "react-eject": "react-scripts eject",
-    "start": "concurrently \"cross-env NODE_ENV=development BROWSER=none yarn react-start\" \"wait-on http://127.0.0.1:3000 && electron .\"",
+    "start": "concurrently \"cross-env NODE_ENV=development yarn react-start\" \"wait-on http://127.0.0.1:3000 && electron .\"",
     "build": "yarn react-build && electron-builder",
     "release": "yarn react-build && electron-builder --publish=always",
     "storybook": "start-storybook -p 6006 -s public",
