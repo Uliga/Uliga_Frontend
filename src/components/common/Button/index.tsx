@@ -1,14 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import {
-  BLUE,
-  YELLOW,
-  MEDIUM_BLUE,
-  LIGHT_BLUE,
-  LIGHT_YELLOW,
-  DARK_BLUE,
-  WHITE,
-} from "../../../constants/color";
+import COLORS from "../../../constants/color";
 
 type ButtonTheme = "primary" | "secondary" | "tertiary" | "unfocus";
 type ButtonSize = "large" | "medium" | "small";
@@ -47,33 +39,44 @@ const Wrapper = styled.button<{
      };
      background-color: ${
        (disabled && "#F2F4F7") ||
-       { primary: BLUE, secondary: YELLOW, tertiary: WHITE, unfocus: WHITE }[
-         ButtonTheme
-       ]
+       {
+         primary: COLORS.BLUE,
+         secondary: COLORS.YELLOW,
+         tertiary: COLORS.WHITE,
+         unfocus: COLORS.WHITE,
+       }[ButtonTheme]
      };
-     border: ${ButtonTheme === "tertiary" ? `0.08rem solid ${BLUE} ` : "none"};
+     border: ${
+       ButtonTheme === "tertiary" ? `0.08rem solid ${COLORS.BLUE} ` : "none"
+     };
      color: ${
        (disabled && "#CCCCCF") ||
-       { primary: WHITE, secondary: WHITE, tertiary: BLUE, unfocus: BLUE }[
-         ButtonTheme
-       ]
+       {
+         primary: COLORS.WHITE,
+         secondary: COLORS.WHITE,
+         tertiary: COLORS.BLUE,
+         unfocus: COLORS.BLUE,
+       }[ButtonTheme]
      };
     &:hover{
       background-color: ${
         (disabled && "#F2F4F7") ||
         {
-          primary: MEDIUM_BLUE,
-          secondary: LIGHT_YELLOW,
-          tertiary: WHITE,
-          unfocus: LIGHT_BLUE,
+          primary: COLORS.MEDIUM_BLUE,
+          secondary: COLORS.LIGHT_YELLOW,
+          tertiary: COLORS.WHITE,
+          unfocus: COLORS.LIGHT_BLUE,
         }[ButtonTheme]
       };
    
      color: ${
        (disabled && "#CCCCCF") ||
-       { primary: WHITE, secondary: WHITE, tertiary: DARK_BLUE, unfocus: BLUE }[
-         ButtonTheme
-       ]
+       {
+         primary: COLORS.WHITE,
+         secondary: COLORS.WHITE,
+         tertiary: COLORS.DARK_BLUE,
+         unfocus: COLORS.BLUE,
+       }[ButtonTheme]
      };
      cursor: ${disabled ? "default" : "pointer"};
     }
