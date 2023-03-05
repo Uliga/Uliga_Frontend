@@ -1,11 +1,11 @@
 import React from "react";
 import styled from "styled-components";
-import { GREY } from "../../../constants/color";
+import COLORS from "../../../constants/color";
 
 const Wrapper = styled.div``;
 const Label = styled.div`
   font-size: 1.3rem;
-  color: ${GREY[500]};
+  color: ${COLORS.GREY[500]};
   padding-bottom: 1rem;
 `;
 
@@ -17,11 +17,11 @@ const InputWrapper = styled.input<{
 `}
   padding: 1.5rem 1.2rem;
   border-radius: 0.5rem;
-  border: 0.1rem solid ${GREY[300]};
-  color: ${GREY[500]};
+  border: 0.1rem solid ${COLORS.GREY[300]};
+  color: ${COLORS.GREY[500]};
   font-size: 1.3rem;
   ::placeholder {
-    color: ${GREY[400]};
+    color: ${COLORS.GREY[400]};
     font-weight: 300;
   }
 `;

@@ -5,6 +5,7 @@ import MainLayout from "./components/layout/MainLayout";
 import DefaultLayout from "./components/layout/DefaultLayout";
 import Login from "./pages/login";
 import Main from "./pages/main";
+import PATH from "./constants/path";
 
 const queryClient = new QueryClient();
 
@@ -13,10 +14,10 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <Router>
         <Routes>
-          <Route path="/" element={<DefaultLayout />}>
+          <Route path={PATH.LOGIN} element={<DefaultLayout />}>
             <Route index element={<Login />} />
           </Route>
-          <Route path="/main" element={<MainLayout />}>
+          <Route path={PATH.MAIN} element={<MainLayout />}>
             <Route index element={<Main />} />
           </Route>
         </Routes>

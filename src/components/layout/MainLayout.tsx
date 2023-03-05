@@ -18,6 +18,7 @@ const Inner = styled.div`
   padding-top: 5.5rem;
   background-color: white;
 `;
+
 export default function MainLayout() {
   return (
     <Full>
