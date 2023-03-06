@@ -8,6 +8,7 @@ const Container = styled.div`
   width: 46.5rem;
   position: relative;
   gap: 4rem;
+  padding-top: 2rem;
 `;
 const LogoWrapper = styled.div`
   display: flex;
@@ -40,7 +41,6 @@ const Buttons = styled.div`
   padding-bottom: 7rem;
   display: flex;
   position: relative;
-  border-bottom: 0.1rem solid ${COLORS.GREY[300]};
 `;
 
 const Signup = styled.button`
