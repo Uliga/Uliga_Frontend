@@ -10,11 +10,3 @@ export const authSignup = async (userData: object) => {
   const { data } = await unAuthorizationClient.post(API.SIGNUP, userData);
   return data;
 };
-
-export const testLogin = async () => {
-  const { data } = await unAuthorizationClient.post(API.LOGIN, {
-    id: "test@email.com",
-    password: "56781234",
-  });
-  return data;
-};
