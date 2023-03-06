@@ -86,7 +86,7 @@ const Wrapper = styled.button<{
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 0.25rem;
+  border-radius: 1rem;
 `;
 
 export default function Button({
