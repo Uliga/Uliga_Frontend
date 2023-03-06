@@ -8,6 +8,7 @@ import Main from "./pages/main";
 import PATH from "./constants/path";
 import Signup from "./pages/signup";
 import StyledContainer from "./components/common/Toast/container";
+import LadingPage from "./pages/landing";
 
 const queryClient = new QueryClient();
 
@@ -21,6 +22,9 @@ function App() {
       />
       <Router>
         <Routes>
+          <Route path={PATH.LANDING} element={<DefaultLayout />}>
+            <Route index element={<LadingPage />} />
+          </Route>
           <Route path={PATH.LOGIN} element={<DefaultLayout />}>
             <Route index element={<Login />} />
           </Route>

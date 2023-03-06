@@ -50,7 +50,7 @@ export default function Input({
   value,
   onChange,
   type,
-  placeholder = "내용을 입력해주세요.",
+  placeholder = "",
   labelHidden = false,
   label,
   size = 35,
