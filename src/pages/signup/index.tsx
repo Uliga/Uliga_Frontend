@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Logo from "../../assets/logo";
 import Input from "../../components/common/Input";
-import useSignup from "../../hooks/useLogin";
+import useSignup from "../../hooks/useSignup";
 import * as S from "./index.styles";
 import PATH from "../../constants/path";
 import { testLogin } from "../../api/auth";
