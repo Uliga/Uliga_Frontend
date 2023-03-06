@@ -6,15 +6,24 @@ import Input from "../../components/common/Input";
 const Wrapper = styled.div`
   display: flex;
   justify-content: center;
-  width: 50.5rem;
+  width: 52rem;
   gap: 3rem;
-  height: 70rem;
+  height: 60rem;
   overflow: scroll;
   border-radius: 0.5rem;
-  border: 0.1rem solid ${COLORS.GREY[300]};
   ::-webkit-scrollbar {
-    display: none;
+    width: 0.7rem; /* 스크롤바의 너비 */
   }
+  ::-webkit-scrollbar-thumb {
+    height: 30%; /* 스크롤바의 길이 */
+    background: ${COLORS.GREY[200]}; /* 스크롤바의 색상 */
+    border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: ${COLORS.GREY[100]}; /*스크롤바 뒷 배경 색상*/
+  }
+  overflow-x: hidden;
 `;
 
 const Container = styled.div`
