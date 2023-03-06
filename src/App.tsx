@@ -7,12 +7,18 @@ import Login from "./pages/login";
 import Main from "./pages/main";
 import PATH from "./constants/path";
 import Signup from "./pages/signup";
+import StyledContainer from "./components/common/Toast/container";
 
 const queryClient = new QueryClient();
 
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
+      <StyledContainer
+        className="toast"
+        position="top-center"
+        closeButton={false}
+      />
       <Router>
         <Routes>
           <Route path={PATH.LOGIN} element={<DefaultLayout />}>
