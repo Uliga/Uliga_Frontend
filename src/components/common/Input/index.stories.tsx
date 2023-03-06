@@ -11,6 +11,9 @@ export default {
 export function DefaultInput() {
   return <Input value="TEST" labelHidden size={100} />;
 }
+export function CheckBox() {
+  return <Input type="checkbox" value="" />;
+}
 export function LabelInput() {
   return <Input size={30} value="label" label="label" />;
 }
