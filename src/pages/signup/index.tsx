@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Logo from "../../assets/logo";
 import Input from "../../components/common/Input";
-import useLogin from "../../hooks/useLogin";
+import useSignup from "../../hooks/useLogin";
 import * as S from "./index.styles";
 import PATH from "../../constants/path";
 import { testLogin } from "../../api/auth";
@@ -16,7 +16,7 @@ export default function Signup() {
     onChangePassword,
     passwordCheck,
     onChangePasswordCheck,
-  } = useLogin();
+  } = useSignup();
   const [showText, setShowText] = useState(false);
 
   return (
@@ -71,6 +71,7 @@ export default function Signup() {
             size={46.5}
             label="비밀번호"
             value={password}
+            type="password"
             onChange={onChangePassword}
             placeholder=""
           />
@@ -86,6 +87,7 @@ export default function Signup() {
             size={46.5}
             label="비밀번호 확인"
             value={passwordCheck}
+            type="password"
             onChange={onChangePasswordCheck}
             placeholder=""
           />

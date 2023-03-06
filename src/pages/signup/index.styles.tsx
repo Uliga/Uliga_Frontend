@@ -11,7 +11,7 @@ const Wrapper = styled.div`
   height: 70rem;
   overflow: scroll;
   border-radius: 0.5rem;
-  // border: 0.1rem solid ${COLORS.GREY[300]};
+  border: 0.1rem solid ${COLORS.GREY[300]};
   ::-webkit-scrollbar {
     display: none;
   }
@@ -75,7 +75,7 @@ const Title = styled.div`
   padding: 0 0 0.5rem 0;
 `;
 const PartTitle = styled.div`
-  font-size: 0.9375rem;
+  font-size: 1.1rem;
   color: ${COLORS.GREY[400]};
 `;
 const CertificationStyledButton = styled(Button)`
