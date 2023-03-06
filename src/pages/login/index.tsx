@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Logo from "../../assets/logo";
 import Input from "../../components/common/Input";
-import SNSLogin from "./sns";
 import useLogin from "../../hooks/useLogin";
 import PATH from "../../constants/path";
 import * as S from "./index.styles";
@@ -16,6 +15,7 @@ export default function Login() {
     onChangePassword,
     mutateLogin,
   } = useLogin();
+
   return (
     <S.Container>
       <S.LogoWrapper>
@@ -37,6 +37,7 @@ export default function Login() {
       </div>
       <Input
         size={46.5}
+        type="password"
         label="비밀번호"
         value={password}
         onChange={onChangePassword}
@@ -55,7 +56,6 @@ export default function Login() {
           width="13.5rem"
         />
       </S.Buttons>
-      <SNSLogin />
     </S.Container>
   );
 }
