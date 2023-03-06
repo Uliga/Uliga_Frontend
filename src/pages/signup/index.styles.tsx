@@ -66,11 +66,12 @@ const fadeInDown = keyframes`
 `;
 
 const CodeContainer = styled.p`
+  margin-top: 3rem;
   display: flex;
   flex-direction: row;
   position: relative;
-  gap: 1rem;
   opacity: 0;
+  gap: 1rem;
   &.show-text {
     opacity: 1;
     animation: ${fadeInDown} 1s forwards;
