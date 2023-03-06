@@ -30,7 +30,6 @@ export default function Signup() {
   const { time, min, sec, onStartTimer } = AuthTimer();
 
   const [showText, setShowText] = useState(false);
-  // const [hideText, setHideText] = useState(false);
   const applicationPassword = "1234";
   const [match, setMatch] = useState(false);
   const [exist, setExist] = useState(false);
@@ -69,8 +68,6 @@ export default function Signup() {
               size="small"
             />
           </S.EmailContainer>
-        </div>
-        <div>
           {min < 5 && showText ? (
             <S.CodeContainer className="show-text">
               <Input
