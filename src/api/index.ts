@@ -9,6 +9,14 @@ const authorizationClient = axios.create({
   withCredentials: true,
 });
 
+authorizationClient.interceptors.request.use(config => {
+  return Object.assign(config, {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+    },
+  });
+});
+
 authorizationClient.interceptors.response.use(
   response => {
     return response;
