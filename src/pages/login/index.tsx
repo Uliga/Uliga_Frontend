@@ -8,7 +8,7 @@ import * as S from "./index.styles";
 
 export default function Login() {
   const {
-    isValidate,
+    isValidateEmail,
     email,
     onChangeEmail,
     password,
@@ -52,7 +52,7 @@ export default function Login() {
             onChange={input.onChange}
             placeholder={input.placeholder}
           />
-          {!isValidate && email.length > 0 && input.type === "email" && (
+          {!isValidateEmail && email.length > 0 && input.type === "email" && (
             <S.Warn>올바른 이메일 주소를 입력해주세요.</S.Warn>
           )}
         </div>

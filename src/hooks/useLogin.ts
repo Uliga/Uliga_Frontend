@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
@@ -7,18 +6,16 @@ import REGEX from "../constants/regex";
 import { authLogin, checkEmail } from "../api/auth";
 import toastMsg from "../components/common/Toast";
 import PATH from "../constants/path";
-import accessToken from "../stores/atoms/user";
+import useValidate from "./useValidate";
+import me from "../stores/atoms/user";
 
 export default function useLogin() {
   const navigate = useNavigate();
-  const [email, onChangeEmail] = useInput("");
+  const [email, onChangeEmail, isValidateEmail] = useValidate({
+    validator: (input: string) => REGEX.ID.test(input),
+  });
   const [password, onChangePassword] = useInput("");
-  const [isValidate, setIsValidate] = useState(true);
-  const [, setMe] = useRecoilState(accessToken);
-
-  useEffect(() => {
-    setIsValidate(REGEX.ID.test(email));
-  }, [email]);
+  const [, setMe] = useRecoilState(me);
 
   const mutateLogin = useMutation(["login"], authLogin, {
     onSuccess: ({ memberInfo, tokenInfo }) => {
@@ -58,7 +55,7 @@ export default function useLogin() {
   });
 
   return {
-    isValidate,
+    isValidateEmail,
     email,
     password,
     onChangeEmail,
