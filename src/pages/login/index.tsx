@@ -16,6 +16,25 @@ export default function Login() {
     mutateLogin,
   } = useLogin();
 
+  const inputList = [
+    {
+      size: 46.5,
+      type: "email",
+      label: "이메일 주소",
+      value: email,
+      onChange: onChangeEmail,
+      placeholder: "이메일 주소를 입력해주세요.",
+    },
+    {
+      size: 46.5,
+      type: "password",
+      label: "비밀번호",
+      value: password,
+      onChange: onChangePassword,
+      placeholder: "비밀번호를 입력해주세요.",
+    },
+  ];
+
   return (
     <S.Container>
       <S.LogoWrapper>
@@ -23,26 +42,21 @@ export default function Login() {
         우리가
       </S.LogoWrapper>
       <S.Title>로그인</S.Title>
-      <div>
-        <Input
-          size={46.5}
-          label="이메일 주소"
-          value={email}
-          onChange={onChangeEmail}
-          placeholder="이메일 주소를 입력해주세요."
-        />
-        {!isValidate && email.length > 0 && (
-          <S.Warn>올바른 이메일 주소를 입력해주세요.</S.Warn>
-        )}
-      </div>
-      <Input
-        size={46.5}
-        type="password"
-        label="비밀번호"
-        value={password}
-        onChange={onChangePassword}
-        placeholder="비밀번호를 입력해주세요."
-      />
+      {inputList.map(input => (
+        <div>
+          <Input
+            size={input.size}
+            type={input.type}
+            label={input.label}
+            value={input.value}
+            onChange={input.onChange}
+            placeholder={input.placeholder}
+          />
+          {!isValidate && email.length > 0 && input.type === "email" && (
+            <S.Warn>올바른 이메일 주소를 입력해주세요.</S.Warn>
+          )}
+        </div>
+      ))}
       <S.Buttons>
         계정이 없으신가요?
         <S.Signup>
