@@ -1,11 +1,15 @@
 import { useEffect, useState, useRef } from "react";
 import { useMutation } from "@tanstack/react-query";
+import { useNavigate } from "react-router-dom";
 import useInput from "./useInput";
 import REGEX from "../constants/regex";
 import { emailSend, codeVerify, authSignup, nickDuplicate } from "../api/auth";
 import toastMsg from "../components/common/Toast";
+import PATH from "../constants/path";
 
 export default function useLogin() {
+  const navigate = useNavigate();
+
   const [email, onChangeEmail] = useInput("");
   const [password, onChangePassword] = useInput("");
   const [userName, onChangeName] = useInput("");
@@ -13,6 +17,16 @@ export default function useLogin() {
   const [passwordCheck, onChangePasswordCheck] = useInput("");
   const [isValidate, setIsValidate] = useState(true);
   const [code, setCode] = useInput("");
+  const [showText, setShowText] = useState(false);
+  const [match, setMatch] = useState(false);
+  const [exist, setExist] = useState(false);
+  const [isChecked, setIsChecked] = useState(false);
+
+  const handleCheckboxChange = (event: {
+    target: { checked: boolean | ((prevState: boolean) => boolean) };
+  }) => {
+    setIsChecked(event.target.checked);
+  };
   useEffect(() => {
     setIsValidate(
       REGEX.PASSWORD.test(password) || REGEX.PASSWORD.test(nickName),
@@ -33,8 +47,12 @@ export default function useLogin() {
   });
   const mutateCodeCheck = useMutation(["codeCheck"], codeVerify, {
     onSuccess: data => {
-      toastMsg("이메일 인증 완료");
-      console.log("sddd", data);
+      if (data.matches) {
+        toastMsg("이메일 인증 완료");
+        setMatch(true);
+      } else {
+        toastMsg("인증번호가 틀렸습니다!");
+      }
     },
     onError: ({
       response: {
@@ -47,6 +65,7 @@ export default function useLogin() {
   const mutateSignup = useMutation(["signUp"], authSignup, {
     onSuccess: () => {
       toastMsg("회원가입 성공");
+      navigate(PATH.MAIN);
     },
     onError: ({
       response: {
@@ -59,8 +78,11 @@ export default function useLogin() {
 
   const mutateNickCheck = useMutation(["nickCheck"], nickDuplicate, {
     onSuccess: data => {
-      toastMsg("사용가능한 닉네임");
-      console.log("데이터", data);
+      if (!data.exists) {
+        toastMsg("사용가능한 닉네임입니다!");
+      } else {
+        toastMsg("이미 존재하는 닉네임입니다!");
+      }
     },
     onError: ({
       response: {
@@ -121,5 +143,14 @@ export default function useLogin() {
     mutateSignup,
     mutateNickCheck,
     AuthTimer,
+    showText,
+    setShowText,
+    match,
+    setMatch,
+    exist,
+    setExist,
+    isChecked,
+    setIsChecked,
+    handleCheckboxChange,
   };
 }

@@ -45,7 +45,7 @@ export default function useLogin() {
         navigate(PATH.LOGIN);
       } else {
         toastMsg("가입되어 있는 계정이 없어 회원가입 페이지로 이동합니다.");
-        navigate(PATH.SIGNUP);
+        navigate(PATH.SIGNUP, { state: landingEmail });
       }
     },
     onError: ({
