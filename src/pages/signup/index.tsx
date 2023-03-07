@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React from "react";
+import { Link, useLocation } from "react-router-dom";
 import Logo from "../../assets/logo";
 import Input from "../../components/common/Input";
 import useSignup from "../../hooks/useSignup";
@@ -10,7 +10,6 @@ export default function Signup() {
   const {
     isValidate,
     email,
-    onChangeEmail,
     password,
     onChangePassword,
     passwordCheck,
@@ -26,14 +25,18 @@ export default function Signup() {
     userName,
     mutateNickCheck,
     AuthTimer,
+    showText,
+    setShowText,
+    match,
+    setMatch,
+    exist,
+    setExist,
+    isChecked,
+    handleCheckboxChange,
   } = useSignup();
   const { time, min, sec, onStartTimer } = AuthTimer();
-
-  const [showText, setShowText] = useState(false);
   const applicationPassword = "1234";
-  const [match, setMatch] = useState(false);
-  const [exist, setExist] = useState(false);
-
+  const { state } = useLocation();
   return (
     <S.Wrapper>
       <S.Container>
@@ -53,20 +56,26 @@ export default function Signup() {
             <Input
               size={38.38}
               label="이메일 주소"
-              value={email}
-              onChange={onChangeEmail}
+              value={state}
               placeholder=""
             />
-
-            <S.CertificationStyledButton
-              onClick={() => {
-                setShowText(true);
-                mutateEmailSend.mutate({ email });
-                onStartTimer();
-              }}
-              title={min < 5 ? "재전송" : "인증"}
-              size="small"
-            />
+            {match ? (
+              <S.CertificationStyledButton
+                disabled
+                title={min < 5 ? "재전송" : "인증"}
+                size="small"
+              />
+            ) : (
+              <S.CertificationStyledButton
+                onClick={() => {
+                  setShowText(true);
+                  mutateEmailSend.mutate({ email: state });
+                  onStartTimer();
+                }}
+                title={min < 5 ? "재전송" : "인증"}
+                size="small"
+              />
+            )}
           </S.EmailContainer>
           {min < 5 && showText ? (
             <S.CodeContainer className="show-text">
@@ -77,13 +86,13 @@ export default function Signup() {
                 onChange={setCode}
                 placeholder=""
               />
-              {code.length > 0 ? (
+              {code.length > 0 && !match ? (
                 <S.CodeStyledButton
                   title="인증 완료"
                   size="small"
                   onClick={() => {
-                    mutateCodeCheck.mutate({ email, code });
-                    setMatch(true);
+                    mutateCodeCheck.mutate({ email: state, code });
+                    setMatch(mutateCodeCheck.data.matches);
                   }}
                 />
               ) : (
@@ -152,25 +161,26 @@ export default function Signup() {
               onChange={onChangeNickname}
               placeholder=""
             />
-            {exist ? (
-              <S.CertificationStyledButton
-                onClick={() => {
-                  mutateNickCheck.mutate(nickName);
-                  setExist(true);
-                }}
-                title="확인"
-                size="small"
-              />
-            ) : (
-              <S.CertificationStyledButton disabled title="확인" size="small" />
-            )}
+            <S.CertificationStyledButton
+              onClick={() => {
+                mutateNickCheck.mutate(nickName);
+                setExist(mutateNickCheck.data);
+              }}
+              title="확인"
+              size="small"
+            />
           </S.EmailContainer>
           {!isValidate && nickName.length > 0 && nickName.length < 2 && (
             <S.Warn>2글자 이상 입력해주세요.</S.Warn>
           )}
         </div>
         <S.Buttons2>
-          <S.StyledCheckBox type="checkbox" value="" size={1.5} />
+          <S.StyledCheckBox
+            type="checkbox"
+            value=""
+            size={1.5}
+            onChange={handleCheckboxChange}
+          />
           우리가 개인정보 수집 및 동의(필수)
           <S.PersonalInfo>
             <Link to={PATH.LOGIN}>자세히</Link>
@@ -187,6 +197,7 @@ export default function Signup() {
           userName.length > 0 &&
           match &&
           exist &&
+          isChecked &&
           passwordCheck.length > 0 ? (
             <S.SignUpStyledButton
               title="계정 만들기"
