@@ -4,7 +4,16 @@ import { loadMe } from "../../api/user";
 import LoadingBar from "../../components/common/LoadingBar";
 
 export default function Main() {
-  const { isLoading, data } = useQuery(["me"], loadMe);
+  const {
+    isLoading,
+    data: { memberInfo, invitations },
+  } = useQuery(["me"], loadMe);
+
   if (isLoading) return <LoadingBar type={8} />;
-  return <div>{data.email}</div>;
+  return (
+    <div>
+      {memberInfo.email}
+      {invitations}
+    </div>
+  );
 }
