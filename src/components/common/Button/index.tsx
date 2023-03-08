@@ -2,7 +2,12 @@ import React from "react";
 import styled from "styled-components";
 import COLORS from "../../../constants/color";
 
-type ButtonTheme = "primary" | "secondary" | "tertiary" | "unfocus";
+type ButtonTheme =
+  | "primary"
+  | "secondary"
+  | "tertiary"
+  | "unfocus"
+  | "quaternary";
 type ButtonSize = "large" | "medium" | "small";
 type ButtonProps = {
   /** 버튼 안의 내용 */
@@ -44,6 +49,7 @@ const Wrapper = styled.button<{
          secondary: COLORS.YELLOW,
          tertiary: COLORS.WHITE,
          unfocus: COLORS.WHITE,
+         quaternary: COLORS.LIGHT_BLUE,
        }[ButtonTheme]
      };
      border: ${
@@ -56,6 +62,7 @@ const Wrapper = styled.button<{
          secondary: COLORS.WHITE,
          tertiary: COLORS.BLUE,
          unfocus: COLORS.BLUE,
+         quaternary: COLORS.BLUE,
        }[ButtonTheme]
      };
     &:hover{
@@ -66,6 +73,7 @@ const Wrapper = styled.button<{
           secondary: COLORS.LIGHT_YELLOW,
           tertiary: COLORS.WHITE,
           unfocus: COLORS.LIGHT_BLUE,
+          quaternary: COLORS.BLUE,
         }[ButtonTheme]
       };
    
@@ -76,6 +84,7 @@ const Wrapper = styled.button<{
          secondary: COLORS.WHITE,
          tertiary: COLORS.DARK_BLUE,
          unfocus: COLORS.BLUE,
+         quaternary: COLORS.WHITE,
        }[ButtonTheme]
      };
      cursor: ${disabled ? "default" : "pointer"};

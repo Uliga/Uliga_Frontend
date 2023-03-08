@@ -9,6 +9,7 @@ const Wrapper = styled.div`
   width: 52rem;
   gap: 3rem;
   height: 60rem;
+  font-size: 1.2rem;
   overflow: scroll;
   border-radius: 0.5rem;
   ::-webkit-scrollbar {
@@ -48,7 +49,7 @@ const PartTitleContainer = styled.div`
   flex-direction: column;
   position: relative;
 `;
-const EmailContainer = styled.div`
+const InputContainer = styled.div`
   display: flex;
   flex-direction: row;
   position: relative;
@@ -66,7 +67,6 @@ const fadeInDown = keyframes`
 `;
 
 const CodeContainer = styled.p`
-  margin-top: 3rem;
   display: flex;
   flex-direction: row;
   position: relative;
@@ -85,22 +85,21 @@ const Title = styled.div`
   padding: 0 0 0.5rem 0;
 `;
 const PartTitle = styled.div`
-  font-size: 1.1rem;
+  font-size: 1.2rem;
+  padding-top: 0.2rem;
   color: ${COLORS.GREY[400]};
 `;
 const CertificationStyledButton = styled(Button)`
   margin-top: 2.6rem;
-  padding: 0 1rem 0 1rem;
   font-size: 1.4rem;
+  height: 4.7rem;
   border-radius: 0.7rem;
   width: 7.32rem;
-  color: ${COLORS.BLUE};
-  background-color: ${COLORS.LIGHT_BLUE};
 `;
 const CodeStyledButton = styled(Button)`
   margin-top: 2.6rem;
-  padding: 0 1rem 0 1rem;
   font-size: 1.4rem;
+  height: 4.7rem;
   border-radius: 0.7rem;
   width: 11.32rem;
 `;
@@ -153,7 +152,7 @@ const Signup = styled.button`
 const Warn = styled.p`
   font-size: 1.1rem;
   padding-top: 1rem;
-  color: ${COLORS.BLUE};
+  color: ${COLORS.MEDIUM_BLUE};
 `;
 
 export {
@@ -169,7 +168,7 @@ export {
   Warn,
   PartTitle,
   PartTitleContainer,
-  EmailContainer,
+  InputContainer,
   PersonalInfo,
   StyledCheckBox,
   CodeStyledButton,
