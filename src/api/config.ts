@@ -4,11 +4,12 @@ const MEMBER = "/member";
 const LOGIN = "login";
 const SIGNUP = "signup";
 const CHECK_EMAIL = "mail/exists/";
-const GOOGLE = "social_login/google";
-const KAKAO = "social_login/kakao";
-const EMAILSEND = "mail";
+const EMAIL_SEND = "mail";
 const CODE = "mail/code";
 const NICK_DUPLICATE = "nickname/exists/";
+const GOOGLE = "social_login/google";
+const KAKAO = "social_login/kakao";
+const ACCOUNT_BOOK = "/accountBook";
 
 const API = {
   BASE_URL: `${BASE_URL}`,
@@ -17,11 +18,12 @@ const API = {
   LOGIN: `${AUTH}${LOGIN}`,
   SIGNUP: `${AUTH}${SIGNUP}`,
   CHECK_EMAIL: `${AUTH}${CHECK_EMAIL}`,
-  GOOGLE: `${AUTH}${GOOGLE}`,
-  KAKAO: `${AUTH}${KAKAO}`,
-  EMAILSEND: `${AUTH}${EMAILSEND}`,
+  EMAIL_SEND: `${AUTH}${EMAIL_SEND}`,
   CODE: `${AUTH}${CODE}`,
   NICK_DUPLICATE: `${AUTH}${NICK_DUPLICATE}`,
+  GOOGLE: `${AUTH}${GOOGLE}`,
+  KAKAO: `${AUTH}${KAKAO}`,
+  ACCOUNT_BOOK: `${ACCOUNT_BOOK}`,
 };
 
 export default API;
