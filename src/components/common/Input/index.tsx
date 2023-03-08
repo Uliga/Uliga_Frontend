@@ -9,9 +9,7 @@ const Label = styled.div`
   padding-bottom: 1rem;
 `;
 
-const InputWrapper = styled.input<{
-  size: number;
-}>`
+const InputWrapper = styled.input<{ size: number }>`
   ${({ size }) => `
     width: ${size}rem;
 `}

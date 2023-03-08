@@ -6,7 +6,6 @@ interface ValidateProps {
   validator: Function;
   initState?: string;
 }
-
 const useValidate = ({ validator, initState = "" }: ValidateProps) => {
   const [value, onChangeValue] = useInput(initState);
   const [isValidateValue, setIsValidateValue] = useState(false);
