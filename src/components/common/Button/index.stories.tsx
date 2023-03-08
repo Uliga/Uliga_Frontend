@@ -17,6 +17,9 @@ export function Secondary() {
 export function Tertiary() {
   return <Button title="Tertiary" size="medium" theme="tertiary" />;
 }
+export function Quaternary() {
+  return <Button title="Quaternary" size="medium" theme="quaternary" />;
+}
 export function Unfocus() {
   return <Button title="Unfocus" size="medium" theme="unfocus" />;
 }
