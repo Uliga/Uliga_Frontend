@@ -18,12 +18,16 @@ const Inner = styled.div`
   width: 140.8rem;
   padding-top: 5.5rem;
   background-color: white;
+  height: 100vh;
+  border-right: 0.1rem solid ${COLORS.GREY[200]};
 `;
+
 const Container = styled.div`
   display: flex;
   justify-content: center;
-  border-right: 0.1rem solid ${COLORS.GREY[200]};
+  position: relative;
 `;
+
 export default function MainLayout() {
   return (
     <Full>
