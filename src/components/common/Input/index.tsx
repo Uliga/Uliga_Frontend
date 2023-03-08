@@ -26,6 +26,12 @@ const InputWrapper = styled.input<{
   }
 `;
 
+const Message = styled.p`
+  font-size: 1.1rem;
+  padding-top: 1rem;
+  color: ${COLORS.MEDIUM_BLUE};
+`;
+
 type InputProps = {
   /** input 안의 초깃값 */
   value: string;
@@ -43,6 +49,10 @@ type InputProps = {
   size?: number;
   /** 필수로 채워야하는 필드 */
   required?: boolean;
+  /** 읽기 전용 */
+  readOnly?: boolean;
+  /** input의 입력 조건 */
+  message?: string;
   className?: string;
 };
 
@@ -56,6 +66,8 @@ export default function Input({
   size = 35,
   required = false,
   className,
+  readOnly = false,
+  message = "",
 }: InputProps) {
   return (
     <Wrapper className={className}>
@@ -67,7 +79,9 @@ export default function Input({
         placeholder={placeholder}
         size={size}
         required={required}
+        readOnly={readOnly}
       />
+      {message.length > 0 && <Message> {message}</Message>}
     </Wrapper>
   );
 }
