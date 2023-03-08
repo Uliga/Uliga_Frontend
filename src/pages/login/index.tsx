@@ -1,9 +1,7 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import Logo from "../../assets/logo";
 import Input from "../../components/common/Input";
 import useLogin from "../../hooks/useLogin";
-import PATH from "../../constants/path";
 import * as S from "./index.styles";
 
 export default function Login() {
@@ -59,19 +57,14 @@ export default function Login() {
           />
         </div>
       ))}
-      <S.Buttons>
-        계정이 없으신가요?
-        <S.Signup>
-          <Link to={PATH.SIGNUP}>회원가입</Link>
-        </S.Signup>
-        <S.StyledButton
-          onClick={() => {
-            mutateLogin.mutate({ email, password });
-          }}
-          title="로그인"
-          width="13.5rem"
-        />
-      </S.Buttons>
+
+      <S.StyledButton
+        onClick={() => {
+          mutateLogin.mutate({ email, password });
+        }}
+        title="로그인"
+        width="13.5rem"
+      />
     </S.Container>
   );
 }
