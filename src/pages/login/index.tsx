@@ -24,6 +24,10 @@ export default function Login() {
       value: email,
       onChange: onChangeEmail,
       placeholder: "이메일 주소를 입력해주세요.",
+      message:
+        !isValidateEmail && email.length > 0
+          ? "올바른 이메일 주소를 입력해주세요."
+          : "",
     },
     {
       size: 46.5,
@@ -51,10 +55,8 @@ export default function Login() {
             value={input.value}
             onChange={input.onChange}
             placeholder={input.placeholder}
+            message={input.message}
           />
-          {!isValidateEmail && email.length > 0 && input.type === "email" && (
-            <S.Warn>올바른 이메일 주소를 입력해주세요.</S.Warn>
-          )}
         </div>
       ))}
       <S.Buttons>
