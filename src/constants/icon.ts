@@ -11,6 +11,7 @@ const ICONS: IconProps = {
   personGear: "bi bi-person-gear",
   list: "bi bi-list",
   arrowRight: "bi bi-chevron-right",
+  close: "bi bi-x-lg",
 };
 
 export default ICONS;
