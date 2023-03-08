@@ -180,6 +180,7 @@ export default function Signup() {
                 size={input.size}
                 label={input.label}
                 value={input.value}
+                type={input.type}
                 onChange={input.onChange}
                 message={input.message}
                 placeholder={input.placeholder}
