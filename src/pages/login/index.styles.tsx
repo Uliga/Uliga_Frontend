@@ -6,6 +6,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   width: 46.5rem;
+  height: 45rem;
   position: relative;
   gap: 4rem;
   padding-top: 2rem;
@@ -31,32 +32,8 @@ const StyledButton = styled(Button)`
   padding: 1.2rem 1rem;
   border-radius: 0.7rem;
   position: absolute;
-  top: 0;
   right: 0;
+  bottom: 0;
 `;
 
-const Buttons = styled.div`
-  font-size: 1.3rem;
-  color: ${COLORS.GREY[400]};
-  padding-bottom: 7rem;
-  display: flex;
-  position: relative;
-`;
-
-const Signup = styled.button`
-  font-size: 1.3rem;
-  color: ${COLORS.GREY[400]};
-  cursor: pointer;
-  padding-left: 1rem;
-  border: none;
-  background-color: transparent;
-  text-decoration: underline;
-`;
-
-const Warn = styled.p`
-  font-size: 1.1rem;
-  padding-top: 1rem;
-  color: ${COLORS.BLUE};
-`;
-
-export { Container, LogoWrapper, Title, StyledButton, Buttons, Signup, Warn };
+export { Container, LogoWrapper, Title, StyledButton };

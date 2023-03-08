@@ -5,13 +5,12 @@ export const authLogin = async (userLoginData: object) => {
   const { data } = await unAuthorizationClient.post(API.LOGIN, userLoginData);
   return data;
 };
-
 export const authSignup = async (userData: object) => {
   const { data } = await unAuthorizationClient.post(API.SIGNUP, userData);
   return data;
 };
 export const emailSend = async (userData: object) => {
-  const { data } = await unAuthorizationClient.post(API.EMAILSEND, userData);
+  const { data } = await unAuthorizationClient.post(API.EMAIL_SEND, userData);
   return data;
 };
 export const codeVerify = async (userData: object) => {
@@ -24,7 +23,6 @@ export const nickDuplicate = async (nickName: string) => {
   );
   return data;
 };
-
 export const checkEmail = async (email: string) => {
   const { data } = await unAuthorizationClient.get(
     `${API.CHECK_EMAIL}${email}`,
