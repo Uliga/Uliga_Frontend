@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import React from "react";
-import COLORS from "../../../constants/color";
+import COLORS from "../../constants/color";
 import IconButton from "../IconButton";
 
 const Container = styled.div<{ size: number; color: string }>`

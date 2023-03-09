@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Button from "../Button";
-import COLORS from "../../../constants/color";
+import COLORS from "../../constants/color";
 
 export type DialogProps = {
   /** 다이얼로그 너비 */

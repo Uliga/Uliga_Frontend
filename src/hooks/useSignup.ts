@@ -5,7 +5,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import useInput from "./useInput";
 import REGEX from "../constants/regex";
 import { emailSend, codeVerify, authSignup, nickDuplicate } from "../api/auth";
-import toastMsg from "../components/common/Toast";
+import toastMsg from "../components/Toast";
 import PATH from "../constants/path";
 
 export default function useLogin() {

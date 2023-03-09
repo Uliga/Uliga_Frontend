@@ -4,7 +4,7 @@ import { useRecoilState } from "recoil";
 import useInput from "./useInput";
 import REGEX from "../constants/regex";
 import { authLogin, checkEmail } from "../api/auth";
-import toastMsg from "../components/common/Toast";
+import toastMsg from "../components/Toast";
 import PATH from "../constants/path";
 import useValidate from "./useValidate";
 import me from "../stores/atoms/user";

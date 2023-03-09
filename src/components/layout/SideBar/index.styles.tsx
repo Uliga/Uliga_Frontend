@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import IconButton from "../../common/IconButton";
-import Button from "../../common/Button";
+import IconButton from "../../IconButton";
+import Button from "../../Button";
 import COLORS from "../../../constants/color";
 
 const Container = styled.div`

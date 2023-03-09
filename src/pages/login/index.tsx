@@ -1,6 +1,6 @@
 import React from "react";
 import Logo from "../../assets/logo";
-import Input from "../../components/common/Input";
+import Input from "../../components/Input";
 import useLogin from "../../hooks/useLogin";
 import * as S from "./index.styles";
 

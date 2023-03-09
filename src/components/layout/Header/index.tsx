@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Logo from "../../../assets/logo";
 import COLORS from "../../../constants/color";
-import Icon from "../../common/Icon";
+import Icon from "../../Icon";
 
 const Container = styled.div`
   width: 100%;
