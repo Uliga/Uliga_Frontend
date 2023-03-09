@@ -1,7 +1,7 @@
 import styled, { keyframes } from "styled-components";
 import COLORS from "../../constants/color";
-import Button from "../../components/common/Button";
-import Input from "../../components/common/Input";
+import Button from "../../components/Button";
+import Input from "../../components/Input";
 
 const Wrapper = styled.div`
   display: flex;

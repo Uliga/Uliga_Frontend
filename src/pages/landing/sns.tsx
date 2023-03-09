@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import React from "react";
 import COLORS from "../../constants/color";
-import ImgButton from "../../components/common/ImgButton";
+import ImgButton from "../../components/ImgButton";
 
 const Container = styled.div`
   font-size: 1.4rem;

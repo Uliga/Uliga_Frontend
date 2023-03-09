@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { useQuery } from "@tanstack/react-query";
 import { loadMe } from "../../api/user";
-import LoadingBar from "../../components/common/LoadingBar";
-import Button from "../../components/common/Button";
-import Modal from "../../components/common/Modal";
+import LoadingBar from "../../components/LoadingBar";
+import Button from "../../components/Button";
+import Modal from "../../components/Modal";
 import Create from "../create";
 
 const WriteButton = styled(Button)`
