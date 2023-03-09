@@ -9,6 +9,7 @@ type ButtonTheme =
   | "unfocus"
   | "quaternary";
 type ButtonSize = "large" | "medium" | "small";
+type ButtonType = "button" | "submit" | "reset";
 type ButtonProps = {
   /** 버튼 안의 내용 */
   title?: string;
@@ -20,6 +21,8 @@ type ButtonProps = {
   disabled?: boolean;
   /** 버튼 너비 */
   width?: string;
+  /** 버튼 타입 */
+  type?: ButtonType;
   /** 클릭했을 때 호출할 함수 */
   onClick?: (e?: React.MouseEvent<HTMLButtonElement>) => void;
   className?: string;
@@ -104,6 +107,7 @@ export default function Button({
   size = "medium",
   disabled = false,
   width,
+  type = "button",
   onClick,
   className,
 }: ButtonProps) {
@@ -115,6 +119,7 @@ export default function Button({
       onClick={onClick}
       disabled={disabled}
       width={width!}
+      type={type}
     >
       {title}
     </Wrapper>
