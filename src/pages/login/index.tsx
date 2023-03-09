@@ -38,7 +38,12 @@ export default function Login() {
   ];
 
   return (
-    <S.Container>
+    <S.Container
+      onSubmit={e => {
+        e.preventDefault();
+        mutateLogin.mutate({ email, password });
+      }}
+    >
       <S.LogoWrapper>
         <Logo />
         우리가
@@ -58,13 +63,7 @@ export default function Login() {
         </div>
       ))}
 
-      <S.StyledButton
-        onClick={() => {
-          mutateLogin.mutate({ email, password });
-        }}
-        title="로그인"
-        width="13.5rem"
-      />
+      <S.StyledButton type="submit" title="로그인" width="13.5rem" />
     </S.Container>
   );
 }

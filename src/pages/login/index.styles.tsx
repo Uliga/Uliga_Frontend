@@ -2,7 +2,7 @@ import styled from "styled-components";
 import COLORS from "../../constants/color";
 import Button from "../../components/common/Button";
 
-const Container = styled.div`
+const Container = styled.form`
   display: flex;
   flex-direction: column;
   width: 46.5rem;
