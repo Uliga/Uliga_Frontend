@@ -1,3 +1,3 @@
-const querykey = {} as const;
+const QUERYKEYS = {} as const;
 
-export default querykey;
+export default QUERYKEYS;
