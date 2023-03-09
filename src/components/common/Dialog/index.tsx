@@ -4,7 +4,7 @@ import Button from "../Button";
 import COLORS from "../../../constants/color";
 
 export type DialogProps = {
-  size: number;
+  size?: number;
   visible?: boolean;
   title?: string;
   description?: string;
@@ -36,10 +36,12 @@ const WhiteBoxWrapper = styled.div`
 `;
 
 const ButtonWrapper = styled.div`
-  position: fixed;
+  position: absolute;
+  bottom: 3rem;
+  right: 3rem;
   display: flex;
   z-index: 15;
-  gap: 0.5rem;
+  gap: 0.8rem;
   margin-left: 17rem;
 `;
 
@@ -49,37 +51,41 @@ const WhiteBox = styled.div<{
   ${({ size }) => `
     width: ${size}rem;
 `}
-  box-sizing: border-box;
-  border-radius: 36px;
-  background: white;
-  height: 22rem;
-  box-shadow: 0 4px 8px 8px rgba(0, 0, 0, 0.05);
-  padding-left: 2.9rem;
 
-  h3 {
-    font-size: 2rem;
-    margin-top: 3rem;
+  box-sizing: border-box;
+  border-radius: 1rem;
+  background: white;
+  height: 27rem;
+  box-shadow: 0 4px 8px 8px rgba(0, 0, 0, 0.05);
+  padding-left: 3rem;
+  padding-top: 3.5rem;
+  position: relative;
+  h2 {
+    font-size: 2.1rem;
+    font-weight: 700;
     margin-bottom: 2.25rem;
-    color: ${COLORS.BLACK};
+    color: ${COLORS.GREY[600]};
   }
 
-  p {
-    font-size: 1.125rem;
+  h4 {
+    font-weight: 300;
     margin-bottom: 6.5rem;
-    color: ${COLORS.GREY[500]};
+    color: ${COLORS.GREY[400]};
     white-space: pre-line;
   }
 `;
 const StyledConfirmButton = styled(Button)`
-  border-radius: 15px;
-  padding: 1rem 0 1rem 0;
+  font-size: 1.4rem;
+  padding: 1.5rem 0;
+  font-weight: 500;
 `;
 const StyledCancelButton = styled(Button)`
-  border-radius: 15px;
-  padding: 1rem 0 1rem 0;
+  font-size: 1.4rem;
+  padding: 1.5rem 0;
 `;
+
 function Dialog({
-  size = 37,
+  size = 45,
   visible = true,
   title,
   description,
@@ -96,25 +102,23 @@ function Dialog({
       {visible && (
         <WhiteBoxWrapper>
           <WhiteBox size={size}>
-            {title && <h3>{title}</h3>}
-            {description && <p>{description}</p>}
+            {title && <h2>{title}</h2>}
+            {description && <h4>{description}</h4>}
             {children}
             {!hideButtons && (
               <ButtonWrapper>
                 {cancellable && (
                   <StyledCancelButton
                     theme="unfocus"
-                    size="small"
                     title="취소"
-                    width="6.57rem"
+                    width="8rem"
                     onClick={onCancel}
                   />
                 )}
                 <StyledConfirmButton
                   theme="primary"
-                  size="small"
                   title="확인"
-                  width={cancellable ? "7rem" : "4.57rem"}
+                  width={cancellable ? "8rem" : "12rem"}
                   onClick={onConfirm}
                 />
               </ButtonWrapper>
