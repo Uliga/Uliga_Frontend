@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Input from "../../components/common/Input";
+import Input from "../../components/Input";
 import useSignup from "../../hooks/useSignup";
 import * as S from "./index.styles";
 import PATH from "../../constants/path";

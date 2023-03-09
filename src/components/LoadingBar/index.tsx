@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import styled from "styled-components";
 import React from "react";
-import COLORS from "../../../constants/color";
+import COLORS from "../../constants/color";
 
 export default function LoadingBar({ type }: { type: number }) {
   return (

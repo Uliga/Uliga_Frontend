@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import COLORS from "../../../constants/color";
+import COLORS from "../../constants/color";
 
 type ButtonTheme = "normal" | "primary" | "secondary" | "tertiary";
 

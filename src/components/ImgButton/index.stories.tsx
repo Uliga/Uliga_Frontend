@@ -1,5 +1,5 @@
 import React from "react";
-import ImgButton from ".";
+import ImgButton from "./index";
 
 export default {
   title: "components/ImgButton", // 스토리북에서 보여질 그룹과 경로를 명시

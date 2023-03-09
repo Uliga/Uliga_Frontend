@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import COLORS from "../../../constants/color";
+import COLORS from "../../constants/color";
 import IconButton from "../IconButton";
 
 const ModalBackground = styled.div`
