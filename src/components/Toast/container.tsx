@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import COLORS from "../../../constants/color";
+import COLORS from "../../constants/color";
 
 const StyledContainer = styled(ToastContainer)`
   &&.Toastify__toast-container {

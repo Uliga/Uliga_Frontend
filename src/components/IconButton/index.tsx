@@ -1,5 +1,5 @@
 import React from "react";
-import Icons from "../../../constants/icon";
+import Icons from "../../constants/icon";
 import { Wrapper, StyledIcon } from "./index.styles";
 
 type ButtonTheme = "normal" | "primary" | "secondary" | "tertiary";

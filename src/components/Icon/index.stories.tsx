@@ -1,7 +1,7 @@
 import React from "react";
 import { withKnobs } from "@storybook/addon-knobs";
 import Icon from "./index";
-import COLORS from "../../../constants/color";
+import COLORS from "../../constants/color";
 
 export default {
   title: "components|basic/Icon", // 스토리북에서 보여질 그룹과 경로를 명시
