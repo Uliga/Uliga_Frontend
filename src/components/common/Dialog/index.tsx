@@ -4,14 +4,22 @@ import Button from "../Button";
 import COLORS from "../../../constants/color";
 
 export type DialogProps = {
+  /** 다이얼로그 너비 */
   size?: number;
+  /** 다이얼로그 너비 */
   visible?: boolean;
+  /** 다이얼로그 제목 */
   title?: string;
+  /** 다이얼로그 내용 */
   description?: string;
   children?: React.ReactNode;
+  /** 버튼 유무(확인,취소 둘다) */
   hideButtons?: boolean;
+  /** 취소 버튼 유무 */
   cancellable?: boolean;
+  /** 취소 버튼 눌렸을때 나올 함수 */
   onCancel?: () => void;
+  /** 확인 버튼 눌렸을때 나올 함수 */
   onConfirm?: () => void;
 };
 
