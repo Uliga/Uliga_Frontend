@@ -18,7 +18,7 @@ const Container = styled.div`
   border: 0.1rem solid ${COLORS.GREY[300]};
 `;
 
-const Wrapper = styled.div`
+const Wrapper = styled.form`
   display: flex;
   flex-direction: column;
   gap: 3rem;
@@ -50,7 +50,12 @@ export default function LadingPage() {
   return (
     <Container>
       <LargeLogo />
-      <Wrapper>
+      <Wrapper
+        onSubmit={e => {
+          e.preventDefault();
+          mutateCheckEmail.mutate(landingEmail);
+        }}
+      >
         <div>
           <h2>반가워요🙋‍</h2>
           <h4>공유 가계부로 편리하게 자산 관리를 해보세요!</h4>
@@ -60,13 +65,9 @@ export default function LadingPage() {
           onChange={onChangeLandingEmail}
           label="이메일"
           size={35}
+          required
         />
-        <StyledButton
-          title="이메일로 계속하기"
-          onClick={() => {
-            mutateCheckEmail.mutate(landingEmail);
-          }}
-        />
+        <StyledButton type="submit" title="이메일로 계속하기" />
         <SNSLogin />
       </Wrapper>
     </Container>
