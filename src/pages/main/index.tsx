@@ -6,6 +6,7 @@ import LoadingBar from "../../components/LoadingBar";
 import Button from "../../components/Button";
 import Modal from "../../components/Modal";
 import Create from "../create";
+import QUERYKEYS from "../../constants/querykey";
 
 const WriteButton = styled(Button)`
   font-size: 1.4rem;
@@ -16,7 +17,7 @@ const WriteButton = styled(Button)`
 `;
 
 export default function Main() {
-  const { isLoading, data } = useQuery(["me"], loadMe);
+  const { isLoading, data } = useQuery([QUERYKEYS.LOAD_ME], loadMe);
   const [openModal, setModal] = useState(true);
   const closeModal = () => {
     setModal(false);
