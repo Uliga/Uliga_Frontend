@@ -1,7 +1,7 @@
 import { atom } from "recoil";
 import { IUser } from "../../interfaces/user";
 
-const me = atom<IUser>({
+const meAtom = atom<IUser>({
   key: "me",
   default: {
     memberInfo: {
@@ -20,4 +20,4 @@ const me = atom<IUser>({
   },
 });
 
-export default me;
+export default meAtom;

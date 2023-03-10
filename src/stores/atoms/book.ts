@@ -1,8 +1,8 @@
 import { atom } from "recoil";
 
-const selectedBook = atom<number>({
+const selectedBookAtom = atom<number>({
   key: "selectedBook",
   default: 0,
 });
 
-export default selectedBook;
+export default selectedBookAtom;
