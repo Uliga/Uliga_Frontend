@@ -2,7 +2,7 @@ import { useState } from "react";
 import { checkEmail } from "../api/auth";
 import useInput from "./useInput";
 import toastMsg from "../components/Toast";
-import createAccountBook from "../api/book";
+import { createAccountBook } from "../api/book";
 
 export default function useCreate() {
   const [name, onChangeName] = useInput("");
