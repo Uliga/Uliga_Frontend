@@ -10,7 +10,14 @@ import Signup from "./pages/signup";
 import StyledContainer from "./components/Toast/container";
 import LadingPage from "./pages/landing";
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+      retry: 0,
+    },
+  },
+});
 
 function App() {
   return (
