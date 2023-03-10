@@ -21,7 +21,7 @@ export default function Create() {
       <h2>공유 가계부 생성</h2>
       <S.Wrapper>
         {InputList.map(input => (
-          <div>
+          <div key={input.label}>
             <S.InputWrapper>
               <Input
                 label={input.label}
@@ -47,6 +47,7 @@ export default function Create() {
                 <S.ETCWrapper>
                   {DefaultCategories.map(category => (
                     <Badge
+                      key={category}
                       title={category}
                       color={COLORS.GREY[600]}
                       size={1.2}
@@ -54,6 +55,7 @@ export default function Create() {
                   ))}
                   {Categories.map(category => (
                     <Badge
+                      key={category}
                       iconColor={COLORS.GREY[500]}
                       onClick={() => {
                         removeCategory(category);
@@ -70,6 +72,7 @@ export default function Create() {
               <S.ETCWrapper>
                 {Emails.map(email => (
                   <Badge
+                    key={email}
                     iconColor={COLORS.GREY[500]}
                     onClick={() => {
                       removeEmail(email);
