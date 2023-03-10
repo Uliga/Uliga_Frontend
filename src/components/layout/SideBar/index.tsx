@@ -34,9 +34,8 @@ export default function SideBar() {
       <Middle>
         {menu.map(ele => {
           return (
-            <Wrapper>
+            <Wrapper key={ele.title}>
               <MainMenu
-                key={ele.title}
                 title={ele.title}
                 theme={ele.theme}
                 iconName={ele.iconName}
@@ -60,7 +59,9 @@ export default function SideBar() {
       </Middle>
       <Bottom>
         {bottomMenu.map(ele => {
-          return <BottomButton title={ele.title} theme={ele.theme} />;
+          return (
+            <BottomButton key={ele.title} title={ele.title} theme={ele.theme} />
+          );
         })}
       </Bottom>
     </Container>

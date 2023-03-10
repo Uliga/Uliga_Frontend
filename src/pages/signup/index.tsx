@@ -177,6 +177,7 @@ export default function Signup() {
           ) : (
             <S.InputContainer>
               <Input
+                key={input.label}
                 size={input.size}
                 label={input.label}
                 value={input.value}

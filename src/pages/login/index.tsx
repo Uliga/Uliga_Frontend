@@ -50,7 +50,7 @@ export default function Login() {
       </S.LogoWrapper>
       <S.Title>로그인</S.Title>
       {inputList.map(input => (
-        <div>
+        <div key={input.label}>
           <Input
             size={input.size}
             type={input.type}
