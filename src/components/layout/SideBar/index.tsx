@@ -1,4 +1,5 @@
 import React from "react";
+import useSelectedBook from "../../../hooks/useBook";
 import {
   Container,
   Top,
@@ -8,13 +9,28 @@ import {
   MainMenu,
   SubMenu,
   BottomButton,
+  BookName,
+  BookInfo,
 } from "./index.styles";
 import { menu, bottomMenu } from "./menu";
+import Person from "../../../assets/person";
 
 export default function SideBar() {
+  const { data } = useSelectedBook();
+
+  if (!data) return null;
+
   return (
     <Container>
-      <Top />
+      <Top>
+        <Person />
+        <div>
+          <BookName>{data.info.accountBookName}</BookName>
+          <BookInfo>
+            {data.numberOfMember.count}명의 멤버 ({data.info.relationShip})
+          </BookInfo>
+        </div>
+      </Top>
       <Middle>
         {menu.map(ele => {
           return (

@@ -15,10 +15,13 @@ const Container = styled.div`
 
 const Top = styled.div`
   width: 100%;
-  height: 4.6875rem;
+  height: 6.5rem;
   background-color: white;
   align-items: center;
+  display: flex;
   padding-left: 1rem;
+  padding-left: 2rem;
+  gap: 1rem;
   border-bottom: 0.1rem solid ${COLORS.GREY[200]};
 `;
 const Middle = styled.div`
@@ -70,6 +73,15 @@ const BottomButton = styled(Button)`
   }
 `;
 
+const BookName = styled.div`
+  font-size: 1.3rem;
+  color: ${COLORS.GREY[600]};
+`;
+
+const BookInfo = styled.div`
+  font-size: 1.3rem;
+  color: ${COLORS.GREY[400]};
+`;
 export {
   Container,
   Top,
@@ -79,4 +91,6 @@ export {
   MainMenu,
   SubMenu,
   BottomButton,
+  BookName,
+  BookInfo,
 };
