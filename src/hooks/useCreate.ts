@@ -1,14 +1,17 @@
 import { useState } from "react";
+import { useRecoilState } from "recoil";
 import { checkEmail } from "../api/auth";
 import useInput from "./useInput";
 import toastMsg from "../components/Toast";
 import { createAccountBook } from "../api/book";
+import { createModalAtom } from "../stores/atoms/context";
 
 export default function useCreate() {
   const [name, onChangeName] = useInput("");
   const [email, onChangeEmail, setEmail] = useInput("");
   const [relationship, onChangeRelationship] = useInput("");
   const [category, onChangeCategory, setCategory] = useInput("");
+  const [, setCreateModalOpen] = useRecoilState(createModalAtom);
 
   const DefaultCategories = [
     "🍽️ 식비",
@@ -111,7 +114,14 @@ export default function useCreate() {
         emails: Emails,
         categories: Categories,
         relationship,
-      });
+      })
+        .then(() => {
+          toastMsg("가계부 생성 완료");
+          setCreateModalOpen(false);
+        })
+        .catch(() => {
+          toastMsg("가계부 생성 실패");
+        });
     }
   };
 
