@@ -30,11 +30,11 @@ const Wrapper = styled.div`
   }
   display: flex;
   flex-direction: column;
-  gap: 2rem;
   overflow: scroll;
   ::-webkit-scrollbar {
     display: none;
   }
+  gap: 2rem;
 `;
 
 const CreateButton = styled(Button)`
