@@ -8,7 +8,7 @@ const meAtom = atom<IUser>({
       id: "",
       avatarUrl: "",
       username: "",
-      nickname: "",
+      nickName: "",
       applicationPassword: "",
       email: "",
     },
