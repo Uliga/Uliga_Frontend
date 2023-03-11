@@ -20,8 +20,7 @@ export default function BookNav() {
   const [createModalOpen, setCreateModalOpen] = useRecoilState(createModalAtom);
 
   if (!data) return null;
-  console.log(data);
-  console.log(bookId);
+
   return (
     <S.Container>
       <S.Nav>
