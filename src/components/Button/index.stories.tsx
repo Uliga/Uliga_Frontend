@@ -23,6 +23,9 @@ export function Quaternary() {
 export function Unfocus() {
   return <Button title="Unfocus" size="medium" theme="unfocus" />;
 }
+export function Basic() {
+  return <Button title="Basic" size="medium" theme="basic" />;
+}
 export function Disabled() {
   return <Button title="Disabled" size="medium" disabled />;
 }
