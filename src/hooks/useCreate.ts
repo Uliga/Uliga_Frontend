@@ -7,7 +7,9 @@ import { createAccountBook } from "../api/book";
 export default function useCreate() {
   const [name, onChangeName] = useInput("");
   const [email, onChangeEmail, setEmail] = useInput("");
+  const [relationship, onChangeRelationship] = useInput("");
   const [category, onChangeCategory, setCategory] = useInput("");
+
   const DefaultCategories = [
     "🍽️ 식비",
     "☕ 카페 · 간식",
@@ -61,6 +63,15 @@ export default function useCreate() {
       onChange: onChangeName,
     },
     {
+      label: "가계부 조직",
+      size: 42,
+      placeholder: "공유 가계부 조직의 관계를 입력해주세요.",
+      value: relationship,
+      required: true,
+      type: "text",
+      onChange: onChangeRelationship,
+    },
+    {
       label: "사용자 초대",
       size: 32,
       placeholder: "사용자의 이메일을 입력해주세요.",
@@ -74,6 +85,7 @@ export default function useCreate() {
         onClick: addEmail,
       },
     },
+
     {
       label: "카테고리 추가",
       size: 32,
@@ -92,14 +104,14 @@ export default function useCreate() {
 
   const onSubmitForm = async () => {
     if (name.length <= 0 || Emails.length <= 0) {
-      toastMsg("가계부 이름과 사용자 초대는 필수 입력 조건입니다.");
+      toastMsg("필수 입력 조건을 채워주세요.");
     } else {
-      const data = await createAccountBook({
+      await createAccountBook({
         name,
         emails: Emails,
         categories: Categories,
+        relationship,
       });
-      console.log(data);
     }
   };
 
