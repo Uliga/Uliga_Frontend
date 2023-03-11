@@ -18,14 +18,16 @@ export default function BookNav() {
   );
   const [bottomModalOpen, setBottomModalOpen] = useRecoilState(bottomModalAtom);
   const [createModalOpen, setCreateModalOpen] = useRecoilState(createModalAtom);
-  if (!data) return null;
 
+  if (!data) return null;
+  console.log(data);
+  console.log(bookId);
   return (
     <S.Container>
       <S.Nav>
         {data.accountBooks.length <= 4
           ? data.accountBooks.map(book =>
-              bookId && book.accountBookId ? (
+              Number(bookId) === book.accountBookId ? (
                 <S.CheckedButton
                   title={book.accountBookName}
                   iconName="checkFill"
@@ -39,7 +41,7 @@ export default function BookNav() {
           : data.accountBooks
               .slice(0, 4)
               .map(book =>
-                bookId && book.accountBookId ? (
+                Number(bookId) === book.accountBookId ? (
                   <S.CheckedButton
                     title={book.accountBookName}
                     iconName="checkFill"
