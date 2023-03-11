@@ -1,4 +1,5 @@
 import React from "react";
+import { useParams } from "react-router-dom";
 import useSelectedBook from "../../../hooks/useBook";
 import {
   Container,
@@ -16,7 +17,8 @@ import { menu, bottomMenu } from "./menu";
 import Person from "../../../assets/person";
 
 export default function SideBar() {
-  const { data } = useSelectedBook();
+  const { bookId } = useParams();
+  const { data } = useSelectedBook(Number(bookId));
 
   if (!data) return null;
 
