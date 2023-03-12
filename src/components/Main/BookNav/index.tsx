@@ -1,26 +1,25 @@
 import React from "react";
-import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 import { useRecoilState } from "recoil";
-import COLORS from "../../constants/color";
-import QUERYKEYS from "../../constants/querykey";
-import { loadBookList } from "../../api/book";
-import { IBookList } from "../../interfaces/book";
+import COLORS from "../../../constants/color";
 import BottomModal from "./BottomModal";
 import * as S from "./index.styles";
-import { bottomModalAtom, createModalAtom } from "../../stores/atoms/context";
+import {
+  bottomModalAtom,
+  createModalAtom,
+} from "../../../stores/atoms/context";
+import useBook from "../../../hooks/useBook";
 
 export default function BookNav() {
   const { bookId } = useParams();
-  const { data } = useQuery<IBookList>(
-    [QUERYKEYS.LOAD_BOOK_LIST],
-    loadBookList,
-  );
+  const { useBookList } = useBook();
+  const { data } = useBookList();
+
   const [bottomModalOpen, setBottomModalOpen] = useRecoilState(bottomModalAtom);
   const [createModalOpen, setCreateModalOpen] = useRecoilState(createModalAtom);
-
+  const { useReplaceBook } = useBook();
   if (!data) return null;
-
+  console.log(data);
   return (
     <S.Container>
       <S.Nav>
@@ -34,7 +33,13 @@ export default function BookNav() {
                   color={COLORS.BLUE}
                 />
               ) : (
-                <S.UnCheckedButton title={book.accountBookName} theme="basic" />
+                <S.UnCheckedButton
+                  title={book.accountBookName}
+                  theme="basic"
+                  onClick={() => {
+                    useReplaceBook(book.accountBookId);
+                  }}
+                />
               ),
             )
           : data.accountBooks
@@ -55,17 +60,18 @@ export default function BookNav() {
                 ),
               )}
         <S.ETCButton
-          iconName="plus"
-          theme={createModalOpen ? "tertiary" : "basic"}
-          onClick={() => {
-            setCreateModalOpen(true);
-          }}
-        />
-        <S.ETCButton
           iconName="dots"
           theme={bottomModalOpen ? "tertiary" : "basic"}
           onClick={() => {
             setBottomModalOpen(!bottomModalOpen);
+          }}
+        />
+        <S.ETCButton
+          iconName="plus"
+          theme={createModalOpen ? "tertiary" : "basic"}
+          onClick={() => {
+            setCreateModalOpen(true);
+            setBottomModalOpen(false);
           }}
         />
         {bottomModalOpen && <BottomModal accountBooks={data.accountBooks} />}

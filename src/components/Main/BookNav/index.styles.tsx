@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import Button from "../Button";
-import IconButton from "../IconButton";
+import Button from "../../Button";
+import IconButton from "../../IconButton";
 
 const Container = styled.div`
   width: 100%;
