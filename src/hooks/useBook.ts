@@ -1,17 +1,34 @@
 import { useQuery } from "@tanstack/react-query";
-import { loadBookInfo } from "../api/book";
-import { IBookInfo } from "../interfaces/book";
+import { useNavigate } from "react-router-dom";
+import { loadBookInfo, loadBookList } from "../api/book";
+import { IBookInfo, IBookList } from "../interfaces/book";
 import QUERYKEYS from "../constants/querykey";
+import PATH from "../constants/path";
 
-const useSelectedBook = (bookid: any) => {
-  const queryFn = () => loadBookInfo(+bookid);
+export default function useBook() {
+  const navigate = useNavigate();
 
-  const { isLoading, error, data } = useQuery<IBookInfo>(
-    [QUERYKEYS.LOAD_BOOK_INFO],
-    queryFn,
-  );
+  const useSelectedBook = (bookid: any) => {
+    const queryFn = () => loadBookInfo(+bookid);
+    const { isLoading, error, data } = useQuery<IBookInfo>(
+      [QUERYKEYS.LOAD_BOOK_INFO],
+      queryFn,
+    );
+    return { isLoading, error, data };
+  };
 
-  return { isLoading, error, data };
-};
+  const useBookList = () => {
+    const { data } = useQuery<IBookList>(
+      [QUERYKEYS.LOAD_BOOK_LIST],
+      loadBookList,
+    );
+    return { data };
+  };
 
-export default useSelectedBook;
+  const useReplaceBook = (bookId: number) => {
+    navigate(`${PATH.MAIN}/${bookId}`);
+    window.location.reload();
+  };
+
+  return { useSelectedBook, useReplaceBook, useBookList };
+}
