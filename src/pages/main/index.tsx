@@ -23,6 +23,7 @@ const WriteButton = styled(Button)`
 
 const Container = styled.div`
   width: 100%;
+  max-width: 140rem;
   gap: 2rem;
   padding: 4rem;
   display: flex;
