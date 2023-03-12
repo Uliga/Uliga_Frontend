@@ -42,6 +42,11 @@ export function Teritiary() {
     />
   );
 }
+export function Basic() {
+  return (
+    <IconButton title="윤채현님의 가계부" theme="basic" iconName="checkFill" />
+  );
+}
 export function Reverse() {
   return (
     <IconButton

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import COLORS from "../../constants/color";
 
-type ButtonTheme = "normal" | "primary" | "secondary" | "tertiary";
+type ButtonTheme = "normal" | "primary" | "secondary" | "tertiary" | "basic";
 
 const Wrapper = styled.button<{
   widthSize: number;
@@ -13,7 +13,7 @@ const Wrapper = styled.button<{
 }>`
   ${({ widthSize, ButtonTheme, iconOnly }) => `
     font-size: 1.125rem;
-    width: ${iconOnly === true ? "none" : widthSize}rem;
+    width: ${iconOnly === true || widthSize ? "none" : widthSize}rem;
     background-color:  ${
       iconOnly === true
         ? "transparent"
@@ -22,6 +22,7 @@ const Wrapper = styled.button<{
             primary: COLORS.BLUE,
             secondary: COLORS.YELLOW,
             tertiary: COLORS.WHITE,
+            basic: COLORS.WHITE,
           }[ButtonTheme]
     }};
     padding: ${
@@ -32,14 +33,23 @@ const Wrapper = styled.button<{
             primary: "1rem 1.2rem",
             secondary: "1rem 1.2rem",
             tertiary: "1rem 1.2rem",
+            basic: "1rem 1.2rem",
           }[ButtonTheme]
     }
     };
-     border: ${
-       ButtonTheme === "tertiary" ? `0.08rem solid ${COLORS.BLUE} ` : "none"
-     };
-     gap: ${ButtonTheme === "normal" ? "0.6rem" : "0.5rem"};
+    border: ${
+      // eslint-disable-next-line no-nested-ternary
+      ButtonTheme === "tertiary"
+        ? `0.08rem solid ${COLORS.BLUE}`
+        : ButtonTheme === "basic"
+        ? `
+      0.08rem solid ${COLORS.GREY[300]}
+      `
+        : "none"
+    };
 
+     gap: ${ButtonTheme === "normal" ? "0.6rem" : "0.7rem"};
+ 
      color:  ${
        iconOnly === true
          ? "none"
@@ -48,6 +58,7 @@ const Wrapper = styled.button<{
              primary: COLORS.WHITE,
              secondary: COLORS.WHITE,
              tertiary: COLORS.BLUE,
+             basic: COLORS.GREY[400],
            }[ButtonTheme]
      }};
     &:hover{
@@ -59,6 +70,7 @@ const Wrapper = styled.button<{
               primary: COLORS.MEDIUM_BLUE,
               secondary: COLORS.LIGHT_YELLOW,
               tertiary: COLORS.WHITE,
+              basic: COLORS.WHITE,
             }[ButtonTheme]
       };
    
@@ -70,6 +82,7 @@ const Wrapper = styled.button<{
               primary: COLORS.WHITE,
               secondary: COLORS.WHITE,
               tertiary: COLORS.DARK_BLUE,
+              basic: COLORS.GREY[300],
             }[ButtonTheme]
       }};
      cursor: pointer;

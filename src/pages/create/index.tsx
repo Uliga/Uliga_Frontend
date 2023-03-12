@@ -4,6 +4,7 @@ import Input from "../../components/Input";
 import Badge from "../../components/Badge";
 import useCreate from "../../hooks/useCreate";
 import * as S from "./index.styles";
+import Detail from "./detail";
 
 export default function Create() {
   const {
@@ -40,7 +41,7 @@ export default function Create() {
                 />
               )}
             </S.InputWrapper>
-
+            {input.label === "가계부 조직" && <Detail />}
             {input.label === "카테고리 추가" && (
               <>
                 <h5>현재 카테고리</h5>
