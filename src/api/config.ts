@@ -10,6 +10,7 @@ const NICK_DUPLICATE = "nickname/exists/";
 const GOOGLE = "social_login/google";
 const KAKAO = "social_login/kakao";
 const ACCOUNT_BOOK = "/accountBook";
+const ASSET = "asset";
 
 const API = {
   BASE_URL: `${BASE_URL}`,
@@ -24,6 +25,7 @@ const API = {
   GOOGLE: `${AUTH}${GOOGLE}`,
   KAKAO: `${AUTH}${KAKAO}`,
   ACCOUNT_BOOK: `${ACCOUNT_BOOK}`,
+  ASSET: `${ASSET}`,
 };
 
 export default API;

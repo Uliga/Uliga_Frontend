@@ -15,3 +15,10 @@ export const loadBookList = async () => {
   const { data } = await authorizationClient.get(API.ACCOUNT_BOOK);
   return data;
 };
+
+export const loadMonthAsset = async (id: number, month: number) => {
+  const { data } = await authorizationClient.get(
+    `${API.ACCOUNT_BOOK}/${id}/${API.ASSET}/${month}`,
+  );
+  return data;
+};
