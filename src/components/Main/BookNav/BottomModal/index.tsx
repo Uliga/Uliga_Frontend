@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import React from "react";
 import { useParams } from "react-router-dom";
-import COLORS from "../../../constants/color";
-import { IBookList } from "../../../interfaces/book";
+import COLORS from "../../../../constants/color";
+import { IBookList } from "../../../../interfaces/book";
 import * as S from "../index.styles";
 
 const Wrapper = styled.div`
@@ -17,6 +17,7 @@ const Wrapper = styled.div`
   top: 5rem;
   width: 100%;
   flex-direction: column;
+  z-index: 999;
 `;
 
 const Modal = styled.div`
