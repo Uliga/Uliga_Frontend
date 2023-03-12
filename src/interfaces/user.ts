@@ -3,7 +3,7 @@ export interface IUser {
     id: string;
     avatarUrl: string;
     username: string;
-    nickname: string;
+    nickName: string;
     applicationPassword: string;
     email: string;
   };
@@ -11,5 +11,17 @@ export interface IUser {
     accessToken: string;
     grantType: string;
     accessTokenExpiresIn: number;
+  };
+}
+
+export interface IUserInfo {
+  invitations: object[];
+  memberInfo: {
+    avatarUrl: string;
+    email: string;
+    id: string;
+    nickName: string;
+    privateAccountBookId: any;
+    username: string;
   };
 }

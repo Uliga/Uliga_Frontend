@@ -8,7 +8,6 @@ import toastMsg from "../components/Toast";
 import PATH from "../constants/path";
 import useValidate from "./useValidate";
 import me from "../stores/atoms/user";
-import selectedBook from "../stores/atoms/book";
 
 export default function useLogin() {
   const navigate = useNavigate();
@@ -17,14 +16,12 @@ export default function useLogin() {
   });
   const [password, onChangePassword] = useInput("");
   const [, setMe] = useRecoilState(me);
-  const [, setSelectedBook] = useRecoilState(selectedBook);
   const mutateLogin = useMutation(["login"], authLogin, {
     onSuccess: ({ memberInfo, tokenInfo }) => {
       toastMsg("로그인 성공");
       setMe(memberInfo);
-      setSelectedBook(memberInfo.privateAccountBookId);
       localStorage.setItem("accessToken", tokenInfo.accessToken);
-      navigate(PATH.MAIN);
+      navigate(`${PATH.MAIN}/${memberInfo.privateAccountBookId}`);
     },
     onError: ({
       response: {

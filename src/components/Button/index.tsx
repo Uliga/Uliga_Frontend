@@ -7,7 +7,8 @@ type ButtonTheme =
   | "secondary"
   | "tertiary"
   | "unfocus"
-  | "quaternary";
+  | "quaternary"
+  | "basic";
 type ButtonSize = "large" | "medium" | "small";
 type ButtonType = "button" | "submit" | "reset";
 type ButtonProps = {
@@ -53,10 +54,14 @@ const Wrapper = styled.button<{
          tertiary: COLORS.WHITE,
          unfocus: COLORS.WHITE,
          quaternary: COLORS.LIGHT_BLUE,
+         basic: COLORS.WHITE,
        }[ButtonTheme]
      };
      border: ${
        ButtonTheme === "tertiary" ? `0.08rem solid ${COLORS.BLUE} ` : "none"
+     };
+     border: ${
+       ButtonTheme === "basic" ? `0.08rem solid ${COLORS.GREY[300]} ` : "none"
      };
      color: ${
        (disabled && "#CCCCCF") ||
@@ -66,6 +71,7 @@ const Wrapper = styled.button<{
          tertiary: COLORS.BLUE,
          unfocus: COLORS.BLUE,
          quaternary: COLORS.BLUE,
+         basic: COLORS.GREY[400],
        }[ButtonTheme]
      };
     &:hover{
@@ -77,6 +83,7 @@ const Wrapper = styled.button<{
           tertiary: COLORS.WHITE,
           unfocus: COLORS.LIGHT_BLUE,
           quaternary: COLORS.BLUE,
+          basic: COLORS.WHITE,
         }[ButtonTheme]
       };
    
@@ -88,6 +95,7 @@ const Wrapper = styled.button<{
          tertiary: COLORS.DARK_BLUE,
          unfocus: COLORS.BLUE,
          quaternary: COLORS.WHITE,
+         basic: COLORS.GREY[300],
        }[ButtonTheme]
      };
      cursor: ${disabled ? "default" : "pointer"};

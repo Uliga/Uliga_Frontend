@@ -23,6 +23,8 @@ const Inner = styled.div`
 `;
 
 const Container = styled.div`
+  width: 123.8rem;
+  left: 17rem;
   display: flex;
   justify-content: center;
   position: relative;

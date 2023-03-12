@@ -12,6 +12,11 @@ const ICONS: IconProps = {
   list: "bi bi-list",
   arrowRight: "bi bi-chevron-right",
   close: "bi bi-x-lg",
+  plus: "bi bi-plus-lg",
+  dots: "bi bi-three-dots",
+  notice: "bi bi-patch-exclamation-fill",
+  check: "bi bi-check",
+  circleCheck: "bi bi-plus-circle",
 };
 
 export default ICONS;

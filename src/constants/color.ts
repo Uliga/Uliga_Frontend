@@ -23,6 +23,7 @@ const COLORS = {
   DARK_BLUE: "#5C76C4",
   YELLOW: "#FFC144",
   LIGHT_YELLOW: "#FFD37A",
+  DARK_YELLOW: "#F4BC4A",
 };
 
 export default COLORS;

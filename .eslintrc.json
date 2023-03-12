@@ -4,16 +4,11 @@
     "project": "./tsconfig.json"
   },
   "rules": {
+    "prettier/prettier": ["error", { "endOfLine": "auto" }],
     "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
     "react/jsx-props-no-spreading": "off",
     "react/require-default-props": "off",
     "react/no-unknown-property": ["error", { "ignore": ["css"] }],
-    "prettier/prettier": [
-      "error",
-      {
-        "endOfLine": "auto"
-      }
-    ],
     "react/jsx-filename-extension": [
       2,
       { "extensions": [".js", ".ts", ".tsx"] }

@@ -2,7 +2,7 @@ import React from "react";
 import Icons from "../../constants/icon";
 import { Wrapper, StyledIcon } from "./index.styles";
 
-type ButtonTheme = "normal" | "primary" | "secondary" | "tertiary";
+type ButtonTheme = "normal" | "primary" | "secondary" | "tertiary" | "basic";
 
 type IconButtonProps = {
   className?: string;

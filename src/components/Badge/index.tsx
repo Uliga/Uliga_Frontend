@@ -3,34 +3,43 @@ import React from "react";
 import COLORS from "../../constants/color";
 import IconButton from "../IconButton";
 
-const Container = styled.div<{ size: number; color: string }>`
-  ${({ size, color }) => `
+const Container = styled.div<{ size: number; color: string; bgColor: string }>`
+  ${({ size, color, bgColor }) => `
     font-size: ${size}rem;
     color: ${color};
+    background-color: ${bgColor || COLORS.GREY[100]};
   `}
   display: flex;
   gap: 0.5rem;
   padding: 0.6rem 1.2rem;
   border-radius: 30rem;
   align-items: center;
-  background-color: ${COLORS.GREY[100]};
 `;
 
 export default function Badge({
   size,
   title,
   color = "black",
+  bgColor = COLORS.GREY[100],
   iconColor,
   onClick,
+  className,
 }: {
+  className?: string;
   size: number;
   title: string;
   color?: string;
+  bgColor?: string;
   iconColor?: string;
   onClick?: (e?: React.MouseEvent<HTMLButtonElement>) => void;
 }) {
   return (
-    <Container color={color} size={size}>
+    <Container
+      className={className}
+      color={color}
+      bgColor={bgColor}
+      size={size}
+    >
       {title}
       {iconColor && (
         <IconButton

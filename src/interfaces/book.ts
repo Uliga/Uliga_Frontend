@@ -7,6 +7,10 @@ export interface IBookInfo {
   };
 }
 
+export interface IBookList {
+  accountBooks: BookInfoTypes[];
+}
+
 export interface BookInfoTypes {
   accountBookAuthority: "ADMIN" | "USER";
   accountBookId: number;
