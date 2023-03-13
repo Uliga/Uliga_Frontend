@@ -9,7 +9,11 @@ import { loadMonthAsset } from "../../../api/book";
 export default function CapsuleBox() {
   const { bookId } = useParams();
   const date = new Date();
-  const queryFn = () => loadMonthAsset(Number(bookId), date.getMonth() + 1);
+  const queryFn = () =>
+    loadMonthAsset(
+      Number(bookId),
+      `${date.getFullYear()}/${date.getMonth() + 1}`,
+    );
   const { data } = useQuery([QUERYKEYS.LOAD_MONTH_ASSET], queryFn);
 
   if (!data) {

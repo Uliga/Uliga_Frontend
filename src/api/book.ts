@@ -16,9 +16,9 @@ export const loadBookList = async () => {
   return data;
 };
 
-export const loadMonthAsset = async (id: number, month: number) => {
+export const loadMonthAsset = async (id: number, date: string) => {
   const { data } = await authorizationClient.get(
-    `${API.ACCOUNT_BOOK}/${id}/${API.ASSET}/${month}`,
+    `${API.ACCOUNT_BOOK}/${id}/${API.ASSET}/${date}`,
   );
   return data;
 };
