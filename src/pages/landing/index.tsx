@@ -6,16 +6,16 @@ import Input from "../../components/Input";
 import Button from "../../components/Button";
 import SNSLogin from "./sns";
 import useLogin from "../../hooks/useLogin";
+import Detail from "./detail";
 
 const Container = styled.div`
   width: 52rem;
-  height: 62rem;
+  height: 60rem;
   border-radius: 1rem;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  border: 0.1rem solid ${COLORS.GREY[300]};
 `;
 
 const Wrapper = styled.form`
@@ -24,8 +24,10 @@ const Wrapper = styled.form`
   gap: 3rem;
   h2 {
     font-weight: 700;
-    color: ${COLORS.GREY[400]};
+    font-size: 2.4rem;
+    color: ${COLORS.GREY[500]};
     text-align: center;
+    padding-bottom: 2.5rem;
   }
   h4 {
     padding-top: 1.5rem;
@@ -33,11 +35,6 @@ const Wrapper = styled.form`
     color: ${COLORS.GREY[400]};
     size: 1.5rem;
     text-align: center;
-  }
-  span {
-    width: 10rem;
-    border-bottom: 0.1rem solid ${COLORS.GREY[300]};
-    display: inline-block;
   }
 `;
 
@@ -57,14 +54,14 @@ export default function LadingPage() {
         }}
       >
         <div>
-          <h2>반가워요🙋‍</h2>
-          <h4>공유 가계부로 편리하게 자산 관리를 해보세요!</h4>
+          <h2>우리가에 오신것을 환영합니다 🙆🏻‍♀️</h2>
+          <Detail />
         </div>
         <Input
           value={landingEmail}
           onChange={onChangeLandingEmail}
           label="이메일"
-          size={35}
+          size={46.5}
           required
         />
         <StyledButton type="submit" title="이메일로 계속하기" />

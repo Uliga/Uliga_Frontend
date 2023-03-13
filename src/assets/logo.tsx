@@ -108,8 +108,8 @@ export function LargeLogo() {
   return (
     <Wrapper>
       <svg
-        width="112"
-        height="116"
+        width="84"
+        height="87"
         viewBox="0 0 28 29"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
