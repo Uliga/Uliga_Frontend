@@ -9,6 +9,9 @@ const Container = styled.div`
   color: ${COLORS.GREY[500]};
   display: flex;
   flex-direction: column;
+  gap: 2rem;
+  border-top: 0.1rem solid ${COLORS.GREY[300]};
+  padding-top: 3.5rem;
 `;
 
 const ImgWrapper = styled.div`
@@ -22,7 +25,7 @@ const ImgWrapper = styled.div`
     height: 4rem;
     padding: 0;
   }
-  padding-top: 2rem;
+  padding-top: 0.8rem;
   flex-direction: column;
 `;
 const SNSIMG = styled(ImgButton)`
