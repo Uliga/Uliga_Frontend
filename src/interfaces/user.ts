@@ -14,8 +14,13 @@ export interface IUser {
   };
 }
 
+export interface InvitationProps {
+  accountBookName: string;
+  id: number;
+  memberName: string;
+}
 export interface IUserInfo {
-  invitations: object[];
+  invitations: InvitationProps[];
   memberInfo: {
     avatarUrl: string;
     email: string;
