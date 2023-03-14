@@ -19,7 +19,7 @@ export default function BookNav() {
   const [createModalOpen, setCreateModalOpen] = useRecoilState(createModalAtom);
   const { useReplaceBook } = useBook();
   if (!data) return null;
-  console.log(data);
+
   return (
     <S.Container>
       <S.Nav>
@@ -44,24 +44,26 @@ export default function BookNav() {
                 />
               ),
             )
-          : data.accountBooks
-              .slice(0, 4)
-              .map(book =>
-                Number(bookId) === book.accountBookId ? (
-                  <S.CheckedButton
-                    key={book.accountBookId}
-                    title={book.accountBookName}
-                    iconName="checkFill"
-                    theme="tertiary"
-                    color={COLORS.BLUE}
-                  />
-                ) : (
-                  <S.UnCheckedButton
-                    title={book.accountBookName}
-                    theme="tertiary"
-                  />
-                ),
-              )}
+          : data.accountBooks.slice(0, 4).map(book =>
+              Number(bookId) === book.accountBookId ? (
+                <S.CheckedButton
+                  key={book.accountBookId}
+                  title={book.accountBookName}
+                  iconName="checkFill"
+                  theme="tertiary"
+                  color={COLORS.BLUE}
+                />
+              ) : (
+                <S.UnCheckedButton
+                  key={book.accountBookId}
+                  title={book.accountBookName}
+                  theme="basic"
+                  onClick={() => {
+                    useReplaceBook(book.accountBookId);
+                  }}
+                />
+              ),
+            )}
         <S.ETCButton
           iconName="dots"
           theme={bottomModalOpen ? "tertiary" : "basic"}
