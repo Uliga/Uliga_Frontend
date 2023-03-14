@@ -17,6 +17,8 @@ const ICONS: IconProps = {
   notice: "bi bi-patch-exclamation-fill",
   check: "bi bi-check",
   circleCheck: "bi bi-plus-circle",
+  message: "bi bi-envelope",
+  messageOpen: "bi bi-envelope-open-fill",
 };
 
 export default ICONS;
