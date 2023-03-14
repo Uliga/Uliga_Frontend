@@ -10,6 +10,7 @@ const ICONS: IconProps = {
   bank: "bi bi-bank",
   personGear: "bi bi-person-gear",
   list: "bi bi-list",
+  arrowLeft: "bi bi-chevron-left",
   arrowRight: "bi bi-chevron-right",
   close: "bi bi-x-lg",
   plus: "bi bi-plus-lg",
