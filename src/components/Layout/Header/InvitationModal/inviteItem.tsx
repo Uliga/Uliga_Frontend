@@ -72,14 +72,24 @@ export default function InviteItem({ item }: { item: InvitationProps }) {
           title="거절"
           theme="quaternary"
           onClick={() => {
-            mutateInvitation.mutate({ id: item.id, join: false });
+            mutateInvitation.mutate({
+              id: item.id,
+              join: false,
+              memberName: item.memberName,
+              accountBookName: item.accountBookName,
+            });
           }}
         />
         <Button
           title="수락"
           theme="primary"
           onClick={() => {
-            mutateInvitation.mutate({ id: item.id, join: true });
+            mutateInvitation.mutate({
+              id: item.id,
+              join: true,
+              memberName: item.memberName,
+              accountBookName: item.accountBookName,
+            });
           }}
         />
       </ButtonWrapper>
