@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-import SubLogo from "../../../../assets/subLogo";
-import COLORS from "../../../../constants/color";
-import { InvitationProps } from "../../../../interfaces/user";
-import Button from "../../../Button";
-import useBook from "../../../../hooks/useBook";
+import SubLogo from "../../assets/subLogo";
+import COLORS from "../../constants/color";
+import { InvitationProps } from "../../interfaces/user";
+import Button from "../Button";
+import useBook from "../../hooks/useBook";
 
 const Container = styled.div`
   display: flex;

@@ -6,7 +6,7 @@ import COLORS from "../../../constants/color";
 import Icon from "../../Icon";
 import IconButton from "../../IconButton";
 import { invitationModalAtom } from "../../../stores/atoms/context";
-import InvitationModal from "./InvitationModal";
+import InvitationModal from "../../InvitationModal";
 import Button from "../../Button";
 
 const Container = styled.div`
@@ -89,7 +89,6 @@ export default function Header() {
               setInvitationModalOpen(!invitationModalOpen);
             }}
           />
-
           {invitationModalOpen && <InvitationModal />}
         </Message>
         <TutorialButton title="튜토리얼" theme="basic" />
