@@ -55,7 +55,7 @@ export default function CapsuleBox() {
   return (
     <S.Container>
       {BoxList.map(box => (
-        <S.Wrapper>
+        <S.Wrapper key={box.title}>
           <S.Title>{box.title}</S.Title>
           {!box.amount && <S.Subtitle>{box.subtitle}</S.Subtitle>}
 

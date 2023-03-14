@@ -27,6 +27,7 @@ export default function BookNav() {
           ? data.accountBooks.map(book =>
               Number(bookId) === book.accountBookId ? (
                 <S.CheckedButton
+                  key={book.accountBookId}
                   title={book.accountBookName}
                   iconName="checkFill"
                   theme="tertiary"
@@ -34,6 +35,7 @@ export default function BookNav() {
                 />
               ) : (
                 <S.UnCheckedButton
+                  key={book.accountBookId}
                   title={book.accountBookName}
                   theme="basic"
                   onClick={() => {
@@ -47,6 +49,7 @@ export default function BookNav() {
               .map(book =>
                 Number(bookId) === book.accountBookId ? (
                   <S.CheckedButton
+                    key={book.accountBookId}
                     title={book.accountBookName}
                     iconName="checkFill"
                     theme="tertiary"

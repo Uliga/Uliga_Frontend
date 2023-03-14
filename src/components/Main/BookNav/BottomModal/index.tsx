@@ -62,13 +62,18 @@ export default function BottomModal({ accountBooks }: IBookList) {
         {accountBooks.map(book =>
           Number(bookId) === book.accountBookId ? (
             <S.CheckedButton
+              key={book.accountBookId}
               title={book.accountBookName}
               iconName="checkFill"
               theme="tertiary"
               color={COLORS.BLUE}
             />
           ) : (
-            <S.UnCheckedButton title={book.accountBookName} theme="basic" />
+            <S.UnCheckedButton
+              key={book.accountBookId}
+              title={book.accountBookName}
+              theme="basic"
+            />
           ),
         )}
       </Modal>
