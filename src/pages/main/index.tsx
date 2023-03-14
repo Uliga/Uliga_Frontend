@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { useNavigate, useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { useRecoilState } from "recoil";
 import { loadMe } from "../../api/user";
@@ -9,6 +10,7 @@ import Modal from "../../components/Modal";
 import Create from "../create";
 import QUERYKEYS from "../../constants/querykey";
 import BookNav from "../../components/Main/BookNav";
+import PATH from "../../constants/path";
 import { createModalAtom } from "../../stores/atoms/context";
 import CapsuleBox from "../../components/Main/CapsuleBox";
 import Schedule from "../../components/Main/Schedule";
@@ -37,6 +39,8 @@ const Bottom = styled.div`
 `;
 export default function Main() {
   const { isLoading, data } = useQuery([QUERYKEYS.LOAD_ME], loadMe);
+  const navigate = useNavigate();
+  const { bookId } = useParams();
   console.log(data);
   const [createModalOpen, setCreateModalOpen] = useRecoilState(createModalAtom);
 
@@ -59,7 +63,13 @@ export default function Main() {
         </Modal>
       )}
       <BookNav />
-      <WriteButton theme="primary" title="가계부 작성하기" />
+      <WriteButton
+        theme="primary"
+        title="가계부 작성하기"
+        onClick={() => {
+          navigate(`${PATH.WRITE}/${bookId}`);
+        }}
+      />
       <CapsuleBox />
       <Bottom>
         <Calendar />
