@@ -1,9 +1,10 @@
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
-import { loadBookInfo, loadBookList } from "../api/book";
+import { answerInvitation, loadBookInfo, loadBookList } from "../api/book";
 import { IBookInfo, IBookList } from "../interfaces/book";
 import QUERYKEYS from "../constants/querykey";
 import PATH from "../constants/path";
+import toastMsg from "../components/Toast";
 
 export default function useBook() {
   const navigate = useNavigate();
@@ -30,5 +31,26 @@ export default function useBook() {
     window.location.reload();
   };
 
-  return { useSelectedBook, useReplaceBook, useBookList };
+  const queryClient = useQueryClient();
+
+  const mutateInvitation = useMutation(["answerInvitation"], answerInvitation, {
+    onSuccess: data => {
+      toastMsg(data.join ? "초대 수락 성공" : "초대 거절 성공");
+      queryClient.invalidateQueries([QUERYKEYS.LOAD_ME]);
+    },
+    onError: ({
+      response: {
+        data: { errorCode, message },
+      },
+    }) => {
+      toastMsg(`${errorCode} / ${message}`);
+    },
+  });
+
+  return {
+    useSelectedBook,
+    useReplaceBook,
+    useBookList,
+    mutateInvitation,
+  };
 }
