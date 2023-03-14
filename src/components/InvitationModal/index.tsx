@@ -1,12 +1,13 @@
 import styled from "styled-components";
 import React from "react";
 import { useQuery } from "@tanstack/react-query";
-import COLORS from "../../../../constants/color";
-import QUERYKEYS from "../../../../constants/querykey";
-import { loadMe } from "../../../../api/user";
-import LoadingBar from "../../../LoadingBar";
+import COLORS from "../../constants/color";
+import QUERYKEYS from "../../constants/querykey";
+import { loadMe } from "../../api/user";
+import LoadingBar from "../LoadingBar";
 import InviteItem from "./inviteItem";
-import { IUserInfo } from "../../../../interfaces/user";
+import { IUserInfo } from "../../interfaces/user";
+import Nothing from "./nothing";
 
 const Wrapper = styled.div`
   background-color: white;
@@ -40,13 +41,17 @@ const Tooltip = styled.div`
 `;
 
 const Title = styled.div`
-  display: flex;
   align-items: center;
   padding: 1.2rem 2rem 1.2rem 2rem;
   font-size: 1.4rem;
   background-color: #f9fafb;
   border-bottom: 0.1rem solid ${COLORS.GREY[200]};
   color: ${COLORS.GREY[500]};
+  span {
+    padding-left: 0.5rem;
+    font-weight: 700;
+    color: ${COLORS.BLUE};
+  }
 `;
 const Modal = styled.div`
   padding: 1rem 1.5rem;
@@ -75,9 +80,12 @@ export default function MessageModal() {
   return (
     <Wrapper>
       <Tooltip />
-      <Title>새로운 가계부 초대</Title>
+      <Title>
+        새로운 가계부 초대 <span>{data.invitations.length}개</span>
+      </Title>
       <Modal>
-        {data?.invitations.map(item => (
+        {data.invitations.length === 0 && <Nothing />}
+        {data.invitations.map(item => (
           <InviteItem key={item.id} item={item} />
         ))}
       </Modal>
