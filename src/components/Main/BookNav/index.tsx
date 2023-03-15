@@ -1,12 +1,15 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import { useRecoilState } from "recoil";
-import COLORS from "@/constants/color";
+import COLORS from "../../../constants/color";
 import BottomModal from "./BottomModal";
 import * as S from "./index.styles";
-import { bottomModalAtom, createModalAtom } from "@/stores/atoms/context";
-import allModalAtom from "@/stores/selectors/context";
-import useBook from "@/hooks/useBook";
+import {
+  bottomModalAtom,
+  createModalAtom,
+} from "../../../stores/atoms/context";
+import allModalAtom from "../../../stores/selectors/context";
+import useBook from "../../../hooks/useBook";
 
 export default function BookNav() {
   const { bookId } = useParams();
