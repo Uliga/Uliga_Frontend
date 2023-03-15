@@ -6,9 +6,14 @@ import COLORS from "../../constants/color";
 import useWrite from "../../hooks/useWrite";
 
 export default function Write() {
-  const { inputMenu, inputList, setInputList, inputForm, onSubmitForm } =
-    useWrite();
-
+  const {
+    inputMenu,
+    inputList,
+    setInputList,
+    onSubmitForm,
+    UploadFull,
+    inputForm,
+  } = useWrite();
   return (
     <S.Wrapper>
       <BookInfo />
@@ -39,7 +44,7 @@ export default function Write() {
           border={0.0001}
           color={COLORS.GREY[500]}
           onClick={() => {
-            const newList = inputList.concat([inputForm]);
+            const newList = [...inputList, inputForm];
             setInputList(newList);
           }}
         />
@@ -49,6 +54,7 @@ export default function Write() {
           theme="primary"
           onClick={() => {
             onSubmitForm();
+            UploadFull();
           }}
         />
       </S.BottomWrapper>

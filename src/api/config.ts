@@ -11,6 +11,9 @@ const GOOGLE = "social_login/google";
 const KAKAO = "social_login/kakao";
 const ACCOUNT_BOOK = "/accountBook";
 const ASSET = "asset";
+const UPLOAD_BOOK = "accountBook/item";
+const UPLOAD_INCOME = "accountBook/income";
+const UPLOAD_RECORD = "accountBook/record";
 
 const API = {
   BASE_URL: `${BASE_URL}`,
@@ -26,6 +29,9 @@ const API = {
   KAKAO: `${AUTH}${KAKAO}`,
   ACCOUNT_BOOK: `${ACCOUNT_BOOK}`,
   ASSET: `${ASSET}`,
+  UPLOAD_BOOK: `${UPLOAD_BOOK}`,
+  UPLOAD_INCOME: `${UPLOAD_INCOME}`,
+  UPLOAD_RECORD: `${UPLOAD_RECORD}`,
 };
 
 export default API;
