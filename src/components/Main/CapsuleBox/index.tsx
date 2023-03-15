@@ -2,9 +2,9 @@ import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 import * as S from "./index.styles";
-import COLORS from "../../../constants/color";
-import QUERYKEYS from "../../../constants/querykey";
-import { loadMonthAsset } from "../../../api/book";
+import COLORS from "@/constants/color";
+import QUERYKEYS from "@/constants/querykey";
+import { loadMonthAsset } from "@/api/book";
 
 export default function CapsuleBox() {
   const { bookId } = useParams();

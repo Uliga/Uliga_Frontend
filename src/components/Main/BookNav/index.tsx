@@ -1,14 +1,12 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import { useRecoilState } from "recoil";
-import COLORS from "../../../constants/color";
+import COLORS from "@/constants/color";
 import BottomModal from "./BottomModal";
 import * as S from "./index.styles";
-import {
-  bottomModalAtom,
-  createModalAtom,
-} from "../../../stores/atoms/context";
-import useBook from "../../../hooks/useBook";
+import { bottomModalAtom, createModalAtom } from "@/stores/atoms/context";
+import allModalAtom from "@/stores/selectors/context";
+import useBook from "@/hooks/useBook";
 
 export default function BookNav() {
   const { bookId } = useParams();
@@ -17,6 +15,7 @@ export default function BookNav() {
 
   const [bottomModalOpen, setBottomModalOpen] = useRecoilState(bottomModalAtom);
   const [createModalOpen, setCreateModalOpen] = useRecoilState(createModalAtom);
+  const [, setAllModalAtom] = useRecoilState(allModalAtom);
   const { useReplaceBook } = useBook();
   if (!data) return null;
 
@@ -68,6 +67,7 @@ export default function BookNav() {
           iconName="dots"
           theme={bottomModalOpen ? "tertiary" : "basic"}
           onClick={() => {
+            setAllModalAtom(false);
             setBottomModalOpen(!bottomModalOpen);
           }}
         />
@@ -75,8 +75,8 @@ export default function BookNav() {
           iconName="plus"
           theme={createModalOpen ? "tertiary" : "basic"}
           onClick={() => {
+            setAllModalAtom(false);
             setCreateModalOpen(true);
-            setBottomModalOpen(false);
           }}
         />
         {bottomModalOpen && <BottomModal accountBooks={data.accountBooks} />}
