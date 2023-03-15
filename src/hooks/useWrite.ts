@@ -1,6 +1,10 @@
 import { useState } from "react";
+import { useParams } from "react-router-dom";
+import { uploadBook } from "../api/book";
 
 export default function useWrite() {
+  const { bookId } = useParams();
+
   const inputMenu: string[] = [
     "분류",
     "날짜",
@@ -10,8 +14,15 @@ export default function useWrite() {
     "금액",
     "메모",
   ];
+  type InputTypes = {
+    label: string;
+    options?: object[];
+    value?: boolean | number | string;
+    size?: number;
+    type?: string;
+  };
   const INPUT_SIZE = 11;
-  const inputForm = [
+  const inputForm: InputTypes[] = [
     {
       label: "isIncome",
       options: [
@@ -71,14 +82,38 @@ export default function useWrite() {
   ];
 
   const [inputList, setInputList] = useState([inputForm]);
+  // console.log("inputList", inputList);
   const createRequest: { [label: string]: any }[] = [];
   type FormProps = {
     [label: string]: any;
   };
+  const UploadFull = async () => {
+    try {
+      await uploadBook({
+        id: Number(bookId),
+        createRequest,
+      });
+      console.log({
+        id: Number(bookId),
+        createRequest,
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   const onSubmitForm = () => {
     inputList.map(inputs => {
-      const form: FormProps = {};
+      const form: FormProps = {
+        isIncome: undefined,
+        account: "",
+        category: "",
+        date: "",
+        memo: "",
+        payment: "",
+        value: 0,
+        sharedAccountBook: [],
+      };
       inputs.map(input => {
         const { label } = input;
         switch (label) {
@@ -99,9 +134,24 @@ export default function useWrite() {
         }
         return form[label];
       });
-      return createRequest.push(form);
+      const requiredFields = ["account", "category", "date", "payment"];
+      if (
+        requiredFields.every(
+          field => form[field] !== "" && form[field] !== undefined,
+        )
+      ) {
+        createRequest.push(form);
+      }
+      return null;
     });
     console.log(createRequest);
   };
-  return { inputMenu, inputList, setInputList, inputForm, onSubmitForm };
+  return {
+    inputMenu,
+    inputList,
+    setInputList,
+    inputForm,
+    onSubmitForm,
+    UploadFull,
+  };
 }
