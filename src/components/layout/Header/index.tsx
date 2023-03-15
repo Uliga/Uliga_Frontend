@@ -6,6 +6,7 @@ import COLORS from "../../../constants/color";
 import Icon from "../../Icon";
 import IconButton from "../../IconButton";
 import { invitationModalAtom } from "../../../stores/atoms/context";
+import allModalAtom from "../../../stores/selectors/context";
 import InvitationModal from "../../InvitationModal";
 import Button from "../../Button";
 
@@ -65,6 +66,7 @@ const TutorialButton = styled(Button)`
 export default function Header() {
   const [invitationModalOpen, setInvitationModalOpen] =
     useRecoilState(invitationModalAtom);
+  const [, setAllModalAtom] = useRecoilState(allModalAtom);
   return (
     <Container>
       <StyledIcon
@@ -86,6 +88,7 @@ export default function Header() {
             color={COLORS.BLUE}
             border={0.01}
             onClick={() => {
+              setAllModalAtom(false);
               setInvitationModalOpen(!invitationModalOpen);
             }}
           />
