@@ -62,6 +62,7 @@ const Modal = styled.div`
   height: 35rem;
   overflow: scroll;
   overflow-x: hidden;
+  z-index: 999;
 `;
 
 export default function MessageModal() {
