@@ -85,7 +85,6 @@ export default function useWrite() {
   ];
 
   const [inputList, setInputList] = useState([inputForm]);
-  // console.log("inputList", inputList);
   const createRequest: { [label: string]: any }[] = [];
   type FormProps = {
     [label: string]: any;

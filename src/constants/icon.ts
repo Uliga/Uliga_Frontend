@@ -16,6 +16,8 @@ const ICONS: IconProps = {
   plus: "bi bi-plus-lg",
   dots: "bi bi-three-dots",
   notice: "bi bi-patch-exclamation-fill",
+  alarm: "bi bi-bell",
+  alarmFill: "bi bi-bell-fill",
   check: "bi bi-check",
   circleCheck: "bi bi-plus-circle",
   circlePlus: "bi bi-plus-circle",
