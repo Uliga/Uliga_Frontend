@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import { useNavigate, useParams } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
 import { useRecoilState } from "recoil";
 import Button from "../../components/Button";
 import Modal from "../../components/Modal";
@@ -35,7 +34,6 @@ const Bottom = styled.div`
   gap: 1.5rem;
 `;
 export default function Main() {
-  const { isLoading, data } = useQuery([QUERYKEYS.LOAD_ME], loadMe);
   const navigate = useNavigate();
   const { bookId } = useParams();
   const [createModalOpen, setCreateModalOpen] = useRecoilState(createModalAtom);
