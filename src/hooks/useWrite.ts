@@ -1,9 +1,12 @@
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { uploadBook } from "../api/book";
+import toastMsg from "@/components/Toast";
+import PATH from "@/constants/path";
 
 export default function useWrite() {
   const { bookId } = useParams();
+  const navigate = useNavigate();
 
   const inputMenu: string[] = [
     "분류",
@@ -93,6 +96,8 @@ export default function useWrite() {
         id: Number(bookId),
         createRequest,
       });
+      toastMsg("작성하신 가계부 내역이 등록되었습니다.");
+      navigate(`${PATH.MAIN}/${bookId}`);
       console.log({
         id: Number(bookId),
         createRequest,
