@@ -12,11 +12,14 @@ const KAKAO = "social_login/kakao";
 const ACCOUNT_BOOK = "/accountBook";
 const ASSET = "asset";
 const INVITATION = "/invitation";
+const ITEM = "item";
 
 const API = {
   BASE_URL: `${BASE_URL}`,
   AUTH: `${AUTH}`,
   MEMBER: `${MEMBER}`,
+  ASSET: `${ASSET}`,
+  ITEM: `${ITEM}`,
   LOGIN: `${AUTH}${LOGIN}`,
   SIGNUP: `${AUTH}${SIGNUP}`,
   CHECK_EMAIL: `${AUTH}${CHECK_EMAIL}`,
@@ -26,7 +29,6 @@ const API = {
   GOOGLE: `${AUTH}${GOOGLE}`,
   KAKAO: `${AUTH}${KAKAO}`,
   ACCOUNT_BOOK: `${ACCOUNT_BOOK}`,
-  ASSET: `${ASSET}`,
   INVITATION_REPLY: `${ACCOUNT_BOOK}${INVITATION}/reply`,
 };
 
