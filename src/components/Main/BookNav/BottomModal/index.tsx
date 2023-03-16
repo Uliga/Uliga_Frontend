@@ -7,12 +7,11 @@ import * as S from "../index.styles";
 
 const Wrapper = styled.div`
   background-color: white;
-  box-shadow: rgba(0, 0, 0, 0.07) 0px 3px 3px 0px;
+  box-shadow: rgba(7, 42, 68, 0.2) 0px 4px 14px 0px;
   border: 0.1rem solid ${COLORS.GREY[200]};
   border-radius: 0.5rem;
   display: flex;
   flex-wrap: wrap;
-  //padding: 2.2rem 1.7rem 3.5rem 1.7rem;
   position: absolute;
   top: 5rem;
   width: 100%;
@@ -23,7 +22,6 @@ const Wrapper = styled.div`
 
 const Title = styled.div`
   margin-bottom: 1rem;
-  display: flex;
   align-items: center;
   padding: 1rem 2rem 1rem 2rem;
   font-size: 1.3rem;
@@ -36,7 +34,7 @@ const Modal = styled.div`
   display: flex;
   gap: 1rem;
   max-width: 80rem;
-  // border-bottom: 0.1rem solid ${COLORS.GREY[200]};
+  flex-wrap: wrap;
   position: relative;
 `;
 
@@ -62,13 +60,18 @@ export default function BottomModal({ accountBooks }: IBookList) {
         {accountBooks.map(book =>
           Number(bookId) === book.accountBookId ? (
             <S.CheckedButton
+              key={book.accountBookId}
               title={book.accountBookName}
               iconName="checkFill"
               theme="tertiary"
               color={COLORS.BLUE}
             />
           ) : (
-            <S.UnCheckedButton title={book.accountBookName} theme="basic" />
+            <S.UnCheckedButton
+              key={book.accountBookId}
+              title={book.accountBookName}
+              theme="basic"
+            />
           ),
         )}
       </Modal>

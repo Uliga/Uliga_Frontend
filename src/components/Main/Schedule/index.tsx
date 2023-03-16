@@ -41,7 +41,7 @@ export default function Schedule() {
       <S.Wrapper>
         <h4>📅 다가오는 금융 일정</h4>
         {schedueList.map(schedule => (
-          <S.ScheduleWrapper>
+          <S.ScheduleWrapper key={schedule.title}>
             <S.StyledBadge
               size={1.15}
               title={schedule.day}

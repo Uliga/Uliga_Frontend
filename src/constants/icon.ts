@@ -10,6 +10,7 @@ const ICONS: IconProps = {
   bank: "bi bi-bank",
   personGear: "bi bi-person-gear",
   list: "bi bi-list",
+  arrowLeft: "bi bi-chevron-left",
   arrowRight: "bi bi-chevron-right",
   close: "bi bi-x-lg",
   plus: "bi bi-plus-lg",
@@ -18,6 +19,8 @@ const ICONS: IconProps = {
   check: "bi bi-check",
   circleCheck: "bi bi-plus-circle",
   circlePlus: "bi bi-plus-circle",
+  message: "bi bi-envelope",
+  messageOpen: "bi bi-envelope-open-fill",
 };
 
 export default ICONS;

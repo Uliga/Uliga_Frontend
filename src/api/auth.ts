@@ -9,15 +9,16 @@ export const authSignup = async (userData: object) => {
   const { data } = await unAuthorizationClient.post(API.SIGNUP, userData);
   return data;
 };
-export const emailSend = async (userData: object) => {
+
+export const sendEmail = async (userData: object) => {
   const { data } = await unAuthorizationClient.post(API.EMAIL_SEND, userData);
   return data;
 };
-export const codeVerify = async (userData: object) => {
+export const verifyCode = async (userData: object) => {
   const { data } = await unAuthorizationClient.post(API.CODE, userData);
   return data;
 };
-export const nickDuplicate = async (nickName: string) => {
+export const checkNicknameDuplicate = async (nickName: string) => {
   const { data } = await unAuthorizationClient.get(
     `${API.NICK_DUPLICATE}${nickName}`,
   );

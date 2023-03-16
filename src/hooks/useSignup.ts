@@ -4,7 +4,12 @@ import { useMutation } from "@tanstack/react-query";
 import { useLocation, useNavigate } from "react-router-dom";
 import useInput from "./useInput";
 import REGEX from "../constants/regex";
-import { emailSend, codeVerify, authSignup, nickDuplicate } from "../api/auth";
+import {
+  sendEmail,
+  verifyCode,
+  authSignup,
+  checkNicknameDuplicate,
+} from "../api/auth";
 import toastMsg from "../components/Toast";
 import PATH from "../constants/path";
 
@@ -50,7 +55,7 @@ export default function useLogin() {
   });
 
   const sendEmailCode = async () => {
-    const data = await emailSend({ email });
+    const data = await sendEmail({ email });
     if (data) {
       toastMsg("인증 코드 전송 완료");
       setMatch(false);
@@ -58,7 +63,7 @@ export default function useLogin() {
   };
 
   const checkEmailCode = async () => {
-    const data = await codeVerify({ email, code });
+    const data = await verifyCode({ email, code });
     if (data.matches) {
       toastMsg("이메일 인증 완료.");
       setMatch(true);
@@ -69,7 +74,7 @@ export default function useLogin() {
   };
 
   const checkNickname = async () => {
-    const data = await nickDuplicate(nickName);
+    const data = await checkNicknameDuplicate(nickName);
 
     if (!data.exists) {
       toastMsg("사용 가능한 닉네임 입니다.");

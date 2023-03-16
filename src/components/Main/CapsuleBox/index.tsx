@@ -23,7 +23,7 @@ export default function CapsuleBox() {
   const BoxList = [
     {
       title: "이번 달 지출",
-      amount: `${data.record ? data.record : 0}원`,
+      amount: `${data.record ? data.record.value : 0}원`,
       Button: {
         title: "지출 분석하러 가기",
         iconName: "check",
@@ -33,7 +33,7 @@ export default function CapsuleBox() {
     },
     {
       title: "이번 달 수입",
-      amount: `${data.record ? data.record : 0}원`,
+      amount: `${data.income ? data.income.value : 0}원`,
       Button: {
         title: "수입 분석하러 가기",
         iconName: "check",
@@ -43,7 +43,7 @@ export default function CapsuleBox() {
     },
     {
       title: "예산",
-      amount: data.budget ? data.budget : false,
+      amount: data.budget ? data.budget.value : false,
       subtitle: `설정하신 예산이 없습니다.\n예산을 설정하고 계획적으로 관리 해보세요!`,
       Button: {
         title: "예산 설정하러 가기",
@@ -55,7 +55,7 @@ export default function CapsuleBox() {
   return (
     <S.Container>
       {BoxList.map(box => (
-        <S.Wrapper>
+        <S.Wrapper key={box.title}>
           <S.Title>{box.title}</S.Title>
           {!box.amount && <S.Subtitle>{box.subtitle}</S.Subtitle>}
 
