@@ -46,7 +46,7 @@ export default function oneLine({
       )}
       <S.StyledButton
         reverseIconButton
-        title="공유 가계부 내역에 추가 "
+        title="공유 가계부 내역에 추가"
         theme="primary"
         iconName="plus"
       />
