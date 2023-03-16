@@ -4,6 +4,7 @@
     "project": "./tsconfig.json"
   },
   "rules": {
+    "import/extensions": "off",
     "prettier/prettier": ["error", { "endOfLine": "auto" }],
     "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
     "react/jsx-props-no-spreading": "off",

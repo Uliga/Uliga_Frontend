@@ -3,12 +3,9 @@ import styled from "styled-components";
 import { useNavigate, useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { useRecoilState } from "recoil";
-import { loadMe } from "../../api/user";
-import LoadingBar from "../../components/LoadingBar";
 import Button from "../../components/Button";
 import Modal from "../../components/Modal";
 import Create from "../create";
-import QUERYKEYS from "../../constants/querykey";
 import BookNav from "../../components/Main/BookNav";
 import PATH from "../../constants/path";
 import { createModalAtom } from "../../stores/atoms/context";
@@ -41,15 +38,7 @@ export default function Main() {
   const { isLoading, data } = useQuery([QUERYKEYS.LOAD_ME], loadMe);
   const navigate = useNavigate();
   const { bookId } = useParams();
-  console.log(data);
   const [createModalOpen, setCreateModalOpen] = useRecoilState(createModalAtom);
-
-  if (isLoading)
-    return (
-      <div>
-        <LoadingBar type={6} />
-      </div>
-    );
 
   return (
     <Container>

@@ -9,3 +9,8 @@ export const bottomModalAtom = atom<boolean>({
   key: "bottomModalAtom",
   default: false,
 });
+
+export const invitationModalAtom = atom<boolean>({
+  key: "invitationModalAtom",
+  default: false,
+});

@@ -26,3 +26,8 @@ export const uploadBook = async (bookData: object) => {
   const { data } = await authorizationClient.post(API.UPLOAD_BOOK, bookData);
   return data;
 };
+
+export const answerInvitation = async (answer: object) => {
+  const { data } = await authorizationClient.post(API.INVITATION_REPLY, answer);
+  return data;
+};
