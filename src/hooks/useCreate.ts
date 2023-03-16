@@ -1,10 +1,12 @@
 import { useState } from "react";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useRecoilState } from "recoil";
 import { checkEmail } from "../api/auth";
 import useInput from "./useInput";
 import toastMsg from "../components/Toast";
 import { createAccountBook } from "../api/book";
 import { createModalAtom } from "../stores/atoms/context";
+import QUERYKEYS from "../constants/querykey";
 
 export default function useCreate() {
   const [name, onChangeName] = useInput("");
@@ -105,23 +107,32 @@ export default function useCreate() {
     },
   ];
 
+  const queryClient = useQueryClient();
+
+  const mutateCreate = useMutation(["createAccountBook"], createAccountBook, {
+    onSuccess: () => {
+      toastMsg("가계부 생성 완료");
+      setCreateModalOpen(false);
+      queryClient.invalidateQueries([QUERYKEYS.LOAD_BOOK_LIST]);
+    },
+    onError: ({
+      response: {
+        data: { errorCode, message },
+      },
+    }) => {
+      toastMsg(`${errorCode} / ${message}`);
+    },
+  });
   const onSubmitForm = async () => {
     if (name.length <= 0 || Emails.length <= 0) {
       toastMsg("필수 입력 조건을 채워주세요.");
     } else {
-      await createAccountBook({
+      await mutateCreate.mutate({
         name,
         emails: Emails,
         categories: Categories,
         relationship,
-      })
-        .then(() => {
-          toastMsg("가계부 생성 완료");
-          setCreateModalOpen(false);
-        })
-        .catch(() => {
-          toastMsg("가계부 생성 실패");
-        });
+      });
     }
   };
 
