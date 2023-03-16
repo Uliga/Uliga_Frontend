@@ -23,6 +23,13 @@ export const loadMonthAsset = async (id: number, date: string) => {
   return data;
 };
 
+export const loadMonthItems = async (id: number, date: string) => {
+  const { data } = await authorizationClient.get(
+    `${API.ACCOUNT_BOOK}/${id}/${API.ITEM}/${date}`,
+  );
+  return data;
+};
+
 export const answerInvitation = async (answer: object) => {
   const { data } = await authorizationClient.post(API.INVITATION_REPLY, answer);
   return data;
