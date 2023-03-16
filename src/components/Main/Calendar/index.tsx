@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { Container, Income, Record, ColorWrapper } from "./index.styles";
 import "react-calendar/dist/Calendar.css";
 import useBook from "../../../hooks/useBook";
+import changeMoneyUnit from "../../../utils/money";
 
 export default function MonthCalendar() {
   const { bookId } = useParams();
@@ -44,8 +45,12 @@ export default function MonthCalendar() {
           if (income || record) {
             return (
               <div>
-                <div className="income">{income?.value}</div>
-                <div className="record">{record?.value}</div>
+                {income && (
+                  <div className="income">{changeMoneyUnit(income.value)}</div>
+                )}
+                {record && (
+                  <div className="record">{changeMoneyUnit(record.value)}</div>
+                )}
               </div>
             );
           }
