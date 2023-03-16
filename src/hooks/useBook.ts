@@ -1,7 +1,13 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
-import { answerInvitation, loadBookInfo, loadBookList } from "../api/book";
+import {
+  answerInvitation,
+  loadBookInfo,
+  loadBookList,
+  loadMonthItems,
+} from "../api/book";
 import { IBookInfo, IBookList } from "../interfaces/book";
+import { IItem } from "../interfaces/item";
 import QUERYKEYS from "../constants/querykey";
 import PATH from "../constants/path";
 import toastMsg from "../components/Toast";
@@ -47,10 +53,21 @@ export default function useBook() {
     },
   });
 
+  const useLoadMonthItems = (id: number, year: number, month: number) => {
+    const date = `${year}/${month}`;
+    const queryFn = () => loadMonthItems(id, date);
+    const { data, refetch } = useQuery<IItem>(
+      [QUERYKEYS.LOAD_MONTH_ITEM],
+      queryFn,
+    );
+    return { data, refetch };
+  };
+
   return {
     useSelectedBook,
     useReplaceBook,
     useBookList,
     mutateInvitation,
+    useLoadMonthItems,
   };
 }
