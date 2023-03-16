@@ -9,6 +9,7 @@ import PATH from "./constants/path";
 import Signup from "./pages/signup";
 import StyledContainer from "./components/Toast/container";
 import LadingPage from "./pages/landing";
+import Write from "./pages/write";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -40,6 +41,9 @@ function App() {
           </Route>
           <Route path={PATH.MAIN} element={<MainLayout />}>
             <Route path=":bookId" element={<Main />} />
+          </Route>
+          <Route path={PATH.WRITE} element={<MainLayout />}>
+            <Route path=":bookId" element={<Write />} />
           </Route>
         </Routes>
       </Router>
