@@ -27,6 +27,16 @@ export const uploadBook = async (bookData: object) => {
   return data;
 };
 
+export const uploadRecord = async (bookData: object) => {
+  const { data } = await authorizationClient.post(API.UPLOAD_RECORD, bookData);
+  return data;
+};
+
+export const uploadIncome = async (bookData: object) => {
+  const { data } = await authorizationClient.post(API.UPLOAD_INCOME, bookData);
+  return data;
+};
+
 export const loadMonthItems = async (id: number, date: string) => {
   const { data } = await authorizationClient.get(
     `${API.ACCOUNT_BOOK}/${id}/${API.ITEM}/${date}`,

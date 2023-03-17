@@ -23,6 +23,7 @@ const ICONS: IconProps = {
   circlePlus: "bi bi-plus-circle",
   message: "bi bi-envelope",
   messageOpen: "bi bi-envelope-open-fill",
+  pencil: "bi bi-pencil-fill",
 };
 
 export default ICONS;
