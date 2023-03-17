@@ -125,10 +125,11 @@ export default function useDayWrite() {
   };
 
   const queryClient = useQueryClient();
+  const dateUnit = `${day.getMonth() + 1}월 ${day.getDate()}일`;
 
   const mutateIncome = useMutation(["mutateIncome"], uploadIncome, {
     onSuccess: () => {
-      toastMsg("가계부 등록 성공");
+      toastMsg(`${dateUnit} 수입 등록 완료 👏`);
       queryClient.invalidateQueries([QUERYKEYS.LOAD_MONTH_ITEM]);
     },
     onError: ({
@@ -142,7 +143,7 @@ export default function useDayWrite() {
 
   const mutateRecord = useMutation(["mutateRecord"], uploadRecord, {
     onSuccess: () => {
-      toastMsg("가계부 등록 성공");
+      toastMsg(`${dateUnit} 지출 등록 완료 👏`);
       queryClient.invalidateQueries([QUERYKEYS.LOAD_MONTH_ITEM]);
     },
     onError: ({
