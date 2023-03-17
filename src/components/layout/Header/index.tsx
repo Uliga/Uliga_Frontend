@@ -61,7 +61,7 @@ export default function Header() {
       </S.Wrapper>
       <S.UtilWrapper>
         {utilList.map(util => (
-          <S.ModalWrapper>
+          <S.ModalWrapper key={util.iconName}>
             <IconButton
               iconOnly={util.iconOnly}
               iconName={util.iconName}
