@@ -9,7 +9,6 @@ import {
 import { IBookInfo, IBookList } from "../interfaces/book";
 import { IItem } from "../interfaces/item";
 import QUERYKEYS from "../constants/querykey";
-import PATH from "../constants/path";
 import toastMsg from "../components/Toast";
 
 export default function useBook() {
@@ -32,8 +31,8 @@ export default function useBook() {
     return { data };
   };
 
-  const useReplaceBook = (bookId: number) => {
-    navigate(`${PATH.MAIN}/${bookId}`);
+  const useReplaceBook = (path: string, bookId: number) => {
+    navigate(`${path}/${bookId}`);
     window.location.reload();
   };
 
