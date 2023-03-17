@@ -12,7 +12,7 @@ const SelectWindow: React.FC<Props> = ({ options, value, onChange }) => {
   return (
     <SelectContainer value={value} onChange={onChange}>
       {options.map(option => (
-        <option key={option.value} value={option.value}>
+        <option key={option.label} value={option.value}>
           {option.label}
         </option>
       ))}
