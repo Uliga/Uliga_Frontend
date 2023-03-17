@@ -11,7 +11,10 @@ import {
 import allModalAtom from "../../../stores/selectors/context";
 import useBook from "../../../hooks/useBook";
 
-export default function BookNav() {
+interface BookNavProps {
+  path: string;
+}
+export default function BookNav({ path }: BookNavProps) {
   const { bookId } = useParams();
   const { useBookList } = useBook();
   const { data } = useBookList();
@@ -41,7 +44,7 @@ export default function BookNav() {
                   title={book.accountBookName}
                   theme="basic"
                   onClick={() => {
-                    useReplaceBook(book.accountBookId);
+                    useReplaceBook(path, book.accountBookId);
                   }}
                 />
               ),
@@ -61,7 +64,7 @@ export default function BookNav() {
                   title={book.accountBookName}
                   theme="basic"
                   onClick={() => {
-                    useReplaceBook(book.accountBookId);
+                    useReplaceBook(path, book.accountBookId);
                   }}
                 />
               ),
