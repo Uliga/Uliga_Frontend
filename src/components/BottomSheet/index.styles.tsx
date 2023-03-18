@@ -109,6 +109,7 @@ export const Wrapper = styled.div`
     width: 12rem;
     font-size: 1.3rem;
   }
+
   select {
     width: 12rem;
     padding: 0.7rem 0;
@@ -147,6 +148,11 @@ export const ValueInput = styled(Input)`
     padding: 0;
     outline: none;
     margin: 0;
+  }
+  input:focus,
+  hover {
+    padding-bottom: 0.5rem;
+    border-bottom: 0.1rem solid ${COLORS.GREY[300]};
   }
 `;
 

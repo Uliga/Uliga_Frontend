@@ -37,7 +37,7 @@ export default function BottomSheet() {
         <S.MoneyUnit>
           <h4>{formattedValue}원</h4>
           <S.ValueInput
-            size={13}
+            size={16}
             value={value || ""}
             onChange={onChangeValue}
             type="number"
