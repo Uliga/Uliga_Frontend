@@ -131,6 +131,7 @@ export default function useDayWrite() {
     onSuccess: () => {
       toastMsg(`${dateUnit} 수입 등록 완료 👏`);
       queryClient.invalidateQueries([QUERYKEYS.LOAD_MONTH_ITEM]);
+      queryClient.invalidateQueries([QUERYKEYS.LOAD_MONTH_ASSET]);
     },
     onError: ({
       response: {
@@ -145,6 +146,7 @@ export default function useDayWrite() {
     onSuccess: () => {
       toastMsg(`${dateUnit} 지출 등록 완료 👏`);
       queryClient.invalidateQueries([QUERYKEYS.LOAD_MONTH_ITEM]);
+      queryClient.invalidateQueries([QUERYKEYS.LOAD_MONTH_ASSET]);
     },
     onError: ({
       response: {
