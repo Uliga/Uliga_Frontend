@@ -77,6 +77,7 @@ export default function InviteItem({ item }: { item: InvitationProps }) {
               join: false,
               memberName: item.memberName,
               accountBookName: item.accountBookName,
+              createdTime: "2023-03-19T15:36:09.506042877",
             });
           }}
         />
@@ -89,6 +90,7 @@ export default function InviteItem({ item }: { item: InvitationProps }) {
               join: true,
               memberName: item.memberName,
               accountBookName: item.accountBookName,
+              createdTime: "2023-03-19T15:36:09.506042877",
             });
           }}
         />

@@ -189,6 +189,7 @@ const Label = styled.span`
     margin-top: 1rem;
   }
 `;
+
 const OptionInput = styled.input`
   border: none;
   height: 2.2rem;
@@ -355,6 +356,15 @@ const StyledIconButton = styled(IconButton)`
   margin: 2rem 1rem 0 1rem;
 `;
 
+const StyledIconPlusButton = styled(IconButton)`
+  background-color: white;
+  margin-left: 24rem;
+  border-radius: 3rem;
+  height: 3rem;
+  margin-top: -2.5rem;
+  color: ${COLORS.GREY[300]};
+`;
+
 export {
   Container,
   MiddleContainer,
@@ -389,4 +399,5 @@ export {
   StyledIconButton,
   Division,
   MemberList,
+  StyledIconPlusButton,
 };
