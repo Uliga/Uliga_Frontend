@@ -3,6 +3,7 @@ import * as S from "./index.styles";
 import COLORS from "../../../constants/color";
 import Input from "../../../components/Input";
 import useBankingSchedule from "../../../hooks/useBankingSchedule";
+import useInput from "../../../hooks/useInput";
 
 // const member = [
 //   {
@@ -18,15 +19,62 @@ import useBankingSchedule from "../../../hooks/useBankingSchedule";
 //     price: "600,000",
 //   },
 // ];
+interface Assignments {
+  id: number;
+  value: number;
+}
+
+interface Schedules {
+  name: string;
+  isIncome: boolean;
+  notificationDate: number;
+  value: number;
+  assignments: Assignments;
+}
+
 export default function Add() {
-  const [selectedOption, setSelectedOption] = useState("");
+  // const [user, setUser] = useState<User>({ nickName: "", price: 0 });
+  // setUser(prevState => {
+  //   return {
+  //     ...prevState,
+  //     nickName: member.nickname,
+  //     price,
+  //   };
+  // });
+  const [num, setNum] = useInput("");
+  const [scheduleName, setScheduleName] = useInput("");
+  const [entirePrice, setEntirePrice] = useInput("");
+  const [selectedOption, setSelectedOption] = useState(0);
   const [selectedIsIncome, setSelectedIsIncome] = useState("");
+  const [IsIncome, setIsIncome] = useState<boolean>();
+  const [schedule, setSchedule] = useState<Schedules>();
   const { GetMember, members } = useBankingSchedule();
+
+  const [price, setPrice] = useState<Assignments[]>([]);
+
+  useEffect(() => {
+    const initialPrice = members.map(member => ({ id: member.id, value: 0 }));
+    setPrice(initialPrice);
+  }, [members]);
+
+  const handlePriceChange = (
+    event: React.ChangeEvent<HTMLInputElement>,
+    memberId: number,
+  ) => {
+    setPrice(prevPrice =>
+      // eslint-disable-next-line @typescript-eslint/no-shadow
+      prevPrice.map(price =>
+        price.id === memberId
+          ? { id: memberId, value: parseInt(event.target.value, 10) }
+          : price,
+      ),
+    );
+  };
   useEffect(() => {
     GetMember();
   }, []);
   const handleOptionChange = (event: {
-    target: { value: React.SetStateAction<string> };
+    target: { value: React.SetStateAction<number> };
   }) => {
     setSelectedOption(event.target.value);
   };
@@ -35,7 +83,26 @@ export default function Add() {
     target: { value: React.SetStateAction<string> };
   }) => {
     setSelectedIsIncome(event.target.value);
+    if (event.target.value === "spend") {
+      setIsIncome(false);
+    } else {
+      setIsIncome(true);
+    }
   };
+  const inputSchedule = () => {
+    // @ts-ignore
+    setSchedule(prevState => {
+      return {
+        ...prevState,
+        name: scheduleName,
+        isIncome: IsIncome,
+        notificationDate: selectedOption,
+        value: entirePrice,
+        assignments: price,
+      };
+    });
+  };
+  console.log("제발 한번에 가자", schedule);
   return (
     <S.BankingAddForm>
       <S.BankingAddFormBox>
@@ -46,18 +113,16 @@ export default function Add() {
               <input
                 type="radio"
                 name="test"
-                value="option1"
-                checked={selectedOption === "option1"}
+                value={1}
+                checked={selectedOption === 1}
+                // @ts-ignore
                 onChange={handleOptionChange}
               />
               <S.Label
                 style={{
-                  color:
-                    selectedOption === "option1"
-                      ? COLORS.BLUE
-                      : COLORS.GREY[300],
+                  color: selectedOption === 1 ? COLORS.BLUE : COLORS.GREY[300],
                 }}
-                onClick={() => setSelectedOption("option1")}
+                onClick={() => setSelectedOption(1)}
               >
                 매달 말일
               </S.Label>
@@ -66,18 +131,16 @@ export default function Add() {
               <input
                 type="radio"
                 name="test"
-                value="option2"
-                checked={selectedOption === "option2"}
+                value={20}
+                checked={selectedOption === 20}
+                // @ts-ignore
                 onChange={handleOptionChange}
               />
               <S.Label
                 style={{
-                  color:
-                    selectedOption === "option2"
-                      ? COLORS.BLUE
-                      : COLORS.GREY[300],
+                  color: selectedOption === 20 ? COLORS.BLUE : COLORS.GREY[300],
                 }}
-                onClick={() => setSelectedOption("option2")}
+                onClick={() => setSelectedOption(20)}
               >
                 매달 1일
               </S.Label>
@@ -86,21 +149,20 @@ export default function Add() {
               <input
                 type="radio"
                 name="test"
-                value="option3"
-                checked={selectedOption === "option3"}
+                value={num}
+                checked={selectedOption === num}
+                // @ts-ignore
                 onChange={handleOptionChange}
               />
               <S.Label
                 style={{
                   color:
-                    selectedOption === "option3"
-                      ? COLORS.BLUE
-                      : COLORS.GREY[300],
+                    selectedOption === num ? COLORS.BLUE : COLORS.GREY[300],
                 }}
-                onClick={() => setSelectedOption("option3")}
+                onClick={() => setSelectedOption(num)}
               >
                 <p>매달</p>
-                <S.OptionInput type="number" />
+                <S.OptionInput type="number" value={num} onChange={setNum} />
                 <p>일</p>
               </S.Label>
             </S.Option3>
@@ -111,18 +173,18 @@ export default function Add() {
               <S.Option>
                 <input
                   type="radio"
-                  value="optionA"
-                  checked={selectedIsIncome === "optionA"}
+                  value="spend"
+                  checked={selectedIsIncome === "spend"}
                   onChange={handleIsInComeChange}
                 />
                 <S.Label
                   style={{
                     color:
-                      selectedIsIncome === "optionA"
+                      selectedIsIncome === "spend"
                         ? COLORS.BLUE
                         : COLORS.GREY[300],
                   }}
-                  onClick={() => setSelectedIsIncome("optionA")}
+                  onClick={() => setSelectedIsIncome("spend")}
                 >
                   지출
                 </S.Label>
@@ -130,18 +192,18 @@ export default function Add() {
               <S.Option>
                 <input
                   type="radio"
-                  value="optionB"
-                  checked={selectedIsIncome === "optionB"}
+                  value="income"
+                  checked={selectedIsIncome === "income"}
                   onChange={handleIsInComeChange}
                 />
                 <S.Label
                   style={{
                     color:
-                      selectedIsIncome === "optionB"
+                      selectedIsIncome === "income"
                         ? COLORS.BLUE
                         : COLORS.GREY[300],
                   }}
-                  onClick={() => setSelectedIsIncome("optionB")}
+                  onClick={() => setSelectedIsIncome("income")}
                 >
                   수입
                 </S.Label>
@@ -150,7 +212,12 @@ export default function Add() {
           </S.AddCategoryForm>
           <S.AddNameForm>
             <h4>일정 이름</h4>
-            <Input value="" type="text" size={20} />
+            <Input
+              value={scheduleName}
+              type="text"
+              size={20}
+              onChange={setScheduleName}
+            />
           </S.AddNameForm>
         </S.AddFormLeft>
         <S.AddFormRight>
@@ -158,17 +225,32 @@ export default function Add() {
             <h4>금액</h4>
             {/* eslint-disable-next-line react/no-unescaped-entities */}
             <p>* 입력하지 않으면 '변동'이라는 값으로 들어갑니다.</p>
-            <Input value="" type="text" size={20} placeholder="원" />
+            <Input
+              value={entirePrice}
+              type="text"
+              size={20}
+              placeholder="원"
+              onChange={setEntirePrice}
+            />
           </S.AddPriceForm>
           <S.AddMemberPartitionForm>
             <h4>구성원 할당하기</h4>
             <p>* 설정하지 않으면 자신에게 모든 금액이 할당됩니다.</p>
             <p>* 구성원을 할당하게 되면 알림 메시지가 전송됩니다.</p>
             {members.map(member => (
-              <S.MemberList>
-                <S.Division key={member.id}>
+              <S.MemberList key={member.id}>
+                <S.Division>
                   <p>{member.nickname}</p>
-                  <Input value="1" type="text" size={8} />
+                  <Input
+                    // @ts-ignore
+                    value={
+                      // eslint-disable-next-line @typescript-eslint/no-shadow
+                      price.find(price => price.id === member.id)?.value
+                    }
+                    type="number"
+                    size={8}
+                    onChange={event => handlePriceChange(event, member.id)}
+                  />
                   <p>원</p>
                 </S.Division>
               </S.MemberList>
@@ -180,6 +262,7 @@ export default function Add() {
         iconOnly
         iconName="circlePlus"
         iconSize="3.5rem"
+        onClick={inputSchedule}
       />
     </S.BankingAddForm>
   );
