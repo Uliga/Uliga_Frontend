@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
-import { accountBookMember } from "../api/book";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { accountBookMember, addSchedule, getSchedule } from "../api/book";
 import toastMsg from "../components/Toast";
 import useInput from "./useInput";
+import QUERYKEYS from "../constants/querykey";
 
 interface Member {
   id: number;
@@ -37,6 +39,7 @@ export default function useBankingSchedule() {
   const [scheduleList, setScheduleList] = useState<Schedules[]>([]);
   const [price, setPrice] = useState<Assignments[]>([]);
   // const [scheduleList, setScheduleList] = useState<ScheduleList[]>([]);
+  const queryClient = useQueryClient();
 
   const GetMember = async () => {
     try {
@@ -55,6 +58,44 @@ export default function useBankingSchedule() {
     } catch (err) {
       console.log(err);
     }
+  };
+  const AddSchedules = async () => {
+    try {
+      await addSchedule({
+        id: Number(bookId),
+        schedules: scheduleList,
+      });
+      toastMsg("작성하신 금융 일정이 추가되었습니다.");
+      console.log({
+        id: Number(bookId),
+        schedules: scheduleList,
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  const mutateSchedules = useMutation(["getSchedule"], getSchedule, {
+    onSuccess: () => {
+      toastMsg("업데이트!");
+      queryClient.invalidateQueries([QUERYKEYS.LOAD_SCHEDULE]);
+    },
+    onError: ({
+      response: {
+        data: { errorCode, message },
+      },
+    }) => {
+      toastMsg(`${errorCode} / ${message}`);
+    },
+  });
+  const getSchedules = () => {
+    const queryFn = () => getSchedule();
+    const { isLoading, error, data } = useQuery(
+      [QUERYKEYS.LOAD_SCHEDULE],
+      queryFn,
+    );
+    toastMsg("업데이트!");
+    console.log("정보", data);
+    return { isLoading, error, data };
   };
   const handlePriceChange = (
     event: React.ChangeEvent<HTMLInputElement>,
@@ -104,56 +145,6 @@ export default function useBankingSchedule() {
   //   }));
   //   setScheduleList(initialSchedule);
   // }, [members]);
-  const schedueAddList = [
-    {
-      title: "월세, 생활비 입금",
-      day: "매달 8일",
-      price: "600,000원",
-      isIncome: "수입",
-      description: "윤채현 100원 ･ 나연경 100,000원 ･ 이시원 500,000원",
-      onClick: "삭제 기능",
-    },
-    {
-      title: "월세, 생활비 입금",
-      day: "매달 8일",
-      price: "600,000원",
-      isIncome: "수입",
-      description: "윤채현 100원 ･ 나연경 100,000원 ･ 이시원 500,000원",
-      onClick: "삭제 기능",
-    },
-    {
-      title: "월세, 생활비 입금",
-      day: "매달 8일",
-      price: "600,000원",
-      isIncome: "수입",
-      description: "윤채현 100원 ･ 나연경 100,000원 ･ 이시원 500,000원",
-      onClick: "삭제 기능",
-    },
-    {
-      title: "월세, 생활비 입금",
-      day: "매달 8일",
-      price: "600,000원",
-      isIncome: "수입",
-      description: "윤채현 100원 ･ 나연경 100,000원 ･ 이시원 500,000원",
-      onClick: "삭제 기능",
-    },
-    {
-      title: "월세, 생활비 입금",
-      day: "매달 8일",
-      price: "600,000원",
-      isIncome: "수입",
-      description: "윤채현 100원 ･ 나연경 100,000원 ･ 이시원 500,000원",
-      onClick: "삭제 기능",
-    },
-    {
-      title: "월세, 생활비 입금",
-      day: "매달 8일",
-      price: "600,000원",
-      isIncome: "수입",
-      description: "윤채현 100원 ･ 나연경 100,000원 ･ 이시원 500,000원",
-      onClick: "삭제 기능",
-    },
-  ];
   return {
     GetMember,
     members,
@@ -174,7 +165,9 @@ export default function useBankingSchedule() {
     scheduleName,
     price,
     entirePrice,
-    schedueAddList,
     scheduleList,
+    AddSchedules,
+    mutateSchedules,
+    getSchedules,
   };
 }
