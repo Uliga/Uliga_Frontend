@@ -48,6 +48,7 @@ export default function Add() {
     setEntirePrice,
     handleOptionChange,
     scheduleList,
+    AddSchedules,
   } = useBankingSchedule();
   console.log("날짜", selectedOption);
   console.log("분류", selectedIsIncome);
@@ -290,7 +291,7 @@ export default function Add() {
                   매달 {schedules.notificationDate}일/{schedules.value}/
                   {schedules.isIncome}
                 </h6>
-                <p>
+                <p key={schedules.assignments.id}>
                   {schedules.assignments.id}･{schedules.assignments.value}
                 </p>
               </S.BankingAddInfoWrapper>
@@ -299,7 +300,12 @@ export default function Add() {
             </S.Box>
           ))}
         </S.BankingAddListWrapper>
-        <Button title="금융 일정 수정하기" theme="quaternary" width="27rem" />
+        <Button
+          title="금융 일정 추가하기"
+          theme="quaternary"
+          width="27rem"
+          onClick={AddSchedules}
+        />
       </S.BankingAddList>
     </S.BankingAdd>
   );

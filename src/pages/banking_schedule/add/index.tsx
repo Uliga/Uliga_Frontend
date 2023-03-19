@@ -4,7 +4,6 @@ import BookNav from "../../../components/Main/BookNav";
 import PATH from "../../../constants/path";
 import Schedule from "./Scedule";
 import BankingAddForm from "./BankingAddForm";
-import BankingAddList from "./BankingAddList";
 
 export default function Add() {
   return (

@@ -45,3 +45,14 @@ export const accountBookMember = async (id: number) => {
   );
   return data;
 };
+export const addSchedule = async (ScheduleData: object) => {
+  const { data } = await authorizationClient.post(
+    API.ADD_SCHEDULE,
+    ScheduleData,
+  );
+  return data;
+};
+export const getSchedule = async () => {
+  const { data } = await authorizationClient.get(`${API.SCHEDULE}`);
+  return data;
+};
