@@ -1,116 +1,42 @@
-import { useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import { accountBookMember, uploadBook } from "../api/book";
+import React, { useState } from "react";
+import { useParams } from "react-router-dom";
+import { accountBookMember } from "../api/book";
 import toastMsg from "../components/Toast";
-import PATH from "../constants/path";
+import useInput from "./useInput";
 
 interface Member {
   id: number;
   nickname: string;
   accountBookAuthority: string;
 }
+interface Assignments {
+  id: number;
+  value: number;
+}
+
+interface Schedules {
+  name: string;
+  isIncome: boolean;
+  notificationDate: number;
+  value: number;
+  assignments: Assignments;
+}
+// interface ScheduleList {
+//   schedule: [Schedules];
+// }
 export default function useBankingSchedule() {
   const { bookId } = useParams();
-  const navigate = useNavigate();
   const [members, setMembers] = useState<Member[]>([]);
-
-  const inputMenu: string[] = [
-    "분류",
-    "날짜",
-    "카테고리",
-    "결제수단",
-    "거래처",
-    "금액",
-    "메모",
-  ];
-  type InputTypes = {
-    label: string;
-    options?: object[];
-    value?: boolean | number | string;
-    size?: number;
-    type?: string;
-  };
-  const INPUT_SIZE = 11;
-  const inputForm: InputTypes[] = [
-    {
-      label: "isIncome",
-      options: [
-        { value: "", label: "선택" },
-        { value: "지출", label: "지출" },
-        { value: "수입", label: "수입" },
-      ],
-      value: false,
-    },
-    {
-      label: "date",
-      size: INPUT_SIZE,
-      type: "date",
-      value: "",
-    },
-    {
-      label: "category",
-      options: [
-        { value: undefined, label: "선택" },
-        { value: "🍽️ 식비", label: "🍽️ 식비" },
-        { value: "☕ 카페 · 간식", label: "☕ 카페 · 간식" },
-        { value: "🏠 생활", label: "🏠 생활" },
-        { value: "🍙 편의점,마트,잡화", label: "🍙 편의점,마트,잡화" },
-        { value: "👕 쇼핑", label: "👕 쇼핑" },
-        { value: "기타", label: "기타" },
-      ],
-      value: undefined,
-    },
-    {
-      label: "payment",
-      options: [
-        { value: undefined, label: "선택" },
-        { value: "현금", label: "현금" },
-        { value: "카드", label: "카드" },
-        { value: "이체", label: "이체" },
-      ],
-      value: undefined,
-    },
-    {
-      label: "account",
-      size: INPUT_SIZE,
-      type: "text",
-      value: "",
-    },
-    {
-      label: "value",
-      size: INPUT_SIZE,
-      type: "number",
-      value: "",
-    },
-    {
-      label: "memo",
-      size: 19,
-      type: "text",
-      value: "",
-    },
-  ];
-
-  const [inputList, setInputList] = useState([inputForm]);
-  const createRequest: { [label: string]: any }[] = [];
-  type FormProps = {
-    [label: string]: any;
-  };
-  const UploadFull = async () => {
-    try {
-      await uploadBook({
-        id: Number(bookId),
-        createRequest,
-      });
-      toastMsg("작성하신 가계부 내역이 등록되었습니다.");
-      navigate(`${PATH.MAIN}/${bookId}`);
-      console.log({
-        id: Number(bookId),
-        createRequest,
-      });
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  const [num, setNum] = useInput("");
+  const [scheduleName, setScheduleName] = useInput("");
+  const [entirePrice, setEntirePrice] = useInput("");
+  const [selectedOption, setSelectedOption] = useState(0);
+  const [selectedIsIncome, setSelectedIsIncome] = useState("");
+  const [IsIncome, setIsIncome] = useState<boolean>();
+  // const [schedule, setSchedule] = useState<Schedules>();
+  const [scheduleList, setScheduleList] = useState<Schedules[]>([]);
+  const [price, setPrice] = useState<Assignments[]>([]);
+  // const [scheduleList, setScheduleList] = useState<ScheduleList[]>([]);
 
   const GetMember = async () => {
     try {
@@ -130,60 +56,125 @@ export default function useBankingSchedule() {
       console.log(err);
     }
   };
-  const onSubmitForm = () => {
-    inputList.map(inputs => {
-      const form: FormProps = {
-        isIncome: undefined,
-        account: "",
-        category: "",
-        date: "",
-        memo: "",
-        payment: "",
-        value: 0,
-        sharedAccountBook: [],
-      };
-      inputs.map(input => {
-        const { label } = input;
-        switch (label) {
-          case "value":
-            form[label] = Number(input.value);
-            break;
-          case "isIncome":
-            if (input.value === "지출") {
-              form[label] = false;
-            }
-            if (input.value === "수입") {
-              form[label] = true;
-            }
-            break;
-          default:
-            form[label] = input.value;
-            break;
-        }
-        return form[label];
-      });
-      const requiredFields = ["account", "category", "date", "payment"];
-      if (
-        requiredFields.every(
-          field => form[field] !== "" && form[field] !== undefined,
-        )
-      ) {
-        createRequest.push(form);
-      }
-      return null;
-    });
-    console.log(createRequest);
+  const handlePriceChange = (
+    event: React.ChangeEvent<HTMLInputElement>,
+    memberId: number,
+  ) => {
+    setPrice(prevPrice =>
+      // eslint-disable-next-line @typescript-eslint/no-shadow
+      prevPrice.map(price =>
+        price.id === memberId
+          ? { id: memberId, value: parseInt(event.target.value, 10) }
+          : price,
+      ),
+    );
   };
-  console.log("members", members);
+  const handleOptionChange = (event: {
+    target: { value: React.SetStateAction<number> };
+  }) => {
+    setSelectedOption(event.target.value);
+  };
 
+  const handleIsInComeChange = (event: {
+    target: { value: React.SetStateAction<string> };
+  }) => {
+    setSelectedIsIncome(event.target.value);
+    if (event.target.value === "spend") {
+      setIsIncome(false);
+    } else {
+      setIsIncome(true);
+    }
+  };
+  const inputSchedule = () => {
+    // @ts-ignore
+    setScheduleList(prevState => [
+      ...prevState,
+      {
+        name: scheduleName,
+        isIncome: IsIncome,
+        notificationDate: selectedOption,
+        value: entirePrice,
+        assignments: price,
+      },
+    ]);
+  };
+  // useEffect(() => {
+  //   const initialSchedule = members.map(member => ({
+  //     schedule: schedule,
+  //   }));
+  //   setScheduleList(initialSchedule);
+  // }, [members]);
+  const schedueAddList = [
+    {
+      title: "월세, 생활비 입금",
+      day: "매달 8일",
+      price: "600,000원",
+      isIncome: "수입",
+      description: "윤채현 100원 ･ 나연경 100,000원 ･ 이시원 500,000원",
+      onClick: "삭제 기능",
+    },
+    {
+      title: "월세, 생활비 입금",
+      day: "매달 8일",
+      price: "600,000원",
+      isIncome: "수입",
+      description: "윤채현 100원 ･ 나연경 100,000원 ･ 이시원 500,000원",
+      onClick: "삭제 기능",
+    },
+    {
+      title: "월세, 생활비 입금",
+      day: "매달 8일",
+      price: "600,000원",
+      isIncome: "수입",
+      description: "윤채현 100원 ･ 나연경 100,000원 ･ 이시원 500,000원",
+      onClick: "삭제 기능",
+    },
+    {
+      title: "월세, 생활비 입금",
+      day: "매달 8일",
+      price: "600,000원",
+      isIncome: "수입",
+      description: "윤채현 100원 ･ 나연경 100,000원 ･ 이시원 500,000원",
+      onClick: "삭제 기능",
+    },
+    {
+      title: "월세, 생활비 입금",
+      day: "매달 8일",
+      price: "600,000원",
+      isIncome: "수입",
+      description: "윤채현 100원 ･ 나연경 100,000원 ･ 이시원 500,000원",
+      onClick: "삭제 기능",
+    },
+    {
+      title: "월세, 생활비 입금",
+      day: "매달 8일",
+      price: "600,000원",
+      isIncome: "수입",
+      description: "윤채현 100원 ･ 나연경 100,000원 ･ 이시원 500,000원",
+      onClick: "삭제 기능",
+    },
+  ];
   return {
-    inputMenu,
-    inputList,
-    setInputList,
-    inputForm,
-    onSubmitForm,
-    UploadFull,
     GetMember,
     members,
+    inputSchedule,
+    handleIsInComeChange,
+    handleOptionChange,
+    handlePriceChange,
+    // schedule,
+    num,
+    setNum,
+    setScheduleName,
+    setEntirePrice,
+    selectedIsIncome,
+    setSelectedIsIncome,
+    selectedOption,
+    setSelectedOption,
+    setPrice,
+    scheduleName,
+    price,
+    entirePrice,
+    schedueAddList,
+    scheduleList,
   };
 }
