@@ -1,4 +1,4 @@
-export default function changeDateUnit(day: any) {
+export default function getDateUnit(day: any) {
   const date = `${day.getFullYear()}-${
     day.getMonth() + 1 < 10
       ? `0${(day.getMonth() + 1).toString()}`
@@ -12,7 +12,7 @@ export default function changeDateUnit(day: any) {
   return date;
 }
 
-export function changeFullDateUnit(day: any) {
+export function getFullDateUnit(day: any) {
   const time = day.toLocaleTimeString().split(" ")[1];
 
   const date = `${day.getFullYear()}-${

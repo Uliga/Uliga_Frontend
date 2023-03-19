@@ -3,9 +3,9 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import useInput from "./useInput";
-import changeMoneyUnit from "../utils/money";
+import getMoneyUnit from "../utils/money";
 import { bottomSheetAtom } from "../stores/atoms/context";
-import changeDateUnit from "../utils/date";
+import getDateUnit from "../utils/date";
 import { uploadIncome, uploadRecord } from "../api/book";
 import toastMsg from "../components/Toast";
 import QUERYKEYS from "../constants/querykey";
@@ -40,7 +40,7 @@ export default function useDayWrite() {
   const [isIncome, setIsIncome] = useState(false);
 
   useEffect(() => {
-    setFormattedValue(changeMoneyUnit(+value));
+    setFormattedValue(getMoneyUnit(+value));
   }, [value]);
 
   const [radioList, setRadioList] = useState([
@@ -162,7 +162,7 @@ export default function useDayWrite() {
   };
 
   const onSubmit = () => {
-    const date = changeDateUnit(day);
+    const date = getDateUnit(day);
     const bookData: BookProps = {};
     inputList.map(input => {
       const { label } = input;

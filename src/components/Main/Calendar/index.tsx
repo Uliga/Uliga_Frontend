@@ -5,7 +5,7 @@ import { useRecoilState } from "recoil";
 import { Container, Income, Record, ColorWrapper } from "./index.styles";
 import "react-calendar/dist/Calendar.css";
 import useBook from "../../../hooks/useBook";
-import changeMoneyUnit from "../../../utils/money";
+import getMoneyUnit from "../../../utils/money";
 import { bottomSheetAtom } from "../../../stores/atoms/context";
 
 export default function MonthCalendar() {
@@ -58,10 +58,10 @@ export default function MonthCalendar() {
             return (
               <div>
                 {income && (
-                  <div className="income">{changeMoneyUnit(income.value)}</div>
+                  <div className="income">{getMoneyUnit(income.value)}</div>
                 )}
                 {record && (
-                  <div className="record">{changeMoneyUnit(record.value)}</div>
+                  <div className="record">{getMoneyUnit(record.value)}</div>
                 )}
               </div>
             );
