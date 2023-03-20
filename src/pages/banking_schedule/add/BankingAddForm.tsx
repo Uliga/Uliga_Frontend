@@ -1,37 +1,32 @@
 import React, { useEffect } from "react";
+import { useParams } from "react-router-dom";
 import * as S from "./index.styles";
 import COLORS from "../../../constants/color";
 import Input from "../../../components/Input";
 import useBankingSchedule from "../../../hooks/useBankingSchedule";
 import Button from "../../../components/Button";
-// import useInput from "../../../hooks/useInput";
 
 // interface Assignments {
 //   id: number;
 //   value: number;
 // }
-
-// interface Schedules {
-//   name: string;
-//   isIncome: boolean;
-//   notificationDate: number;
-//   value: number;
-//   assignments: Assignments;
-// }
-
+interface Assignments {
+  id: number;
+  value: number;
+}
+interface Schedules {
+  name: string;
+  isIncome: boolean;
+  notificationDate: number;
+  value: number;
+  assignments: Assignments;
+}
 export default function Add() {
-  // const [num, setNum] = useInput("");
-  // const [scheduleName, setScheduleName] = useInput("");
-  // const [entirePrice, setEntirePrice] = useInput("");
-  // const [selectedOption, setSelectedOption] = useState(0);
-  // const [selectedIsIncome, setSelectedIsIncome] = useState("");
-  // const [IsIncome, setIsIncome] = useState<boolean>();
-  // const [schedule, setSchedule] = useState<Schedules>();
+  const { bookId } = useParams();
   const {
-    GetMember,
+    getMember,
     members,
     setPrice,
-    // schedule,
     selectedIsIncome,
     setSelectedIsIncome,
     selectedOption,
@@ -48,68 +43,35 @@ export default function Add() {
     setEntirePrice,
     handleOptionChange,
     scheduleList,
-    AddSchedules,
+    mutateSchedules,
+    setScheduleList,
+    setAssignments,
+    clearScheduleList,
   } = useBankingSchedule();
-  console.log("날짜", selectedOption);
-  console.log("분류", selectedIsIncome);
-  console.log("일정이름", scheduleName);
-  console.log("금액", entirePrice);
-  console.log("구성원 할당하기", entirePrice);
-
-  // const [price, setPrice] = useState<Assignments[]>([]);
-
+  // const scheduleToDelete = scheduleList.find(
+  //   schedule => schedule.name === idToDelete,
+  // );
+  // scheduleList = scheduleList.filter(schedule => schedule.name !== idToDelete);
+  const removeSchedules = (selected: Schedules) => {
+    setScheduleList(scheduleList.filter((ele: Schedules) => ele !== selected));
+  };
   useEffect(() => {
-    const initialPrice = members.map(member => ({ id: member.id, value: 0 }));
+    const initialPrice = members.map(member => ({
+      username: member.username,
+      value: 0,
+    }));
+    const initialInfo = members.map(member => ({
+      username: member.username,
+      id: member.id,
+      value: 0,
+    }));
     setPrice(initialPrice);
+    setAssignments(initialInfo);
   }, [members]);
-
-  // const handlePriceChange = (
-  //   event: React.ChangeEvent<HTMLInputElement>,
-  //   memberId: number,
-  // ) => {
-  //   setPrice(prevPrice =>
-  //     // eslint-disable-next-line @typescript-eslint/no-shadow
-  //     prevPrice.map(price =>
-  //       price.id === memberId
-  //         ? { id: memberId, value: parseInt(event.target.value, 10) }
-  //         : price,
-  //     ),
-  //   );
-  // };
   useEffect(() => {
-    GetMember();
+    getMember();
   }, []);
-  // const handleOptionChange = (event: {
-  //   target: { value: React.SetStateAction<number> };
-  // }) => {
-  //   setSelectedOption(event.target.value);
-  // };
 
-  // const handleIsInComeChange = (event: {
-  //   target: { value: React.SetStateAction<string> };
-  // }) => {
-  //   setSelectedIsIncome(event.target.value);
-  //   if (event.target.value === "spend") {
-  //     setIsIncome(false);
-  //   } else {
-  //     setIsIncome(true);
-  //   }
-  // };
-  // const inputSchedule = () => {
-  //   // @ts-ignore
-  //   setSchedule(prevState => {
-  //     return {
-  //       ...prevState,
-  //       name: scheduleName,
-  //       isIncome: IsIncome,
-  //       notificationDate: selectedOption,
-  //       value: entirePrice,
-  //       assignments: price,
-  //     };
-  //   });
-  // };
-  // console.log("제발 한번에 가자", schedule);
-  console.log("제발", scheduleList);
   return (
     <S.BankingAdd>
       <S.BankingAddForm>
@@ -250,16 +212,19 @@ export default function Add() {
               {members.map(member => (
                 <S.MemberList key={member.id}>
                   <S.Division>
-                    <p>{member.nickname}</p>
+                    <p>{member.username}</p>
                     <Input
                       // @ts-ignore
                       value={
                         // eslint-disable-next-line @typescript-eslint/no-shadow
-                        price.find(price => price.id === member.id)?.value
+                        price.find(price => price.username === member.username)
+                          ?.value
                       }
                       type="number"
                       size={8}
-                      onChange={event => handlePriceChange(event, member.id)}
+                      onChange={event =>
+                        handlePriceChange(event, member.username, member.id)
+                      }
                     />
                     <p>원</p>
                   </S.Division>
@@ -288,15 +253,25 @@ export default function Add() {
               <S.BankingAddInfoWrapper key={schedules.name}>
                 <h5>{schedules.name}</h5>
                 <h6>
-                  매달 {schedules.notificationDate}일/{schedules.value}/
-                  {schedules.isIncome}
+                  매달 {schedules.notificationDate}일/{schedules.value}원/
+                  {schedules.isIncome ? <>수입</> : <>지출</>}
                 </h6>
-                <p key={schedules.assignments.id}>
-                  {schedules.assignments.id}･{schedules.assignments.value}
-                </p>
+                <div>
+                  {price.map((ass, index) => (
+                    <p key={ass.username}>
+                      {ass.username} {ass.value}
+                      {index !== price.length - 1 && " ･ "}
+                    </p>
+                  ))}
+                </div>
               </S.BankingAddInfoWrapper>
-              {/* eslint-disable-next-line react/button-has-type */}
-              <S.StyledIcon iconName="cancel" color={COLORS.GREY[300]} />
+              <S.CancelIconButton
+                iconName="cancel"
+                color={COLORS.GREY[300]}
+                onClick={() => {
+                  removeSchedules(schedules);
+                }}
+              />
             </S.Box>
           ))}
         </S.BankingAddListWrapper>
@@ -304,7 +279,13 @@ export default function Add() {
           title="금융 일정 추가하기"
           theme="quaternary"
           width="27rem"
-          onClick={AddSchedules}
+          onClick={() => {
+            mutateSchedules.mutate({
+              id: Number(bookId),
+              schedules: scheduleList,
+            });
+            clearScheduleList();
+          }}
         />
       </S.BankingAddList>
     </S.BankingAdd>
