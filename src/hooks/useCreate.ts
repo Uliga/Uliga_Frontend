@@ -130,7 +130,15 @@ export default function useCreate() {
       await mutateCreate.mutate({
         name,
         emails: Emails,
-        categories: Categories,
+        categories: [
+          ...Categories,
+          "🍽️ 식비",
+          "☕ 카페 · 간식",
+          "🏠 생활",
+          "🍙 편의점,마트,잡화",
+          "👕 쇼핑",
+          "기타",
+        ],
         relationship,
       });
     }
