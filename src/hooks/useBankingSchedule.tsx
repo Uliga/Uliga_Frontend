@@ -8,11 +8,20 @@ import QUERYKEYS from "../constants/querykey";
 
 interface Member {
   id: number;
-  nickname: string;
+  username: string;
   accountBookAuthority: string;
 }
-interface Assignments {
+interface Members {
   id: number;
+  username: string;
+  value: number;
+}
+// interface Assignments {
+//   id: number;
+//   value: number;
+// }
+interface CheckPrice {
+  username: string;
   value: number;
 }
 
@@ -21,11 +30,9 @@ interface Schedules {
   isIncome: boolean;
   notificationDate: number;
   value: number;
-  assignments: Assignments;
+  assignments: Members;
 }
-// interface ScheduleList {
-//   schedule: [Schedules];
-// }
+
 export default function useBankingSchedule() {
   const { bookId } = useParams();
   const [members, setMembers] = useState<Member[]>([]);
@@ -35,48 +42,26 @@ export default function useBankingSchedule() {
   const [selectedOption, setSelectedOption] = useState(0);
   const [selectedIsIncome, setSelectedIsIncome] = useState("");
   const [IsIncome, setIsIncome] = useState<boolean>();
-  // const [schedule, setSchedule] = useState<Schedules>();
   const [scheduleList, setScheduleList] = useState<Schedules[]>([]);
-  const [price, setPrice] = useState<Assignments[]>([]);
-  // const [scheduleList, setScheduleList] = useState<ScheduleList[]>([]);
-  const queryClient = useQueryClient();
+  const [price, setPrice] = useState<CheckPrice[]>([]);
+  const [assignments, setAssignments] = useState<Members[]>([]);
 
-  const GetMember = async () => {
+  const queryClient = useQueryClient();
+  const clearScheduleList = () => {
+    setScheduleList([]);
+  };
+  const getMember = async () => {
     try {
       const data = await accountBookMember(Number(bookId));
-      console.log(data.members);
-      // if (Array.isArray(data)) {
-      //   setMembers(data.members); // 배열로 변환
-      //   // 받아온 데이터가 배열인지 확인
-      // } else {
-      //   setMembers(data.members); // 배열로 변환
-      // }
-      setMembers(data.members); // 배열로 변환
-
-      console.log(members);
+      setMembers(data.members);
       toastMsg("멤버 조회 성공");
     } catch (err) {
       console.log(err);
     }
   };
-  const AddSchedules = async () => {
-    try {
-      await addSchedule({
-        id: Number(bookId),
-        schedules: scheduleList,
-      });
-      toastMsg("작성하신 금융 일정이 추가되었습니다.");
-      console.log({
-        id: Number(bookId),
-        schedules: scheduleList,
-      });
-    } catch (err) {
-      console.log(err);
-    }
-  };
-  const mutateSchedules = useMutation(["getSchedule"], getSchedule, {
+  const mutateSchedules = useMutation(["addSchedule"], addSchedule, {
     onSuccess: () => {
-      toastMsg("업데이트!");
+      toastMsg("작성하신 금융 일정이 추가되었습니다.");
       queryClient.invalidateQueries([QUERYKEYS.LOAD_SCHEDULE]);
     },
     onError: ({
@@ -93,20 +78,29 @@ export default function useBankingSchedule() {
       [QUERYKEYS.LOAD_SCHEDULE],
       queryFn,
     );
-    toastMsg("업데이트!");
-    console.log("정보", data);
     return { isLoading, error, data };
   };
   const handlePriceChange = (
     event: React.ChangeEvent<HTMLInputElement>,
+    memberName: string,
     memberId: number,
   ) => {
-    setPrice(prevPrice =>
-      // eslint-disable-next-line @typescript-eslint/no-shadow
-      prevPrice.map(price =>
-        price.id === memberId
-          ? { id: memberId, value: parseInt(event.target.value, 10) }
-          : price,
+    setPrice(prevState =>
+      prevState.map(values =>
+        values.username === memberName
+          ? { username: memberName, value: parseInt(event.target.value, 10) }
+          : values,
+      ),
+    );
+    setAssignments(prevState =>
+      prevState.map(values =>
+        values.username === memberName
+          ? {
+              id: memberId,
+              username: memberName,
+              value: parseInt(event.target.value, 10),
+            }
+          : values,
       ),
     );
   };
@@ -135,24 +129,17 @@ export default function useBankingSchedule() {
         isIncome: IsIncome,
         notificationDate: selectedOption,
         value: entirePrice,
-        assignments: price,
+        assignments,
       },
     ]);
   };
-  // useEffect(() => {
-  //   const initialSchedule = members.map(member => ({
-  //     schedule: schedule,
-  //   }));
-  //   setScheduleList(initialSchedule);
-  // }, [members]);
   return {
-    GetMember,
+    getMember,
     members,
     inputSchedule,
     handleIsInComeChange,
     handleOptionChange,
     handlePriceChange,
-    // schedule,
     num,
     setNum,
     setScheduleName,
@@ -166,8 +153,12 @@ export default function useBankingSchedule() {
     price,
     entirePrice,
     scheduleList,
-    AddSchedules,
     mutateSchedules,
     getSchedules,
+    setMembers,
+    setScheduleList,
+    assignments,
+    setAssignments,
+    clearScheduleList,
   };
 }
