@@ -5,7 +5,6 @@ import COLORS from "../../constants/color";
 import { InvitationProps } from "../../interfaces/user";
 import Button from "../Button";
 import useBook from "../../hooks/useBook";
-import { getFullDateUnit } from "../../utils/date";
 
 const Container = styled.div`
   display: flex;
@@ -78,7 +77,6 @@ export default function InviteItem({ item }: { item: InvitationProps }) {
               join: false,
               memberName: item.memberName,
               accountBookName: item.accountBookName,
-              createdTime: getFullDateUnit(new Date()),
             });
           }}
         />
@@ -91,7 +89,6 @@ export default function InviteItem({ item }: { item: InvitationProps }) {
               join: true,
               memberName: item.memberName,
               accountBookName: item.accountBookName,
-              createdTime: getFullDateUnit(new Date()),
             });
           }}
         />
