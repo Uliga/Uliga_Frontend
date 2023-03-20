@@ -48,3 +48,10 @@ export const answerInvitation = async (answer: object) => {
   const { data } = await authorizationClient.post(API.INVITATION_REPLY, answer);
   return data;
 };
+
+export const loadCategory = async (id: number) => {
+  const { data } = await authorizationClient.get(
+    `${API.ACCOUNT_BOOK}/${id}/category`,
+  );
+  return data;
+};
