@@ -3,6 +3,12 @@ import COLORS from "../../../constants/color";
 import * as S from "./index.styles";
 import useBankingSchedule from "../../../hooks/useBankingSchedule";
 
+interface Sche {
+  name: string;
+  notificationDay: number;
+  value: number;
+  isIncome: boolean;
+}
 export default function Schedule() {
   const { getSchedules } = useBankingSchedule();
   const { data } = getSchedules();
@@ -49,59 +55,22 @@ export default function Schedule() {
         다가오는 금융 일정
       </h4>
       <S.ScheduleBoxWrapper>
-        {data.schedules.map(
-          (sch: {
-            name:
-              | boolean
-              | React.Key
-              | React.ReactElement<
-                  any,
-                  string | React.JSXElementConstructor<any>
-                >
-              | React.ReactFragment
-              | null
-              | undefined;
-            notificationDate: string;
-            value:
-              | string
-              | number
-              | boolean
-              | React.ReactElement<
-                  any,
-                  string | React.JSXElementConstructor<any>
-                >
-              | React.ReactFragment
-              | React.ReactPortal
-              | null
-              | undefined;
-            isIncome:
-              | string
-              | number
-              | boolean
-              | React.ReactElement<
-                  any,
-                  string | React.JSXElementConstructor<any>
-                >
-              | React.ReactFragment
-              | React.ReactPortal
-              | null
-              | undefined;
-          }) => (
-            // @ts-ignore
-            <S.ScheduleWrapper key={sch.name}>
-              <S.StyledBadge
-                size={1.15}
-                title={sch.notificationDate}
-                color="white"
-                bgColor={COLORS.GREEN.DARK}
-              />
+        {data.schedules.map((sch: Sche) => (
+          <S.ScheduleWrapper key={sch.name}>
+            <S.StyledBadge
+              size={1.15}
+              title={`${sch.notificationDay.toString()}일`}
+              color="white"
+              bgColor={COLORS.GREEN.DARK}
+            />
+            <div>
               <h5>{sch.name}</h5>
               <p>
-                {sch.value}원 / {sch.isIncome}
+                {sch.value}원 / {sch.isIncome ? <>수입</> : <>지출</>}
               </p>
-            </S.ScheduleWrapper>
-          ),
-        )}
+            </div>
+          </S.ScheduleWrapper>
+        ))}
       </S.ScheduleBoxWrapper>
       <S.ScheduleInfoDesk>
         <S.ScheduleInfo>

@@ -92,8 +92,13 @@ const ScheduleWrapper = styled.div`
   gap: 0.8rem;
   align-items: center;
   h5 {
-    font-size: 1.35rem;
+    font-size: 1.5rem;
+    font-weight: 400;
     color: ${COLORS.GREY[500]};
+  }
+  p {
+    font-size: 1.1rem;
+    color: ${COLORS.GREY[400]};
   }
 `;
 const ScheduleInfoDesk = styled.div`
@@ -344,16 +349,30 @@ const Box = styled.div`
     font-size: 1rem;
     color: ${COLORS.BLUE};
   }
+  position: relative;
 `;
 const StyledIcon = styled(Icon)`
   margin: 2rem 1rem 0 1rem;
 `;
 const BankingAddInfoWrapper = styled.div`
   margin: 0.5rem;
+  width: 15rem;
+  div {
+    display: flex;
+  }
 `;
 const StyledIconButton = styled(IconButton)`
   background-color: transparent;
   margin: 2rem 1rem 0 1rem;
+`;
+const CancelIconButton = styled(IconButton)`
+  color: ${COLORS.GREY[300]};
+  position: absolute;
+  right: -1rem;
+  background-color: transparent;
+  &:hover {
+    background-color: transparent;
+  }
 `;
 
 const StyledIconPlusButton = styled(IconButton)`
@@ -400,4 +419,5 @@ export {
   Division,
   MemberList,
   StyledIconPlusButton,
+  CancelIconButton,
 };
