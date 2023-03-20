@@ -9,6 +9,7 @@ import getDateUnit from "../utils/date";
 import { uploadIncome, uploadRecord } from "../api/book";
 import toastMsg from "../components/Toast";
 import QUERYKEYS from "../constants/querykey";
+import useBook from "./useBook";
 
 export default function useDayWrite() {
   const { bookId } = useParams();
@@ -65,19 +66,14 @@ export default function useDayWrite() {
       label: "수입",
     },
   ]);
-  const [inputList, setInputList] = useState<InputTypes[]>([
+  const { useCategoryList } = useBook();
+  const list = useCategoryList(bookId ? +bookId : 0);
+
+  const inputForm = [
     {
       title: "카테고리",
       label: "category",
-      options: [
-        { value: undefined, label: "선택" },
-        { value: "🍽️ 식비", label: "🍽️ 식비" },
-        { value: "☕ 카페 · 간식", label: "☕ 카페 · 간식" },
-        { value: "🏠 생활", label: "🏠 생활" },
-        { value: "🍙 편의점,마트,잡화", label: "🍙 편의점,마트,잡화" },
-        { value: "👕 쇼핑", label: "👕 쇼핑" },
-        { value: "기타", label: "기타" },
-      ],
+      options: list,
       value: undefined,
     },
     {
@@ -105,7 +101,11 @@ export default function useDayWrite() {
       type: "text",
       value: "",
     },
-  ]);
+  ];
+  const [inputList, setInputList] = useState<InputTypes[]>(inputForm);
+  useEffect(() => {
+    setInputList(inputForm);
+  }, [list]);
   const handleChange = (
     idx: number,
     e: React.ChangeEvent<HTMLInputElement>,
