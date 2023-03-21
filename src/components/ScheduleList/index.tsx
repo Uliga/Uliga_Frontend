@@ -1,9 +1,7 @@
 import React from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import COLORS from "../../../constants/color";
+import COLORS from "../../constants/color";
 import * as S from "./index.styles";
-import useSchedule from "../../../hooks/useSchedule";
-import PATH from "../../../constants/path";
+import useSchedule from "../../hooks/useSchedule";
 
 interface ScheduleProps {
   name: string;
@@ -14,11 +12,22 @@ interface ScheduleProps {
 
 export default function ScheduleList() {
   const { getSchedules } = useSchedule();
-  const navigate = useNavigate();
   const { data } = getSchedules();
   if (!data) return null;
-  const { bookId } = useParams();
-
+  const infoList = [
+    {
+      color: COLORS.RED.LIGHT,
+      title: "3일 미만의 기간이 남음",
+    },
+    {
+      color: COLORS.YELLOW,
+      title: "일주일 미만의 기간이 남음",
+    },
+    {
+      color: COLORS.GREEN.DARK,
+      title: "일주일 이상의 기간이 남음",
+    },
+  ];
   return (
     <S.Container>
       <h5>다가오는 금융 일정</h5>
@@ -47,12 +56,14 @@ export default function ScheduleList() {
           </S.ScheduleWrapper>
         ))}
       </S.Wrapper>
-      <S.EditButton
-        title="금융 일정 수정하기"
-        width="100%"
-        theme="quaternary"
-        onClick={() => navigate(`${PATH.SCHEDULE}/${bookId}`)}
-      />
+      <S.ScheduleInfoDesk>
+        {infoList.map(info => (
+          <div>
+            <S.dot color={info.color}>●</S.dot>
+            <span> {info.title}</span>
+          </div>
+        ))}
+      </S.ScheduleInfoDesk>
     </S.Container>
   );
 }

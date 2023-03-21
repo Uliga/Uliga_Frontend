@@ -1,13 +1,12 @@
 import styled from "styled-components";
-import COLORS from "../../../constants/color";
-import Badge from "../../Badge";
-import Button from "../../Button";
+import COLORS from "../../constants/color";
+import Badge from "../Badge";
 
 export const Container = styled.div`
   position: absolute;
   top: 0;
   width: 27rem;
-  height: 39rem;
+  height: 45rem;
   border: 0.1rem solid ${COLORS.GREY[200]};
   border-radius: 0.5rem;
   padding: 2rem;
@@ -28,10 +27,9 @@ export const Container = styled.div`
 export const Wrapper = styled.div`
   position: relative;
   width: 100%;
-  height: 25rem;
+  height: 28rem;
   display: flex;
   gap: 2rem;
-  margin-bottom: 2rem;
   flex-direction: column;
   overflow: scroll;
   ::-webkit-scrollbar {
@@ -57,6 +55,22 @@ export const ScheduleWrapper = styled.div`
     color: ${COLORS.GREY[400]};
   }
 `;
+export const ScheduleInfoDesk = styled.div`
+  width: 23rem;
+  position: absolute;
+  bottom: 2rem;
+  background-color: ${COLORS.GREY[100]};
+  border-radius: 0.5rem;
+  padding: 1rem;
+  line-height: 1.5;
+  div {
+    font-size: 1.1rem;
+    display: flex;
+    gap: 1rem;
+    padding-right: 1rem;
+    justify-content: right;
+  }
+`;
 
 export const StyledBadge = styled(Badge)`
   border-radius: 0.5rem;
@@ -73,9 +87,4 @@ export const dot = styled.span<{ color: string }>`
   position: absolute;
   left: 7rem;
   font-size: 1rem;
-`;
-
-export const EditButton = styled(Button)`
-  padding: 1.2rem;
-  font-size: 1.3rem;
 `;

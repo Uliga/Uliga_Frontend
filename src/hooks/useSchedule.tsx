@@ -1,50 +1,43 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { accountBookMember, addSchedule, getSchedule } from "../api/book";
+import { loadBookMember, addSchedule, loadSchedule } from "../api/book";
 import toastMsg from "../components/Toast";
 import useInput from "./useInput";
 import QUERYKEYS from "../constants/querykey";
 
-interface Member {
+export interface MemberProps {
   id: number;
-  username: string;
-  accountBookAuthority: string;
-}
-interface Members {
-  id: number;
-  username: string;
-  value: number;
-}
-// interface Assignments {
-//   id: number;
-//   value: number;
-// }
-interface CheckPrice {
   username: string;
   value: number;
 }
 
-interface Schedules {
+export interface CheckPriceProps {
+  username: string;
+  value: number;
+}
+
+export interface ScheduleProps {
   name: string;
   isIncome: boolean;
   notificationDate: number;
   value: number;
-  assignments: Members;
+  assignments: MemberProps;
 }
 
-export default function useBankingSchedule() {
+export default function useSchedule() {
   const { bookId } = useParams();
-  const [members, setMembers] = useState<Member[]>([]);
+  const [members, setMembers] = useState<MemberProps[]>([]);
+  const [price, setPrice] = useState<CheckPriceProps[]>([]);
+
   const [num, setNum] = useInput("");
   const [scheduleName, setScheduleName] = useInput("");
   const [entirePrice, setEntirePrice] = useInput("");
   const [selectedOption, setSelectedOption] = useState(0);
   const [selectedIsIncome, setSelectedIsIncome] = useState("");
   const [IsIncome, setIsIncome] = useState<boolean>();
-  const [scheduleList, setScheduleList] = useState<Schedules[]>([]);
-  const [price, setPrice] = useState<CheckPrice[]>([]);
-  const [assignments, setAssignments] = useState<Members[]>([]);
+  const [scheduleList, setScheduleList] = useState<ScheduleProps[]>([]);
+  const [assignments, setAssignments] = useState<MemberProps[]>([]);
 
   const queryClient = useQueryClient();
   const clearScheduleList = () => {
@@ -52,7 +45,7 @@ export default function useBankingSchedule() {
   };
   const getMember = async () => {
     try {
-      const data = await accountBookMember(Number(bookId));
+      const data = await loadBookMember(Number(bookId));
       setMembers(data.members);
       toastMsg("멤버 조회 성공");
     } catch (err) {
@@ -73,10 +66,9 @@ export default function useBankingSchedule() {
     },
   });
   const getSchedules = () => {
-    const queryFn = () => getSchedule();
     const { isLoading, error, data } = useQuery(
       [QUERYKEYS.LOAD_SCHEDULE],
-      queryFn,
+      loadSchedule,
     );
     return { isLoading, error, data };
   };

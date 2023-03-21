@@ -1,44 +1,16 @@
 import styled from "styled-components";
 import COLORS from "../../../constants/color";
-import Badge from "../../../components/Badge";
 import Icon from "../../../components/Icon";
 import IconButton from "../../../components/IconButton";
 
-const Container = styled.div`
-  width: 100%;
-  max-width: 140rem;
-  display: flex;
-  color: ${COLORS.GREY[600]};
-  gap: 1.5rem;
-  padding: 4rem;
-  flex-direction: column;
-  h3 {
-    font-weight: 700;
-    font-size: 2rem;
-    padding: 2rem 0 1rem 0;
-  }
-  p {
-    font-weight: 200;
-    font-size: 1.3rem;
-    padding: 0rem 0 1rem 0;
-  }
-`;
-const MiddleContainer = styled.div`
-  gap: 2rem;
-  width: 100%;
-  max-width: 140rem;
-  display: flex;
-`;
-
 const BankingAdd = styled.div`
-  margin-top: 1rem;
   display: flex;
   width: 85rem;
-  border-top: 1px solid ${COLORS.GREY[300]};
+  border-top: 0.1rem solid ${COLORS.GREY[200]};
 `;
 const BankingAddForm = styled.div`
   width: 55rem;
-  border-right: 1px solid ${COLORS.GREY[300]};
+  border-right: 0.1rem solid ${COLORS.GREY[200]};
 `;
 const BankingAddList = styled.div`
   h4 {
@@ -56,96 +28,6 @@ const BankingAddList = styled.div`
   }
 `;
 
-const ScheduleBoxContainer = styled.div`
-  width: 27rem;
-  height: 45rem;
-  border: 0.1rem solid ${COLORS.GREY[200]};
-  border-radius: 0.5rem;
-  padding: 2rem;
-  h4 {
-    font-weight: 700;
-    padding-bottom: 2rem;
-  }
-  color: ${COLORS.GREY[600]};
-`;
-
-const ScheduleBoxWrapper = styled.div`
-  position: relative;
-  width: 100%;
-  height: 50%;
-  display: flex;
-  gap: 1rem;
-  flex-direction: column;
-  overflow: scroll;
-  ::-webkit-scrollbar {
-    display: none;
-  }
-  button {
-    padding: 1rem;
-    font-size: 1.4rem;
-    position: absolute;
-    bottom: 0;
-  }
-`;
-const ScheduleWrapper = styled.div`
-  display: flex;
-  gap: 0.8rem;
-  align-items: center;
-  h5 {
-    font-size: 1.5rem;
-    font-weight: 400;
-    color: ${COLORS.GREY[500]};
-  }
-  p {
-    font-size: 1.1rem;
-    color: ${COLORS.GREY[400]};
-  }
-`;
-const ScheduleInfoDesk = styled.div`
-  margin-top: 7rem;
-  align-items: center;
-  background-color: ${COLORS.GREY[200]};
-  border-radius: 0.5rem;
-  padding-top: 1rem;
-`;
-
-const StyledBadge = styled(Badge)`
-  border-radius: 0.5rem;
-  padding-top: 1.2rem;
-  padding-bottom: 1.2rem;
-  justify-content: center;
-  font-weight: 300;
-  width: 5rem;
-`;
-const dot1 = styled.span`
-  color: ${COLORS.RED.LIGHT};
-  margin-left: 9rem;
-  font-size: 1rem;
-`;
-
-const dot2 = styled.span`
-  color: ${COLORS.YELLOW};
-  margin-left: 9rem;
-  font-size: 1rem;
-`;
-
-const dot3 = styled.span`
-  color: ${COLORS.GREEN.DARK};
-  margin-left: 9rem;
-  font-size: 1rem;
-`;
-const ScheduleInfo = styled.div`
-  //width: 70%;
-  display: flex;
-  justify-content: right;
-  gap: 1px;
-  p {
-    width: 100%;
-    text-align: right;
-    margin-right: 2rem;
-    font-size: 0.5rem;
-  }
-`;
 const BankingAddFormBox = styled.div`
   display: flex;
   width: 50rem;
@@ -187,9 +69,6 @@ const Label = styled.span`
   font-size: 1.4rem;
   cursor: pointer;
   color: ${COLORS.GREY[400]};
-  // &:focus {
-  //   color: ${COLORS.LIGHT_BLUE};
-  // }
   p {
     margin-top: 1rem;
   }
@@ -361,10 +240,6 @@ const BankingAddInfoWrapper = styled.div`
     display: flex;
   }
 `;
-const StyledIconButton = styled(IconButton)`
-  background-color: transparent;
-  margin: 2rem 1rem 0 1rem;
-`;
 const CancelIconButton = styled(IconButton)`
   color: ${COLORS.GREY[300]};
   position: absolute;
@@ -385,20 +260,9 @@ const StyledIconPlusButton = styled(IconButton)`
 `;
 
 export {
-  Container,
-  MiddleContainer,
   BankingAdd,
   BankingAddList,
   BankingAddForm,
-  StyledBadge,
-  ScheduleWrapper,
-  ScheduleBoxContainer,
-  ScheduleBoxWrapper,
-  ScheduleInfoDesk,
-  dot1,
-  dot2,
-  dot3,
-  ScheduleInfo,
   BankingAddFormBox,
   AddFormLeft,
   AddFormRight,
@@ -415,7 +279,6 @@ export {
   Box,
   BankingAddInfoWrapper,
   StyledIcon,
-  StyledIconButton,
   Division,
   MemberList,
   StyledIconPlusButton,
