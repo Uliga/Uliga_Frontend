@@ -3,7 +3,7 @@ import BookNav from "../../components/Main/BookNav";
 import PATH from "../../constants/path";
 import * as S from "./index.styles";
 import ScheduleList from "../../components/ScheduleList";
-import AddScheduleForm from "./add";
+import AddScheduleForm from "./add_share";
 
 export default function Schedule() {
   const [curTab, setCurTab] = useState("금융 일정 추가");
