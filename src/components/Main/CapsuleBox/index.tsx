@@ -5,7 +5,7 @@ import * as S from "./index.styles";
 import COLORS from "../../../constants/color";
 import QUERYKEYS from "../../../constants/querykey";
 import { loadMonthAsset } from "../../../api/book";
-import changeMoneyUnit from "../../../utils/money";
+import getMoneyUnit from "../../../utils/money";
 
 export default function CapsuleBox() {
   const { bookId } = useParams();
@@ -24,7 +24,7 @@ export default function CapsuleBox() {
   const BoxList = [
     {
       title: "이번 달 지출",
-      amount: `${data.record ? changeMoneyUnit(data.record.value) : 0}원`,
+      amount: `${data.record ? getMoneyUnit(data.record.value) : 0}원`,
       Button: {
         title: "지출 분석하러 가기",
         iconName: "check",
@@ -34,7 +34,7 @@ export default function CapsuleBox() {
     },
     {
       title: "이번 달 수입",
-      amount: `${data.income ? changeMoneyUnit(data.income.value) : 0}원`,
+      amount: `${data.income ? getMoneyUnit(data.income.value) : 0}원`,
       Button: {
         title: "수입 분석하러 가기",
         iconName: "check",
@@ -44,7 +44,7 @@ export default function CapsuleBox() {
     },
     {
       title: "예산",
-      amount: data.budget ? `${changeMoneyUnit(data.budget.value)}원` : false,
+      amount: data.budget ? `${getMoneyUnit(data.budget.value)}원` : false,
       subtitle: `설정하신 예산이 없습니다.\n예산을 설정하고 계획적으로 관리 해보세요!`,
       Button: {
         title: "예산 설정하러 가기",

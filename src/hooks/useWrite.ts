@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { uploadBook } from "../api/book";
 import toastMsg from "../components/Toast";
 import PATH from "../constants/path";
+import useBook from "./useBook";
 
 export default function useWrite() {
   const { bookId } = useParams();
@@ -24,6 +25,10 @@ export default function useWrite() {
     size?: number;
     type?: string;
   };
+
+  const { useCategoryList } = useBook();
+  const list = useCategoryList(bookId ? +bookId : 0);
+
   const INPUT_SIZE = 11;
   const inputForm: InputTypes[] = [
     {
@@ -43,15 +48,7 @@ export default function useWrite() {
     },
     {
       label: "category",
-      options: [
-        { value: undefined, label: "선택" },
-        { value: "🍽️ 식비", label: "🍽️ 식비" },
-        { value: "☕ 카페 · 간식", label: "☕ 카페 · 간식" },
-        { value: "🏠 생활", label: "🏠 생활" },
-        { value: "🍙 편의점,마트,잡화", label: "🍙 편의점,마트,잡화" },
-        { value: "👕 쇼핑", label: "👕 쇼핑" },
-        { value: "기타", label: "기타" },
-      ],
+      options: list,
       value: undefined,
     },
     {
@@ -85,6 +82,11 @@ export default function useWrite() {
   ];
 
   const [inputList, setInputList] = useState([inputForm]);
+
+  useEffect(() => {
+    setInputList([inputForm]);
+  }, [list]);
+
   const createRequest: { [label: string]: any }[] = [];
   type FormProps = {
     [label: string]: any;
@@ -148,7 +150,6 @@ export default function useWrite() {
       }
       return null;
     });
-    console.log(createRequest);
   };
   return {
     inputMenu,
