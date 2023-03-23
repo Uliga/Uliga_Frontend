@@ -4,6 +4,7 @@ const PATH = {
   SIGNUP: "/signup",
   MAIN: "/main",
   WRITE: "/write",
+  SCHEDULE: "/schedule",
 } as const;
 
 export default PATH;

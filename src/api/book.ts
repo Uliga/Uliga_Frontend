@@ -49,6 +49,24 @@ export const answerInvitation = async (answer: object) => {
   return data;
 };
 
+export const loadBookMember = async (id: number) => {
+  const { data } = await authorizationClient.get(
+    `${API.ACCOUNT_BOOK}/${id}${API.MEMBER}`,
+  );
+  return data;
+};
+export const addSchedule = async (scheduleData: object) => {
+  const { data } = await authorizationClient.post(
+    API.ADD_SCHEDULE,
+    scheduleData,
+  );
+  return data;
+};
+export const loadSchedule = async () => {
+  const { data } = await authorizationClient.get(`${API.SCHEDULE}`);
+  return data;
+};
+
 export const loadCategory = async (id: number) => {
   const { data } = await authorizationClient.get(
     `${API.ACCOUNT_BOOK}/${id}/category`,
