@@ -16,6 +16,7 @@ const UPLOAD_INCOME = "accountBook/income";
 const UPLOAD_RECORD = "accountBook/record";
 const INVITATION = "/invitation";
 const ITEM = "item";
+const SCHEDULE = "/schedule";
 
 const API = {
   BASE_URL: `${BASE_URL}`,
@@ -36,5 +37,7 @@ const API = {
   UPLOAD_INCOME: `${UPLOAD_INCOME}`,
   UPLOAD_RECORD: `${UPLOAD_RECORD}`,
   INVITATION_REPLY: `${ACCOUNT_BOOK}${INVITATION}/reply`,
+  SCHEDULE: `${SCHEDULE}`,
+  ADD_SCHEDULE: `${ACCOUNT_BOOK}${SCHEDULE}`,
 };
 export default API;

@@ -4,6 +4,7 @@ const QUERYKEYS = {
   LOAD_BOOK_LIST: "loadBookList",
   LOAD_MONTH_ASSET: "loadMonthAsset",
   LOAD_MONTH_ITEM: "loadMonthItem",
+  LOAD_SCHEDULE: "getSchedule",
   LOAD_CATEGORY: "loadCategory",
 } as const;
 
