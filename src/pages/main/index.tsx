@@ -9,9 +9,9 @@ import BookNav from "../../components/Main/BookNav";
 import PATH from "../../constants/path";
 import { createModalAtom } from "../../stores/atoms/context";
 import CapsuleBox from "../../components/Main/CapsuleBox";
-import Schedule from "../../components/Main/Schedule";
 import Calendar from "../../components/Main/Calendar";
 import BottomSheet from "../../components/BottomSheet";
+import Schedule from "../../components/Main/Schedule";
 
 const WriteButton = styled(Button)`
   font-size: 1.4rem;

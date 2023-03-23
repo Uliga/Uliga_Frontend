@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import * as S from "./index.styles";
 import COLORS from "../../../constants/color";
 import Input from "../../../components/Input";
-import useBankingSchedule from "../../../hooks/useBankingSchedule";
+import useSchedule from "../../../hooks/useSchedule";
 import Button from "../../../components/Button";
 
 // interface Assignments {
@@ -47,11 +47,8 @@ export default function Add() {
     setScheduleList,
     setAssignments,
     clearScheduleList,
-  } = useBankingSchedule();
-  // const scheduleToDelete = scheduleList.find(
-  //   schedule => schedule.name === idToDelete,
-  // );
-  // scheduleList = scheduleList.filter(schedule => schedule.name !== idToDelete);
+  } = useSchedule();
+
   const removeSchedules = (selected: Schedules) => {
     setScheduleList(scheduleList.filter((ele: Schedules) => ele !== selected));
   };
