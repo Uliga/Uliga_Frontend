@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import COLORS from "../../../constants/color";
 import * as S from "./index.styles";
 import PATH from "../../../constants/path";
-import useSchedule from "../../../hooks/useSchedule";
+import useSchedule from "../../../hooks/book/useSchedule";
 
 interface ScheduleProps {
   name: string;

@@ -2,7 +2,7 @@ import React from "react";
 import COLORS from "../../constants/color";
 import Input from "../../components/Input";
 import Badge from "../../components/Badge";
-import useCreate from "../../hooks/useCreate";
+import useCreate from "../../hooks/book/useCreate";
 import * as S from "./index.styles";
 import Detail from "./detail";
 

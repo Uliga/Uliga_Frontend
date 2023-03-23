@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { uploadBook } from "../api/book";
-import toastMsg from "../components/Toast";
-import PATH from "../constants/path";
+import { uploadBook } from "../../api/book";
+import toastMsg from "../../components/Toast";
+import PATH from "../../constants/path";
 import useBook from "./useBook";
 
 export default function useWrite() {

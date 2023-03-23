@@ -2,13 +2,13 @@ import React, { useEffect, useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 import { useRecoilState } from "recoil";
-import useInput from "./useInput";
-import getMoneyUnit from "../utils/money";
-import { bottomSheetAtom } from "../stores/atoms/context";
-import getDateUnit from "../utils/date";
-import { uploadIncome, uploadRecord } from "../api/book";
-import toastMsg from "../components/Toast";
-import QUERYKEYS from "../constants/querykey";
+import useInput from "../useInput";
+import getMoneyUnit from "../../utils/money";
+import { bottomSheetAtom } from "../../stores/atoms/context";
+import getDateUnit from "../../utils/date";
+import { uploadIncome, uploadRecord } from "../../api/book";
+import toastMsg from "../../components/Toast";
+import QUERYKEYS from "../../constants/querykey";
 import useBook from "./useBook";
 
 export default function useDayWrite() {
@@ -196,5 +196,6 @@ export default function useDayWrite() {
     onSubmit,
     handleChange,
     handleRadio,
+    bookId,
   };
 }
