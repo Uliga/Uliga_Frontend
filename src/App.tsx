@@ -10,6 +10,7 @@ import Signup from "./pages/signup";
 import StyledContainer from "./components/Toast/container";
 import LadingPage from "./pages/landing";
 import Write from "./pages/write";
+import Budget from "./pages/budget";
 import Schedule from "./pages/schedule";
 
 const queryClient = new QueryClient({
@@ -48,6 +49,9 @@ function App() {
           </Route>
           <Route path={PATH.SCHEDULE} element={<MainLayout />}>
             <Route path=":bookId" element={<Schedule />} />
+          </Route>
+          <Route path={PATH.BUDGET} element={<MainLayout />}>
+            <Route path=":bookId" element={<Budget />} />
           </Route>
         </Routes>
       </Router>

@@ -59,8 +59,7 @@ export default function ScheduleList() {
       <S.ScheduleInfoDesk>
         {infoList.map(info => (
           <div>
-            <S.dot color={info.color}>●</S.dot>
-            <span> {info.title}</span>
+            <S.dot color={info.color}>●</S.dot>일<span> {info.title}</span>
           </div>
         ))}
       </S.ScheduleInfoDesk>
