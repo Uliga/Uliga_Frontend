@@ -1,8 +1,8 @@
 import React from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import MainLayout from "./components/Layout/MainLayout";
-import DefaultLayout from "./components/Layout/DefaultLayout";
+import MainLayout from "./components/Layouts/MainLayout";
+import DefaultLayout from "./components/Layouts/DefaultLayout";
 import Login from "./pages/login";
 import Main from "./pages/main";
 import PATH from "./constants/path";
