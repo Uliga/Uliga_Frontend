@@ -35,7 +35,7 @@ export default function Schedule() {
               <S.dot color={COLORS.GREY[300]}>●</S.dot>
               <div>
                 <p>남은 1일 예산</p>
-                <p>200,000원</p>
+                <p>10,000원</p>
               </div>
             </S.Info>
           </S.InfoBox>
