@@ -1,15 +1,20 @@
 import React, { useEffect, useState } from "react";
 import Calendar from "react-calendar";
 import { useParams } from "react-router-dom";
+import { useRecoilState } from "recoil";
 import { Container, Income, Record, ColorWrapper } from "./index.styles";
 import "react-calendar/dist/Calendar.css";
 import useBook from "../../../hooks/useBook";
-import changeMoneyUnit from "../../../utils/money";
+import getMoneyUnit from "../../../utils/money";
+import { bottomSheetAtom } from "../../../stores/atoms/context";
 
 export default function MonthCalendar() {
   const { bookId } = useParams();
   const { useLoadMonthItems } = useBook();
   const [curDate, onChangeCurDate] = useState(new Date());
+
+  const [bottomSheetOpen, setBottomSheetOpen] = useRecoilState(bottomSheetAtom);
+
   const { data, refetch } = useLoadMonthItems(
     Number(bookId),
     curDate.getFullYear(),
@@ -18,7 +23,7 @@ export default function MonthCalendar() {
 
   useEffect(() => {
     refetch();
-  }, [curDate]);
+  }, [curDate.getMonth() + 1]);
 
   if (!data) return null;
 
@@ -26,7 +31,14 @@ export default function MonthCalendar() {
     <Container>
       <Calendar
         value={curDate}
-        onChange={onChangeCurDate}
+        onChange={(date: any) => {
+          onChangeCurDate(date);
+          setBottomSheetOpen({
+            ...bottomSheetOpen,
+            day: date,
+            open: true,
+          });
+        }}
         onActiveStartDateChange={({ activeStartDate }) => {
           onChangeCurDate(activeStartDate);
         }}
@@ -46,10 +58,10 @@ export default function MonthCalendar() {
             return (
               <div>
                 {income && (
-                  <div className="income">{changeMoneyUnit(income.value)}</div>
+                  <div className="income">{getMoneyUnit(income.value)}</div>
                 )}
                 {record && (
-                  <div className="record">{changeMoneyUnit(record.value)}</div>
+                  <div className="record">{getMoneyUnit(record.value)}</div>
                 )}
               </div>
             );

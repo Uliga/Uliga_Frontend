@@ -4,6 +4,7 @@ import {
   answerInvitation,
   loadBookInfo,
   loadBookList,
+  loadCategory,
   loadMonthItems,
 } from "../api/book";
 import { IBookInfo, IBookList } from "../interfaces/book";
@@ -62,11 +63,19 @@ export default function useBook() {
     return { data, refetch };
   };
 
+  const useCategoryList = (id: number) => {
+    const queryFn = () => loadCategory(id);
+    const { data } = useQuery([QUERYKEYS.LOAD_CATEGORY], queryFn);
+    const list = data?.categories;
+    return list;
+  };
+
   return {
     useSelectedBook,
     useReplaceBook,
     useBookList,
     mutateInvitation,
     useLoadMonthItems,
+    useCategoryList,
   };
 }

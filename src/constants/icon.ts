@@ -25,6 +25,7 @@ const ICONS: IconProps = {
   messageOpen: "bi bi-envelope-open-fill",
   wallet: "bi bi-wallet2",
   cancel: "bi bi-x",
+  pencil: "bi bi-pencil-fill",
 };
 
 export default ICONS;
