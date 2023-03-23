@@ -6,10 +6,6 @@ import Input from "../../../components/Input";
 import useSchedule from "../../../hooks/useSchedule";
 import Button from "../../../components/Button";
 
-// interface Assignments {
-//   id: number;
-//   value: number;
-// }
 interface Assignments {
   id: number;
   value: number;
