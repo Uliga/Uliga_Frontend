@@ -1,7 +1,7 @@
 import React from "react";
 import COLORS from "../../constants/color";
 import * as S from "./index.styles";
-import useSchedule from "../../hooks/useSchedule";
+import useSchedule from "../../hooks/book/useSchedule";
 
 interface ScheduleProps {
   name: string;

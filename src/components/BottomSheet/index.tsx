@@ -1,9 +1,11 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import COLORS from "../../constants/color";
 import * as S from "./index.styles";
-import useDayWrite from "../../hooks/useDayWrite";
+import useDayWrite from "../../hooks/book/useDayWrite";
 import SelectWindow from "../../pages/write/SelectContainer";
 import Icon from "../Icon";
+import PATH from "../../constants/path";
 
 export default function BottomSheet() {
   const {
@@ -19,8 +21,10 @@ export default function BottomSheet() {
     inputList,
     handleChange,
     radioList,
+    bookId,
   } = useDayWrite();
 
+  const navigate = useNavigate();
   return (
     <S.Container>
       <div className={`bottom-sheet ${open ? "active" : ""}`}>
@@ -94,7 +98,13 @@ export default function BottomSheet() {
             readOnly
             labelHidden
           />
-          <S.MultipleButton>여러개의 내역 입력하러 가기</S.MultipleButton>
+          <S.MultipleButton
+            onClick={() => {
+              navigate(`${PATH.WRITE}/${bookId}`);
+            }}
+          >
+            여러개의 내역 입력하러 가기
+          </S.MultipleButton>
           <S.SubmitButton title="작성 완료" onClick={onSubmit} />
         </S.Wrapper>
       </div>

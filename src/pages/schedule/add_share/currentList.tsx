@@ -2,7 +2,10 @@ import React from "react";
 import * as S from "./index.styles";
 import COLORS from "../../../constants/color";
 import Button from "../../../components/Button";
-import { CheckPriceProps, ScheduleProps } from "../../../hooks/useSchedule";
+import {
+  CheckPriceProps,
+  ScheduleProps,
+} from "../../../hooks/book/useSchedule";
 
 export default function CurrentList({
   price,

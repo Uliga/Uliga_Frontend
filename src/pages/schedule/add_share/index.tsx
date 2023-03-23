@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import Input from "../../../components/Input";
-import useScheduleForm from "../../../hooks/useScheduleForm";
+import useScheduleForm from "../../../hooks/book/useScheduleForm";
 import CurrentList from "./currentList";
 import * as S from "./index.styles";
-import { CheckPriceProps, MemberProps } from "../../../hooks/useSchedule";
+import { CheckPriceProps, MemberProps } from "../../../hooks/book/useSchedule";
 
 export default function AddScheduleForm() {
   const {

@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import * as S from "./index.styles";
 import COLORS from "../../../constants/color";
 import Input from "../../../components/Input";
-import useSchedule from "../../../hooks/useSchedule";
+import useSchedule from "../../../hooks/book/useSchedule";
 import Button from "../../../components/Button";
 
 interface Assignments {
