@@ -10,7 +10,7 @@ import Signup from "./pages/signup";
 import StyledContainer from "./components/Toast/container";
 import LadingPage from "./pages/landing";
 import Write from "./pages/write";
-import Add from "./pages/banking_schedule/add";
+import Schedule from "./pages/schedule";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -46,8 +46,8 @@ function App() {
           <Route path={PATH.WRITE} element={<MainLayout />}>
             <Route path=":bookId" element={<Write />} />
           </Route>
-          <Route path={PATH.BANKING} element={<MainLayout />}>
-            <Route path=":bookId" element={<Add />} />
+          <Route path={PATH.SCHEDULE} element={<MainLayout />}>
+            <Route path=":bookId" element={<Schedule />} />
           </Route>
         </Routes>
       </Router>

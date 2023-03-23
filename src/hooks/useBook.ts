@@ -5,6 +5,7 @@ import {
   loadBookInfo,
   loadBookList,
   loadCategory,
+  loadBookMember,
   loadMonthItems,
 } from "../api/book";
 import { IBookInfo, IBookList } from "../interfaces/book";
@@ -76,6 +77,7 @@ export default function useBook() {
     useBookList,
     mutateInvitation,
     useLoadMonthItems,
+    loadBookMember,
     useCategoryList,
   };
 }
