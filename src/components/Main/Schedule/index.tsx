@@ -2,8 +2,8 @@ import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import COLORS from "../../../constants/color";
 import * as S from "./index.styles";
-import useSchedule from "../../../hooks/useSchedule";
 import PATH from "../../../constants/path";
+import useSchedule from "../../../hooks/useSchedule";
 
 interface ScheduleProps {
   name: string;
@@ -21,7 +21,7 @@ export default function ScheduleList() {
 
   return (
     <S.Container>
-      <h5>다가오는 금융 일정</h5>
+      <h5>다가오는 금융 일정 📆</h5>
       <S.Wrapper>
         {data.schedules.map((schedule: ScheduleProps) => (
           <S.ScheduleWrapper key={schedule.name}>
@@ -49,7 +49,6 @@ export default function ScheduleList() {
       </S.Wrapper>
       <S.EditButton
         title="금융 일정 수정하기"
-        width="100%"
         theme="quaternary"
         onClick={() => navigate(`${PATH.SCHEDULE}/${bookId}`)}
       />

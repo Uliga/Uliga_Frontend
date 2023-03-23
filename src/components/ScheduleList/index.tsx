@@ -30,7 +30,7 @@ export default function ScheduleList() {
   ];
   return (
     <S.Container>
-      <h5>다가오는 금융 일정</h5>
+      <h5>다가오는 금융 일정 📆</h5>
       <S.Wrapper>
         {data.schedules.map((schedule: ScheduleProps) => (
           <S.ScheduleWrapper key={schedule.name}>
