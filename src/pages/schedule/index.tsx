@@ -2,23 +2,31 @@ import React, { useState } from "react";
 import BookNav from "../../components/Main/BookNav";
 import PATH from "../../constants/path";
 import * as S from "./index.styles";
+import AddShare from "./addShare";
+import EditShare from "./editShare";
+import useBook from "../../hooks/book/useBook";
 import ScheduleList from "../../components/ScheduleList";
-import AddScheduleForm from "./add_share";
 
 export default function Schedule() {
-  const [curTab, setCurTab] = useState("금융 일정 추가");
+  const { useSchedule } = useBook();
+  const data = useSchedule();
+  const [isAddTab, setTab] = useState(true);
+
+  if (!data) return null;
 
   const buttonList = [
     {
+      isAdd: true,
       title: "금융 일정 추가",
       onClick: () => {
-        setCurTab(buttonList[0].title);
+        setTab(buttonList[0].isAdd);
       },
     },
     {
+      isAdd: false,
       title: "금융 일정 수정",
       onClick: () => {
-        setCurTab(buttonList[1].title);
+        setTab(buttonList[1].isAdd);
       },
     },
   ];
@@ -35,14 +43,14 @@ export default function Schedule() {
             key={button.title}
             type="button"
             onClick={button.onClick}
-            isSelected={curTab === button.title}
+            isSelected={isAddTab === button.isAdd}
           >
             {button.title}
           </S.TabButton>
         ))}
-        <AddScheduleForm />
+        {isAddTab ? <AddShare /> : <EditShare />}
         <S.ScheduleWrapper>
-          <ScheduleList />
+          <ScheduleList schedules={data.schedules} />
         </S.ScheduleWrapper>
       </S.Wrapper>
     </S.Container>
