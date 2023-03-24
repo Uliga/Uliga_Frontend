@@ -1,19 +1,13 @@
 import React from "react";
 import COLORS from "../../constants/color";
 import * as S from "./index.styles";
-import useBook from "../../hooks/book/useBook";
+import { ISchedule } from "../../interfaces/schedule";
 
-interface ScheduleProps {
-  name: string;
-  notificationDay: number;
-  value: number;
-  isIncome: boolean;
-}
-
-export default function ScheduleList() {
-  const { useSchedule } = useBook();
-  const data = useSchedule();
-  if (!data) return null;
+export default function ScheduleList({
+  schedules,
+}: {
+  schedules: ISchedule[];
+}) {
   const infoList = [
     {
       color: COLORS.RED.LIGHT,
@@ -32,7 +26,7 @@ export default function ScheduleList() {
     <S.Container>
       <h5>다가오는 금융 일정 📆</h5>
       <S.Wrapper>
-        {data.schedules.map((schedule: ScheduleProps) => (
+        {schedules.map((schedule: ISchedule) => (
           <S.ScheduleWrapper key={schedule.name}>
             <S.StyledBadge
               size={1.15}
@@ -58,7 +52,7 @@ export default function ScheduleList() {
       </S.Wrapper>
       <S.ScheduleInfoDesk>
         {infoList.map(info => (
-          <div>
+          <div key={info.title}>
             <S.dot color={info.color}>●</S.dot>
             <span> {info.title}</span>
           </div>
