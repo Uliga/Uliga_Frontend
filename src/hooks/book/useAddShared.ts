@@ -27,7 +27,7 @@ export interface ScheduleProps {
   notificationDate: string;
   value: string;
 }
-export default function useScheduleForm() {
+export default function useAddShared() {
   const { bookId } = useParams();
   const [name, onChangeName, setName] = useInput("");
   const [value, onChangeValue, setValue] = useInput("");
@@ -146,6 +146,7 @@ export default function useScheduleForm() {
       username: member.username,
       value: 0,
     }));
+
     setName("");
     setIsIncome(false);
     setNotificationDate("");

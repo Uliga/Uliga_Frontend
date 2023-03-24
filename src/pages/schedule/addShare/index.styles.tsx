@@ -188,6 +188,10 @@ export const Box = styled.div`
   p {
     font-size: 1.1rem;
     color: ${COLORS.BLUE};
+    white-space: pre-wrap;
+  }
+  &:hover {
+    background-color: ${COLORS.LIGHT_BLUE};
   }
   position: relative;
 `;

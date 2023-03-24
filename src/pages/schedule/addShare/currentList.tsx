@@ -3,7 +3,7 @@ import * as S from "./index.styles";
 import COLORS from "../../../constants/color";
 import Button from "../../../components/Button";
 import getMoneyUnit from "../../../utils/money";
-import { ScheduleProps } from "../../../hooks/book/useScheduleForm";
+import { ScheduleProps } from "../../../hooks/book/useAddShared";
 
 export default function CurrentList({
   scheduleList,
@@ -18,7 +18,6 @@ export default function CurrentList({
   bookId: string | undefined;
   clearScheduleList: any;
 }) {
-  console.log(scheduleList);
   return (
     <S.BankingAddList>
       <h4>현재 추가된 목록</h4>
@@ -37,7 +36,7 @@ export default function CurrentList({
                 {schedules.assignments.map((ass, index) => (
                   <p key={ass.username}>
                     {ass.username} {getMoneyUnit(Number(ass.value))}
-                    {index !== ass.value.toString().length - 1 && ` ･ `}
+                    {index !== schedules.assignments.length - 1 && ` / `}
                   </p>
                 ))}
               </div>
