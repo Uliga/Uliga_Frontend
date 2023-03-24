@@ -1,7 +1,7 @@
 import React from "react";
 import COLORS from "../../constants/color";
 import * as S from "./index.styles";
-import useSchedule from "../../hooks/book/useSchedule";
+import useBook from "../../hooks/book/useBook";
 
 interface ScheduleProps {
   name: string;
@@ -11,8 +11,8 @@ interface ScheduleProps {
 }
 
 export default function ScheduleList() {
-  const { getSchedules } = useSchedule();
-  const { data } = getSchedules();
+  const { useSchedule } = useBook();
+  const data = useSchedule();
   if (!data) return null;
   const infoList = [
     {
