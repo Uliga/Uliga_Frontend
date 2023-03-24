@@ -37,7 +37,7 @@ export default function CurrentList({
                 {schedules.assignments.map((ass, index) => (
                   <p key={ass.username}>
                     {ass.username} {getMoneyUnit(Number(ass.value))}
-                    {index !== ass.value.toString().length - 1 && " ･ "}
+                    {index !== ass.value.toString().length - 1 && ` ･ `}
                   </p>
                 ))}
               </div>

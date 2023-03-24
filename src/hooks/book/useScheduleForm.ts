@@ -29,13 +29,14 @@ export interface ScheduleProps {
 }
 export default function useScheduleForm() {
   const { bookId } = useParams();
-  const [name, onChangeName] = useInput("");
-  const [value, onChangeValue] = useInput("");
+  const [name, onChangeName, setName] = useInput("");
+  const [value, onChangeValue, setValue] = useInput("");
   const [members, setMembers] = useState<BookMemberProps[]>([]);
   const [price, setPrice] = useState<PriceProps[]>([]);
   const [assignments, setAssignments] = useState<AssignmentProps[]>([]);
   const [isIncome, setIsIncome] = useState(false);
-  const [notificationDate, onChangetNotificationDate] = useInput("");
+  const [notificationDate, onChangetNotificationDate, setNotificationDate] =
+    useInput("");
   const [scheduleList, setScheduleList] = useState<ScheduleProps[]>([]);
 
   const handleIsIncome = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -140,6 +141,16 @@ export default function useScheduleForm() {
         assignments,
       },
     ]);
+
+    const initialPrice = members.map(member => ({
+      username: member.username,
+      value: 0,
+    }));
+    setName("");
+    setIsIncome(false);
+    setNotificationDate("");
+    setValue("");
+    setPrice(initialPrice);
   };
 
   const clearScheduleList = () => {
