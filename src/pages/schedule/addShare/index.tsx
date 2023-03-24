@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import Input from "../../../components/Input";
-import useScheduleForm from "../../../hooks/book/useScheduleForm";
+import useAddShared from "../../../hooks/book/useAddShared";
 import CurrentList from "./currentList";
 import * as S from "./index.styles";
 
-export default function AddScheduleForm() {
+export default function AddShare() {
   const {
     notificationDate,
     onChangetNotificationDate,
@@ -21,7 +21,7 @@ export default function AddScheduleForm() {
     scheduleList,
     addInputSchedule,
     handlePriceChange,
-  } = useScheduleForm();
+  } = useAddShared();
 
   useEffect(() => {
     const initialPrice = members.map(member => ({
