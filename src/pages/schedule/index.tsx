@@ -32,6 +32,7 @@ export default function Schedule() {
       <S.Wrapper>
         {buttonList.map(button => (
           <S.TabButton
+            key={button.title}
             type="button"
             onClick={button.onClick}
             isSelected={curTab === button.title}
