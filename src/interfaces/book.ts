@@ -19,3 +19,9 @@ export interface BookInfoTypes {
   isPrivate: boolean;
   relationShip: string;
 }
+
+export interface BookMemberProps {
+  id: number;
+  username: string;
+  accountBookAuthority: "ADMIN" | "USER";
+}
