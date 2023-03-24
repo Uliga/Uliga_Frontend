@@ -63,7 +63,14 @@ export const addSchedule = async (scheduleData: object) => {
   return data;
 };
 export const loadSchedule = async () => {
-  const { data } = await authorizationClient.get(`${API.SCHEDULE}`);
+  const { data } = await authorizationClient.get(API.SCHEDULE);
+  return data;
+};
+
+export const loadScheduleDetail = async (id: number) => {
+  const { data } = await authorizationClient.get(
+    `${API.ACCOUNT_BOOK}/${id}${API.SCHEDULE}`,
+  );
   return data;
 };
 

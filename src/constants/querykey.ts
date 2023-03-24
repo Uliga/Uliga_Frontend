@@ -4,8 +4,9 @@ const QUERYKEYS = {
   LOAD_BOOK_LIST: "loadBookList",
   LOAD_MONTH_ASSET: "loadMonthAsset",
   LOAD_MONTH_ITEM: "loadMonthItem",
-  LOAD_SCHEDULE: "getSchedule",
+  LOAD_SCHEDULE: "loadSchedule",
   LOAD_CATEGORY: "loadCategory",
+  LOAD_SCHEDULE_DETAIL: "loadScheduleDetail",
 } as const;
 
 export default QUERYKEYS;
