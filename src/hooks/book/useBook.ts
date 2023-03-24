@@ -8,6 +8,7 @@ import {
   loadBookMember,
   loadMonthItems,
   loadSchedule,
+  loadScheduleDetail,
 } from "../../api/book";
 import { IBookInfo, IBookList } from "../../interfaces/book";
 import { IItem } from "../../interfaces/item";
@@ -71,9 +72,14 @@ export default function useBook() {
     const list = data?.categories;
     return list;
   };
-
   const useSchedule = () => {
     const { data } = useQuery([QUERYKEYS.LOAD_SCHEDULE], loadSchedule);
+    return data;
+  };
+
+  const useScheduleDetail = (id: number) => {
+    const queryFn = () => loadScheduleDetail(id);
+    const { data } = useQuery([QUERYKEYS.LOAD_SCHEDULE_DETAIL], queryFn);
     return data;
   };
 
@@ -86,5 +92,6 @@ export default function useBook() {
     loadBookMember,
     useCategoryList,
     useSchedule,
+    useScheduleDetail,
   };
 }
