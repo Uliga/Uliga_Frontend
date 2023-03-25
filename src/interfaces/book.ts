@@ -25,3 +25,7 @@ export interface BookMemberProps {
   username: string;
   accountBookAuthority: "ADMIN" | "USER";
 }
+
+export interface IStringIndex {
+  [label: string]: any;
+}
