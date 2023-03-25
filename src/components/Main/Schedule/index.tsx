@@ -12,12 +12,12 @@ interface ScheduleProps {
   isIncome: boolean;
 }
 
-export default function ScheduleList() {
+export default function MainScheduleList() {
+  const { bookId } = useParams();
   const { useSchedule } = useBook();
   const navigate = useNavigate();
   const data = useSchedule();
   if (!data) return null;
-  const { bookId } = useParams();
 
   return (
     <S.Container>
