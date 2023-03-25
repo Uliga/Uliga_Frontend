@@ -40,18 +40,32 @@ export default function useBudget() {
   if (!lastMonthData) {
     return null;
   }
+  if (!thisMonthData.budget) {
+    thisMonthData.budget = { value: 0 };
+  }
+  if (thisMonthData.record == null) {
+    thisMonthData.record = { value: 0 };
+  }
+  if (thisMonthData.income == null) {
+    thisMonthData.income = { value: 0 };
+  }
+  if (lastMonthData.budget == null) {
+    lastMonthData.budget = { value: 0 };
+  }
+  if (lastMonthData.record == null) {
+    lastMonthData.record = { value: 0 };
+  }
+  if (lastMonthData.income == null) {
+    lastMonthData.income = { value: 0 };
+  }
+
   const thisRemainData =
-    thisMonthData.budget.value +
-    thisMonthData.income.value -
-    thisMonthData.record.value;
+    thisMonthData.budget.value - thisMonthData.record.value;
   const oneDayBudget = Math.trunc(thisRemainData / lastDate);
   const thisDataGage = (thisRemainData / thisMonthData.budget.value) * 100;
   const lastRemainData =
-    lastMonthData.budget.value +
-    lastMonthData.income.value -
-    lastMonthData.record.value;
+    lastMonthData.budget.value - lastMonthData.record.value;
   const lastDataGage = (lastRemainData / lastMonthData.budget.value) * 100;
-
   return {
     thisRemainData,
     thisDataGage,
