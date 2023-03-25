@@ -23,7 +23,7 @@ export default function useBudget() {
     lastMonthQueryFn,
   );
 
-  const queryFn = () =>
+  const thisMonthqueryFn = () =>
     loadMonthAsset(
       Number(bookId),
       `${date.getFullYear()}/${date.getMonth() + 1}`,
@@ -31,7 +31,7 @@ export default function useBudget() {
 
   const { data: thisMonthData } = useQuery(
     [QUERYKEYS.LOAD_MONTH_ASSET, date.getMonth()],
-    queryFn,
+    thisMonthqueryFn,
   );
 
   if (!thisMonthData) {
@@ -40,29 +40,24 @@ export default function useBudget() {
   if (!lastMonthData) {
     return null;
   }
-  console.log("data1", thisMonthData);
-  console.log("data2", lastMonthData);
-
-  const thisData =
+  const thisRemainData =
     thisMonthData.budget.value +
     thisMonthData.income.value -
     thisMonthData.record.value;
-  const oneDayBudget = Math.trunc(thisData / lastDate);
-
-  console.log("oneday", oneDayBudget);
-  const thisDataGage = (thisData / thisMonthData.budget.value) * 100;
-  const lastData =
+  const oneDayBudget = Math.trunc(thisRemainData / lastDate);
+  const thisDataGage = (thisRemainData / thisMonthData.budget.value) * 100;
+  const lastRemainData =
     lastMonthData.budget.value +
     lastMonthData.income.value -
     lastMonthData.record.value;
-  const lastDataGage = (lastData / lastMonthData.budget.value) * 100;
+  const lastDataGage = (lastRemainData / lastMonthData.budget.value) * 100;
 
   return {
-    thisData,
+    thisRemainData,
     thisDataGage,
     thisMonthData,
     oneDayBudget,
-    lastData,
+    lastRemainData,
     lastDataGage,
     lastMonthData,
     lastMonthDate,
