@@ -68,7 +68,7 @@ const RightBox = styled.div`
   margin-top: 2.5rem;
   position: relative;
   width: 50%;
-  background-color: ${COLORS.GREY[200]};
+  background-color: #f9f9f9;
   border-radius: 1rem;
   p {
     font-size: 1rem;
@@ -96,6 +96,14 @@ const CheckLastMonth = styled.div`
     margin-left: 30rem;
     font-weight: 200;
     font-size: 1rem;
+  }
+`;
+const NoBudget = styled.div`
+  margin-left: 2rem;
+  margin-top: 5rem;
+  p {
+    font-weight: 200;
+    font-size: 1.4rem;
   }
 `;
 const CheckLastMonthBottom = styled.div`
@@ -164,4 +172,5 @@ export {
   GageIndex,
   LateGageIndex,
   GageBox,
+  NoBudget,
 };
