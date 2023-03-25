@@ -70,8 +70,11 @@ export default function useBook() {
     const list = data?.categories;
     return list;
   };
+  const date = new Date();
+  const lastMonthDate = new Date(date.getFullYear(), date.getMonth() - 1, 1);
 
   return {
+    lastMonthDate,
     useSelectedBook,
     useReplaceBook,
     useBookList,
