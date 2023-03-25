@@ -1,71 +1,29 @@
 import React from "react";
-import { useQuery } from "@tanstack/react-query";
-import { useParams } from "react-router-dom";
 import BookNav from "../../components/Main/BookNav";
 import PATH from "../../constants/path";
 import * as S from "./index.styles";
 import CapsuleBox from "../../components/Main/CapsuleBox";
 import COLORS from "../../constants/color";
-import { loadMonthAsset } from "../../api/book";
-import QUERYKEYS from "../../constants/querykey";
 import getMoneyUnit from "../../utils/money";
+import useBudget from "../../hooks/useBudget";
 
-export default function Schedule() {
-  const { bookId } = useParams();
-  const date = new Date();
-  const lastMonthDate = new Date(date.getFullYear(), date.getMonth() - 1, 1);
-
-  const lastDate = new Date(
-    date.getFullYear(),
-    date.getMonth() - 1,
-    0,
-  ).getDate();
-  console.log("보자보자", lastDate);
-  const lastMonthQueryFn = () =>
-    loadMonthAsset(
-      Number(bookId),
-      `${lastMonthDate.getFullYear()}/${lastMonthDate.getMonth() + 1}`,
-    );
-
-  const { data: lastMonthData } = useQuery(
-    [QUERYKEYS.LOAD_MONTH_ASSET, lastMonthDate.getMonth()],
-    lastMonthQueryFn,
-  );
-
-  const queryFn = () =>
-    loadMonthAsset(
-      Number(bookId),
-      `${date.getFullYear()}/${date.getMonth() + 1}`,
-    );
-
-  const { data: thisMonthData } = useQuery(
-    [QUERYKEYS.LOAD_MONTH_ASSET, date.getMonth()],
-    queryFn,
-  );
-
-  if (!thisMonthData) {
-    return null;
+export default function Budget() {
+  const budget = useBudget();
+  if (!budget) {
+    return null; // 예를 들어, 로딩 중일 때는 null을 반환하도록 처리해줄 수 있습니다.
   }
-  if (!lastMonthData) {
-    return null;
-  }
-  console.log("data1", thisMonthData);
-  console.log("data2", lastMonthData);
+  const {
+    thisData,
+    thisDataGage,
+    thisMonthData,
+    oneDayBudget,
+    lastData,
+    lastDataGage,
+    lastMonthData,
+    date,
+  } = budget;
 
-  const thisData =
-    thisMonthData.budget.value +
-    thisMonthData.income.value -
-    thisMonthData.record.value;
-  const oneDayBudget = Math.trunc(thisData / lastDate);
-
-  console.log("oneday", oneDayBudget);
-  const thisDataGage = (thisData / thisMonthData.budget.value) * 100;
-  const lastData =
-    lastMonthData.budget.value +
-    lastMonthData.income.value -
-    lastMonthData.record.value;
-  const lastDataGage = (lastData / lastMonthData.budget.value) * 100;
-
+  console.log("d", budget?.thisData);
   return (
     <S.Container>
       <BookNav path={PATH.BUDGET} />
