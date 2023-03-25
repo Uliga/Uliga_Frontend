@@ -4,6 +4,7 @@ import { uploadBook } from "../../api/book";
 import toastMsg from "../../components/Toast";
 import PATH from "../../constants/path";
 import useBook from "./useBook";
+import { IStringIndex } from "../../interfaces/book";
 
 export default function useWrite() {
   const { bookId } = useParams();
@@ -28,13 +29,23 @@ export default function useWrite() {
 
   const { useCategoryList } = useBook();
   const list = useCategoryList(bookId ? +bookId : 0);
+  const [categoryOptions, setCategoryOptions] = useState<any>(undefined);
+
+  useEffect(() => {
+    if (list) {
+      const newList = [{ id: 0, value: undefined, label: "선택" }, ...list];
+      setCategoryOptions([...newList]);
+    } else {
+      setCategoryOptions([]);
+    }
+  }, [list]);
 
   const INPUT_SIZE = 11;
   const inputForm: InputTypes[] = [
     {
       label: "isIncome",
       options: [
-        { value: "", label: "선택" },
+        { value: undefined, label: "선택" },
         { value: "지출", label: "지출" },
         { value: "수입", label: "수입" },
       ],
@@ -48,7 +59,7 @@ export default function useWrite() {
     },
     {
       label: "category",
-      options: list,
+      options: categoryOptions,
       value: undefined,
     },
     {
@@ -85,12 +96,10 @@ export default function useWrite() {
 
   useEffect(() => {
     setInputList([inputForm]);
-  }, [list]);
+  }, [list, categoryOptions]);
 
   const createRequest: { [label: string]: any }[] = [];
-  type FormProps = {
-    [label: string]: any;
-  };
+
   const UploadFull = async () => {
     try {
       await uploadBook({
@@ -110,7 +119,7 @@ export default function useWrite() {
 
   const onSubmitForm = () => {
     inputList.map(inputs => {
-      const form: FormProps = {
+      const form: IStringIndex = {
         isIncome: undefined,
         account: "",
         category: "",
