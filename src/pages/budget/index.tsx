@@ -13,17 +13,15 @@ export default function Budget() {
     return null; // 예를 들어, 로딩 중일 때는 null을 반환하도록 처리해줄 수 있습니다.
   }
   const {
-    thisData,
+    thisRemainData,
     thisDataGage,
     thisMonthData,
     oneDayBudget,
-    lastData,
+    lastRemainData,
     lastDataGage,
     lastMonthData,
     date,
   } = budget;
-
-  console.log("d", budget?.thisData);
   return (
     <S.Container>
       <BookNav path={PATH.BUDGET} />
@@ -31,13 +29,13 @@ export default function Budget() {
       <S.BudgetBox>
         <S.LeftBox>
           <h5>{date.getMonth() + 1}월 예산</h5>
-          {lastData > 0 ? (
-            <h3>{getMoneyUnit(thisData)}원 남음</h3>
+          {thisRemainData > 0 ? (
+            <h3>{getMoneyUnit(thisRemainData)}원 남음</h3>
           ) : (
-            <h3>{getMoneyUnit(thisData)}원 초과</h3>
+            <h3>{getMoneyUnit(thisRemainData)}원 초과</h3>
           )}
           <S.Progress color={COLORS.GREY[300]}>
-            {thisData > 0 ? (
+            {thisRemainData > 0 ? (
               <S.Dealt dealt={thisDataGage} color={COLORS.BLUE} />
             ) : (
               <S.Dealt dealt={100} color={COLORS.BLUE} />
@@ -76,14 +74,14 @@ export default function Budget() {
           </S.CheckLastMonth>
           <S.CheckLastMonthBottom>
             <h5>{date.getMonth()}월 예산</h5>
-            {lastData > 0 ? (
-              <h3>{getMoneyUnit(lastData)}원 남음</h3>
+            {lastRemainData > 0 ? (
+              <h3>{getMoneyUnit(lastRemainData)}원 남음</h3>
             ) : (
-              <h3>{getMoneyUnit(lastData)}원 초과</h3>
+              <h3>{getMoneyUnit(lastRemainData)}원 초과</h3>
             )}
           </S.CheckLastMonthBottom>
           <S.Progress color={COLORS.WHITE}>
-            {lastData > 0 ? (
+            {lastRemainData > 0 ? (
               <S.Dealt dealt={lastDataGage} color={COLORS.RED.LIGHT} />
             ) : (
               <S.Dealt dealt={100} color={COLORS.RED.LIGHT} />
