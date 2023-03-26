@@ -1,31 +1,42 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import useInput from "./useInput";
-import { addSchedule, loadBookMember } from "../api/book";
-import toastMsg from "../components/Toast";
-import QUERYKEYS from "../constants/querykey";
+import useInput from "../useInput";
+import { addSchedule, loadBookMember } from "../../api/book";
+import toastMsg from "../../components/Toast";
+import QUERYKEYS from "../../constants/querykey";
+import { BookMemberProps } from "../../interfaces/book";
 
-export default function useScheduleForm() {
-  interface MemberProps {
+export interface PriceProps {
+  username: string;
+  value: number;
+}
+
+export interface AssignmentProps extends PriceProps {
+  id: number;
+}
+
+export interface ScheduleProps {
+  assignments: {
     id: number;
     username: string;
     value: number;
-  }
-
-  interface CheckPriceProps {
-    username: string;
-    value: number;
-  }
-
+  }[];
+  isIncome: boolean;
+  name: string;
+  notificationDate: string;
+  value: string;
+}
+export default function useAddSchedule() {
   const { bookId } = useParams();
-  const [name, onChangeName] = useInput("");
-  const [value, onChangeValue] = useInput("");
-  const [members, setMembers] = useState<MemberProps[]>([]);
-  const [price, setPrice] = useState<CheckPriceProps[]>([]);
-  const [assignments, setAssignments] = useState<MemberProps[]>([]);
+  const [notificationDate, onChangetNotificationDate, setNotificationDate] =
+    useInput("");
   const [isIncome, setIsIncome] = useState(false);
-  const [notificationDate, onChangetNotificationDate] = useInput(undefined);
+  const [name, onChangeName, setName] = useInput("");
+  const [value, onChangeValue, setValue] = useInput("");
+  const [members, setMembers] = useState<BookMemberProps[]>([]);
+  const [price, setPrice] = useState<PriceProps[]>([]);
+  const [assignments, setAssignments] = useState<AssignmentProps[]>([]);
   const [scheduleList, setScheduleList] = useState<ScheduleProps[]>([]);
 
   const handleIsIncome = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -118,16 +129,22 @@ export default function useScheduleForm() {
   useEffect(() => {
     getMember();
   }, []);
+  useEffect(() => {
+    const initialPrice = members.map(member => ({
+      username: member.username,
+      value: 0,
+    }));
 
-  interface ScheduleProps {
-    name: string;
-    isIncome: boolean;
-    notificationDate: number | undefined;
-    value: number;
-    assignments: any;
-  }
+    const initialInfo = members.map(member => ({
+      username: member.username,
+      id: member.id,
+      value: 0,
+    }));
+    setPrice(initialPrice);
+    setAssignments(initialInfo);
+  }, [members]);
   const addInputSchedule = () => {
-    setScheduleList((prevState: ScheduleProps[]) => [
+    setScheduleList((prevState: any) => [
       ...prevState,
       {
         name,
@@ -137,6 +154,45 @@ export default function useScheduleForm() {
         assignments,
       },
     ]);
+
+    const initialPrice = members.map(member => ({
+      username: member.username,
+      value: 0,
+    }));
+
+    setName("");
+    setIsIncome(false);
+    setNotificationDate("");
+    setValue("");
+    setPrice(initialPrice);
+  };
+
+  const addInputSchedulePrivate = () => {
+    setScheduleList((prevState: any) => [
+      ...prevState,
+      {
+        name,
+        isIncome,
+        notificationDate,
+        value,
+        assignments: [
+          {
+            id: assignments[0].id,
+            value: +value,
+          },
+        ],
+      },
+    ]);
+    const initialPrice = members.map(member => ({
+      username: member.username,
+      value: 0,
+    }));
+
+    setName("");
+    setIsIncome(false);
+    setNotificationDate("");
+    setValue("");
+    setPrice(initialPrice);
   };
 
   const clearScheduleList = () => {
@@ -158,22 +214,8 @@ export default function useScheduleForm() {
     },
   });
 
-  interface AssignmentTypes {
-    id: number;
-    value: number;
-  }
-  interface AssignmentProps {
-    name: string;
-    isIncome: boolean;
-    notificationDate: number | undefined;
-    value: number;
-    assignments: AssignmentTypes;
-  }
-
-  const removeSchedules = (selected: AssignmentProps) => {
-    setScheduleList(
-      scheduleList.filter((ele: AssignmentProps) => ele !== selected),
-    );
+  const removeSchedules = (selected: ScheduleProps) => {
+    setScheduleList(scheduleList.filter(ele => ele !== selected));
   };
 
   return {
@@ -196,5 +238,6 @@ export default function useScheduleForm() {
     setPrice,
     setAssignments,
     notificationDate,
+    addInputSchedulePrivate,
   };
 }

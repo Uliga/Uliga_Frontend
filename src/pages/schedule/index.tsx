@@ -1,24 +1,37 @@
 import React, { useState } from "react";
+import { useParams } from "react-router-dom";
 import BookNav from "../../components/Main/BookNav";
 import PATH from "../../constants/path";
 import * as S from "./index.styles";
+import AddShare from "./addShare";
+import useBook from "../../hooks/book/useBook";
 import ScheduleList from "../../components/ScheduleList";
-import AddScheduleForm from "./add";
+import AddPrivate from "./addPrivate";
+import EditShare from "./editShare";
+import EditPrivate from "./editPrivate";
 
 export default function Schedule() {
-  const [curTab, setCurTab] = useState("금융 일정 추가");
+  const { useSchedule } = useBook();
+  const data = useSchedule();
+  const [isAddTab, setTab] = useState(true);
+  const { bookId } = useParams();
+  const privateBook = localStorage.getItem("privateAccountBookId");
 
+  if (!data) return null;
+  console.log(data);
   const buttonList = [
     {
+      isAdd: true,
       title: "금융 일정 추가",
       onClick: () => {
-        setCurTab(buttonList[0].title);
+        setTab(buttonList[0].isAdd);
       },
     },
     {
+      isAdd: false,
       title: "금융 일정 수정",
       onClick: () => {
-        setCurTab(buttonList[1].title);
+        setTab(buttonList[1].isAdd);
       },
     },
   ];
@@ -32,16 +45,19 @@ export default function Schedule() {
       <S.Wrapper>
         {buttonList.map(button => (
           <S.TabButton
+            key={button.title}
             type="button"
             onClick={button.onClick}
-            isSelected={curTab === button.title}
+            isSelected={isAddTab === button.isAdd}
           >
             {button.title}
           </S.TabButton>
         ))}
-        <AddScheduleForm />
+        {isAddTab && (privateBook === bookId ? <AddPrivate /> : <AddShare />)}
+        {!isAddTab &&
+          (privateBook === bookId ? <EditPrivate /> : <EditShare />)}
         <S.ScheduleWrapper>
-          <ScheduleList />
+          <ScheduleList schedules={data.schedules} />
         </S.ScheduleWrapper>
       </S.Wrapper>
     </S.Container>

@@ -4,7 +4,7 @@ import SubLogo from "../../assets/subLogo";
 import COLORS from "../../constants/color";
 import { InvitationProps } from "../../interfaces/user";
 import Button from "../Button";
-import useBook from "../../hooks/useBook";
+import useBook from "../../hooks/book/useBook";
 
 const Container = styled.div`
   display: flex;

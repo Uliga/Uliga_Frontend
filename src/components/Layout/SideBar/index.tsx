@@ -1,7 +1,6 @@
 import React from "react";
-import { useParams } from "react-router-dom";
-import useBook from "../../../hooks/useBook";
-
+import { useNavigate, useParams } from "react-router-dom";
+import useBook from "../../../hooks/book/useBook";
 import {
   Container,
   Top,
@@ -21,6 +20,7 @@ export default function SideBar() {
   const { bookId } = useParams();
   const { useSelectedBook } = useBook();
   const { data } = useSelectedBook(Number(bookId));
+  const navigate = useNavigate();
 
   if (!data) return null;
 
@@ -44,6 +44,9 @@ export default function SideBar() {
                 theme={ele.theme}
                 iconName={ele.iconName}
                 iconSize={ele.iconSize}
+                onClick={() => {
+                  navigate(`${ele.path}/${bookId}`);
+                }}
               />
               {ele.subMenu?.map(sub => {
                 return (
@@ -54,6 +57,9 @@ export default function SideBar() {
                     theme={sub.theme}
                     iconName={sub.iconName}
                     iconSize={sub.iconSize}
+                    onClick={() => {
+                      navigate(`${sub.path}/${bookId}`);
+                    }}
                   />
                 );
               })}
@@ -64,7 +70,14 @@ export default function SideBar() {
       <Bottom>
         {bottomMenu.map(ele => {
           return (
-            <BottomButton key={ele.title} title={ele.title} theme={ele.theme} />
+            <BottomButton
+              key={ele.title}
+              title={ele.title}
+              theme={ele.theme}
+              onClick={() => {
+                navigate(`${ele.path}/${bookId}`);
+              }}
+            />
           );
         })}
       </Bottom>

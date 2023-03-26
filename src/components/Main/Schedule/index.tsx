@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import COLORS from "../../../constants/color";
 import * as S from "./index.styles";
 import PATH from "../../../constants/path";
-import useSchedule from "../../../hooks/useSchedule";
+import useBook from "../../../hooks/book/useBook";
 
 interface ScheduleProps {
   name: string;
@@ -12,12 +12,12 @@ interface ScheduleProps {
   isIncome: boolean;
 }
 
-export default function ScheduleList() {
-  const { getSchedules } = useSchedule();
-  const navigate = useNavigate();
-  const { data } = getSchedules();
-  if (!data) return null;
+export default function MainScheduleList() {
   const { bookId } = useParams();
+  const { useSchedule } = useBook();
+  const navigate = useNavigate();
+  const data = useSchedule();
+  if (!data) return null;
 
   return (
     <S.Container>

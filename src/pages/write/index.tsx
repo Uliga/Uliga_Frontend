@@ -3,7 +3,7 @@ import BookInfo from "./BookInfo";
 import * as S from "./index.styles";
 import OneLine from "./OneLine";
 import COLORS from "../../constants/color";
-import useWrite from "../../hooks/useWrite";
+import useWrite from "../../hooks/book/useWrite";
 
 export default function Write() {
   const {
