@@ -11,7 +11,7 @@ export interface ISchedule {
 export interface IScheduleDetail {
   assignments: {
     id: number;
-    nickname: string;
+    username: string;
     value: number;
   }[];
 

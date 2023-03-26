@@ -115,7 +115,7 @@ export default function useDayWrite() {
   useEffect(() => {
     setInputList(inputForm);
   }, [list, categoryOptions]);
-  console.log(categoryOptions);
+
   const handleChange = (
     idx: number,
     e: React.ChangeEvent<HTMLInputElement>,
