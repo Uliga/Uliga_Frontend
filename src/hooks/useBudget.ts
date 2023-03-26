@@ -7,6 +7,7 @@ export default function useBudget() {
   const { bookId } = useParams();
   const date = new Date();
   const lastMonthDate = new Date(date.getFullYear(), date.getMonth() - 1, 1);
+
   const lastDate = new Date(
     date.getFullYear(),
     date.getMonth() - 1,
@@ -33,6 +34,18 @@ export default function useBudget() {
     [QUERYKEYS.LOAD_MONTH_ASSET, date.getMonth()],
     thisMonthqueryFn,
   );
+  const setDefaultValue = (
+    obj: { [x: string]: { value: any } },
+    prop: string,
+    value: number,
+  ) => {
+    const newObj = { ...obj }; // 전개 연산자를 사용하여 객체를 복제, eslint 오류
+    if (newObj[prop] == null) {
+      newObj[prop] = { value };
+    }
+    return newObj;
+  };
+  const DEFAULT_VALUE = 0;
 
   if (!thisMonthData) {
     return null;
@@ -40,24 +53,15 @@ export default function useBudget() {
   if (!lastMonthData) {
     return null;
   }
-  if (!thisMonthData.budget) {
-    thisMonthData.budget = { value: 0 };
+
+  // eslint-disable-next-line no-restricted-syntax
+  for (const data of [thisMonthData, lastMonthData]) {
+    setDefaultValue(data, "budget", DEFAULT_VALUE);
+    setDefaultValue(data, "record", DEFAULT_VALUE);
+    setDefaultValue(data, "income", DEFAULT_VALUE);
   }
-  if (thisMonthData.record == null) {
-    thisMonthData.record = { value: 0 };
-  }
-  if (thisMonthData.income == null) {
-    thisMonthData.income = { value: 0 };
-  }
-  if (lastMonthData.budget == null) {
-    lastMonthData.budget = { value: 0 };
-  }
-  if (lastMonthData.record == null) {
-    lastMonthData.record = { value: 0 };
-  }
-  if (lastMonthData.income == null) {
-    lastMonthData.income = { value: 0 };
-  }
+
+  console.log("dddd", thisMonthData.budget);
 
   const thisRemainData =
     thisMonthData.budget.value - thisMonthData.record.value;
