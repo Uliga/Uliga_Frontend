@@ -34,10 +34,10 @@ export default function CurrentList({
               </h6>
               <div>
                 {schedules.assignments.map((ass, index) => (
-                  <p key={ass.username}>
+                  <S.Users key={ass.username}>
                     {ass.username} {getMoneyUnit(Number(ass.value))}
                     {index !== schedules.assignments.length - 1 && ` / `}
-                  </p>
+                  </S.Users>
                 ))}
               </div>
             </S.BankingAddInfoWrapper>

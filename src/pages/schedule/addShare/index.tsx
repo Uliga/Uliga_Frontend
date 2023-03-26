@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Input from "../../../components/Input";
 import useAddShared from "../../../hooks/book/useAddShared";
 import CurrentList from "./currentList";
@@ -8,8 +8,6 @@ export default function AddShare() {
   const {
     notificationDate,
     onChangetNotificationDate,
-    setPrice,
-    setAssignments,
     radioList,
     inputList,
     members,
@@ -22,21 +20,6 @@ export default function AddShare() {
     addInputSchedule,
     handlePriceChange,
   } = useAddShared();
-
-  useEffect(() => {
-    const initialPrice = members.map(member => ({
-      username: member.username,
-      value: 0,
-    }));
-
-    const initialInfo = members.map(member => ({
-      username: member.username,
-      id: member.id,
-      value: 0,
-    }));
-    setPrice(initialPrice);
-    setAssignments(initialInfo);
-  }, [members]);
 
   return (
     <S.Container>

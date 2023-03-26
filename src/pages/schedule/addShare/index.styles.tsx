@@ -117,6 +117,20 @@ export const AddMemberPartitionForm = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+  overflow: scroll;
+  overflow-x: hidden;
+  ::-webkit-scrollbar {
+    width: 0.5rem; /* 스크롤바의 너비 */
+  }
+  ::-webkit-scrollbar-thumb {
+    height: 30%; /* 스크롤바의 길이 */
+    background: ${COLORS.GREY[200]}; /* 스크롤바의 색상 */
+    border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: ${COLORS.GREY[100]}; /*스크롤바 뒷 배경 색상*/
+  }
 `;
 export const Division = styled.div`
   display: flex;
@@ -185,15 +199,20 @@ export const Box = styled.div`
     color: ${COLORS.GREY[400]};
     font-weight: 200;
   }
-  p {
-    font-size: 1.1rem;
-    color: ${COLORS.BLUE};
-    white-space: pre-wrap;
-  }
+
   &:hover {
     background-color: ${COLORS.LIGHT_BLUE};
   }
   position: relative;
+`;
+
+export const Users = styled.div`
+  display: flex;
+  width: 5.5rem;
+  flex-wrap: wrap;
+  font-size: 1.1rem;
+  color: ${COLORS.BLUE};
+  white-space: pre-wrap;
 `;
 export const StyledIcon = styled(Icon)`
   background-color: black;
