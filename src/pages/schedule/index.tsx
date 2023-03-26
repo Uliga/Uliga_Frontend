@@ -1,20 +1,23 @@
 import React, { useState } from "react";
+import { useParams } from "react-router-dom";
 import BookNav from "../../components/Main/BookNav";
 import PATH from "../../constants/path";
 import * as S from "./index.styles";
-// import AddShare from "./addShare";
-import EditShare from "./editShare";
+import AddShare from "./addShare";
 import useBook from "../../hooks/book/useBook";
 import ScheduleList from "../../components/ScheduleList";
 import AddPrivate from "./addPrivate";
+import EditShare from "./editShare";
 
 export default function Schedule() {
   const { useSchedule } = useBook();
   const data = useSchedule();
   const [isAddTab, setTab] = useState(true);
+  const { bookId } = useParams();
+  const privateBook = localStorage.getItem("privateAccountBookId");
 
   if (!data) return null;
-
+  console.log(data);
   const buttonList = [
     {
       isAdd: true,
@@ -49,7 +52,9 @@ export default function Schedule() {
             {button.title}
           </S.TabButton>
         ))}
-        {isAddTab ? <AddPrivate /> : <EditShare />}
+        {isAddTab && (privateBook === bookId ? <AddPrivate /> : <AddShare />)}
+        {!isAddTab && (privateBook === bookId ? <AddPrivate /> : <EditShare />)}
+
         <S.ScheduleWrapper>
           <ScheduleList schedules={data.schedules} />
         </S.ScheduleWrapper>
