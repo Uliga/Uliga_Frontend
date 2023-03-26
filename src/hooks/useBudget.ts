@@ -34,18 +34,6 @@ export default function useBudget() {
     [QUERYKEYS.LOAD_MONTH_ASSET, date.getMonth()],
     thisMonthqueryFn,
   );
-  const setDefaultValue = (
-    obj: { [x: string]: { value: any } },
-    prop: string,
-    value: number,
-  ) => {
-    const newObj = { ...obj }; // 전개 연산자를 사용하여 객체를 복제, eslint 오류
-    if (newObj[prop] == null) {
-      newObj[prop] = { value };
-    }
-    return newObj;
-  };
-  const DEFAULT_VALUE = 0;
 
   if (!thisMonthData) {
     return null;
@@ -53,7 +41,19 @@ export default function useBudget() {
   if (!lastMonthData) {
     return null;
   }
+  const setDefaultValue = (
+    obj: { [x: string]: { value: any } },
+    prop: string,
+    value: number,
+  ) => {
+    if (obj[prop] == null) {
+      // eslint-disable-next-line no-param-reassign
+      obj[prop] = { value };
+    }
+    return obj;
+  };
 
+  const DEFAULT_VALUE = 0;
   // eslint-disable-next-line no-restricted-syntax
   for (const data of [thisMonthData, lastMonthData]) {
     setDefaultValue(data, "budget", DEFAULT_VALUE);
