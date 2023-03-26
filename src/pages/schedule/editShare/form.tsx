@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import * as S from "./index.styles";
 import Input from "../../../components/Input";
-import useEditShared from "../../../hooks/book/useEditShared";
+import useEditSchedule from "../../../hooks/book/useEditSchedule";
 import { IScheduleDetail } from "../../../interfaces/schedule";
 import { EditButton } from "./index.styles";
 import { IStringIndex } from "../../../interfaces/book";
@@ -28,7 +28,7 @@ export default function EditShareForm({
     assignments,
     setAssignments,
     mutateUpdateSchedule,
-  } = useEditShared();
+  } = useEditSchedule();
 
   useEffect(() => {
     setNotificationDate(curSchedule?.info?.notificationDay);

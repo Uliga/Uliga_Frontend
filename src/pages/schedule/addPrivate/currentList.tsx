@@ -1,22 +1,15 @@
 import React from "react";
 import * as S from "./index.styles";
 import COLORS from "../../../constants/color";
-import Button from "../../../components/Button";
 import getMoneyUnit from "../../../utils/money";
 import { ScheduleProps } from "../../../hooks/book/useAddSchedule";
 
 export default function CurrentList({
   scheduleList,
   removeSchedules,
-  mutateSchedules,
-  bookId,
-  clearScheduleList,
 }: {
   scheduleList: any;
   removeSchedules: any;
-  mutateSchedules: any;
-  bookId: string | undefined;
-  clearScheduleList: any;
 }) {
   return (
     <S.BankingAddList>
@@ -32,14 +25,7 @@ export default function CurrentList({
                 {getMoneyUnit(Number(schedules.value))}원 /
                 {schedules.isIncome ? <> 수입</> : <> 지출</>}
               </h6>
-              <div>
-                {schedules.assignments.map((ass, index) => (
-                  <S.Users key={ass.username}>
-                    {ass.username} {getMoneyUnit(Number(ass.value))}
-                    {index !== schedules.assignments.length - 1 && ` / `}
-                  </S.Users>
-                ))}
-              </div>
+              <p>개인 금융 일정</p>
             </S.BankingAddInfoWrapper>
             <S.CancelIconButton
               iconSize="2rem"
@@ -52,18 +38,6 @@ export default function CurrentList({
           </S.Box>
         ))}
       </S.BankingAddListWrapper>
-      <Button
-        title="금융 일정 추가하기"
-        theme="quaternary"
-        width="27rem"
-        onClick={() => {
-          mutateSchedules.mutate({
-            id: Number(bookId),
-            schedules: scheduleList,
-          });
-          clearScheduleList();
-        }}
-      />
     </S.BankingAddList>
   );
 }

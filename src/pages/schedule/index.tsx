@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import BookNav from "../../components/Main/BookNav";
 import PATH from "../../constants/path";
 import * as S from "./index.styles";
-import AddShare from "./addShare";
+// import AddShare from "./addShare";
 import EditShare from "./editShare";
 import useBook from "../../hooks/book/useBook";
 import ScheduleList from "../../components/ScheduleList";
+import AddPrivate from "./addPrivate";
 
 export default function Schedule() {
   const { useSchedule } = useBook();
@@ -48,7 +49,7 @@ export default function Schedule() {
             {button.title}
           </S.TabButton>
         ))}
-        {isAddTab ? <AddShare /> : <EditShare />}
+        {isAddTab ? <AddPrivate /> : <EditShare />}
         <S.ScheduleWrapper>
           <ScheduleList schedules={data.schedules} />
         </S.ScheduleWrapper>

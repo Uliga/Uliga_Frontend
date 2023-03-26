@@ -27,7 +27,7 @@ export interface ScheduleProps {
   notificationDate: string;
   value: string;
 }
-export default function useAddShared() {
+export default function useAddSchedule() {
   const { bookId } = useParams();
   const [notificationDate, onChangetNotificationDate, setNotificationDate] =
     useInput("");
@@ -167,6 +167,34 @@ export default function useAddShared() {
     setPrice(initialPrice);
   };
 
+  const addInputSchedulePrivate = () => {
+    setScheduleList((prevState: any) => [
+      ...prevState,
+      {
+        name,
+        isIncome,
+        notificationDate,
+        value,
+        assignments: [
+          {
+            id: assignments[0].id,
+            value: +value,
+          },
+        ],
+      },
+    ]);
+    const initialPrice = members.map(member => ({
+      username: member.username,
+      value: 0,
+    }));
+
+    setName("");
+    setIsIncome(false);
+    setNotificationDate("");
+    setValue("");
+    setPrice(initialPrice);
+  };
+
   const clearScheduleList = () => {
     setScheduleList([]);
   };
@@ -210,5 +238,6 @@ export default function useAddShared() {
     setPrice,
     setAssignments,
     notificationDate,
+    addInputSchedulePrivate,
   };
 }
