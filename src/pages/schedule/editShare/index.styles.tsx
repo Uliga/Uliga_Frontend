@@ -6,6 +6,10 @@ export const Container = styled.div`
   display: flex;
   width: 85rem;
   border-top: 0.1rem solid ${COLORS.GREY[200]};
+  h3 {
+    font-size: 1.35rem;
+    padding-bottom: 1rem;
+  }
   p {
     color: ${COLORS.GREY[400]};
   }
@@ -48,7 +52,10 @@ export const ListWrapper = styled.div`
     display: none;
   }
 `;
-export const Box = styled.button`
+export const Box = styled.button<{ selected: boolean }>`
+  ${({ selected }) => `
+    background-color: ${selected ? COLORS.LIGHT_BLUE : "#f9f9f9"};
+    `}
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -59,7 +66,6 @@ export const Box = styled.button`
   border: none;
   cursor: pointer;
   gap: 1.5rem;
-  background-color: #f9f9f9;
   border-radius: 0.5rem;
   &:hover {
     background-color: ${COLORS.LIGHT_BLUE};

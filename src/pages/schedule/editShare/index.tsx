@@ -6,7 +6,7 @@ import useEditSchedule from "../../../hooks/book/useEditSchedule";
 import EditShareForm from "./form";
 
 export default function EditShare() {
-  const { data, setCurId, curSchedule } = useEditSchedule();
+  const { data, curId, setCurId, curSchedule } = useEditSchedule();
 
   if (!data) return null;
 
@@ -14,12 +14,14 @@ export default function EditShare() {
     <S.Container>
       <EditShareForm curSchedule={curSchedule!} />
       <S.ListWrapper>
+        <h3>현재 금융 일정 목록</h3>
         {data.schedules.map((schedule: IScheduleDetail) => (
           <S.Box
             key={schedule.info.id}
             onClick={() => {
               setCurId(schedule.info.id);
             }}
+            selected={schedule.info.id === curId}
           >
             <S.Badge>{schedule.info.notificationDay}일</S.Badge>
             <div>
