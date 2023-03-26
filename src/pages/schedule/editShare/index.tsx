@@ -12,7 +12,7 @@ export default function EditShare() {
 
   return (
     <S.Container>
-      <EditShareForm curSchedule={curSchedule} />
+      <EditShareForm curSchedule={curSchedule!} />
       <S.ListWrapper>
         {data.schedules.map((schedule: IScheduleDetail) => (
           <S.Box
@@ -28,9 +28,9 @@ export default function EditShare() {
                 schedule.info.isIncome ? "수입" : "지출"
               }`}</h6>
               {schedule.assignments.map(item => (
-                <p key={item.nickname}>
-                  {item.nickname} {getMoneyUnit(Number(item.value))}
-                </p>
+                <S.Users key={item.username}>
+                  {item.username} {getMoneyUnit(Number(item.value))}
+                </S.Users>
               ))}
             </div>
             <S.DeleteButton>삭제하기</S.DeleteButton>
