@@ -8,6 +8,7 @@ import useBook from "../../hooks/book/useBook";
 import ScheduleList from "../../components/ScheduleList";
 import AddPrivate from "./addPrivate";
 import EditShare from "./editShare";
+import EditPrivate from "./editPrivate";
 
 export default function Schedule() {
   const { useSchedule } = useBook();
@@ -53,8 +54,8 @@ export default function Schedule() {
           </S.TabButton>
         ))}
         {isAddTab && (privateBook === bookId ? <AddPrivate /> : <AddShare />)}
-        {!isAddTab && (privateBook === bookId ? <AddPrivate /> : <EditShare />)}
-
+        {!isAddTab &&
+          (privateBook === bookId ? <EditPrivate /> : <EditShare />)}
         <S.ScheduleWrapper>
           <ScheduleList schedules={data.schedules} />
         </S.ScheduleWrapper>

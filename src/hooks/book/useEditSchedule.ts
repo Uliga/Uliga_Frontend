@@ -77,6 +77,7 @@ export default function useEditSchedule() {
   return {
     data,
     setCurId,
+    curId,
     curSchedule,
     notificationDate,
     onChangeNotificationDate,
