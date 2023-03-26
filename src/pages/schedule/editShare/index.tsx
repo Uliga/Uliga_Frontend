@@ -2,11 +2,11 @@ import React from "react";
 import * as S from "./index.styles";
 import getMoneyUnit from "../../../utils/money";
 import { IScheduleDetail } from "../../../interfaces/schedule";
-import useEditShared from "../../../hooks/book/useEditShared";
+import useEditSchedule from "../../../hooks/book/useEditSchedule";
 import EditShareForm from "./form";
 
 export default function EditShare() {
-  const { data, setCurId, curSchedule } = useEditShared();
+  const { data, setCurId, curSchedule } = useEditSchedule();
 
   if (!data) return null;
 

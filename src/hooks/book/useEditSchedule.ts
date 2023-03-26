@@ -4,12 +4,12 @@ import { useParams } from "react-router-dom";
 import useBook from "./useBook";
 import { IScheduleDetail } from "../../interfaces/schedule";
 import useInput from "../useInput";
-import { AssignmentProps } from "./useAddShared";
+import { AssignmentProps } from "./useAddSchedule";
 import { updateSchedule } from "../../api/book";
 import toastMsg from "../../components/Toast";
 import QUERYKEYS from "../../constants/querykey";
 
-export default function useEditShared() {
+export default function useEditSchedule() {
   const { bookId } = useParams();
   const { useScheduleDetail } = useBook();
   const data = useScheduleDetail(bookId ? +bookId : 0);

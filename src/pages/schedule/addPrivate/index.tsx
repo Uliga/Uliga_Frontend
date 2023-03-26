@@ -4,21 +4,18 @@ import useAddSchedule from "../../../hooks/book/useAddSchedule";
 import CurrentList from "./currentList";
 import * as S from "./index.styles";
 
-export default function AddShare() {
+export default function AddPrivate() {
   const {
     notificationDate,
     onChangetNotificationDate,
     radioList,
     inputList,
-    members,
     bookId,
     clearScheduleList,
     removeSchedules,
     mutateSchedules,
-    price,
     scheduleList,
-    addInputSchedule,
-    handlePriceChange,
+    addInputSchedulePrivate,
   } = useAddSchedule();
 
   return (
@@ -67,50 +64,28 @@ export default function AddShare() {
               key={input.label}
             />
           ))}
-          <S.AddMemberPartitionForm>
-            <div>
-              <h4>구성원 할당하기</h4>
-              <p>* 설정하지 않으면 자신에게 모든 금액이 할당됩니다.</p>
-              <p>* 구성원을 할당하게 되면 알림 메시지가 전송됩니다.</p>
-            </div>
-            <div>
-              {members.map(member => (
-                <div key={member.id}>
-                  <S.Division>
-                    <S.Name>{member.username}</S.Name>
-                    <Input
-                      // @ts-ignore
-                      value={
-                        price.find(
-                          priceItem => priceItem.username === member.username,
-                        )?.value || ""
-                      }
-                      type="number"
-                      labelHidden
-                      size={12}
-                      onChange={event => {
-                        handlePriceChange(event, member.username, member.id);
-                      }}
-                    />
-                    원
-                  </S.Division>
-                </div>
-              ))}
-            </div>
-          </S.AddMemberPartitionForm>
           <S.AddButton
             iconName="plus"
             theme="basic"
-            onClick={addInputSchedule}
+            onClick={addInputSchedulePrivate}
           />
         </S.Background>
       </S.Form>
       <CurrentList
         scheduleList={scheduleList}
         removeSchedules={removeSchedules}
-        mutateSchedules={mutateSchedules}
-        bookId={bookId}
-        clearScheduleList={clearScheduleList}
+      />
+      <S.AddSceduleButton
+        title="금융 일정 추가하기"
+        theme="quaternary"
+        width="25rem"
+        onClick={() => {
+          mutateSchedules.mutate({
+            id: Number(bookId),
+            schedules: scheduleList,
+          });
+          clearScheduleList();
+        }}
       />
     </S.Container>
   );
