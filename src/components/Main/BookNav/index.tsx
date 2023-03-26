@@ -9,7 +9,7 @@ import {
   createModalAtom,
 } from "../../../stores/atoms/context";
 import allModalAtom from "../../../stores/selectors/context";
-import useBook from "../../../hooks/useBook";
+import useBook from "../../../hooks/book/useBook";
 
 interface BookNavProps {
   path: string;

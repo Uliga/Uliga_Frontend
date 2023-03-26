@@ -7,11 +7,13 @@ import {
   loadCategory,
   loadBookMember,
   loadMonthItems,
-} from "../api/book";
-import { IBookInfo, IBookList } from "../interfaces/book";
-import { IItem } from "../interfaces/item";
-import QUERYKEYS from "../constants/querykey";
-import toastMsg from "../components/Toast";
+  loadSchedule,
+  loadScheduleDetail,
+} from "../../api/book";
+import { IBookInfo, IBookList } from "../../interfaces/book";
+import { IItem } from "../../interfaces/item";
+import QUERYKEYS from "../../constants/querykey";
+import toastMsg from "../../components/Toast";
 
 export default function useBook() {
   const navigate = useNavigate();
@@ -70,6 +72,16 @@ export default function useBook() {
     const list = data?.categories;
     return list;
   };
+  const useSchedule = () => {
+    const { data } = useQuery([QUERYKEYS.LOAD_SCHEDULE], loadSchedule);
+    return data;
+  };
+
+  const useScheduleDetail = (id: number) => {
+    const queryFn = () => loadScheduleDetail(id);
+    const { data } = useQuery([QUERYKEYS.LOAD_SCHEDULE_DETAIL], queryFn);
+    return data;
+  };
 
   return {
     useSelectedBook,
@@ -79,5 +91,7 @@ export default function useBook() {
     useLoadMonthItems,
     loadBookMember,
     useCategoryList,
+    useSchedule,
+    useScheduleDetail,
   };
 }
