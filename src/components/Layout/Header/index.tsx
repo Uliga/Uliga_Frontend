@@ -5,10 +5,14 @@ import Logo from "../../../assets/logo";
 import COLORS from "../../../constants/color";
 import * as S from "./index.styles";
 import IconButton from "../../IconButton";
-import { invitationModalAtom } from "../../../stores/atoms/context";
+import {
+  invitationModalAtom,
+  scheduleModalAtom,
+} from "../../../stores/atoms/context";
 import allModalAtom from "../../../stores/selectors/context";
-import InvitationModal from "../../InvitationModal";
+import InvitationModal from "../InvitationModal";
 import PATH from "../../../constants/path";
+import ScheduleModal from "../ScheduleModal";
 
 export default function Header() {
   const { bookId } = useParams();
@@ -16,6 +20,9 @@ export default function Header() {
   const [invitationModalOpen, setInvitationModalOpen] =
     useRecoilState(invitationModalAtom);
   const [, setAllModalAtom] = useRecoilState(allModalAtom);
+  const [scheduleModalOpen, setScheduleModalOpen] =
+    useRecoilState(scheduleModalAtom);
+
   const utilList = [
     {
       id: 1,
@@ -26,6 +33,7 @@ export default function Header() {
       border: 0.01,
       onClick: () => {
         setAllModalAtom(false);
+        setScheduleModalOpen(!scheduleModalOpen);
       },
     },
     {
@@ -70,6 +78,7 @@ export default function Header() {
               border={util.border}
               onClick={util.onClick}
             />
+            {util.id === 1 && scheduleModalOpen && <ScheduleModal />}
             {util.id === 2 && invitationModalOpen && <InvitationModal />}
           </S.ModalWrapper>
         ))}

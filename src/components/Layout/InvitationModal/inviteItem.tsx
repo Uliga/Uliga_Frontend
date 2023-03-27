@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-import SubLogo from "../../assets/subLogo";
-import COLORS from "../../constants/color";
-import { InvitationProps } from "../../interfaces/user";
-import Button from "../Button";
-import useBook from "../../hooks/book/useBook";
+import SubLogo from "../../../assets/subLogo";
+import COLORS from "../../../constants/color";
+import { InvitationProps } from "../../../interfaces/user";
+import Button from "../../Button";
+import useBook from "../../../hooks/book/useBook";
 
 const Container = styled.div`
   display: flex;
@@ -77,7 +77,6 @@ export default function InviteItem({ item }: { item: InvitationProps }) {
               join: false,
               memberName: item.memberName,
               accountBookName: item.accountBookName,
-              createdTime: "2023-03-19T15:36:09.506042877",
             });
           }}
         />
@@ -90,7 +89,6 @@ export default function InviteItem({ item }: { item: InvitationProps }) {
               join: true,
               memberName: item.memberName,
               accountBookName: item.accountBookName,
-              createdTime: "2023-03-19T15:36:09.506042877",
             });
           }}
         />

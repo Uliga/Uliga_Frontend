@@ -1,12 +1,12 @@
 import styled from "styled-components";
 import React from "react";
 import { useQuery } from "@tanstack/react-query";
-import COLORS from "../../constants/color";
-import QUERYKEYS from "../../constants/querykey";
-import { loadMe } from "../../api/user";
-import LoadingBar from "../LoadingBar";
+import COLORS from "../../../constants/color";
+import QUERYKEYS from "../../../constants/querykey";
+import { loadMe } from "../../../api/user";
+import LoadingBar from "../../LoadingBar";
 import InviteItem from "./inviteItem";
-import { IUserInfo } from "../../interfaces/user";
+import { IUserInfo } from "../../../interfaces/user";
 import Nothing from "./nothing";
 
 const Wrapper = styled.div`
@@ -23,6 +23,16 @@ const Wrapper = styled.div`
   flex-direction: column;
   z-index: 999;
   padding-bottom: 2rem;
+  animation: fadeIn 0.25s ease-out forwards;
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
 `;
 
 const Tooltip = styled.div`
