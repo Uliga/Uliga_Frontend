@@ -3,7 +3,6 @@ import COLORS from "../../constants/color";
 import Badge from "../Badge";
 
 export const Container = styled.div`
-  position: absolute;
   top: 0;
   width: 27rem;
   height: 45rem;

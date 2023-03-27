@@ -33,7 +33,7 @@ export default function oneLine({
             onChange={(e: any) => handleChange(idx, e)}
           />
         ) : (
-          <div>
+          <div key={input.label}>
             <S.StyledInput
               key={input.label}
               size={input.size}

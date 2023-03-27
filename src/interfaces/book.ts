@@ -7,10 +7,6 @@ export interface IBookInfo {
   };
 }
 
-export interface IBookList {
-  accountBooks: BookInfoTypes[];
-}
-
 export interface BookInfoTypes {
   accountBookAuthority: "ADMIN" | "USER";
   accountBookId: number;
@@ -18,4 +14,18 @@ export interface BookInfoTypes {
   getNotification: boolean;
   isPrivate: boolean;
   relationShip: string;
+}
+
+export interface IBookList {
+  accountBooks: BookInfoTypes[];
+}
+
+export interface BookMemberProps {
+  id: number;
+  username: string;
+  accountBookAuthority: "ADMIN" | "USER";
+}
+
+export interface IStringIndex {
+  [label: string]: any;
 }

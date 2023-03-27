@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { Container, Income, Record, ColorWrapper } from "./index.styles";
 import "react-calendar/dist/Calendar.css";
-import useBook from "../../../hooks/useBook";
+import useBook from "../../../hooks/book/useBook";
 import getMoneyUnit from "../../../utils/money";
 import { bottomSheetAtom } from "../../../stores/atoms/context";
 

@@ -2,14 +2,23 @@ import React, { useEffect, useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 import { useRecoilState } from "recoil";
-import useInput from "./useInput";
-import getMoneyUnit from "../utils/money";
-import { bottomSheetAtom } from "../stores/atoms/context";
-import getDateUnit from "../utils/date";
-import { uploadIncome, uploadRecord } from "../api/book";
-import toastMsg from "../components/Toast";
-import QUERYKEYS from "../constants/querykey";
+import useInput from "../useInput";
+import getMoneyUnit from "../../utils/money";
+import { bottomSheetAtom } from "../../stores/atoms/context";
+import getDateUnit from "../../utils/date";
+import { uploadIncome, uploadRecord } from "../../api/book";
+import toastMsg from "../../components/Toast";
+import QUERYKEYS from "../../constants/querykey";
 import useBook from "./useBook";
+import { IStringIndex } from "../../interfaces/book";
+
+type InputTypes = {
+  title: string;
+  label: string;
+  options?: object[];
+  value?: boolean | number | string;
+  type?: string;
+};
 
 export default function useDayWrite() {
   const { bookId } = useParams();
@@ -19,7 +28,21 @@ export default function useDayWrite() {
     day: any;
   }>(bottomSheetAtom);
   const { day, open } = bottomSheetOpen;
+  const [value, onChangeValue] = useInput(null);
+  const [formattedValue, setFormattedValue] = useState("");
+  const [isIncome, setIsIncome] = useState(false);
+  const { useCategoryList } = useBook();
+  const list = useCategoryList(bookId ? +bookId : 0);
+  const [categoryOptions, setCategoryOptions] = useState<any>(undefined);
 
+  useEffect(() => {
+    if (list) {
+      const newList = [{ id: 0, value: undefined, label: "선택" }, ...list];
+      setCategoryOptions([...newList]);
+    } else {
+      setCategoryOptions([]);
+    }
+  }, [list]);
   const closeBottomSheet = () => {
     setBottomSheetOpen({
       ...bottomSheetOpen,
@@ -27,18 +50,6 @@ export default function useDayWrite() {
       day: new Date(),
     });
   };
-
-  type InputTypes = {
-    title: string;
-    label: string;
-    options?: object[];
-    value?: boolean | number | string;
-    type?: string;
-  };
-
-  const [value, onChangeValue] = useInput(null);
-  const [formattedValue, setFormattedValue] = useState("");
-  const [isIncome, setIsIncome] = useState(false);
 
   useEffect(() => {
     setFormattedValue(getMoneyUnit(+value));
@@ -66,14 +77,12 @@ export default function useDayWrite() {
       label: "수입",
     },
   ]);
-  const { useCategoryList } = useBook();
-  const list = useCategoryList(bookId ? +bookId : 0);
 
   const inputForm = [
     {
       title: "카테고리",
       label: "category",
-      options: list,
+      options: categoryOptions,
       value: undefined,
     },
     {
@@ -105,7 +114,8 @@ export default function useDayWrite() {
   const [inputList, setInputList] = useState<InputTypes[]>(inputForm);
   useEffect(() => {
     setInputList(inputForm);
-  }, [list]);
+  }, [list, categoryOptions]);
+
   const handleChange = (
     idx: number,
     e: React.ChangeEvent<HTMLInputElement>,
@@ -157,13 +167,9 @@ export default function useDayWrite() {
     },
   });
 
-  type BookProps = {
-    [label: string]: any;
-  };
-
   const onSubmit = () => {
     const date = getDateUnit(day);
-    const bookData: BookProps = {};
+    const bookData: IStringIndex = {};
     inputList.map(input => {
       const { label } = input;
       bookData[label] = input.value;
@@ -196,5 +202,6 @@ export default function useDayWrite() {
     onSubmit,
     handleChange,
     handleRadio,
+    bookId,
   };
 }

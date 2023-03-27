@@ -5,7 +5,7 @@ import Button from "../../Button";
 
 export const Container = styled.div`
   top: 0;
-  width: 27rem;
+  width: 24.5rem;
   height: 39rem;
   border: 0.1rem solid ${COLORS.GREY[200]};
   border-radius: 0.5rem;
@@ -80,5 +80,5 @@ export const EditButton = styled(Button)`
   position: absolute;
   bottom: 0;
   margin: 2rem;
-  width: 23rem;
+  width: 21rem;
 `;

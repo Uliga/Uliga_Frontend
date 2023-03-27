@@ -2,17 +2,16 @@ import React from "react";
 import * as S from "./index.styles";
 import COLORS from "../../../constants/color";
 import Button from "../../../components/Button";
-import { CheckPriceProps, ScheduleProps } from "../../../hooks/useSchedule";
+import getMoneyUnit from "../../../utils/money";
+import { ScheduleProps } from "../../../hooks/book/useAddSchedule";
 
 export default function CurrentList({
-  price,
   scheduleList,
   removeSchedules,
   mutateSchedules,
   bookId,
   clearScheduleList,
 }: {
-  price: CheckPriceProps[];
   scheduleList: any;
   removeSchedules: any;
   mutateSchedules: any;
@@ -24,20 +23,21 @@ export default function CurrentList({
       <h4>현재 추가된 목록</h4>
       <S.BankingAddListWrapper>
         {scheduleList.map((schedules: ScheduleProps) => (
-          <S.Box>
+          <S.Box key={schedules.name}>
             <S.StyledIcon iconName="wallet" color="#acb9df" size="3rem" />
             <S.BankingAddInfoWrapper key={schedules.name}>
               <h5>{schedules.name}</h5>
               <h6>
-                매달 {schedules.notificationDate}일 / {schedules.value}원 /
+                매달 {schedules.notificationDate}일 /{" "}
+                {getMoneyUnit(Number(schedules.value))}원 /
                 {schedules.isIncome ? <> 수입</> : <> 지출</>}
               </h6>
               <div>
-                {price.map((ass, index) => (
-                  <p key={ass.username}>
-                    {ass.username} {ass.value}
-                    {index !== price.length - 1 && " ･ "}
-                  </p>
+                {schedules.assignments.map((ass, index) => (
+                  <S.Users key={ass.username}>
+                    {ass.username} {getMoneyUnit(Number(ass.value))}
+                    {index !== schedules.assignments.length - 1 && ` / `}
+                  </S.Users>
                 ))}
               </div>
             </S.BankingAddInfoWrapper>
