@@ -15,8 +15,7 @@ export default function useLogin() {
     validator: (input: string) => REGEX.ID.test(input),
   });
   const [password, onChangePassword] = useInput("");
-  const [mes, setMe] = useRecoilState(meAtom);
-  console.log("mes", mes);
+  const [, setMe] = useRecoilState(meAtom);
   const mutateLogin = useMutation(["login"], authLogin, {
     onSuccess: ({ memberInfo, tokenInfo }) => {
       toastMsg("로그인 성공");
