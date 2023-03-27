@@ -16,6 +16,7 @@ export default function Header() {
   const [invitationModalOpen, setInvitationModalOpen] =
     useRecoilState(invitationModalAtom);
   const [, setAllModalAtom] = useRecoilState(allModalAtom);
+  console.log("새로운 가계부 초대 modal", invitationModalOpen);
   const utilList = [
     {
       id: 1,
