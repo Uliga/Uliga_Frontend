@@ -4,6 +4,7 @@ const PATH = {
   SIGNUP: "/signup",
   MAIN: "/main",
   WRITE: "/write",
+  BUDGET: "/budget",
   SCHEDULE: "/schedule",
 } as const;
 
