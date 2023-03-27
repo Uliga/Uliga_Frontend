@@ -12,6 +12,7 @@ import CapsuleBox from "../../components/Main/CapsuleBox";
 import Calendar from "../../components/Main/Calendar";
 import BottomSheet from "../../components/BottomSheet";
 import MainScheduleList from "../../components/Main/Schedule";
+import meAtom from "../../stores/atoms/user";
 
 const WriteButton = styled(Button)`
   font-size: 1.4rem;
@@ -38,7 +39,8 @@ export default function Main() {
   const navigate = useNavigate();
   const { bookId } = useParams();
   const [createModalOpen, setCreateModalOpen] = useRecoilState(createModalAtom);
-
+  const [me] = useRecoilState(meAtom);
+  console.log(me, 1);
   return (
     <Container>
       {createModalOpen && (

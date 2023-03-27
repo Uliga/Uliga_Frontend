@@ -15,6 +15,11 @@ export const invitationModalAtom = atom<boolean>({
   default: false,
 });
 
+export const scheduleModalAtom = atom<boolean>({
+  key: "scheduleModalAtom",
+  default: false,
+});
+
 export const bottomSheetAtom = atom({
   key: "bottomSheetAtom",
   default: {
