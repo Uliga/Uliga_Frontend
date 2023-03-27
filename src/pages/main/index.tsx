@@ -50,7 +50,7 @@ export default function Main() {
           <Create />
         </Modal>
       )}
-      <BookNav path={`${PATH.MAIN}`} />
+      <BookNav path={PATH.MAIN} />
       <WriteButton
         theme="primary"
         title="가계부 작성하기"
