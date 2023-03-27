@@ -27,7 +27,7 @@ export default function MainScheduleList() {
           <S.ScheduleWrapper key={schedule.name}>
             <S.StyledBadge
               size={1.15}
-              title={`${schedule.notificationDay.toString()}일`}
+              title={`${schedule.notificationDay}일`}
               color="white"
               bgColor={
                 // eslint-disable-next-line no-nested-ternary
