@@ -2,8 +2,9 @@ import styled from "styled-components";
 import React from "react";
 import { useParams } from "react-router-dom";
 import COLORS from "../../../../constants/color";
-import { IBookList } from "../../../../interfaces/book";
+import { BookInfoTypes } from "../../../../interfaces/book";
 import * as S from "../index.styles";
+import useBook from "../../../../hooks/book/useBook";
 
 const Wrapper = styled.div`
   background-color: white;
@@ -50,8 +51,15 @@ const Button = styled.button`
   background-color: transparent;
   text-decoration: underline;
 `;
-export default function BottomModal({ accountBooks }: IBookList) {
+export default function BottomModal({
+  accountBooks,
+  path,
+}: {
+  accountBooks: BookInfoTypes[];
+  path: string;
+}) {
   const { bookId } = useParams();
+  const { useReplaceBook } = useBook();
   return (
     <Wrapper>
       <Title> 소유중인 가계부</Title>
@@ -65,12 +73,18 @@ export default function BottomModal({ accountBooks }: IBookList) {
               iconName="checkFill"
               theme="tertiary"
               color={COLORS.BLUE}
+              onClick={() => {
+                useReplaceBook(path, book.accountBookId);
+              }}
             />
           ) : (
             <S.UnCheckedButton
               key={book.accountBookId}
               title={book.accountBookName}
               theme="basic"
+              onClick={() => {
+                useReplaceBook(path, book.accountBookId);
+              }}
             />
           ),
         )}

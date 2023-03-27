@@ -85,7 +85,9 @@ export default function BookNav({ path }: BookNavProps) {
             setCreateModalOpen(true);
           }}
         />
-        {bottomModalOpen && <BottomModal accountBooks={data.accountBooks} />}
+        {bottomModalOpen && (
+          <BottomModal path={path} accountBooks={data.accountBooks} />
+        )}
       </S.Nav>
     </S.Container>
   );
