@@ -41,26 +41,19 @@ export default function useBudget() {
   if (!lastMonthData) {
     return null;
   }
-  const setDefaultValue = (
-    obj: { [x: string]: { value: any } },
-    prop: string,
-    value: number,
-  ) => {
-    if (obj[prop] == null) {
-      // eslint-disable-next-line no-param-reassign
-      obj[prop] = { value };
-    }
-    return obj;
-  };
 
-  const DEFAULT_VALUE = 0;
-  // eslint-disable-next-line no-restricted-syntax
-  for (const data of [thisMonthData, lastMonthData]) {
-    setDefaultValue(data, "budget", DEFAULT_VALUE);
-    setDefaultValue(data, "record", DEFAULT_VALUE);
-    setDefaultValue(data, "income", DEFAULT_VALUE);
+  if (!thisMonthData.budget) {
+    thisMonthData.budget = { value: 0 };
   }
-
+  if (thisMonthData.record == null) {
+    thisMonthData.record = { value: 0 };
+  }
+  if (lastMonthData.budget == null) {
+    lastMonthData.budget = { value: 0 };
+  }
+  if (lastMonthData.record == null) {
+    lastMonthData.record = { value: 0 };
+  }
   const thisRemainData =
     thisMonthData.budget.value - thisMonthData.record.value;
   const thisDataGage = (thisRemainData / thisMonthData.budget.value) * 100;
