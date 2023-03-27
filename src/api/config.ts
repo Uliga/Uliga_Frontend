@@ -17,6 +17,7 @@ const UPLOAD_RECORD = "accountBook/record";
 const INVITATION = "/invitation";
 const ITEM = "item";
 const SCHEDULE = "/schedule";
+const NOTIFICATION = "/notification";
 
 const API = {
   BASE_URL: `${BASE_URL}`,
@@ -39,5 +40,6 @@ const API = {
   INVITATION_REPLY: `${ACCOUNT_BOOK}${INVITATION}/reply`,
   SCHEDULE: `${SCHEDULE}`,
   ADD_SCHEDULE: `${ACCOUNT_BOOK}${SCHEDULE}`,
+  DELETE_ALARM: `${MEMBER}${NOTIFICATION}`,
 };
 export default API;
