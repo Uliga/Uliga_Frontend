@@ -20,6 +20,7 @@ export default function BookNav({ path }: BookNavProps) {
   const { data } = useBookList();
 
   const [bottomModalOpen, setBottomModalOpen] = useRecoilState(bottomModalAtom);
+  console.log("소유중인가계부ModalOpen", bottomModalOpen);
   const [createModalOpen, setCreateModalOpen] = useRecoilState(createModalAtom);
   const [, setAllModalAtom] = useRecoilState(allModalAtom);
   const { useReplaceBook } = useBook();

@@ -1,10 +1,12 @@
 import styled from "styled-components";
 import COLORS from "../../../constants/color";
 import Button from "../../../components/Button";
+import Dialog from "../../../components/Dialog";
 
 export const Container = styled.div`
   display: flex;
   width: 85rem;
+  position: relative;
   border-top: 0.1rem solid ${COLORS.GREY[200]};
 
   p {
@@ -204,3 +206,5 @@ export const EditButton = styled(Button)`
   right: 4rem;
   width: 21rem;
 `;
+
+export const DeleteDialog = styled(Dialog)``;

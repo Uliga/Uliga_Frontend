@@ -35,8 +35,8 @@ export const cancellable = () => {
       size={37}
       title="윤채현님의 가계부 삭제"
       description="정말 윤채현님의 가계부를 삭제하시겠어요?"
-      visible
       cancellable
+      visible
     />
   );
 };

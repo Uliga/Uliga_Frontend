@@ -12,6 +12,7 @@ import CapsuleBox from "../../components/Main/CapsuleBox";
 import Calendar from "../../components/Main/Calendar";
 import BottomSheet from "../../components/BottomSheet";
 import MainScheduleList from "../../components/Main/Schedule";
+import meAtom from "../../stores/atoms/user";
 
 const WriteButton = styled(Button)`
   font-size: 1.4rem;
@@ -38,7 +39,8 @@ export default function Main() {
   const navigate = useNavigate();
   const { bookId } = useParams();
   const [createModalOpen, setCreateModalOpen] = useRecoilState(createModalAtom);
-
+  console.log("공유가계부 생성 createModalOpen", createModalOpen);
+  console.log("me", meAtom);
   return (
     <Container>
       {createModalOpen && (

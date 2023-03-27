@@ -30,7 +30,9 @@ const DarkLayer = styled.div`
   width: 100%;
   height: 100%;
   z-index: 10;
-  background: rgba(0, 0, 0, 0);
+  background: white;
+  opacity: 0.5;
+  //backdrop-filter: blur(1px);
 `;
 
 const WhiteBoxWrapper = styled.div`
@@ -38,6 +40,8 @@ const WhiteBoxWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  right: 0;
+  top: 0;
   width: 100%;
   height: 100%;
   z-index: 15;
@@ -94,11 +98,11 @@ const StyledCancelButton = styled(Button)`
 
 function Dialog({
   size = 45,
-  visible = true,
+  visible = false,
   title,
   description,
   hideButtons = false,
-  cancellable = true,
+  cancellable = false,
   children,
   onCancel,
   onConfirm,
