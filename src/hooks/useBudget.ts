@@ -61,15 +61,14 @@ export default function useBudget() {
     setDefaultValue(data, "income", DEFAULT_VALUE);
   }
 
-  console.log("dddd", thisMonthData.budget);
-
   const thisRemainData =
     thisMonthData.budget.value - thisMonthData.record.value;
-  const oneDayBudget = Math.trunc(thisRemainData / lastDate);
   const thisDataGage = (thisRemainData / thisMonthData.budget.value) * 100;
   const lastRemainData =
     lastMonthData.budget.value - lastMonthData.record.value;
   const lastDataGage = (lastRemainData / lastMonthData.budget.value) * 100;
+  const oneDayBudget = Math.trunc(thisRemainData / lastDate);
+
   return {
     thisRemainData,
     thisDataGage,

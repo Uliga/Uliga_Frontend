@@ -10,7 +10,7 @@ import useBudget from "../../hooks/useBudget";
 export default function Budget() {
   const budget = useBudget();
   if (!budget) {
-    return null; // 예를 들어, 로딩 중일 때는 null을 반환하도록 처리해줄 수 있습니다.
+    return null;
   }
   const {
     thisRemainData,
