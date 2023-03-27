@@ -21,6 +21,10 @@ export default function useLogin() {
       toastMsg("로그인 성공");
       setMe(memberInfo);
       localStorage.setItem("accessToken", tokenInfo.accessToken);
+      localStorage.setItem(
+        "privateAccountBookId",
+        memberInfo.privateAccountBookId,
+      );
       navigate(`${PATH.MAIN}/${memberInfo.privateAccountBookId}`);
     },
     onError: ({

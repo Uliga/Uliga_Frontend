@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import { HouseHoldStyledButton, TopWrapper } from "./index.styles";
-import useBook from "../../hooks/useBook";
+import useBook from "../../hooks/book/useBook";
 
 export default function BookInfo() {
   const { bookId } = useParams();

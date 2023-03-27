@@ -1,16 +1,13 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Input from "../../../components/Input";
-import useScheduleForm from "../../../hooks/useScheduleForm";
+import useAddSchedule from "../../../hooks/book/useAddSchedule";
 import CurrentList from "./currentList";
 import * as S from "./index.styles";
-import { CheckPriceProps, MemberProps } from "../../../hooks/useSchedule";
 
-export default function AddScheduleForm() {
+export default function AddShare() {
   const {
     notificationDate,
     onChangetNotificationDate,
-    setPrice,
-    setAssignments,
     radioList,
     inputList,
     members,
@@ -22,22 +19,7 @@ export default function AddScheduleForm() {
     scheduleList,
     addInputSchedule,
     handlePriceChange,
-  } = useScheduleForm();
-
-  useEffect(() => {
-    const initialPrice = members.map(member => ({
-      username: member.username,
-      value: 0,
-    }));
-
-    const initialInfo = members.map(member => ({
-      username: member.username,
-      id: member.id,
-      value: 0,
-    }));
-    setPrice(initialPrice);
-    setAssignments(initialInfo);
-  }, [members]);
+  } = useAddSchedule();
 
   return (
     <S.Container>
@@ -82,6 +64,7 @@ export default function AddScheduleForm() {
               size={input.size}
               type={input.type}
               message={input.message}
+              key={input.label}
             />
           ))}
           <S.AddMemberPartitionForm>
@@ -91,7 +74,7 @@ export default function AddScheduleForm() {
               <p>* 구성원을 할당하게 되면 알림 메시지가 전송됩니다.</p>
             </div>
             <div>
-              {members.map((member: MemberProps) => (
+              {members.map(member => (
                 <div key={member.id}>
                   <S.Division>
                     <S.Name>{member.username}</S.Name>
@@ -99,9 +82,8 @@ export default function AddScheduleForm() {
                       // @ts-ignore
                       value={
                         price.find(
-                          (priceItem: CheckPriceProps) =>
-                            priceItem.username === member.username,
-                        )?.value
+                          priceItem => priceItem.username === member.username,
+                        )?.value || ""
                       }
                       type="number"
                       labelHidden
@@ -124,7 +106,6 @@ export default function AddScheduleForm() {
         </S.Background>
       </S.Form>
       <CurrentList
-        price={price}
         scheduleList={scheduleList}
         removeSchedules={removeSchedules}
         mutateSchedules={mutateSchedules}

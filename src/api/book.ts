@@ -63,7 +63,14 @@ export const addSchedule = async (scheduleData: object) => {
   return data;
 };
 export const loadSchedule = async () => {
-  const { data } = await authorizationClient.get(`${API.SCHEDULE}`);
+  const { data } = await authorizationClient.get(API.SCHEDULE);
+  return data;
+};
+
+export const loadScheduleDetail = async (id: number) => {
+  const { data } = await authorizationClient.get(
+    `${API.ACCOUNT_BOOK}/${id}${API.SCHEDULE}`,
+  );
   return data;
 };
 
@@ -71,5 +78,10 @@ export const loadCategory = async (id: number) => {
   const { data } = await authorizationClient.get(
     `${API.ACCOUNT_BOOK}/${id}/category`,
   );
+  return data;
+};
+
+export const updateSchedule = async (schedule: object) => {
+  const { data } = await authorizationClient.patch(API.SCHEDULE, schedule);
   return data;
 };

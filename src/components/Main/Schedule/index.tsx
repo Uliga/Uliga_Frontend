@@ -2,8 +2,8 @@ import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import COLORS from "../../../constants/color";
 import * as S from "./index.styles";
-import useSchedule from "../../../hooks/useSchedule";
 import PATH from "../../../constants/path";
+import useBook from "../../../hooks/book/useBook";
 
 interface ScheduleProps {
   name: string;
@@ -12,16 +12,16 @@ interface ScheduleProps {
   isIncome: boolean;
 }
 
-export default function ScheduleList() {
-  const { getSchedules } = useSchedule();
-  const navigate = useNavigate();
-  const { data } = getSchedules();
-  if (!data) return null;
+export default function MainScheduleList() {
   const { bookId } = useParams();
+  const { useSchedule } = useBook();
+  const navigate = useNavigate();
+  const data = useSchedule();
+  if (!data) return null;
 
   return (
     <S.Container>
-      <h5>다가오는 금융 일정</h5>
+      <h5>다가오는 금융 일정 📆</h5>
       <S.Wrapper>
         {data.schedules.map((schedule: ScheduleProps) => (
           <S.ScheduleWrapper key={schedule.name}>
@@ -49,7 +49,6 @@ export default function ScheduleList() {
       </S.Wrapper>
       <S.EditButton
         title="금융 일정 수정하기"
-        width="100%"
         theme="quaternary"
         onClick={() => navigate(`${PATH.SCHEDULE}/${bookId}`)}
       />

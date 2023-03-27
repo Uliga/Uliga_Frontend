@@ -11,7 +11,7 @@ import { createModalAtom } from "../../stores/atoms/context";
 import CapsuleBox from "../../components/Main/CapsuleBox";
 import Calendar from "../../components/Main/Calendar";
 import BottomSheet from "../../components/BottomSheet";
-import Schedule from "../../components/Main/Schedule";
+import MainScheduleList from "../../components/Main/Schedule";
 
 const WriteButton = styled(Button)`
   font-size: 1.4rem;
@@ -61,7 +61,7 @@ export default function Main() {
       <CapsuleBox />
       <Bottom>
         <Calendar />
-        <Schedule />
+        <MainScheduleList />
       </Bottom>
       <BottomSheet />
     </Container>

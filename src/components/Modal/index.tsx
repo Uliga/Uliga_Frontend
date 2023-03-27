@@ -3,6 +3,11 @@ import styled from "styled-components";
 import COLORS from "../../constants/color";
 import IconButton from "../IconButton";
 
+interface ModalProps {
+  children: React.ReactNode;
+  closeModal: () => void;
+}
+
 const ModalBackground = styled.div`
   position: fixed;
   width: 100vw;
@@ -33,10 +38,6 @@ const Button = styled(IconButton)`
   top: 2rem;
 `;
 
-interface ModalProps {
-  children: React.ReactNode;
-  closeModal: () => void;
-}
 export default function Modal({ children, closeModal }: ModalProps) {
   return (
     <ModalBackground onClick={closeModal}>
