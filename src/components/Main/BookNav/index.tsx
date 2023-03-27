@@ -77,14 +77,16 @@ export default function BookNav({ path }: BookNavProps) {
             setBottomModalOpen(!bottomModalOpen);
           }}
         />
-        <S.ETCButton
-          iconName="plus"
-          theme={createModalOpen ? "tertiary" : "basic"}
-          onClick={() => {
-            setAllModalAtom(false);
-            setCreateModalOpen(true);
-          }}
-        />
+        {path.includes("main") && (
+          <S.ETCButton
+            iconName="plus"
+            theme={createModalOpen ? "tertiary" : "basic"}
+            onClick={() => {
+              setAllModalAtom(false);
+              setCreateModalOpen(true);
+            }}
+          />
+        )}
         {bottomModalOpen && (
           <BottomModal path={path} accountBooks={data.accountBooks} />
         )}
