@@ -1,13 +1,15 @@
 import styled from "styled-components";
 import React from "react";
 import { useQuery } from "@tanstack/react-query";
-import COLORS from "../../constants/color";
-import QUERYKEYS from "../../constants/querykey";
-import { loadMe } from "../../api/user";
-import LoadingBar from "../LoadingBar";
-import InviteItem from "./inviteItem";
-import { IUserInfo } from "../../interfaces/user";
+import COLORS from "../../../constants/color";
+import QUERYKEYS from "../../../constants/querykey";
+import { loadMe } from "../../../api/user";
+import LoadingBar from "../../LoadingBar";
+import ScheduleItem from "./scheduleItem";
+import { IUserInfo } from "../../../interfaces/user";
 import Nothing from "./nothing";
+import Button from "../../Button";
+import useBook from "../../../hooks/book/useBook";
 
 const Wrapper = styled.div`
   background-color: white;
@@ -19,10 +21,20 @@ const Wrapper = styled.div`
   top: 4.6rem;
   right: 0.5rem;
   width: 38rem;
-  height: 40rem;
+  height: 50rem;
   flex-direction: column;
   z-index: 999;
   padding-bottom: 2rem;
+  animation: fadeIn 0.25s ease-out forwards;
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
 `;
 
 const Tooltip = styled.div`
@@ -59,18 +71,24 @@ const Modal = styled.div`
   flex-direction: column;
   gap: 1.5rem;
   width: 38rem;
-  height: 35rem;
+  height: 45rem;
   overflow: scroll;
   overflow-x: hidden;
   z-index: 999;
 `;
 
-export default function MessageModal() {
+const DeleteButton = styled(Button)`
+  position: absolute;
+  top: 0.7rem;
+  right: 1rem;
+`;
+
+export default function ScheduleModal() {
   const { isLoading, data } = useQuery<IUserInfo | undefined>(
     [QUERYKEYS.LOAD_ME],
     loadMe,
   );
-
+  const { mutateDeleteAlarm } = useBook();
   if (isLoading || !data)
     return (
       <Wrapper>
@@ -82,12 +100,17 @@ export default function MessageModal() {
     <Wrapper>
       <Tooltip />
       <Title>
-        새로운 가계부 초대 <span>{data.invitations.length}개</span>
+        새로운 금융 일정 알림<span>{data.notifications.length}개</span>
+        <DeleteButton
+          title="알림 전체 삭제"
+          theme="unfocus"
+          onClick={() => mutateDeleteAlarm.mutate()}
+        />
       </Title>
       <Modal>
-        {data.invitations.length === 0 && <Nothing />}
-        {data.invitations.map(item => (
-          <InviteItem key={item.id} item={item} />
+        {data.notifications.length === 0 && <Nothing />}
+        {data.notifications.map(item => (
+          <ScheduleItem key={item.scheduleName} item={item} />
         ))}
       </Modal>
     </Wrapper>

@@ -9,6 +9,7 @@ import {
   loadMonthItems,
   loadSchedule,
   loadScheduleDetail,
+  deleteSchedleAlarm,
 } from "../../api/book";
 import { IBookInfo, IBookList } from "../../interfaces/book";
 import { IItem } from "../../interfaces/item";
@@ -56,6 +57,23 @@ export default function useBook() {
     },
   });
 
+  const mutateDeleteAlarm = useMutation(
+    ["deleteScheduleAlarm"],
+    deleteSchedleAlarm,
+    {
+      onSuccess: () => {
+        toastMsg("삭제 완료!");
+        queryClient.invalidateQueries([QUERYKEYS.LOAD_ME]);
+      },
+      onError: ({
+        response: {
+          data: { errorCode, message },
+        },
+      }) => {
+        toastMsg(`${errorCode} / ${message}`);
+      },
+    },
+  );
   const useLoadMonthItems = (id: number, year: number, month: number) => {
     const date = `${year}/${month}`;
     const queryFn = () => loadMonthItems(id, date);
@@ -93,5 +111,6 @@ export default function useBook() {
     useCategoryList,
     useSchedule,
     useScheduleDetail,
+    mutateDeleteAlarm,
   };
 }
