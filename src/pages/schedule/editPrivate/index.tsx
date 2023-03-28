@@ -76,7 +76,6 @@ export default function EditPrivate() {
               onClick={() => {
                 setScheduleID(schedule.info.id);
                 setScheduleName(schedule.info.name);
-                console.log("스케쥴이름", schedule.info.name);
                 setAllModalAtom(false);
                 setCreateDialogOpen(true);
               }}
