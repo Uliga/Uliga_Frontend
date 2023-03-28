@@ -1,81 +1,50 @@
-import React, { useState } from "react";
-import { useRecoilState } from "recoil";
+import React from "react";
 import { useParams } from "react-router-dom";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+// import { text } from "@storybook/addon-knobs";
 import * as S from "./index.styles";
 import getMoneyUnit from "../../../utils/money";
 import { IScheduleDetail } from "../../../interfaces/schedule";
 import useEditSchedule from "../../../hooks/book/useEditSchedule";
 import EditShareForm from "./form";
-import { deleteScheduleDialogAtom } from "../../../stores/atoms/context";
-import allModalAtom from "../../../stores/selectors/context";
 import useBook from "../../../hooks/book/useBook";
-import { deleteSchedule } from "../../../api/book";
-import toastMsg from "../../../components/Toast";
-import QUERYKEYS from "../../../constants/querykey";
+import Dialog from "../../../components/Dialog";
 
 export default function EditPrivate() {
-  const { data, curId, setCurId, curSchedule } = useEditSchedule();
-  const [scheduleID, setScheduleID] = useState(0);
+  const {
+    data,
+    curId,
+    setCurId,
+    curSchedule,
+    mutateDeleteSchedule,
+    scheduleID,
+    setScheduleID,
+    createDialogOpen,
+    setCreateDialogOpen,
+    setAllModalAtom,
+    setScheduleName,
+    scheduleName,
+  } = useEditSchedule();
   const { bookId } = useParams();
-  const { useSchedule } = useBook();
   const { useSelectedBook } = useBook();
   const { data: bookData } = useSelectedBook(bookId);
-  const scheduleData = useSchedule();
-  const [createDialogOpen, setCreateDialogOpen] = useRecoilState(
-    deleteScheduleDialogAtom,
-  );
-  console.log("금융일정 아이디 찾기", scheduleData.schedules);
-  const [, setAllModalAtom] = useRecoilState(allModalAtom);
-  console.log("넘겨줄 값", scheduleID);
-  // const DeleteSchedule = async () => {
-  //   try {
-  //     await deleteSchedule({
-  //       data: {
-  //         id: scheduleID,
-  //       },
-  //     });
-  //     toastMsg("선택하신 금융 일정이 삭제되었습니다.");
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
-  // const [a, setA] = useState({});
-  const queryClient = useQueryClient();
-  const mutateDeleteSchedule = useMutation(["deleteSchedule"], deleteSchedule, {
-    onSuccess: () => {
-      toastMsg("선택하신 금융 일정이 삭제되었습니다.");
-      queryClient.invalidateQueries([QUERYKEYS.LOAD_SCHEDULE]);
-      queryClient.invalidateQueries([QUERYKEYS.LOAD_SCHEDULE_DETAIL]);
-    },
-    onError: ({
-      response: {
-        data: { errorCode, message },
-      },
-    }) => {
-      toastMsg(`${errorCode} / ${message}`);
-    },
-  });
   if (!data) return null;
 
   return (
     <S.Container>
       {createDialogOpen && (
-        <S.DeleteDialog
+        <Dialog
           size={37}
           title={bookData?.info.accountBookName}
-          description={`정말 ${bookData?.info.accountBookName}를 삭제하시겠어요?`}
+          description={`정말 ${
+            scheduleName.length <= 10 ? scheduleName : `${scheduleName}\n`
+          }  금융일정을 삭제하시겠어요?`}
           visible
           cancellable
           onCancel={() => {
             setCreateDialogOpen(false);
           }}
           onConfirm={() => {
-            mutateDeleteSchedule.mutate({
-              data: {
-                id: scheduleID,
-              },
-            });
+            mutateDeleteSchedule.mutate(scheduleID);
             setCreateDialogOpen(false);
           }}
         />
@@ -106,6 +75,8 @@ export default function EditPrivate() {
             <S.DeleteButton
               onClick={() => {
                 setScheduleID(schedule.info.id);
+                setScheduleName(schedule.info.name);
+                console.log("스케쥴이름", schedule.info.name);
                 setAllModalAtom(false);
                 setCreateDialogOpen(true);
               }}

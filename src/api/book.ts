@@ -86,7 +86,6 @@ export const updateSchedule = async (schedule: object) => {
   return data;
 };
 
-export const deleteSchedule = async (schedule: object) => {
-  console.log("sch", schedule);
-  await authorizationClient.delete(API.SCHEDULE, schedule);
+export const deleteSchedule = async (id: number) => {
+  await authorizationClient.delete(`${API.SCHEDULE}/${id}`);
 };

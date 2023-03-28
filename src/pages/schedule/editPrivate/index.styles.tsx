@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import COLORS from "../../../constants/color";
 import Button from "../../../components/Button";
-import Dialog from "../../../components/Dialog";
 
 export const Container = styled.div`
   display: flex;
@@ -207,4 +206,6 @@ export const EditButton = styled(Button)`
   width: 21rem;
 `;
 
-export const DeleteDialog = styled(Dialog)``;
+export const BoldText = styled.h4`
+  font-weight: bold;
+`;
