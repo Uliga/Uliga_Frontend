@@ -71,7 +71,7 @@ const Modal = styled.div`
   flex-direction: column;
   gap: 1.5rem;
   width: 38rem;
-  height: 35rem;
+  height: 45rem;
   overflow: scroll;
   overflow-x: hidden;
   z-index: 999;
