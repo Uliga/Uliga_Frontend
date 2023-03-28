@@ -5,6 +5,7 @@ import Button from "../../../components/Button";
 export const Container = styled.div`
   display: flex;
   width: 85rem;
+  position: relative;
   border-top: 0.1rem solid ${COLORS.GREY[200]};
 
   p {
@@ -203,4 +204,8 @@ export const EditButton = styled(Button)`
   bottom: 1.4rem;
   right: 4rem;
   width: 21rem;
+`;
+
+export const BoldText = styled.h4`
+  font-weight: bold;
 `;

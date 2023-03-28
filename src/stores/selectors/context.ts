@@ -2,6 +2,7 @@ import { selector } from "recoil";
 import {
   bottomModalAtom,
   createModalAtom,
+  deleteScheduleDialogAtom,
   invitationModalAtom,
   scheduleModalAtom,
 } from "../atoms/context";
@@ -19,6 +20,7 @@ const allModalAtom = selector<boolean>({
     set(createModalAtom, newValue);
     set(bottomModalAtom, newValue);
     set(invitationModalAtom, newValue);
+    set(deleteScheduleDialogAtom, newValue);
     set(scheduleModalAtom, newValue);
   },
 });
