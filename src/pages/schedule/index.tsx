@@ -18,7 +18,6 @@ export default function Schedule() {
   const privateBook = localStorage.getItem("privateAccountBookId");
 
   if (!data) return null;
-  console.log(data);
   const buttonList = [
     {
       isAdd: true,
