@@ -19,8 +19,17 @@ export interface InvitationProps {
   id: number;
   memberName: string;
 }
+
+export interface NotificationProps {
+  creatorName: string;
+  day: number;
+  scheduleName: string;
+  value: number;
+}
+
 export interface IUserInfo {
   invitations: InvitationProps[];
+  notifications: NotificationProps[];
   memberInfo: {
     avatarUrl: string;
     email: string;

@@ -4,6 +4,7 @@ import {
   createModalAtom,
   deleteScheduleDialogAtom,
   invitationModalAtom,
+  scheduleModalAtom,
 } from "../atoms/context";
 
 const allModalAtom = selector<boolean>({
@@ -12,13 +13,15 @@ const allModalAtom = selector<boolean>({
     const createModal = get(createModalAtom);
     const bottomModal = get(bottomModalAtom);
     const invitationModal = get(invitationModalAtom);
-    return createModal || bottomModal || invitationModal;
+    const scheduleModal = get(scheduleModalAtom);
+    return createModal || bottomModal || invitationModal || scheduleModal;
   },
   set: ({ set }, newValue) => {
     set(createModalAtom, newValue);
     set(bottomModalAtom, newValue);
     set(invitationModalAtom, newValue);
     set(deleteScheduleDialogAtom, newValue);
+    set(scheduleModalAtom, newValue);
   },
 });
 

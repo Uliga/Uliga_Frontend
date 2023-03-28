@@ -10,8 +10,8 @@ import Signup from "./pages/signup";
 import StyledContainer from "./components/Toast/container";
 import LadingPage from "./pages/landing";
 import Write from "./pages/write";
-import Budget from "./pages/budget";
 import Schedule from "./pages/schedule";
+import Budget from "./pages/budget";
 
 const queryClient = new QueryClient({
   defaultOptions: {

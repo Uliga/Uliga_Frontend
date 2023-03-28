@@ -1,14 +1,14 @@
 import React from "react";
 import styled from "styled-components";
-import Empty from "../../assets/empty";
-import COLORS from "../../constants/color";
+import COLORS from "../../../constants/color";
+import Money from "../../../assets/money";
 
 const Container = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
   justify-content: center;
-  gap: 2rem;
+  gap: 1.8rem;
   align-items: center;
   flex-direction: column;
   text-align: center;
@@ -19,8 +19,8 @@ const Container = styled.div`
 export default function Nothing() {
   return (
     <Container>
-      <Empty />
-      새로운 초대가 없습니다.
+      <Money />
+      새로운 알림이 없습니다.
       <br />
       초대가 오면 저희가 알려드릴게요!
     </Container>
