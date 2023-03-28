@@ -29,8 +29,9 @@ const DarkLayer = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 10;
-  background: rgba(0, 0, 0, 0);
+  z-index: 999;
+  background-color: rgba(0, 0, 0, 0.75);
+  //backdrop-filter: blur(1px);
 `;
 
 const WhiteBoxWrapper = styled.div`
@@ -38,9 +39,11 @@ const WhiteBoxWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  right: 0;
+  top: 0;
   width: 100%;
   height: 100%;
-  z-index: 15;
+  z-index: 1000;
 `;
 
 const ButtonWrapper = styled.div`
@@ -80,6 +83,7 @@ const WhiteBox = styled.div<{
     margin-bottom: 6.5rem;
     color: ${COLORS.GREY[400]};
     white-space: pre-line;
+    width: 31rem;
   }
 `;
 const StyledConfirmButton = styled(Button)`
@@ -94,11 +98,11 @@ const StyledCancelButton = styled(Button)`
 
 function Dialog({
   size = 45,
-  visible = true,
+  visible = false,
   title,
   description,
   hideButtons = false,
-  cancellable = true,
+  cancellable = false,
   children,
   onCancel,
   onConfirm,

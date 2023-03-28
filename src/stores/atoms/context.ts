@@ -27,3 +27,8 @@ export const bottomSheetAtom = atom({
     day: new Date(),
   },
 });
+
+export const deleteScheduleDialogAtom = atom<boolean>({
+  key: "deleteScheduleDialogAtom",
+  default: false,
+});
