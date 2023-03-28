@@ -31,7 +31,6 @@ const DarkLayer = styled.div`
   height: 100%;
   z-index: 999;
   background-color: rgba(0, 0, 0, 0.75);
-  //backdrop-filter: blur(1px);
 `;
 
 const WhiteBoxWrapper = styled.div`
