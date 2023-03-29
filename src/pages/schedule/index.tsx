@@ -4,13 +4,14 @@ import BookNav from "../../components/Main/BookNav";
 import PATH from "../../constants/path";
 import * as S from "./index.styles";
 import AddShare from "./addShare";
-import { useSchedule } from "../../hooks/book/useBook";
+import useBook from "../../hooks/book/useBook";
 import ScheduleList from "../../components/ScheduleList";
 import AddPrivate from "./addPrivate";
 import EditShare from "./editShare";
 import EditPrivate from "./editPrivate";
 
 export default function Schedule() {
+  const { useSchedule } = useBook();
   const data = useSchedule();
   const [isAddTab, setTab] = useState(true);
   const { bookId } = useParams();

@@ -5,7 +5,7 @@ import getMoneyUnit from "../../../utils/money";
 import { IScheduleDetail } from "../../../interfaces/schedule";
 import useEditSchedule from "../../../hooks/book/useEditSchedule";
 import EditShareForm from "./form";
-import { useSelectedBook } from "../../../hooks/book/useBook";
+import useBook from "../../../hooks/book/useBook";
 import Dialog from "../../../components/Dialog";
 
 export default function EditShare() {
@@ -22,6 +22,7 @@ export default function EditShare() {
     selectedSchedule,
   } = useEditSchedule();
   const { bookId } = useParams();
+  const { useSelectedBook } = useBook();
   const { data: bookData } = useSelectedBook(bookId);
   if (!data) return null;
 

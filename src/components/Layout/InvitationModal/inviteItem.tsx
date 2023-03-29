@@ -1,13 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
 import SubLogo from "../../../assets/subLogo";
 import COLORS from "../../../constants/color";
 import { InvitationProps } from "../../../interfaces/user";
 import Button from "../../Button";
-import { answerInvitation } from "../../../api/book";
-import toastMsg from "../../Toast";
-import QUERYKEYS from "../../../constants/querykey";
+import useBook from "../../../hooks/book/useBook";
 
 const Container = styled.div`
   display: flex;
@@ -61,21 +58,7 @@ const RefuseButton = styled(Button)`
 `;
 
 export default function InviteItem({ item }: { item: InvitationProps }) {
-  const queryClient = useQueryClient();
-
-  const mutateInvitation = useMutation(["answerInvitation"], answerInvitation, {
-    onSuccess: data => {
-      toastMsg(data.join ? "초대 수락 성공" : "초대 거절 성공");
-      queryClient.invalidateQueries([QUERYKEYS.LOAD_ME]);
-    },
-    onError: ({
-      response: {
-        data: { errorCode, message },
-      },
-    }) => {
-      toastMsg(`${errorCode} / ${message}`);
-    },
-  });
+  const { mutateInvitation } = useBook();
 
   return (
     <Container>

@@ -9,7 +9,7 @@ import getDateUnit from "../../utils/date";
 import { uploadIncome, uploadRecord } from "../../api/book";
 import toastMsg from "../../components/Toast";
 import QUERYKEYS from "../../constants/querykey";
-import { useCategoryList } from "./useBook";
+import useBook from "./useBook";
 import { IStringIndex } from "../../interfaces/book";
 
 type InputTypes = {
@@ -31,6 +31,7 @@ export default function useDayWrite() {
   const [value, onChangeValue] = useInput(null);
   const [formattedValue, setFormattedValue] = useState("");
   const [isIncome, setIsIncome] = useState(false);
+  const { useCategoryList } = useBook();
   const list = useCategoryList(bookId ? +bookId : 0);
   const [categoryOptions, setCategoryOptions] = useState<any>(undefined);
 

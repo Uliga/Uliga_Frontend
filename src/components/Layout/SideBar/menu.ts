@@ -27,7 +27,7 @@ const menu = [
         theme: "normal",
         iconName: "arrowRight",
         iconSize: "1.2rem",
-        path: PATH.HISTORY,
+        path: "",
       },
     ],
   },
@@ -36,7 +36,7 @@ const menu = [
     theme: "normal",
     iconName: "pig",
     iconSize: "1.5rem",
-    path: PATH.BUDGET,
+    path: "",
   },
   {
     title: "분석",

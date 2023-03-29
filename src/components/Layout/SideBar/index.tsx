@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { useSelectedBook } from "../../../hooks/book/useBook";
+import useBook from "../../../hooks/book/useBook";
 import {
   Container,
   Top,
@@ -18,6 +18,7 @@ import Person from "../../../assets/person";
 
 export default function SideBar() {
   const { bookId } = useParams();
+  const { useSelectedBook } = useBook();
   const { data } = useSelectedBook(Number(bookId));
   const navigate = useNavigate();
 
