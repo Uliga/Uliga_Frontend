@@ -36,7 +36,7 @@ export default function EditShare() {
             selectedSchedule.name.length <= 10
               ? selectedSchedule.name
               : `${selectedSchedule.name}\n`
-          }  금융일정을 삭제하시겠어요?`}
+          }  금융일정을 삭제하시겠어요??`}
           visible
           cancellable
           onCancel={() => {
