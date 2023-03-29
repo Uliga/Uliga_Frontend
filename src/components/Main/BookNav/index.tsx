@@ -9,19 +9,20 @@ import {
   createModalAtom,
 } from "../../../stores/atoms/context";
 import allModalAtom from "../../../stores/selectors/context";
-import { useBookList, useReplaceBook } from "../../../hooks/book/useBook";
+import useBook from "../../../hooks/book/useBook";
 
 interface BookNavProps {
   path: string;
 }
 export default function BookNav({ path }: BookNavProps) {
   const { bookId } = useParams();
+  const { useBookList } = useBook();
   const { data } = useBookList();
 
   const [bottomModalOpen, setBottomModalOpen] = useRecoilState(bottomModalAtom);
   const [createModalOpen, setCreateModalOpen] = useRecoilState(createModalAtom);
   const [, setAllModalAtom] = useRecoilState(allModalAtom);
-
+  const { useReplaceBook } = useBook();
   if (!data) return null;
 
   return (

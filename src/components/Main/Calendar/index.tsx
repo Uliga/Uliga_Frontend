@@ -4,12 +4,13 @@ import { useParams } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { Container, Income, Record, ColorWrapper } from "./index.styles";
 import "react-calendar/dist/Calendar.css";
-import { useLoadMonthItems } from "../../../hooks/book/useBook";
+import useBook from "../../../hooks/book/useBook";
 import getMoneyUnit from "../../../utils/money";
 import { bottomSheetAtom } from "../../../stores/atoms/context";
 
 export default function MonthCalendar() {
   const { bookId } = useParams();
+  const { useLoadMonthItems } = useBook();
   const [curDate, onChangeCurDate] = useState(new Date());
 
   const [bottomSheetOpen, setBottomSheetOpen] = useRecoilState(bottomSheetAtom);

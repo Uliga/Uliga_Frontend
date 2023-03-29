@@ -2,7 +2,7 @@ import React from "react";
 import * as S from "./index.styles";
 import COLORS from "../../../constants/color";
 import getMoneyUnit from "../../../utils/money";
-import useBudget from "../../../hooks/book/useBudget";
+import useBudget from "../../../hooks/useBudget";
 
 export default function LastMonth() {
   const budget = useBudget();
