@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 import { useRecoilState } from "recoil";
-import useBook from "./useBook";
+import { useScheduleDetail } from "./useBook";
 import { IScheduleDetail } from "../../interfaces/schedule";
 import useInput from "../useInput";
 import { AssignmentProps } from "./useAddSchedule";
@@ -18,7 +18,6 @@ interface SelectedSchedule {
 }
 export default function useEditSchedule() {
   const { bookId } = useParams();
-  const { useScheduleDetail } = useBook();
   const data = useScheduleDetail(bookId ? +bookId : 0);
 
   const [curId, setCurId] = useState<number | undefined>(undefined);

@@ -3,7 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { uploadBook } from "../../api/book";
 import toastMsg from "../../components/Toast";
 import PATH from "../../constants/path";
-import useBook from "./useBook";
+import { useCategoryList } from "./useBook";
 import { IStringIndex } from "../../interfaces/book";
 
 export default function useWrite() {
@@ -27,7 +27,6 @@ export default function useWrite() {
     type?: string;
   };
 
-  const { useCategoryList } = useBook();
   const list = useCategoryList(bookId ? +bookId : 0);
   const [categoryOptions, setCategoryOptions] = useState<any>(undefined);
 

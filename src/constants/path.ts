@@ -6,6 +6,7 @@ const PATH = {
   WRITE: "/write",
   BUDGET: "/budget",
   SCHEDULE: "/schedule",
+  HISTORY: "/history",
 } as const;
 
 export default PATH;

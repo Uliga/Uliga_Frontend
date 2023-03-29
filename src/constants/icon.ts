@@ -12,6 +12,8 @@ const ICONS: IconProps = {
   list: "bi bi-list",
   arrowLeft: "bi bi-chevron-left",
   arrowRight: "bi bi-chevron-right",
+  arrowDown: "bi bi-chevron-down",
+  arrowUp: "bi bi-chevron-up",
   close: "bi bi-x-lg",
   plus: "bi bi-plus-lg",
   dots: "bi bi-three-dots",

@@ -23,7 +23,7 @@ const Wrapper = styled.div`
   h3 {
     font-weight: 700;
     font-size: 2rem;
-    padding: 2rem 0 1rem 0;
+    padding: 1rem 0 1rem 0;
   }
 `;
 
