@@ -78,7 +78,7 @@ export default function EditShare() {
                   name: schedule.info.name,
                 });
                 setAllModalAtom(false);
-                setCreateDialogOpen(true);
+                setDeleteDialogOpen(true);
               }}
             >
               삭제하기
