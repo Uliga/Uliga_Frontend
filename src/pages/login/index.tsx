@@ -46,7 +46,7 @@ export default function Login() {
     >
       <S.LogoWrapper>
         <Logo />
-        우리가
+        <span>우리가</span>
       </S.LogoWrapper>
       <S.Title>로그인</S.Title>
       {inputList.map(input => (

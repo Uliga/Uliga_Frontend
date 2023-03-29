@@ -21,6 +21,7 @@ export const Wrapper = styled.div`
   display: flex;
   position: relative;
   padding-left: 2rem;
+  align-items: center;
 `;
 export const StyledIcon = styled(Icon)`
   margin-left: 4rem;
@@ -28,8 +29,10 @@ export const StyledIcon = styled(Icon)`
 `;
 
 export const Title = styled.div`
-  font-weight: 700;
+  padding-top: 0.2rem;
+  font-family: GmarketSans;
   color: ${COLORS.BLUE};
+  font-size: 1.7rem;
 `;
 
 export const UtilWrapper = styled.div`
