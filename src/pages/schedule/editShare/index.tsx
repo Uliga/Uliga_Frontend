@@ -15,13 +15,11 @@ export default function EditShare() {
     setCurId,
     curSchedule,
     mutateDeleteSchedule,
-    scheduleID,
-    setScheduleID,
     createDialogOpen,
     setCreateDialogOpen,
     setAllModalAtom,
-    scheduleName,
-    setScheduleName,
+    setSelectedSchedule,
+    selectedSchedule,
   } = useEditSchedule();
   const { bookId } = useParams();
   const { useSelectedBook } = useBook();
@@ -35,7 +33,9 @@ export default function EditShare() {
           size={37}
           title={bookData?.info.accountBookName}
           description={`정말 ${
-            scheduleName.length <= 10 ? scheduleName : `${scheduleName}\n`
+            selectedSchedule.name.length <= 10
+              ? selectedSchedule.name
+              : `${selectedSchedule.name}\n`
           }  금융일정을 삭제하시겠어요?`}
           visible
           cancellable
@@ -43,7 +43,7 @@ export default function EditShare() {
             setCreateDialogOpen(false);
           }}
           onConfirm={() => {
-            mutateDeleteSchedule.mutate(scheduleID);
+            mutateDeleteSchedule.mutate(selectedSchedule.id);
             setCreateDialogOpen(false);
           }}
         />
@@ -73,8 +73,10 @@ export default function EditShare() {
             </div>
             <S.DeleteButton
               onClick={() => {
-                setScheduleID(schedule.info.id);
-                setScheduleName(schedule.info.name);
+                setSelectedSchedule({
+                  id: schedule.info.id,
+                  name: schedule.info.name,
+                });
                 setAllModalAtom(false);
                 setCreateDialogOpen(true);
               }}
