@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import COLORS from "../../../../constants/color";
 import { BookInfoTypes } from "../../../../interfaces/book";
 import * as S from "../index.styles";
-import useBook from "../../../../hooks/book/useBook";
+import { useReplaceBook } from "../../../../hooks/book/useBook";
 
 const Wrapper = styled.div`
   background-color: white;
@@ -59,7 +59,6 @@ export default function BottomModal({
   path: string;
 }) {
   const { bookId } = useParams();
-  const { useReplaceBook } = useBook();
   return (
     <Wrapper>
       <Title> 소유중인 가계부</Title>

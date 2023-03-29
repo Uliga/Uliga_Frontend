@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import React from "react";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import COLORS from "../../../constants/color";
 import QUERYKEYS from "../../../constants/querykey";
 import { loadMe } from "../../../api/user";
@@ -9,7 +9,8 @@ import ScheduleItem from "./scheduleItem";
 import { IUserInfo } from "../../../interfaces/user";
 import Nothing from "./nothing";
 import Button from "../../Button";
-import useBook from "../../../hooks/book/useBook";
+import { deleteSchedleAlarm } from "../../../api/book";
+import toastMsg from "../../Toast";
 
 const Wrapper = styled.div`
   background-color: white;
@@ -88,7 +89,26 @@ export default function ScheduleModal() {
     [QUERYKEYS.LOAD_ME],
     loadMe,
   );
-  const { mutateDeleteAlarm } = useBook();
+  const queryClient = useQueryClient();
+
+  const mutateDeleteAlarm = useMutation(
+    ["deleteScheduleAlarm"],
+    deleteSchedleAlarm,
+    {
+      onSuccess: () => {
+        toastMsg("삭제 완료!");
+        queryClient.invalidateQueries([QUERYKEYS.LOAD_ME]);
+      },
+      onError: ({
+        response: {
+          data: { errorCode, message },
+        },
+      }) => {
+        toastMsg(`${errorCode} / ${message}`);
+      },
+    },
+  );
+
   if (isLoading || !data)
     return (
       <Wrapper>
