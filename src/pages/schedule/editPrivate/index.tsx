@@ -16,8 +16,8 @@ export default function EditPrivate() {
     setCurId,
     curSchedule,
     mutateDeleteSchedule,
-    createDialogOpen,
-    setCreateDialogOpen,
+    deleteDialogOpen,
+    setDeleteDialogOpen,
     setAllModalAtom,
     setSelectedSchedule,
     selectedSchedule,
@@ -29,7 +29,7 @@ export default function EditPrivate() {
 
   return (
     <S.Container>
-      {createDialogOpen && (
+      {deleteDialogOpen && (
         <Dialog
           size={37}
           title={bookData?.info.accountBookName}
@@ -41,11 +41,11 @@ export default function EditPrivate() {
           visible
           cancellable
           onCancel={() => {
-            setCreateDialogOpen(false);
+            setDeleteDialogOpen(false);
           }}
           onConfirm={() => {
             mutateDeleteSchedule.mutate(selectedSchedule.id);
-            setCreateDialogOpen(false);
+            setDeleteDialogOpen(false);
           }}
         />
       )}
