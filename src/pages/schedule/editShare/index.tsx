@@ -15,8 +15,8 @@ export default function EditShare() {
     setCurId,
     curSchedule,
     mutateDeleteSchedule,
-    createDialogOpen,
-    setCreateDialogOpen,
+    deleteDialogOpen,
+    setDeleteDialogOpen,
     setAllModalAtom,
     setSelectedSchedule,
     selectedSchedule,
@@ -28,7 +28,7 @@ export default function EditShare() {
 
   return (
     <S.Container>
-      {createDialogOpen && (
+      {deleteDialogOpen && (
         <Dialog
           size={37}
           title={bookData?.info.accountBookName}
@@ -40,11 +40,11 @@ export default function EditShare() {
           visible
           cancellable
           onCancel={() => {
-            setCreateDialogOpen(false);
+            setDeleteDialogOpen(false);
           }}
           onConfirm={() => {
             mutateDeleteSchedule.mutate(selectedSchedule.id);
-            setCreateDialogOpen(false);
+            setDeleteDialogOpen(false);
           }}
         />
       )}
