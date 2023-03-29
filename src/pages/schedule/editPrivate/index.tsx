@@ -1,6 +1,5 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-// import { text } from "@storybook/addon-knobs";
 import * as S from "./index.styles";
 import getMoneyUnit from "../../../utils/money";
 import { IScheduleDetail } from "../../../interfaces/schedule";
