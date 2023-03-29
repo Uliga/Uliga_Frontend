@@ -27,7 +27,7 @@ export default function Header() {
     {
       id: 1,
       iconOnly: true,
-      iconName: "alarm",
+      iconName: scheduleModalOpen ? "alarmFill" : "alarm",
       iconSize: "2.2rem",
       color: COLORS.BLUE,
       border: 0.01,
