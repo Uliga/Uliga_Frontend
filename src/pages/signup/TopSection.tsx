@@ -7,7 +7,7 @@ export default function TopSection() {
     <>
       <S.LogoWrapper>
         <Logo />
-        우리가
+        <span>우리가</span>
       </S.LogoWrapper>
       <S.PartTitleContainer>
         <S.Title>회원가입</S.Title>

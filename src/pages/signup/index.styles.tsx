@@ -42,6 +42,10 @@ const LogoWrapper = styled.div`
   font-weight: 700;
   font-size: 1.6rem;
   color: ${COLORS.BLUE};
+  span {
+    margin-top: 0.2rem;
+    font-family: GmarketSans;
+  }
 `;
 
 const PartTitleContainer = styled.div`
