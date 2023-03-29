@@ -12,6 +12,10 @@ import QUERYKEYS from "../../constants/querykey";
 import { deleteScheduleDialogAtom } from "../../stores/atoms/context";
 import allModalAtom from "../../stores/selectors/context";
 
+interface SelectedSchedule {
+  id: number;
+  name: string;
+}
 export default function useEditSchedule() {
   const { bookId } = useParams();
   const { useScheduleDetail } = useBook();
@@ -34,12 +38,16 @@ export default function useEditSchedule() {
   const [isIncome, setIsIncome] = useState<boolean | undefined>(undefined);
   const [value, onChangeValue, setValue] = useInput("");
   const [assignments, setAssignments] = useState<AssignmentProps[]>([]);
-  const [scheduleID, setScheduleID] = useState(0);
+  // const [scheduleID, setScheduleID] = useState(0);
   const [createDialogOpen, setCreateDialogOpen] = useRecoilState(
     deleteScheduleDialogAtom,
   );
   const [, setAllModalAtom] = useRecoilState(allModalAtom);
-  const [scheduleName, setScheduleName] = useState("");
+  // const [scheduleName, setScheduleName] = useState("");
+  const [selectedSchedule, setSelectedSchedule] = useState<SelectedSchedule>({
+    id: 0,
+    name: "",
+  });
 
   const handleIsIncome = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.value === "income") {
@@ -118,12 +126,10 @@ export default function useEditSchedule() {
     setAssignments,
     mutateUpdateSchedule,
     mutateDeleteSchedule,
-    setScheduleID,
-    scheduleID,
     createDialogOpen,
     setCreateDialogOpen,
     setAllModalAtom,
-    setScheduleName,
-    scheduleName,
+    setSelectedSchedule,
+    selectedSchedule,
   };
 }
