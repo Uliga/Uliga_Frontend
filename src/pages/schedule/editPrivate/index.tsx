@@ -79,7 +79,7 @@ export default function EditPrivate() {
                   name: schedule.info.name,
                 });
                 setAllModalAtom(false);
-                setCreateDialogOpen(true);
+                setDeleteDialogOpen(true);
               }}
             >
               삭제하기
