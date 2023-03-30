@@ -8,10 +8,11 @@ import Main from "./pages/main";
 import PATH from "./constants/path";
 import Signup from "./pages/signup";
 import StyledContainer from "./components/Toast/container";
-import LadingPage from "./pages/landing";
+import Landing from "./pages/landing";
 import Write from "./pages/write";
 import Schedule from "./pages/schedule";
 import Budget from "./pages/budget";
+import History from "./pages/history";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -33,7 +34,7 @@ function App() {
       <Router>
         <Routes>
           <Route path={PATH.LANDING} element={<DefaultLayout />}>
-            <Route index element={<LadingPage />} />
+            <Route index element={<Landing />} />
           </Route>
           <Route path={PATH.LOGIN} element={<DefaultLayout />}>
             <Route index element={<Login />} />
@@ -52,6 +53,9 @@ function App() {
           </Route>
           <Route path={PATH.BUDGET} element={<MainLayout />}>
             <Route path=":bookId" element={<Budget />} />
+          </Route>
+          <Route path={PATH.HISTORY} element={<MainLayout />}>
+            <Route path=":bookId" element={<History />} />
           </Route>
         </Routes>
       </Router>
