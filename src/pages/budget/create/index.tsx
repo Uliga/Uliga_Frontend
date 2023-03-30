@@ -20,7 +20,9 @@ export default function Create() {
     budgets,
     setBudget,
     mutateCreateBudget,
+    thisMonthData,
     date,
+    mutateUpdateBudget,
   } = budget;
   return (
     <S.Container>
@@ -32,7 +34,9 @@ export default function Create() {
         size={43.3}
         value={budgets}
         label="금액"
-        placeholder="이번 달 예산 금액을 입력해주세요."
+        placeholder={
+          thisMonthData.budget.value || "이번 달 예산 금액을 입력해주세요."
+        }
         onChange={setBudget}
       />
       <S.LastMonthInfo>
@@ -52,12 +56,21 @@ export default function Create() {
       </S.LastMonthInfo>
       <S.CreateButton
         onClick={() => {
-          mutateCreateBudget.mutate({
-            id: bookId,
-            year: date.getFullYear(),
-            month: date.getMonth() + 1,
-            value: budgets,
-          });
+          if (thisMonthData.budget.value) {
+            mutateUpdateBudget.mutate({
+              id: bookId,
+              year: date.getFullYear(),
+              month: date.getMonth() + 1,
+              value: budgets,
+            });
+          } else {
+            mutateCreateBudget.mutate({
+              id: bookId,
+              year: date.getFullYear(),
+              month: date.getMonth() + 1,
+              value: budgets,
+            });
+          }
           setCreateModalOpen(false);
         }}
         width="100%"

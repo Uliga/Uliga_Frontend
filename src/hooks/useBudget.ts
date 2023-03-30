@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import QUERYKEYS from "../constants/querykey";
-import { createBudget, loadMonthAsset } from "../api/book";
+import { createBudget, loadMonthAsset, updateBudget } from "../api/book";
 import useInput from "./useInput";
 import toastMsg from "../components/Toast";
 
@@ -78,6 +78,19 @@ export default function useBudget() {
       toastMsg(`${errorCode} / ${message}`);
     },
   });
+  const mutateUpdateBudget = useMutation(["updateBudget"], updateBudget, {
+    onSuccess: () => {
+      toastMsg("예산이 수정되었습니다!");
+      queryClient.invalidateQueries([QUERYKEYS.LOAD_MONTH_ASSET]);
+    },
+    onError: ({
+      response: {
+        data: { errorCode, message },
+      },
+    }) => {
+      toastMsg(`${errorCode} / ${message}`);
+    },
+  });
 
   return {
     thisRemainData,
@@ -92,5 +105,6 @@ export default function useBudget() {
     budgets,
     setBudget,
     mutateCreateBudget,
+    mutateUpdateBudget,
   };
 }
