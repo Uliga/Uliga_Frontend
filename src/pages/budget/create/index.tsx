@@ -1,17 +1,30 @@
 import React from "react";
+import { useParams } from "react-router-dom";
+import { useRecoilState } from "recoil";
 import * as S from "./index.styles";
 import COLORS from "../../../constants/color";
 import useBudget from "../../../hooks/useBudget";
+import { createBudgetModalAtom } from "../../../stores/atoms/context";
 
 export default function Create() {
+  const { bookId } = useParams();
+  const [, setCreateModalOpen] = useRecoilState(createBudgetModalAtom);
+
   const budget = useBudget();
   if (!budget) {
     return null;
   }
-  const { lastRemainData, lastMonthData, budgets, setBudget } = budget;
+  const {
+    lastRemainData,
+    lastMonthData,
+    budgets,
+    setBudget,
+    mutateCreateBudget,
+    date,
+  } = budget;
   return (
     <S.Container>
-      <h2>3월 예산 설정</h2>
+      <h2>{date.getMonth() + 1}월 예산 설정</h2>
       <p>
         이번 달도 잘 해내실거라고 생각해요! &nbsp;&nbsp;저희가 응원합니다 💪🏻
       </p>
@@ -37,7 +50,19 @@ export default function Create() {
           )}
         </div>
       </S.LastMonthInfo>
-      <S.CreateButton onClick={() => {}} width="100%" title="예산 등록" />
+      <S.CreateButton
+        onClick={() => {
+          mutateCreateBudget.mutate({
+            id: bookId,
+            year: date.getFullYear(),
+            month: date.getMonth() + 1,
+            value: budgets,
+          });
+          setCreateModalOpen(false);
+        }}
+        width="100%"
+        title="예산 등록"
+      />
     </S.Container>
   );
 }
