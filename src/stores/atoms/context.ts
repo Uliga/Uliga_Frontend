@@ -32,3 +32,8 @@ export const deleteScheduleDialogAtom = atom<boolean>({
   key: "deleteScheduleDialogAtom",
   default: false,
 });
+
+export const createBudgetModalAtom = atom<boolean>({
+  key: "createBudgetModalAtom",
+  default: false,
+});
