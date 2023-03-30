@@ -18,6 +18,7 @@ const INVITATION = "/invitation";
 const ITEM = "item";
 const SCHEDULE = "/schedule";
 const NOTIFICATION = "/notification";
+const BUDGET = "/budget";
 
 const API = {
   BASE_URL: `${BASE_URL}`,
@@ -41,5 +42,7 @@ const API = {
   SCHEDULE: `${SCHEDULE}`,
   ADD_SCHEDULE: `${ACCOUNT_BOOK}${SCHEDULE}`,
   DELETE_ALARM: `${MEMBER}${NOTIFICATION}`,
+  CREATE_BUDGET: `${ACCOUNT_BOOK}${BUDGET}`,
+  BUDGET: `${BUDGET}`,
 };
 export default API;
