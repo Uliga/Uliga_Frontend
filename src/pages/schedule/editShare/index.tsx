@@ -46,6 +46,7 @@ export default function EditShare() {
             mutateDeleteSchedule.mutate(selectedSchedule.id);
             setDeleteDialogOpen(false);
           }}
+          confirmTitle="확인"
         />
       )}
       <EditShareForm curSchedule={curSchedule!} />
