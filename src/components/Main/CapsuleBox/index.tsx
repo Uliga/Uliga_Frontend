@@ -33,7 +33,7 @@ export default function CapsuleBox() {
         iconName: "check",
         theme: "normal",
         color: COLORS.BLUE,
-        onClick: `${PATH.BUDGET}/${bookId}`,
+        onClick: "",
       },
     },
     {
@@ -44,7 +44,7 @@ export default function CapsuleBox() {
         iconName: "check",
         theme: "normal",
         color: COLORS.BLUE,
-        onClick: `${PATH.BUDGET}/${bookId}`,
+        onClick: "",
       },
     },
     {
