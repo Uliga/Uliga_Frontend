@@ -1,5 +1,4 @@
 import React from "react";
-import { useParams } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import * as S from "./index.styles";
 import COLORS from "../../../constants/color";
@@ -7,7 +6,6 @@ import useBudget from "../../../hooks/useBudget";
 import { createBudgetModalAtom } from "../../../stores/atoms/context";
 
 export default function Create() {
-  const { bookId } = useParams();
   const [, setCreateModalOpen] = useRecoilState(createBudgetModalAtom);
 
   const budget = useBudget();
@@ -19,10 +17,9 @@ export default function Create() {
     lastMonthData,
     budgets,
     setBudget,
-    mutateCreateBudget,
+    selectUpdateCreate,
     thisMonthData,
     date,
-    mutateUpdateBudget,
   } = budget;
   return (
     <S.Container>
@@ -56,21 +53,7 @@ export default function Create() {
       </S.LastMonthInfo>
       <S.CreateButton
         onClick={() => {
-          if (thisMonthData.budget.value) {
-            mutateUpdateBudget.mutate({
-              id: bookId,
-              year: date.getFullYear(),
-              month: date.getMonth() + 1,
-              value: budgets,
-            });
-          } else {
-            mutateCreateBudget.mutate({
-              id: bookId,
-              year: date.getFullYear(),
-              month: date.getMonth() + 1,
-              value: budgets,
-            });
-          }
+          selectUpdateCreate();
           setCreateModalOpen(false);
         }}
         width="100%"

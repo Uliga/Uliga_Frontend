@@ -1,6 +1,6 @@
 import React from "react";
 import { useQuery } from "@tanstack/react-query";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import * as S from "./index.styles";
 import COLORS from "../../../constants/color";
@@ -14,7 +14,6 @@ import Create from "../../../pages/budget/create";
 export default function CapsuleBox() {
   const { bookId } = useParams();
   const date = new Date();
-  const navigate = useNavigate();
 
   const [createModalOpen, setCreateModalOpen] = useRecoilState(
     createBudgetModalAtom,
@@ -40,7 +39,9 @@ export default function CapsuleBox() {
         iconName: "check",
         theme: "normal",
         color: COLORS.BLUE,
-        onClick: "",
+        onClick: () => {
+          // 이번 달 지출 분석 페이지로 이동
+        },
       },
     },
     {
@@ -51,7 +52,9 @@ export default function CapsuleBox() {
         iconName: "check",
         theme: "normal",
         color: COLORS.BLUE,
-        onClick: "",
+        onClick: () => {
+          // 이번 달 수입 분석 페이지로 이동
+        },
       },
     },
     {
@@ -62,7 +65,9 @@ export default function CapsuleBox() {
         title: "예산 설정하러 가기",
         iconName: "circleCheck",
         color: COLORS.YELLOW,
-        onClick: "",
+        onClick: () => {
+          setCreateModalOpen(true); // 모달 열기
+        },
       },
     },
   ];
@@ -87,10 +92,7 @@ export default function CapsuleBox() {
             title={box.Button.title}
             iconName={box.Button.iconName}
             color={box.Button.color}
-            onClick={() => {
-              navigate(`${box.Button.onClick}`);
-              setCreateModalOpen(true);
-            }}
+            onClick={box.Button.onClick}
           />
         </S.Wrapper>
       ))}

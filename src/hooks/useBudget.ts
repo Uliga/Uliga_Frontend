@@ -91,6 +91,23 @@ export default function useBudget() {
       toastMsg(`${errorCode} / ${message}`);
     },
   });
+  const selectUpdateCreate = () => {
+    if (thisMonthData.budget.value) {
+      mutateUpdateBudget.mutate({
+        id: bookId,
+        year: date.getFullYear(),
+        month: date.getMonth() + 1,
+        value: budgets,
+      });
+    } else {
+      mutateCreateBudget.mutate({
+        id: bookId,
+        year: date.getFullYear(),
+        month: date.getMonth() + 1,
+        value: budgets,
+      });
+    }
+  };
 
   return {
     thisRemainData,
@@ -106,5 +123,6 @@ export default function useBudget() {
     setBudget,
     mutateCreateBudget,
     mutateUpdateBudget,
+    selectUpdateCreate,
   };
 }
