@@ -10,7 +10,8 @@ export default function Create() {
     <S.Container>
       <h2>3월 예산 설정</h2>
       <p>
-        이번 달도 잘 해내실거라고 생각해요! &nbsp;&nbsp;저희가 응원합니다 💪🏻
+        이번 달도 잘 해내실거라고 생각해요! &nbsp;&nbsp;저희가 응원합니다
+        &nbsp;💪🏻
       </p>
       <S.BudgetInput
         size={43.3}
