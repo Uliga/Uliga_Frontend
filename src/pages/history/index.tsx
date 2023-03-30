@@ -7,9 +7,11 @@ import useHistory from "../../hooks/book/useHistory";
 import HistoryItem from "../../components/Book/HistoryItem";
 import Icon from "../../components/Icon";
 import { IHistory } from "../../interfaces/book";
+import useBook from "../../hooks/book/useBook";
 
 export default function History() {
   const {
+    bookId,
     menuList,
     curPage,
     data,
@@ -18,13 +20,20 @@ export default function History() {
     HISTORY_DATA_SIZE,
     onChangePage,
   } = useHistory();
-
+  const { useReplaceBook } = useBook();
   console.log(data);
 
   return (
     <S.Container>
       <BookNav path={PATH.HISTORY} />
       <S.Top>
+        <S.WriteButton
+          onClick={() => {
+            useReplaceBook(PATH.WRITE, bookId ? +bookId : 0);
+          }}
+        >
+          가계부 작성 ✍🏻
+        </S.WriteButton>
         <S.FilterButton
           title="내역 전체보기"
           theme="normal"
