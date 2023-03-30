@@ -38,12 +38,10 @@ export default function useEditSchedule() {
   const [isIncome, setIsIncome] = useState<boolean | undefined>(undefined);
   const [value, onChangeValue, setValue] = useInput("");
   const [assignments, setAssignments] = useState<AssignmentProps[]>([]);
-  // const [scheduleID, setScheduleID] = useState(0);
   const [deleteDialogOpen, setDeleteDialogOpen] = useRecoilState(
     deleteScheduleDialogAtom,
   );
   const [, setAllModalAtom] = useRecoilState(allModalAtom);
-  // const [scheduleName, setScheduleName] = useState("");
   const [selectedSchedule, setSelectedSchedule] = useState<SelectedSchedule>({
     id: 0,
     name: "",
