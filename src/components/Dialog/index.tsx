@@ -22,6 +22,7 @@ export type DialogProps = {
   /** 확인 버튼 눌렸을때 나올 함수 */
   onConfirm?: () => void;
   confirmTitle?: string;
+  confirmWidth?: string;
 };
 
 const DarkLayer = styled.div`
@@ -106,7 +107,8 @@ function Dialog({
   children,
   onCancel,
   onConfirm,
-  confirmTitle,
+  confirmTitle = "확인",
+  confirmWidth = "12rem",
 }: DialogProps) {
   return (
     <>
@@ -131,7 +133,7 @@ function Dialog({
                 <StyledConfirmButton
                   theme="primary"
                   title={confirmTitle}
-                  width={cancellable ? "8rem" : "12rem"}
+                  width={cancellable ? "8rem" : confirmWidth}
                   onClick={onConfirm}
                 />
               </ButtonWrapper>

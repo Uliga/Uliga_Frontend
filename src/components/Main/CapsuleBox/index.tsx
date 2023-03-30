@@ -7,17 +7,17 @@ import COLORS from "../../../constants/color";
 import QUERYKEYS from "../../../constants/querykey";
 import { loadMonthAsset } from "../../../api/book";
 import getMoneyUnit from "../../../utils/money";
-import PATH from "../../../constants/path";
-import { deleteScheduleDialogAtom } from "../../../stores/atoms/context";
-import Dialog from "../../Dialog";
+import { createBudgetModalAtom } from "../../../stores/atoms/context";
+import Modal from "../../Modal";
+import Create from "../../../pages/budget/create";
 
 export default function CapsuleBox() {
   const { bookId } = useParams();
   const date = new Date();
   const navigate = useNavigate();
 
-  const [createDialogOpen, setCreateDialogOpen] = useRecoilState(
-    deleteScheduleDialogAtom,
+  const [createModalOpen, setCreateModalOpen] = useRecoilState(
+    createBudgetModalAtom,
   );
   // const [, setAllModalAtom] = useRecoilState(allModalAtom);
 
@@ -63,23 +63,20 @@ export default function CapsuleBox() {
         title: "예산 설정하러 가기",
         iconName: "circleCheck",
         color: COLORS.YELLOW,
-        onClick: `${PATH.BUDGET}/${bookId}`,
+        onClick: "",
       },
     },
   ];
   return (
     <S.Container>
-      {createDialogOpen && (
-        <Dialog
-          size={45}
-          title="3월 예산 설정"
-          description="이번 달도 잘 해내실거라고 생각해요! 저희가 응원합니다.💪🏻"
-          visible
-          onConfirm={() => {
-            setCreateDialogOpen(false);
+      {createModalOpen && (
+        <Modal
+          closeModal={() => {
+            setCreateModalOpen(false);
           }}
-          confirmTitle="예산 등록"
-        />
+        >
+          <Create />
+        </Modal>
       )}
       {BoxList.map(box => (
         <S.Wrapper key={box.title}>
@@ -91,7 +88,10 @@ export default function CapsuleBox() {
             title={box.Button.title}
             iconName={box.Button.iconName}
             color={box.Button.color}
-            onClick={() => navigate(`${box.Button.onClick}`)}
+            onClick={() => {
+              navigate(`${box.Button.onClick}`);
+              setCreateModalOpen(true);
+            }}
           />
         </S.Wrapper>
       ))}
