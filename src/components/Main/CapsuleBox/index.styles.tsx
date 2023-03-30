@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import COLORS from "../../../constants/color";
 import IconButton from "../../IconButton";
+import Dialog from "../../Dialog";
 
 const Container = styled.div`
   border: 0.1rem solid ${COLORS.GREY[200]};
@@ -59,5 +60,18 @@ const StyledButton = styled(IconButton)<{ color: string }>`
     background-color: white;
   }
 `;
+const BudgetDialog = styled(Dialog)`
+  title {
+    margin-top: 10rem;
+  }
+`;
 
-export { Container, Wrapper, Title, Subtitle, Amount, StyledButton };
+export {
+  Container,
+  Wrapper,
+  Title,
+  Subtitle,
+  Amount,
+  StyledButton,
+  BudgetDialog,
+};
