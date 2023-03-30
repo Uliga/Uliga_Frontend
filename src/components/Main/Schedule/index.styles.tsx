@@ -89,7 +89,7 @@ export const Nothing = styled.div`
   display: flex;
   gap: 2rem;
   padding-top: 5rem;
-  padding-left: 1rem;
+  align-items: center;
   font-size: 1.15rem;
   color: ${COLORS.GREY[500]};
   white-space: pre-wrap;

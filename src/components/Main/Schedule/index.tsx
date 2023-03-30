@@ -4,7 +4,6 @@ import COLORS from "../../../constants/color";
 import * as S from "./index.styles";
 import PATH from "../../../constants/path";
 import useBook from "../../../hooks/book/useBook";
-import Money from "../../../assets/money";
 
 interface ScheduleProps {
   name: string;
@@ -21,19 +20,14 @@ export default function MainScheduleList() {
   if (!data) return null;
 
   const text = `현재 등록된 금융 일정이 없습니다. 
-정기적인 지출/수입을 기록하고 
-다가오는 일정을 잊지말고 확인해보세요!`;
+정기적인 지출 ∙ 수입을 기록하고 
+다가오는 일정을 잊지않게 확인해보세요!`;
 
   return (
     <S.Container>
       {data.schedules.length !== 0 && <h5>다가오는 금융 일정 📆</h5>}
       <S.Wrapper>
-        {data.schedules.length === 0 && (
-          <S.Nothing>
-            <Money />
-            {text}
-          </S.Nothing>
-        )}
+        {data.schedules.length === 0 && <S.Nothing>{text}</S.Nothing>}
         {data.schedules.map((schedule: ScheduleProps) => (
           <S.ScheduleWrapper key={schedule.name}>
             <S.StyledBadge
