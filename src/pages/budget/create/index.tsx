@@ -74,7 +74,7 @@ export default function Create() {
           setCreateModalOpen(false);
         }}
         width="100%"
-        title="예산 등록"
+        title={thisMonthData.budget.value ? "예산 수정" : "예산 등록"}
       />
     </S.Container>
   );
