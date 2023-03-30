@@ -97,3 +97,8 @@ export const createBudget = async (budget: object) => {
   const { data } = await authorizationClient.post(API.CREATE_BUDGET, budget);
   return data;
 };
+
+export const updateBudget = async (budget: object) => {
+  const { data } = await authorizationClient.patch(API.BUDGET, budget);
+  return data;
+};
