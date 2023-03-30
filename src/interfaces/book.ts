@@ -29,3 +29,17 @@ export interface BookMemberProps {
 export interface IStringIndex {
   [label: string]: any;
 }
+
+export interface IHistory {
+  account: string;
+  category: string;
+  creator: string;
+  day: number;
+  id: number;
+  memo: string;
+  month: number;
+  payment: string;
+  type: string;
+  value: number;
+  year: number;
+}
