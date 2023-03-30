@@ -19,7 +19,6 @@ export default function CapsuleBox() {
   const [createModalOpen, setCreateModalOpen] = useRecoilState(
     createBudgetModalAtom,
   );
-  // const [, setAllModalAtom] = useRecoilState(allModalAtom);
 
   const queryFn = () =>
     loadMonthAsset(

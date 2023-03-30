@@ -93,3 +93,7 @@ export const deleteSchedleAlarm = async () => {
   const { data } = await authorizationClient.delete(API.DELETE_ALARM);
   return data;
 };
+export const createBudget = async () => {
+  const { data } = await authorizationClient.delete(API.CREATE_BUDGET);
+  return data;
+};
