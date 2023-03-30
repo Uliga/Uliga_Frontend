@@ -93,3 +93,11 @@ export const deleteSchedleAlarm = async () => {
   const { data } = await authorizationClient.delete(API.DELETE_ALARM);
   return data;
 };
+
+export const loadHistory = async (historyData: any) => {
+  const { id, page, size } = historyData;
+  const { data } = await authorizationClient.get(
+    `${API.ACCOUNT_BOOK}/${id}${API.HISTORY}?page=${page}&size=${size}`,
+  );
+  return data;
+};
