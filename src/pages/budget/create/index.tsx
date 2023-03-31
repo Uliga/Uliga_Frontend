@@ -26,51 +26,6 @@ export default function Create() {
     return null;
   }
   const { selectUpdateCreate } = createBudgets;
-  // const queryClient = useQueryClient();
-
-  // const mutateCreateBudget = useMutation(["createBudget"], createBudget, {
-  //   onSuccess: () => {
-  //     toastMsg("예산이 추가되었습니다!");
-  //     queryClient.invalidateQueries([QUERYKEYS.LOAD_MONTH_ASSET]);
-  //   },
-  //   onError: ({
-  //     response: {
-  //       data: { errorCode, message },
-  //     },
-  //   }) => {
-  //     toastMsg(`${errorCode} / ${message}`);
-  //   },
-  // });
-  // const mutateUpdateBudget = useMutation(["updateBudget"], updateBudget, {
-  //   onSuccess: () => {
-  //     toastMsg("예산이 수정되었습니다!");
-  //     queryClient.invalidateQueries([QUERYKEYS.LOAD_MONTH_ASSET]);
-  //   },
-  //   onError: ({
-  //     response: {
-  //       data: { errorCode, message },
-  //     },
-  //   }) => {
-  //     toastMsg(`${errorCode} / ${message}`);
-  //   },
-  // });
-  // const selectUpdateCreate = () => {
-  //   if (thisMonthData.budget.value) {
-  //     mutateUpdateBudget.mutate({
-  //       id: bookId,
-  //       year: date.getFullYear(),
-  //       month: date.getMonth() + 1,
-  //       value: budgets,
-  //     });
-  //   } else {
-  //     mutateCreateBudget.mutate({
-  //       id: bookId,
-  //       year: date.getFullYear(),
-  //       month: date.getMonth() + 1,
-  //       value: budgets,
-  //     });
-  //   }
-  // };
   return (
     <S.Container>
       <h2>{date.getMonth() + 1}월 예산 설정</h2>

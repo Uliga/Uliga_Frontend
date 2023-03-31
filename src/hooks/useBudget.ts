@@ -64,37 +64,6 @@ export default function useBudget() {
   const lastDataGage = (lastRemainData / lastMonthData.budget.value) * 100;
   const oneDayBudget = Math.trunc(thisRemainData / lastDate);
 
-  // const mutateUpdateBudget = useMutation(["updateBudget"], updateBudget, {
-  //   onSuccess: () => {
-  //     toastMsg("예산이 수정되었습니다!");
-  //     queryClient.invalidateQueries([QUERYKEYS.LOAD_MONTH_ASSET]);
-  //   },
-  //   onError: ({
-  //     response: {
-  //       data: { errorCode, message },
-  //     },
-  //   }) => {
-  //     toastMsg(`${errorCode} / ${message}`);
-  //   },
-  // });
-  // const selectUpdateCreate = () => {
-  //   if (thisMonthData.budget.value) {
-  //     mutateUpdateBudget.mutate({
-  //       id: bookId,
-  //       year: date.getFullYear(),
-  //       month: date.getMonth() + 1,
-  //       value: budgets,
-  //     });
-  //   } else {
-  //     mutateCreateBudget.mutate({
-  //       id: bookId,
-  //       year: date.getFullYear(),
-  //       month: date.getMonth() + 1,
-  //       value: budgets,
-  //     });
-  //   }
-  // };
-
   return {
     thisRemainData,
     thisDataGage,
