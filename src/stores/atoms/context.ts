@@ -32,3 +32,13 @@ export const deleteScheduleDialogAtom = atom<boolean>({
   key: "deleteScheduleDialogAtom",
   default: false,
 });
+
+export const historyModalAtom = atom<boolean>({
+  key: "historyModalAtom",
+  default: false,
+});
+
+export const historyCategoryModalAtom = atom<boolean>({
+  key: "historyCategoryModalAtom",
+  default: false,
+});

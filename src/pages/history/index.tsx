@@ -1,27 +1,39 @@
 import React from "react";
 import Pagination from "react-js-pagination";
+import { useRecoilState } from "recoil";
 import BookNav from "../../components/Main/BookNav";
 import PATH from "../../constants/path";
 import * as S from "./index.styles";
 import useHistory from "../../hooks/book/useHistory";
-import HistoryItem from "../../components/Book/HistoryItem";
+import HistoryItem from "../../components/Book/History";
 import Icon from "../../components/Icon";
 import { IHistory } from "../../interfaces/book";
 import useBook from "../../hooks/book/useBook";
+import {
+  historyCategoryModalAtom,
+  historyModalAtom,
+} from "../../stores/atoms/context";
+import allModalAtom from "../../stores/selectors/context";
+import HistoryModal from "../../components/Book/History/historyModal";
+import CategoryModal from "../../components/Book/History/categoryModal";
 
 export default function History() {
   const {
     bookId,
     menuList,
     curPage,
-    data,
     content,
     ITEM_SIZE,
     HISTORY_DATA_SIZE,
     onChangePage,
   } = useHistory();
   const { useReplaceBook } = useBook();
-  console.log(data);
+  const [historyModalOpen, setHistoryModalOpen] =
+    useRecoilState(historyModalAtom);
+  const [historyCategoryOpen, setHistoryCategoryOpen] = useRecoilState(
+    historyCategoryModalAtom,
+  );
+  const [, setAllModalAtom] = useRecoilState(allModalAtom);
 
   return (
     <S.Container>
@@ -34,24 +46,38 @@ export default function History() {
         >
           가계부 작성 ✍🏻
         </S.WriteButton>
-        <S.FilterButton
-          title="내역 전체보기"
-          theme="normal"
-          iconName="arrowDown"
-          iconSize="1.8rem"
-          border={1}
-          reverseIconButton
-          isIncomeMenu
-        />
-        <S.FilterButton
-          title="카테고리 전체보기"
-          theme="normal"
-          iconName="arrowDown"
-          iconSize="1.8rem"
-          border={0.3}
-          reverseIconButton
-          isIncomeMenu={false}
-        />
+        <S.HistoryWrapper>
+          <S.FilterButton
+            title="내역 전체보기"
+            theme="normal"
+            iconName="arrowDown"
+            iconSize="1.8rem"
+            border={1}
+            reverseIconButton
+            isIncomeMenu
+            onClick={() => {
+              setAllModalAtom(false);
+              setHistoryModalOpen(!historyModalOpen);
+            }}
+          />
+          {historyModalOpen && <HistoryModal />}
+        </S.HistoryWrapper>
+        <S.CategoryWrapper>
+          <S.FilterButton
+            title="카테고리 전체보기"
+            theme="normal"
+            iconName="arrowDown"
+            iconSize="1.8rem"
+            border={0.3}
+            reverseIconButton
+            isIncomeMenu={false}
+            onClick={() => {
+              setAllModalAtom(false);
+              setHistoryCategoryOpen(!historyCategoryOpen);
+            }}
+          />
+          {historyCategoryOpen && <CategoryModal />}
+        </S.CategoryWrapper>
       </S.Top>
       <S.Menus>
         {menuList.map(menu => (

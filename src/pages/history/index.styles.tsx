@@ -36,6 +36,13 @@ export const FilterButton = styled(IconButton)<{ isIncomeMenu: boolean }>`
   border-radius: 0;
   background-color: transparent;
 `;
+export const HistoryWrapper = styled.div`
+  position: relative;
+`;
+
+export const CategoryWrapper = styled.div`
+  position: relative;
+`;
 
 export const WriteButton = styled.button`
   position: absolute;
