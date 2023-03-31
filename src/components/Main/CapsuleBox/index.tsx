@@ -66,11 +66,13 @@ export default function CapsuleBox() {
         iconName: "circleCheck",
         color: COLORS.YELLOW,
         onClick: () => {
-          setCreateModalOpen(true); // 모달 열기
+          setCreateModalOpen(true);
         },
       },
     },
   ];
+  console.log("렌더링 횟수2");
+
   return (
     <S.Container>
       {createModalOpen && (
