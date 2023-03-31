@@ -76,7 +76,6 @@ export default function CapsuleBox() {
       },
     },
   ];
-  console.log("렌더링 횟수2");
 
   return (
     <S.Container>
