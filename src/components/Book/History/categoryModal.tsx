@@ -52,6 +52,17 @@ export default function CategoryModal({
 
   return (
     <Wrapper>
+      <IsIncome
+        onClick={() => {
+          setCurTab({
+            tab: curTab.tab,
+            category: "카테고리 전체보기",
+          });
+          navigate(`/${currentPath}/${bookId}`);
+        }}
+      >
+        카테고리 전체보기
+      </IsIncome>
       {list?.map((item: CategoryType) => (
         <IsIncome
           onClick={() => {
