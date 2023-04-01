@@ -32,6 +32,10 @@ export const deleteScheduleDialogAtom = atom<boolean>({
   key: "deleteScheduleDialogAtom",
   default: false,
 });
+export const createBudgetModalAtom = atom<boolean>({
+  key: "createBudgetModalAtom",
+  default: false,
+});
 
 export const historyModalAtom = atom<boolean>({
   key: "historyModalAtom",
@@ -50,3 +54,4 @@ export const historyTabsAtom = atom<{ tab: string; category: string }>({
     category: "카테고리 전체 보기",
   },
 });
+

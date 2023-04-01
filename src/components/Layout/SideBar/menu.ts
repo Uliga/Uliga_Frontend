@@ -36,7 +36,7 @@ const menu = [
     theme: "normal",
     iconName: "pig",
     iconSize: "1.5rem",
-    path: "",
+    path: PATH.BUDGET,
   },
   {
     title: "분석",
