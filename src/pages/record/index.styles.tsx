@@ -7,9 +7,9 @@ export const Container = styled.div`
   display: flex;
   color: ${COLORS.GREY[600]};
   gap: 1.5rem;
-  height: 64rem;
   padding: 4rem;
   flex-direction: column;
+  height: 64rem;
 `;
 
 export const Paging = styled.div`

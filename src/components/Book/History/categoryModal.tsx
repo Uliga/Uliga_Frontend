@@ -1,8 +1,10 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useRecoilState } from "recoil";
+import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import COLORS from "../../../constants/color";
 import useBook from "../../../hooks/book/useBook";
+import { historyTabsAtom } from "../../../stores/atoms/context";
 
 const Wrapper = styled.div`
   background-color: white;
@@ -29,6 +31,7 @@ const IsIncome = styled.button`
   text-align: start;
   font-size: 1.4rem;
   cursor: pointer;
+  box-sizing: border-box;
 `;
 
 interface CategoryType {
@@ -36,15 +39,31 @@ interface CategoryType {
   label: string;
   value: string;
 }
-export default function CategoryModal() {
+export default function CategoryModal({
+  currentPath,
+}: {
+  currentPath: string;
+}) {
   const { bookId } = useParams();
+  const navigate = useNavigate();
   const { useCategoryList } = useBook();
   const list = useCategoryList(bookId ? +bookId : 0);
+  const [curTab, setCurTab] = useRecoilState(historyTabsAtom);
 
   return (
     <Wrapper>
       {list?.map((item: CategoryType) => (
-        <IsIncome>{item.value}</IsIncome>
+        <IsIncome
+          onClick={() => {
+            setCurTab({
+              tab: curTab.tab,
+              category: item.label,
+            });
+            navigate(`/${currentPath}/${bookId}/${item.id}`);
+          }}
+        >
+          {item.value}
+        </IsIncome>
       ))}
     </Wrapper>
   );

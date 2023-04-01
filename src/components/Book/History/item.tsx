@@ -5,7 +5,13 @@ import { IHistory } from "../../../interfaces/book";
 import getMoneyUnit from "../../../utils/money";
 import { getDayOfWeek } from "../../../utils/date";
 
-export default function HistoryItem({ history }: { history: IHistory }) {
+export default function HistoryItem({
+  history,
+  isIncome,
+}: {
+  history: IHistory;
+  isIncome: boolean | undefined;
+}) {
   const [checked, setChecked] = useState(false);
 
   useEffect(() => {
@@ -26,12 +32,22 @@ export default function HistoryItem({ history }: { history: IHistory }) {
           />
         </S.StyledLabel>
         <S.Box width={6}>
-          <S.IsIncome
-            size={1.3}
-            title={history.type === "INCOME" ? "수입" : "지출"}
-            color="white"
-            isIncome={history.type === "INCOME"}
-          />
+          {isIncome !== undefined && (
+            <S.IsIncome
+              size={1.3}
+              title={isIncome ? "수입" : "지출"}
+              color="white"
+              isIncome={isIncome}
+            />
+          )}
+          {history.type && (
+            <S.IsIncome
+              size={1.3}
+              title={history.type === "INCOME" ? "수입" : "지출"}
+              color="white"
+              isIncome={history.type === "INCOME"}
+            />
+          )}
         </S.Box>
         <S.Box width={11}>
           {history.year}. {history.month}. {history.day} (
