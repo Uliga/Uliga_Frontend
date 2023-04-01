@@ -2,8 +2,9 @@ import React from "react";
 import { useRecoilState } from "recoil";
 import * as S from "./index.styles";
 import COLORS from "../../../constants/color";
-import useBudget from "../../../hooks/useBudget";
 import { createBudgetModalAtom } from "../../../stores/atoms/context";
+import useBudget from "../../../hooks/book/useBudget";
+import useCreateBudget from "../../../hooks/book/useCreateBudget";
 
 export default function Create() {
   const [, setCreateModalOpen] = useRecoilState(createBudgetModalAtom);
@@ -17,10 +18,14 @@ export default function Create() {
     lastMonthData,
     budgets,
     setBudget,
-    selectUpdateCreate,
     thisMonthData,
     date,
   } = budget;
+  const createBudgets = useCreateBudget();
+  if (!createBudgets) {
+    return null;
+  }
+  const { selectUpdateCreate } = createBudgets;
   return (
     <S.Container>
       <h2>{date.getMonth() + 1}월 예산 설정</h2>

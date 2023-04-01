@@ -2,7 +2,7 @@ import React from "react";
 import * as S from "./index.styles";
 import COLORS from "../../../constants/color";
 import getMoneyUnit from "../../../utils/money";
-import useBudget from "../../../hooks/useBudget";
+import useBudget from "../../../hooks/book/useBudget";
 
 export default function Budget() {
   const budget = useBudget();
