@@ -139,7 +139,8 @@ export const loadRecordCategory = async (historyData: any) => {
   const { data } = await authorizationClient.get(
     `${API.RECORD}${API.ACCOUNT_BOOK}/${id}?page=${page}&size=${size}&categoryId=${categoryId}`,
   );
-
+  return data;
+};
 export const createBudget = async (budget: object) => {
   const { data } = await authorizationClient.post(API.CREATE_BUDGET, budget);
   return data;

@@ -26,7 +26,7 @@ const allModalAtom = selector<boolean>({
       invitationModal ||
       scheduleModal ||
       historyModal ||
-      historyCategoryModal
+      historyCategoryModal ||
       budgetModal
     );
   },
