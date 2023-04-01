@@ -1,6 +1,6 @@
 import React from "react";
 import { useQuery } from "@tanstack/react-query";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import * as S from "./index.styles";
 import COLORS from "../../../constants/color";
@@ -10,10 +10,12 @@ import getMoneyUnit from "../../../utils/money";
 import { createBudgetModalAtom } from "../../../stores/atoms/context";
 import Modal from "../../Modal";
 import Create from "../../../pages/budget/create";
+import PATH from "../../../constants/path";
 
 export default function CapsuleBox() {
   const { bookId } = useParams();
   const date = new Date();
+  const navigate = useNavigate();
 
   const [createModalOpen, setCreateModalOpen] = useRecoilState(
     createBudgetModalAtom,
@@ -40,7 +42,7 @@ export default function CapsuleBox() {
         theme: "normal",
         color: COLORS.BLUE,
         onClick: () => {
-          // 이번 달 지출 분석 페이지로 이동
+          // 이번 달 지출 분석 페이지로이동
         },
       },
     },
@@ -66,11 +68,15 @@ export default function CapsuleBox() {
         iconName: "circleCheck",
         color: COLORS.YELLOW,
         onClick: () => {
-          setCreateModalOpen(true); // 모달 열기
+          navigate(`${PATH.BUDGET}/${bookId}`);
+          setTimeout(() => {
+            setCreateModalOpen(true);
+          }, 500); // 0.5초 후에 setCreateModalOpen(true) 함수 호출
         },
       },
     },
   ];
+
   return (
     <S.Container>
       {createModalOpen && (
