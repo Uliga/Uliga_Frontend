@@ -7,30 +7,30 @@ import Icon from "../../components/Icon";
 import { IHistory } from "../../interfaces/book";
 import PageDefault from "../../components/Book/History/pageDefault";
 
-export default function History() {
-  const { bookId, curPage, useLoadHistory, ITEM_SIZE, onChangePage } =
+export default function Income() {
+  const { bookId, curPage, useLoadIncome, ITEM_SIZE, onChangePage } =
     useHistory();
-
-  const { data: historyData, refetch: historyRefetch } = useLoadHistory({
+  const { data: incomeData, refetch: recordHistoryRefetch } = useLoadIncome({
     id: bookId,
     page: curPage - 1,
     size: ITEM_SIZE,
   });
+
   useEffect(() => {
-    historyRefetch();
+    recordHistoryRefetch();
   }, [curPage]);
 
   return (
     <S.Container>
       <PageDefault />
       <S.Paging>
-        {historyData?.content?.map((history: IHistory) => (
-          <HistoryItem history={history} isIncome={undefined} />
+        {incomeData?.content?.map((history: IHistory) => (
+          <HistoryItem history={history} isIncome />
         ))}
         <Pagination
           activePage={curPage}
           itemsCountPerPage={ITEM_SIZE}
-          totalItemsCount={historyData?.totalElements}
+          totalItemsCount={incomeData?.totalElements}
           pageRangeDisplayed={5}
           prevPageText={<Icon iconName="arrowLeft" size="1.2rem" />}
           nextPageText={<Icon iconName="arrowRight" size="1.2rem" />}

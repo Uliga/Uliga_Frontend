@@ -1,8 +1,22 @@
-import { useEffect, useState } from "react";
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { useParams } from "react-router-dom";
-import { loadHistory } from "../../api/book";
+import { useLocation, useParams } from "react-router-dom";
+import { useRecoilState } from "recoil";
+import {
+  loadHistory,
+  loadIncome,
+  loadRecordCategory,
+  loadRecord,
+  loadHistoryCategory,
+  loadIncomeCategory,
+} from "../../api/book";
 import QUERYKEYS from "../../constants/querykey";
+import {
+  historyCategoryModalAtom,
+  historyModalAtom,
+} from "../../stores/atoms/context";
+import allModalAtom from "../../stores/selectors/context";
 
 export default function useHistory() {
   const menuList = [
@@ -41,6 +55,19 @@ export default function useHistory() {
   ];
 
   const { bookId } = useParams();
+  const { categoryId } = useParams();
+  const location = useLocation();
+  const currentPath = location.pathname.split("/")[1];
+
+  const [historyModalOpen, setHistoryModalOpen] =
+    useRecoilState(historyModalAtom);
+  const [historyCategoryOpen, setHistoryCategoryOpen] = useRecoilState(
+    historyCategoryModalAtom,
+  );
+  const [, setAllModalAtom] = useRecoilState(allModalAtom);
+
+  const [curPage, setCurPage] = useState(1);
+  const ITEM_SIZE = 8;
 
   const useLoadHistory = (historyData: object) => {
     const queryFn = () => loadHistory(historyData);
@@ -49,33 +76,73 @@ export default function useHistory() {
     return { data, refetch };
   };
 
-  const [curPage, setCurPage] = useState(1);
-  const ITEM_SIZE = 8;
+  const useLoadHistoryCategory = (historyData: object) => {
+    const queryFn = () => loadHistoryCategory(historyData);
+    const { data, refetch } = useQuery(
+      [QUERYKEYS.LOAD_HISTORY_CATEGORY],
+      queryFn,
+    );
 
-  const { data, refetch } = useLoadHistory({
-    id: bookId,
-    page: curPage - 1,
-    size: ITEM_SIZE,
-  });
-  const HISTORY_DATA_SIZE = data?.totalElements;
-  const content = data?.content;
+    return { data, refetch };
+  };
+
+  const useLoadRecord = (historyData: object) => {
+    const queryFn = () => loadRecord(historyData);
+    const { data, refetch } = useQuery([QUERYKEYS.LOAD_RECORD], queryFn);
+
+    return { data, refetch };
+  };
+
+  const useLoadRecordCategory = (historyData: object) => {
+    const queryFn = () => loadRecordCategory(historyData);
+    const { data, refetch } = useQuery(
+      [QUERYKEYS.LOAD_RECORD_CATEGORY],
+      queryFn,
+    );
+
+    return { data, refetch };
+  };
+
+  const useLoadIncome = (historyData: object) => {
+    const queryFn = () => loadIncome(historyData);
+    const { data, refetch } = useQuery([QUERYKEYS.LOAD_INCOME], queryFn);
+
+    return { data, refetch };
+  };
+
+  const useLoadIncomeCategory = (historyData: object) => {
+    const queryFn = () => loadIncomeCategory(historyData);
+    const { data, refetch } = useQuery(
+      [QUERYKEYS.LOAD_INCOME_CATEGORY],
+      queryFn,
+    );
+
+    return { data, refetch };
+  };
+
   const onChangePage = (page: number) => {
     setCurPage(page);
   };
 
-  useEffect(() => {
-    refetch();
-  }, [curPage]);
-
   return {
+    categoryId,
     bookId,
     menuList,
-    data,
+    useLoadHistory,
+    useLoadRecord,
+    useLoadRecordCategory,
+    useLoadHistoryCategory,
+    useLoadIncome,
+    useLoadIncomeCategory,
     curPage,
     setCurPage,
-    HISTORY_DATA_SIZE,
     ITEM_SIZE,
     onChangePage,
-    content,
+    historyModalOpen,
+    setHistoryModalOpen,
+    historyCategoryOpen,
+    setHistoryCategoryOpen,
+    setAllModalAtom,
+    currentPath,
   };
 }

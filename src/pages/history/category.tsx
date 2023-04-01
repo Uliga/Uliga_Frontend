@@ -7,18 +7,27 @@ import Icon from "../../components/Icon";
 import { IHistory } from "../../interfaces/book";
 import PageDefault from "../../components/Book/History/pageDefault";
 
-export default function History() {
-  const { bookId, curPage, useLoadHistory, ITEM_SIZE, onChangePage } =
-    useHistory();
+export default function HistoryCategory() {
+  const {
+    bookId,
+    curPage,
+    categoryId,
+    useLoadHistoryCategory,
+    ITEM_SIZE,
+    onChangePage,
+  } = useHistory();
 
-  const { data: historyData, refetch: historyRefetch } = useLoadHistory({
-    id: bookId,
-    page: curPage - 1,
-    size: ITEM_SIZE,
-  });
+  const { data: historyData, refetch: historyRefetch } = useLoadHistoryCategory(
+    {
+      id: bookId,
+      categoryId,
+      page: curPage - 1,
+      size: ITEM_SIZE,
+    },
+  );
   useEffect(() => {
     historyRefetch();
-  }, [curPage]);
+  }, [curPage, categoryId]);
 
   return (
     <S.Container>

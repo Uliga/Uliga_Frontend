@@ -13,6 +13,11 @@ import Write from "./pages/write";
 import Schedule from "./pages/schedule";
 import Budget from "./pages/budget";
 import History from "./pages/history";
+import Record from "./pages/record";
+import RecordCategory from "./pages/record/category";
+import HistoryCategory from "./pages/history/category";
+import Income from "./pages/income";
+import IncomeCategory from "./pages/income/category";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -56,6 +61,15 @@ function App() {
           </Route>
           <Route path={PATH.HISTORY} element={<MainLayout />}>
             <Route path=":bookId" element={<History />} />
+            <Route path=":bookId/:categoryId" element={<HistoryCategory />} />
+          </Route>
+          <Route path={PATH.RECORD} element={<MainLayout />}>
+            <Route path=":bookId" element={<Record />} />
+            <Route path=":bookId/:categoryId" element={<RecordCategory />} />
+          </Route>
+          <Route path={PATH.INCOME} element={<MainLayout />}>
+            <Route path=":bookId" element={<Income />} />
+            <Route path=":bookId/:categoryId" element={<IncomeCategory />} />
           </Route>
         </Routes>
       </Router>
