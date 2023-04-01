@@ -42,7 +42,7 @@ export default function CapsuleBox() {
         theme: "normal",
         color: COLORS.BLUE,
         onClick: () => {
-          // 이번 달 지출 분석 페이지로 이동
+          // 이번 달 지출 분석 페이지로이동
         },
       },
     },
