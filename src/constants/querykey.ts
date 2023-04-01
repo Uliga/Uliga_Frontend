@@ -7,6 +7,12 @@ const QUERYKEYS = {
   LOAD_SCHEDULE: "loadSchedule",
   LOAD_CATEGORY: "loadCategory",
   LOAD_SCHEDULE_DETAIL: "loadScheduleDetail",
+  LOAD_HISTORY: "loadHistory",
+  LOAD_HISTORY_CATEGORY: "loadHistoryCategory",
+  LOAD_INCOME: "loadIncome",
+  LOAD_INCOME_CATEGORY: "loadIncomeCategory",
+  LOAD_RECORD: "loadRecord",
+  LOAD_RECORD_CATEGORY: "loadRecordCategory",
 } as const;
 
 export default QUERYKEYS;

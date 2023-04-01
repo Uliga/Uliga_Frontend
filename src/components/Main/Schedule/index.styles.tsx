@@ -82,3 +82,17 @@ export const EditButton = styled(Button)`
   margin: 2rem;
   width: 21rem;
 `;
+
+export const Nothing = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  gap: 2rem;
+  padding-top: 5rem;
+  align-items: center;
+  font-size: 1.15rem;
+  color: ${COLORS.GREY[500]};
+  white-space: pre-wrap;
+  line-height: 1.5;
+  flex-direction: column;
+`;

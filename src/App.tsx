@@ -8,10 +8,16 @@ import Main from "./pages/main";
 import PATH from "./constants/path";
 import Signup from "./pages/signup";
 import StyledContainer from "./components/Toast/container";
-import LadingPage from "./pages/landing";
+import Landing from "./pages/landing";
 import Write from "./pages/write";
 import Schedule from "./pages/schedule";
 import Budget from "./pages/budget";
+import History from "./pages/history";
+import Record from "./pages/record";
+import RecordCategory from "./pages/record/category";
+import HistoryCategory from "./pages/history/category";
+import Income from "./pages/income";
+import IncomeCategory from "./pages/income/category";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -33,7 +39,7 @@ function App() {
       <Router>
         <Routes>
           <Route path={PATH.LANDING} element={<DefaultLayout />}>
-            <Route index element={<LadingPage />} />
+            <Route index element={<Landing />} />
           </Route>
           <Route path={PATH.LOGIN} element={<DefaultLayout />}>
             <Route index element={<Login />} />
@@ -52,6 +58,18 @@ function App() {
           </Route>
           <Route path={PATH.BUDGET} element={<MainLayout />}>
             <Route path=":bookId" element={<Budget />} />
+          </Route>
+          <Route path={PATH.HISTORY} element={<MainLayout />}>
+            <Route path=":bookId" element={<History />} />
+            <Route path=":bookId/:categoryId" element={<HistoryCategory />} />
+          </Route>
+          <Route path={PATH.RECORD} element={<MainLayout />}>
+            <Route path=":bookId" element={<Record />} />
+            <Route path=":bookId/:categoryId" element={<RecordCategory />} />
+          </Route>
+          <Route path={PATH.INCOME} element={<MainLayout />}>
+            <Route path=":bookId" element={<Income />} />
+            <Route path=":bookId/:categoryId" element={<IncomeCategory />} />
           </Route>
         </Routes>
       </Router>
