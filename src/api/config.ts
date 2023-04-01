@@ -21,6 +21,7 @@ const NOTIFICATION = "/notification";
 const HISTORY = "/history";
 const INCOME = "/income";
 const RECORD = "/record";
+const BUDGET = "/budget";
 
 const API = {
   BASE_URL: `${BASE_URL}`,
@@ -47,5 +48,7 @@ const API = {
   HISTORY: `${HISTORY}`,
   INCOME: `${INCOME}`,
   RECORD: `${RECORD}`,
+  CREATE_BUDGET: `${ACCOUNT_BOOK}${BUDGET}`,
+  BUDGET: `${BUDGET}`,
 };
 export default API;

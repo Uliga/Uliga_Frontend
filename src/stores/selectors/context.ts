@@ -1,6 +1,7 @@
 import { selector } from "recoil";
 import {
   bottomModalAtom,
+  createBudgetModalAtom,
   createModalAtom,
   deleteScheduleDialogAtom,
   invitationModalAtom,
@@ -18,6 +19,7 @@ const allModalAtom = selector<boolean>({
     const scheduleModal = get(scheduleModalAtom);
     const historyModal = get(historyModalAtom);
     const historyCategoryModal = get(historyCategoryModalAtom);
+    const budgetModal = get(createBudgetModalAtom);
     return (
       createModal ||
       bottomModal ||
@@ -25,6 +27,7 @@ const allModalAtom = selector<boolean>({
       scheduleModal ||
       historyModal ||
       historyCategoryModal
+      budgetModal
     );
   },
   set: ({ set }, newValue) => {
@@ -35,6 +38,7 @@ const allModalAtom = selector<boolean>({
     set(scheduleModalAtom, newValue);
     set(historyModalAtom, newValue);
     set(historyCategoryModalAtom, newValue);
+    set(createBudgetModalAtom, newValue);
   },
 });
 

@@ -1,12 +1,16 @@
 import { useParams } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import QUERYKEYS from "../constants/querykey";
-import { loadMonthAsset } from "../api/book";
+import { createBudget, loadMonthAsset, updateBudget } from "../api/book";
+import useInput from "./useInput";
+import toastMsg from "../components/Toast";
 
 export default function useBudget() {
   const { bookId } = useParams();
   const date = new Date();
   const lastMonthDate = new Date(date.getFullYear(), date.getMonth() - 1, 1);
+  const [budgets, setBudget] = useInput("");
+  const queryClient = useQueryClient();
 
   const lastDate = new Date(
     date.getFullYear(),
@@ -61,6 +65,49 @@ export default function useBudget() {
     lastMonthData.budget.value - lastMonthData.record.value;
   const lastDataGage = (lastRemainData / lastMonthData.budget.value) * 100;
   const oneDayBudget = Math.trunc(thisRemainData / lastDate);
+  const mutateCreateBudget = useMutation(["createBudget"], createBudget, {
+    onSuccess: () => {
+      toastMsg("예산이 추가되었습니다!");
+      queryClient.invalidateQueries([QUERYKEYS.LOAD_MONTH_ASSET]);
+    },
+    onError: ({
+      response: {
+        data: { errorCode, message },
+      },
+    }) => {
+      toastMsg(`${errorCode} / ${message}`);
+    },
+  });
+  const mutateUpdateBudget = useMutation(["updateBudget"], updateBudget, {
+    onSuccess: () => {
+      toastMsg("예산이 수정되었습니다!");
+      queryClient.invalidateQueries([QUERYKEYS.LOAD_MONTH_ASSET]);
+    },
+    onError: ({
+      response: {
+        data: { errorCode, message },
+      },
+    }) => {
+      toastMsg(`${errorCode} / ${message}`);
+    },
+  });
+  const selectUpdateCreate = () => {
+    if (thisMonthData.budget.value) {
+      mutateUpdateBudget.mutate({
+        id: bookId,
+        year: date.getFullYear(),
+        month: date.getMonth() + 1,
+        value: budgets,
+      });
+    } else {
+      mutateCreateBudget.mutate({
+        id: bookId,
+        year: date.getFullYear(),
+        month: date.getMonth() + 1,
+        value: budgets,
+      });
+    }
+  };
 
   return {
     thisRemainData,
@@ -72,5 +119,10 @@ export default function useBudget() {
     lastMonthData,
     lastMonthDate,
     date,
+    budgets,
+    setBudget,
+    mutateCreateBudget,
+    mutateUpdateBudget,
+    selectUpdateCreate,
   };
 }
