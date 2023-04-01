@@ -1,5 +1,6 @@
 import React from "react";
 import { useRecoilState } from "recoil";
+import { useParams } from "react-router-dom";
 import * as S from "./index.styles";
 import COLORS from "../../../constants/color";
 import { createBudgetModalAtom } from "../../../stores/atoms/context";
@@ -8,7 +9,7 @@ import useCreateBudget from "../../../hooks/book/useCreateBudget";
 
 export default function Create() {
   const [, setCreateModalOpen] = useRecoilState(createBudgetModalAtom);
-
+  const { bookId } = useParams();
   const budget = useBudget();
   if (!budget) {
     return null;
@@ -25,7 +26,24 @@ export default function Create() {
   if (!createBudgets) {
     return null;
   }
-  const { selectUpdateCreate } = createBudgets;
+  const { mutateUpdateBudget, mutateCreateBudget } = createBudgets;
+  const selectUpdateCreate = () => {
+    if (thisMonthData.budget.value) {
+      mutateUpdateBudget.mutate({
+        id: bookId,
+        year: date.getFullYear(),
+        month: date.getMonth() + 1,
+        value: budgets,
+      });
+    } else {
+      mutateCreateBudget.mutate({
+        id: bookId,
+        year: date.getFullYear(),
+        month: date.getMonth() + 1,
+        value: budgets,
+      });
+    }
+  };
   return (
     <S.Container>
       <h2>{date.getMonth() + 1}월 예산 설정</h2>
