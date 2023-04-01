@@ -19,10 +19,15 @@ export default function MainScheduleList() {
   const data = useSchedule();
   if (!data) return null;
 
+  const text = `현재 등록된 금융 일정이 없습니다. 
+정기적인 지출 ∙ 수입을 기록하고 
+다가오는 일정을 잊지않게 확인해보세요!`;
+
   return (
     <S.Container>
-      <h5>다가오는 금융 일정 📆</h5>
+      {data.schedules.length !== 0 && <h5>다가오는 금융 일정 📆</h5>}
       <S.Wrapper>
+        {data.schedules.length === 0 && <S.Nothing>{text}</S.Nothing>}
         {data.schedules.map((schedule: ScheduleProps) => (
           <S.ScheduleWrapper key={schedule.name}>
             <S.StyledBadge
@@ -48,7 +53,11 @@ export default function MainScheduleList() {
         ))}
       </S.Wrapper>
       <S.EditButton
-        title="금융 일정 수정하기"
+        title={
+          data.schedules.length !== 0
+            ? "금융 일정 수정하기"
+            : "금융 일정 추가하러 가기"
+        }
         theme="quaternary"
         onClick={() => navigate(`${PATH.SCHEDULE}/${bookId}`)}
       />

@@ -32,7 +32,7 @@ export const Title = styled.div`
   padding-top: 0.2rem;
   font-family: GmarketSans;
   color: ${COLORS.BLUE};
-  font-size: 1.7rem;
+  font-size: 1.5rem;
 `;
 
 export const UtilWrapper = styled.div`

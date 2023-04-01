@@ -93,6 +93,54 @@ export const deleteSchedleAlarm = async () => {
   const { data } = await authorizationClient.delete(API.DELETE_ALARM);
   return data;
 };
+
+export const loadHistory = async (historyData: any) => {
+  const { id, page, size } = historyData;
+  const { data } = await authorizationClient.get(
+    `${API.ACCOUNT_BOOK}/${id}${API.HISTORY}?page=${page}&size=${size}`,
+  );
+  return data;
+};
+
+export const loadHistoryCategory = async (historyData: any) => {
+  const { id, categoryId, page, size } = historyData;
+  const { data } = await authorizationClient.get(
+    `${API.ACCOUNT_BOOK}/${id}${API.HISTORY}?page=${page}&size=${size}&categoryId=${categoryId}`,
+  );
+  return data;
+};
+
+export const loadIncome = async (historyData: any) => {
+  const { id, page, size } = historyData;
+  const { data } = await authorizationClient.get(
+    `${API.INCOME}${API.ACCOUNT_BOOK}/${id}?page=${page}&size=${size}`,
+  );
+  return data;
+};
+
+export const loadIncomeCategory = async (historyData: any) => {
+  const { id, categoryId, page, size } = historyData;
+  const { data } = await authorizationClient.get(
+    `${API.INCOME}${API.ACCOUNT_BOOK}/${id}?page=${page}&size=${size}&categoryId=${categoryId}`,
+  );
+  return data;
+};
+
+export const loadRecord = async (historyData: any) => {
+  const { id, page, size } = historyData;
+  const { data } = await authorizationClient.get(
+    `${API.RECORD}${API.ACCOUNT_BOOK}/${id}?page=${page}&size=${size}`,
+  );
+  return data;
+};
+
+export const loadRecordCategory = async (historyData: any) => {
+  const { id, categoryId, page, size } = historyData;
+  const { data } = await authorizationClient.get(
+    `${API.RECORD}${API.ACCOUNT_BOOK}/${id}?page=${page}&size=${size}&categoryId=${categoryId}`,
+  );
+  return data;
+};
 export const createBudget = async (budget: object) => {
   const { data } = await authorizationClient.post(API.CREATE_BUDGET, budget);
   return data;

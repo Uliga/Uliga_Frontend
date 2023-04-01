@@ -3,7 +3,6 @@ import styled from "styled-components";
 import COLORS from "../../../constants/color";
 import { NotificationProps } from "../../../interfaces/user";
 import getMoneyUnit from "../../../utils/money";
-import Button from "../../Button";
 
 const Container = styled.div`
   display: flex;

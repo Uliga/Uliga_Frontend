@@ -18,6 +18,9 @@ const INVITATION = "/invitation";
 const ITEM = "item";
 const SCHEDULE = "/schedule";
 const NOTIFICATION = "/notification";
+const HISTORY = "/history";
+const INCOME = "/income";
+const RECORD = "/record";
 const BUDGET = "/budget";
 
 const API = {
@@ -42,6 +45,9 @@ const API = {
   SCHEDULE: `${SCHEDULE}`,
   ADD_SCHEDULE: `${ACCOUNT_BOOK}${SCHEDULE}`,
   DELETE_ALARM: `${MEMBER}${NOTIFICATION}`,
+  HISTORY: `${HISTORY}`,
+  INCOME: `${INCOME}`,
+  RECORD: `${RECORD}`,
   CREATE_BUDGET: `${ACCOUNT_BOOK}${BUDGET}`,
   BUDGET: `${BUDGET}`,
 };
