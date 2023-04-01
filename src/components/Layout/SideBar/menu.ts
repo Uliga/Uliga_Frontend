@@ -27,7 +27,7 @@ const menu = [
         theme: "normal",
         iconName: "arrowRight",
         iconSize: "1.2rem",
-        path: "",
+        path: PATH.HISTORY,
       },
     ],
   },
