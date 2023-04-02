@@ -3,6 +3,7 @@ import QUERYKEYS from "../../constants/querykey";
 import { createBudget, updateBudget } from "../../api/book";
 import toastMsg from "../../components/Toast";
 import useBudget from "./useBudget";
+import useInput from "../useInput";
 
 export default function useCreateBudget() {
   const queryClient = useQueryClient();
@@ -10,6 +11,8 @@ export default function useCreateBudget() {
   if (!budget) {
     return null;
   }
+  const [budgets, setBudget] = useInput("");
+
   const mutateCreateBudget = useMutation(["createBudget"], createBudget, {
     onSuccess: () => {
       toastMsg("예산이 추가되었습니다!");
@@ -37,5 +40,5 @@ export default function useCreateBudget() {
     },
   });
 
-  return { mutateUpdateBudget, mutateCreateBudget };
+  return { mutateUpdateBudget, mutateCreateBudget, budgets, setBudget };
 }

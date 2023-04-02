@@ -2,13 +2,11 @@ import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import QUERYKEYS from "../../constants/querykey";
 import { loadMonthAsset } from "../../api/book";
-import useInput from "../useInput";
 
 export default function useBudget() {
   const { bookId } = useParams();
   const date = new Date();
   const lastMonthDate = new Date(date.getFullYear(), date.getMonth() - 1, 1);
-  const [budgets, setBudget] = useInput("");
 
   const lastDate = new Date(
     date.getFullYear(),
@@ -74,7 +72,5 @@ export default function useBudget() {
     lastMonthData,
     lastMonthDate,
     date,
-    budgets,
-    setBudget,
   };
 }
