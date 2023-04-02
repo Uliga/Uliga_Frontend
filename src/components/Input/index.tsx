@@ -32,7 +32,7 @@ const Message = styled.p`
 
 type InputProps = {
   /** input 안의 초깃값 */
-  value: string;
+  value: string | number;
   /** 변화가 일어났을떄 호출되는 함수 */
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   /** input type : ex> text,password,checkbox etc. */

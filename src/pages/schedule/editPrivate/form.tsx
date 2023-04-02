@@ -34,7 +34,14 @@ export default function EditShareForm({
     setName(curSchedule?.info?.name);
     setValue(curSchedule?.info?.value);
     setIsIncome(curSchedule?.info?.isIncome);
-    setAssignments(curSchedule?.assignments);
+    const newAssignment = curSchedule?.assignments.map(item => {
+      return {
+        memberId: item.id,
+        usename: item.username,
+        value: item.value,
+      };
+    });
+    setAssignments(newAssignment);
   }, [curSchedule]);
 
   return (
@@ -104,7 +111,7 @@ export default function EditShareForm({
               onClick={() => {
                 const newAssignments: IStringIndex = {};
                 assignments.map(item => {
-                  newAssignments[item.id] = value;
+                  newAssignments[item.memberId] = value;
                   return newAssignments;
                 });
                 const newSchedule = {
