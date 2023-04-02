@@ -12,7 +12,6 @@ export default function useCreateBudget() {
     return null;
   }
   const [budgets, setBudget] = useInput("");
-
   const mutateCreateBudget = useMutation(["createBudget"], createBudget, {
     onSuccess: () => {
       toastMsg("예산이 추가되었습니다!");
