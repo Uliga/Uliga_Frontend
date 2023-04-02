@@ -4,13 +4,9 @@ import COLORS from "../../../constants/color";
 import getMoneyUnit from "../../../utils/money";
 import useBudget from "../../../hooks/book/useBudget";
 
-export default function Budget() {
-  const budget = useBudget();
-  if (!budget) {
-    return null;
-  }
+export default function CurMonth() {
   const { thisRemainData, thisDataGage, thisMonthData, oneDayBudget, date } =
-    budget;
+    useBudget();
 
   const infos = [
     {
