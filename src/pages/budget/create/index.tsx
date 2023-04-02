@@ -14,19 +14,13 @@ export default function Create() {
   if (!budget) {
     return null;
   }
-  const {
-    lastRemainData,
-    lastMonthData,
-    budgets,
-    setBudget,
-    thisMonthData,
-    date,
-  } = budget;
+  const { lastRemainData, lastMonthData, thisMonthData, date } = budget;
   const createBudgets = useCreateBudget();
   if (!createBudgets) {
     return null;
   }
-  const { mutateUpdateBudget, mutateCreateBudget } = createBudgets;
+  const { mutateUpdateBudget, mutateCreateBudget, budgets, setBudget } =
+    createBudgets;
   const selectUpdateCreate = () => {
     if (thisMonthData.budget.value) {
       mutateUpdateBudget.mutate({
