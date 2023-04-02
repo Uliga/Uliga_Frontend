@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import { useParams } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import COLORS from "../../../constants/color";
@@ -10,6 +10,7 @@ import {
 } from "../../../stores/atoms/context";
 import allModalAtom from "../../../stores/selectors/context";
 import useBook from "../../../hooks/book/useBook";
+import useDetectOutside from "../../../hooks/book/useDetectOutside";
 
 interface BookNavProps {
   path: string;
@@ -26,26 +27,28 @@ export default function BookNav({ path }: BookNavProps) {
 
   const bottomModalRef = useRef<HTMLDivElement>(null);
   const etcButtonRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        bottomModalRef.current &&
-        !bottomModalRef.current.contains(event.target as Node) &&
-        (!etcButtonRef.current ||
-          !etcButtonRef.current.contains(event.target as Node))
-      ) {
-        setBottomModalOpen(false);
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [bottomModalRef, setBottomModalOpen]);
+  useDetectOutside({
+    refs: [bottomModalRef, etcButtonRef],
+    onOutsideClick: () => setBottomModalOpen(false),
+  });
+  // useEffect(() => {
+  //   const handleClickOutside = (event: MouseEvent) => {
+  //     if (
+  //       bottomModalRef.current &&
+  //       !bottomModalRef.current.contains(event.target as Node) &&
+  //       (!etcButtonRef.current ||
+  //         !etcButtonRef.current.contains(event.target as Node))
+  //     ) {
+  //       setBottomModalOpen(false);
+  //     }
+  //   };
+  //   document.addEventListener("mousedown", handleClickOutside);
+  //
+  //   return () => {
+  //     document.removeEventListener("mousedown", handleClickOutside);
+  //   };
+  // }, [bottomModalRef, setBottomModalOpen]);
   if (!data) return null;
-  console.log("bottomModalOpen", bottomModalOpen); // document.addEventListener("mousedown", handleClickOutside);
 
   return (
     <S.Container>
