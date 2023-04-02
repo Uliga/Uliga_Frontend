@@ -25,17 +25,21 @@ export default function BookNav({ path }: BookNavProps) {
   const { useReplaceBook } = useBook();
 
   const bottomModalRef = useRef<HTMLDivElement>(null);
+  const etcButtonRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
         bottomModalRef.current &&
-        !bottomModalRef.current.contains(event.target as Node)
+        !bottomModalRef.current.contains(event.target as Node) &&
+        (!etcButtonRef.current ||
+          !etcButtonRef.current.contains(event.target as Node))
       ) {
         setBottomModalOpen(false);
       }
     };
     document.addEventListener("mousedown", handleClickOutside);
+
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
@@ -87,14 +91,16 @@ export default function BookNav({ path }: BookNavProps) {
                 />
               ),
             )}
-        <S.ETCButton
-          iconName="dots"
-          theme={bottomModalOpen ? "tertiary" : "basic"}
-          onClick={() => {
-            setAllModalAtom(false);
-            setBottomModalOpen(!bottomModalOpen);
-          }}
-        />
+        <div ref={etcButtonRef}>
+          <S.ETCButton
+            iconName="dots"
+            theme={bottomModalOpen ? "tertiary" : "basic"}
+            onClick={() => {
+              setAllModalAtom(false);
+              setBottomModalOpen(!bottomModalOpen);
+            }}
+          />
+        </div>
         {path.includes("main") && (
           <S.ETCButton
             iconName="plus"
