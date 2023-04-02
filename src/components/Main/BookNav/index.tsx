@@ -31,23 +31,7 @@ export default function BookNav({ path }: BookNavProps) {
     refs: [bottomModalRef, etcButtonRef],
     onOutsideClick: () => setBottomModalOpen(false),
   });
-  // useEffect(() => {
-  //   const handleClickOutside = (event: MouseEvent) => {
-  //     if (
-  //       bottomModalRef.current &&
-  //       !bottomModalRef.current.contains(event.target as Node) &&
-  //       (!etcButtonRef.current ||
-  //         !etcButtonRef.current.contains(event.target as Node))
-  //     ) {
-  //       setBottomModalOpen(false);
-  //     }
-  //   };
-  //   document.addEventListener("mousedown", handleClickOutside);
-  //
-  //   return () => {
-  //     document.removeEventListener("mousedown", handleClickOutside);
-  //   };
-  // }, [bottomModalRef, setBottomModalOpen]);
+
   if (!data) return null;
 
   return (
