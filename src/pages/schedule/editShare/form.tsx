@@ -35,7 +35,14 @@ export default function EditShareForm({
     setName(curSchedule?.info?.name);
     setValue(curSchedule?.info?.value);
     setIsIncome(curSchedule?.info?.isIncome);
-    setAssignments(curSchedule?.assignments);
+    const newAssignment = curSchedule?.assignments.map(item => {
+      return {
+        memberId: item.id,
+        username: item.username,
+        value: item.value,
+      };
+    });
+    setAssignments(newAssignment);
   }, [curSchedule]);
 
   return (
@@ -108,17 +115,20 @@ export default function EditShareForm({
               </div>
               <div>
                 {assignments?.map(member => (
-                  <div key={member.id}>
+                  <div key={member.memberId}>
                     <S.Division>
                       <S.Name>{member.username}</S.Name>
                       <Input
-                        // @ts-ignore
                         value={member.value}
                         type="number"
                         labelHidden
                         size={12}
                         onChange={event => {
-                          handlePriceChange(event, member.username, member.id);
+                          handlePriceChange(
+                            event,
+                            member.username,
+                            member.memberId,
+                          );
                         }}
                       />
                       원
@@ -132,7 +142,7 @@ export default function EditShareForm({
               onClick={() => {
                 const newAssignments: IStringIndex = {};
                 assignments.map(item => {
-                  newAssignments[item.id] = item.value;
+                  newAssignments[item.memberId] = item.value;
                   return newAssignments;
                 });
                 const newSchedule = {

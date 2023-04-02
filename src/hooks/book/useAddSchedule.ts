@@ -7,13 +7,10 @@ import toastMsg from "../../components/Toast";
 import QUERYKEYS from "../../constants/querykey";
 import { BookMemberProps } from "../../interfaces/book";
 
-export interface PriceProps {
-  username: string;
+export interface AssignmentProps {
+  memberId: number;
+  username?: string;
   value: number;
-}
-
-export interface AssignmentProps extends PriceProps {
-  id: number;
 }
 
 export interface ScheduleProps {
@@ -35,7 +32,6 @@ export default function useAddSchedule() {
   const [name, onChangeName, setName] = useInput("");
   const [value, onChangeValue, setValue] = useInput("");
   const [members, setMembers] = useState<BookMemberProps[]>([]);
-  const [price, setPrice] = useState<PriceProps[]>([]);
   const [assignments, setAssignments] = useState<AssignmentProps[]>([]);
   const [scheduleList, setScheduleList] = useState<ScheduleProps[]>([]);
 
@@ -99,18 +95,11 @@ export default function useAddSchedule() {
     memberName: string,
     memberId: number,
   ) => {
-    setPrice(prevState =>
-      prevState.map(values =>
-        values.username === memberName
-          ? { username: memberName, value: parseInt(event.target.value, 10) }
-          : values,
-      ),
-    );
     setAssignments(prevState =>
       prevState.map(values =>
-        values.username === memberName
+        values.memberId === memberId
           ? {
-              id: memberId,
+              memberId,
               username: memberName,
               value: parseInt(event.target.value, 10),
             }
@@ -126,23 +115,20 @@ export default function useAddSchedule() {
       console.log(err);
     }
   };
+
   useEffect(() => {
     getMember();
   }, []);
-  useEffect(() => {
-    const initialPrice = members.map(member => ({
-      username: member.username,
-      value: 0,
-    }));
 
+  useEffect(() => {
     const initialInfo = members.map(member => ({
       username: member.username,
-      id: member.id,
+      memberId: member.id,
       value: 0,
     }));
-    setPrice(initialPrice);
     setAssignments(initialInfo);
   }, [members]);
+
   const addInputSchedule = () => {
     setScheduleList((prevState: any) => [
       ...prevState,
@@ -151,11 +137,18 @@ export default function useAddSchedule() {
         isIncome,
         notificationDate,
         value,
-        assignments,
+        assignments: assignments.map(item => {
+          return {
+            id: item.memberId,
+            username: item.username,
+            value: item.value,
+          };
+        }),
       },
     ]);
 
     const initialPrice = members.map(member => ({
+      memberId: member.id,
       username: member.username,
       value: 0,
     }));
@@ -164,7 +157,7 @@ export default function useAddSchedule() {
     setIsIncome(false);
     setNotificationDate("");
     setValue("");
-    setPrice(initialPrice);
+    setAssignments(initialPrice);
   };
 
   const addInputSchedulePrivate = () => {
@@ -177,13 +170,14 @@ export default function useAddSchedule() {
         value,
         assignments: [
           {
-            id: assignments[0].id,
+            id: assignments[0].memberId,
             value: +value,
           },
         ],
       },
     ]);
     const initialPrice = members.map(member => ({
+      memberId: member.id,
       username: member.username,
       value: 0,
     }));
@@ -192,7 +186,7 @@ export default function useAddSchedule() {
     setIsIncome(false);
     setNotificationDate("");
     setValue("");
-    setPrice(initialPrice);
+    setAssignments(initialPrice);
   };
 
   const clearScheduleList = () => {
@@ -225,7 +219,6 @@ export default function useAddSchedule() {
     clearScheduleList,
     scheduleList,
     members,
-    price,
     radioList,
     setRadioList,
     inputList,
@@ -235,7 +228,6 @@ export default function useAddSchedule() {
     addInputSchedule,
     onChangetNotificationDate,
     handleIsIncome,
-    setPrice,
     setAssignments,
     notificationDate,
     addInputSchedulePrivate,
