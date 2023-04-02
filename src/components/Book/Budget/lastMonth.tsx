@@ -5,11 +5,8 @@ import getMoneyUnit from "../../../utils/money";
 import useBudget from "../../../hooks/book/useBudget";
 
 export default function LastMonth() {
-  const budget = useBudget();
-  if (!budget) {
-    return null;
-  }
-  const { lastMonthData, lastRemainData, lastDataGage, date } = budget;
+  const { lastMonthData, lastRemainData, lastDataGage, date } = useBudget();
+
   return (
     <S.Right>
       <S.CheckLastMonth>

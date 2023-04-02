@@ -61,8 +61,8 @@ export default function CapsuleBox() {
     },
     {
       title: "예산",
-      amount: data.budget.value
-        ? `${getMoneyUnit(data.budget.value)}원`
+      amount: data?.budget?.value
+        ? `${getMoneyUnit(data?.budget?.value)}원`
         : false,
       subtitle: `설정하신 예산이 없습니다.\n예산을 설정하고 계획적으로 관리 해보세요!`,
       Button: {

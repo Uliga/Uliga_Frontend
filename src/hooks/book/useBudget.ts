@@ -1,4 +1,5 @@
 import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import QUERYKEYS from "../../constants/querykey";
 import { loadMonthAsset } from "../../api/book";
@@ -19,7 +20,7 @@ export default function useBudget() {
       `${lastMonthDate.getFullYear()}/${lastMonthDate.getMonth() + 1}`,
     );
 
-  const { data: lastMonthData } = useQuery(
+  const { data: lastMonthQueryData } = useQuery(
     [QUERYKEYS.LOAD_MONTH_ASSET, lastMonthDate.getMonth()],
     lastMonthQueryFn,
   );
@@ -30,37 +31,60 @@ export default function useBudget() {
       `${date.getFullYear()}/${date.getMonth() + 1}`,
     );
 
-  const { data: thisMonthData } = useQuery(
+  const { data: thisMonthQueryData } = useQuery(
     [QUERYKEYS.LOAD_MONTH_ASSET, date.getMonth()],
     thisMonthqueryFn,
   );
+  const [thisMonthData, setThisMonthData] = useState({
+    record: {
+      value: 0,
+    },
+    budget: {
+      value: 0,
+    },
+  });
+  const [lastMonthData, setLastMonthData] = useState({
+    record: {
+      value: 0,
+    },
+    budget: {
+      value: 0,
+    },
+  });
+  const [thisRemainData, setThisRemainData] = useState(0);
+  const [thisDataGage, setThisDataGage] = useState(0);
+  const [lastRemainData, setLastRemainData] = useState(0);
+  const [lastDataGage, setLastDataGage] = useState(0);
+  const [oneDayBudget, setOneDayBudget] = useState(0);
 
-  if (!thisMonthData) {
-    return null;
-  }
-  if (!lastMonthData) {
-    return null;
-  }
-
-  if (!thisMonthData.budget) {
-    thisMonthData.budget = { value: 0 };
-  }
-  if (thisMonthData.record == null) {
-    thisMonthData.record = { value: 0 };
-  }
-  if (lastMonthData.budget == null) {
-    lastMonthData.budget = { value: 0 };
-  }
-  if (lastMonthData.record == null) {
-    lastMonthData.record = { value: 0 };
-  }
-  const thisRemainData =
-    thisMonthData.budget.value - thisMonthData.record.value;
-  const thisDataGage = (thisRemainData / thisMonthData.budget.value) * 100;
-  const lastRemainData =
-    lastMonthData.budget.value - lastMonthData.record.value;
-  const lastDataGage = (lastRemainData / lastMonthData.budget.value) * 100;
-  const oneDayBudget = Math.trunc(thisRemainData / lastDate);
+  useEffect(() => {
+    if (thisMonthQueryData?.budget?.value) {
+      setThisMonthData(
+        Object.assign(thisMonthData, { budget: thisMonthQueryData?.budget }),
+      );
+    }
+    if (thisMonthQueryData?.record) {
+      setThisMonthData(
+        Object.assign(thisMonthData, { record: thisMonthQueryData?.record }),
+      );
+    }
+    if (lastMonthQueryData?.budget?.value) {
+      setLastMonthData(
+        Object.assign(lastMonthData, { budget: lastMonthQueryData?.budget }),
+      );
+    }
+    if (lastMonthQueryData?.record) {
+      setLastMonthData(
+        Object.assign(lastMonthData, { record: thisMonthQueryData?.record }),
+      );
+    }
+    setThisRemainData(thisMonthData.budget.value - thisMonthData.record.value);
+    setThisDataGage((thisRemainData / thisMonthData.budget.value) * 100);
+    setLastRemainData(lastMonthData.budget.value - lastMonthData.record.value);
+    setLastDataGage((lastRemainData / lastMonthData.budget.value) * 100);
+    setOneDayBudget(Math.trunc(thisRemainData / lastDate));
+    console.log(thisMonthData);
+  }, [thisMonthQueryData]);
 
   return {
     thisRemainData,
