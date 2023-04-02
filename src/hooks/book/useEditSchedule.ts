@@ -23,7 +23,6 @@ export default function useEditSchedule() {
 
   const [curId, setCurId] = useState<number | undefined>(undefined);
   const [curSchedule, setCurSchedule] = useState<IScheduleDetail>();
-  // data?.schedules[0],
 
   useEffect(() => {
     const selectedData = data?.schedules?.filter(
@@ -57,14 +56,14 @@ export default function useEditSchedule() {
   };
   const handlePriceChange = (
     event: React.ChangeEvent<HTMLInputElement>,
-    memberName: string,
+    memberName: string | undefined,
     memberId: number,
   ) => {
     setAssignments(prevState =>
       prevState.map(values =>
-        values.username === memberName
+        values.memberId === memberId
           ? {
-              id: memberId,
+              memberId,
               username: memberName,
               value: parseInt(event.target.value, 10),
             }
