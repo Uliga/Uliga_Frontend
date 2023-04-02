@@ -15,7 +15,7 @@ export default function AddShare() {
     clearScheduleList,
     removeSchedules,
     mutateSchedules,
-    price,
+    assignments,
     scheduleList,
     addInputSchedule,
     handlePriceChange,
@@ -79,10 +79,9 @@ export default function AddShare() {
                   <S.Division>
                     <S.Name>{member.username}</S.Name>
                     <Input
-                      // @ts-ignore
                       value={
-                        price.find(
-                          priceItem => priceItem.username === member.username,
+                        assignments.find(
+                          priceItem => priceItem.memberId === member.id,
                         )?.value || ""
                       }
                       type="number"
