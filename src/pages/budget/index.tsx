@@ -3,8 +3,8 @@ import BookNav from "../../components/Main/BookNav";
 import PATH from "../../constants/path";
 import CapsuleBox from "../../components/Main/CapsuleBox";
 import * as S from "./index.styles";
-import CurrentMonth from "../../components/Book/Budget/curMonth";
 import LastMonth from "../../components/Book/Budget/lastMonth";
+import CurMonth from "../../components/Book/Budget/curMonth";
 
 export default function Budget() {
   return (
@@ -12,7 +12,7 @@ export default function Budget() {
       <BookNav path={PATH.BUDGET} />
       <CapsuleBox />
       <S.BudgetBox>
-        <CurrentMonth />
+        <CurMonth />
         <LastMonth />
       </S.BudgetBox>
     </S.Container>
