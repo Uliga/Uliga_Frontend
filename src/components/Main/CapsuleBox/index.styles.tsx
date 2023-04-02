@@ -7,7 +7,9 @@ const Container = styled.div`
   border: 0.1rem solid ${COLORS.GREY[200]};
   border-radius: 0.5rem;
   width: 100%;
+  height: 11rem;
   display: flex;
+  align-items: center;
   justify-content: space-evenly;
 `;
 
@@ -17,6 +19,7 @@ const Wrapper = styled.div`
   display: flex;
   gap: 1rem;
   width: 40rem;
+  height: 8rem;
   position: relative;
   flex-direction: column;
   border-right: 0.1rem solid ${COLORS.GREY[200]};
