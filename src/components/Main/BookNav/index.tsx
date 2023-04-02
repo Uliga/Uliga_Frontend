@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import COLORS from "../../../constants/color";
@@ -23,7 +23,25 @@ export default function BookNav({ path }: BookNavProps) {
   const [createModalOpen, setCreateModalOpen] = useRecoilState(createModalAtom);
   const [, setAllModalAtom] = useRecoilState(allModalAtom);
   const { useReplaceBook } = useBook();
+
+  const bottomModalRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        bottomModalRef.current &&
+        !bottomModalRef.current.contains(event.target as Node)
+      ) {
+        setBottomModalOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [bottomModalRef, setBottomModalOpen]);
   if (!data) return null;
+  console.log("bottomModalOpen", bottomModalOpen); // document.addEventListener("mousedown", handleClickOutside);
 
   return (
     <S.Container>
@@ -88,7 +106,9 @@ export default function BookNav({ path }: BookNavProps) {
           />
         )}
         {bottomModalOpen && (
-          <BottomModal path={path} accountBooks={data.accountBooks} />
+          <S.Wrapper ref={bottomModalRef}>
+            <BottomModal path={path} accountBooks={data.accountBooks} />
+          </S.Wrapper>
         )}
       </S.Nav>
     </S.Container>

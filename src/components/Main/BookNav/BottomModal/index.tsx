@@ -7,18 +7,18 @@ import * as S from "../index.styles";
 import useBook from "../../../../hooks/book/useBook";
 
 const Wrapper = styled.div`
-  background-color: white;
-  box-shadow: rgba(7, 42, 68, 0.2) 0px 4px 14px 0px;
-  border: 0.1rem solid ${COLORS.GREY[200]};
-  border-radius: 0.5rem;
-  display: flex;
-  flex-wrap: wrap;
-  position: absolute;
-  top: 5rem;
-  width: 100%;
-  flex-direction: column;
-  z-index: 999;
-  padding-bottom: 2rem;
+  // background-color: white;
+  // box-shadow: rgba(7, 42, 68, 0.2) 0px 4px 14px 0px;
+  // border: 0.1rem solid ${COLORS.GREY[200]};
+  // border-radius: 0.5rem;
+  // display: flex;
+  // flex-wrap: wrap;
+  // position: absolute;
+  // top: 5rem;
+  // width: 100%;
+  // flex-direction: column;
+  // z-index: 999;
+  // padding-bottom: 2rem;
 `;
 
 const Title = styled.div`
