@@ -6,6 +6,7 @@ import COLORS from "../../../constants/color";
 import { createBudgetModalAtom } from "../../../stores/atoms/context";
 import useBudget from "../../../hooks/book/useBudget";
 import useCreateBudget from "../../../hooks/book/useCreateBudget";
+import getMoneyUnit from "../../../utils/money";
 
 export default function Create() {
   const [, setCreateModalOpen] = useRecoilState(createBudgetModalAtom);
@@ -40,27 +41,33 @@ export default function Create() {
   };
   return (
     <S.BudgetContainer>
-      <h2>{date.getMonth() + 1}월 예산 설정</h2>
-      <p>
-        이번 달도 잘 해내실거라고 생각해요! &nbsp;&nbsp;저희가 응원합니다 💪🏻
-      </p>
-      <S.BudgetInput
-        size={43.3}
-        value={budgets}
-        label="금액"
-        placeholder={
-          thisMonthData.budget.value || "이번 달 예산 금액을 입력해주세요."
-        }
-        onChange={setBudget}
-      />
+      <div>
+        <h2>{date.getMonth() + 1}월 예산 설정</h2>
+        <p>이번 달도 잘 해내실거라고 생각해요!&nbsp;저희가 응원합니다 💪🏻</p>
+      </div>
+      <S.InputWrapper>
+        <S.BudgetInput
+          size={38}
+          value={budgets}
+          label="금액"
+          placeholder={
+            getMoneyUnit(thisMonthData.budget.value) ||
+            "이번 달 예산 금액을 입력해주세요."
+          }
+          onChange={setBudget}
+        />
+        <S.Won>원</S.Won>
+      </S.InputWrapper>
       <S.LastMonthInfo>
         <div>
           <p>지난 달 예산</p>
-          <p style={{ color: COLORS.BLUE }}>{lastMonthData.budget.value}원</p>
+          <p style={{ color: COLORS.BLUE }}>
+            {getMoneyUnit(lastMonthData.budget.value)}원
+          </p>
         </div>
         <div>
           <p>결과</p>
-          <p style={{ color: COLORS.BLUE }}>{lastRemainData}원</p>
+          <p style={{ color: COLORS.BLUE }}>{getMoneyUnit(lastRemainData)}원</p>
           {lastRemainData >= 0 ? (
             <p style={{ color: COLORS.YELLOW }}>남음</p>
           ) : (

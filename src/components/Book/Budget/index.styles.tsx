@@ -161,11 +161,15 @@ const GageIndex = styled.div`
   font-size: 1rem;
 `;
 const BudgetContainer = styled.div`
-  width: 90%;
+  width: 41.2rem;
   position: relative;
+  padding: 3rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
   h2 {
-    margin-top: 3rem;
-    font-weight: 500;
+    font-weight: 700;
+    font-size: 2.3rem;
   }
   p {
     margin-top: 1rem;
@@ -174,36 +178,50 @@ const BudgetContainer = styled.div`
   }
 `;
 const CreateButton = styled(Button)`
-  padding-top: 1rem;
-  padding-bottom: 1rem;
   font-size: 1.4rem;
   width: 100%;
   border-radius: 0.5rem;
-  margin-top: 9rem;
-  margin-bottom: 3rem;
+  padding: 1.3rem 0;
+  font-weight: 700;
+  margin-top: 7rem;
 `;
 
 const BudgetInput = styled(Input)`
-  margin-top: 4rem;
+  margin-top: 1rem;
   width: 100%;
   border-radius: 0.5rem;
+  input {
+    padding-right: 3rem;
+  }
 `;
 const LastMonthInfo = styled.div`
   background-color: ${COLORS.LIGHT_BLUE};
   border-radius: 0.5rem;
-  margin-top: 2rem;
   padding: 0 1.2rem 1.2rem 1.2rem;
+  width: 14rem;
   position: absolute;
   right: 0;
+  display: flex;
+  flex-direction: column;
+  top: 20.2rem;
   div {
     display: flex;
     gap: 10px;
   }
   p {
     font-size: 1rem;
-
-    //color: ${COLORS.BLUE};
   }
+`;
+
+const Won = styled.div`
+  position: absolute;
+  bottom: 1.5rem;
+  right: 1rem;
+  font-size: 1.4rem;
+`;
+
+const InputWrapper = styled.div`
+  position: relative;
 `;
 export {
   Container,
@@ -226,4 +244,6 @@ export {
   LastMonthInfo,
   BudgetInput,
   CreateButton,
+  Won,
+  InputWrapper,
 };
