@@ -55,6 +55,7 @@ export const ModalWrapper = styled.div`
 
 export const TutorialButton = styled(Button)`
   border-radius: 10rem;
+  width: 8rem;
   margin-left: 3rem;
 `;
 
