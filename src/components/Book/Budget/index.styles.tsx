@@ -32,53 +32,62 @@ const BudgetBox = styled.div`
 `;
 const Left = styled.div`
   position: relative;
-
-  width: 50%;
-  hr {
-    margin-top: 5rem;
-    width: 93%;
+  width: 55rem;
+  height: 35rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  h3 {
+    font-weight: bold;
+    font-size: 2.1rem;
   }
   h5 {
-    margin-left: 2rem;
-    margin-top: 3rem;
-    margin-bottom: 1rem;
-  }
-  h3 {
-    margin-left: 2rem;
-    margin-bottom: 2rem;
-    font-weight: bold;
+    font-size: 1.5rem;
   }
 `;
 const InfoBox = styled.div`
-  margin-top: 3rem;
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+  padding: 3rem 0;
+  margin-top: 1rem;
+  border-top: 0.1rem solid ${COLORS.GREY[200]};
+  span {
+    font-weight: 700;
+  }
 `;
 const Info = styled.div`
-  margin-left: 2rem;
   display: flex;
   div {
     display: flex;
-    gap: 10rem;
+    gap: 4rem;
   }
+
   p {
     width: 10rem;
   }
 `;
 const Right = styled.div`
-  margin-top: 2.5rem;
   position: relative;
-  width: 50%;
   background-color: #f9f9f9;
   border-radius: 1rem;
+  height: 27rem;
+  padding: 0rem 3rem;
+  width: 57rem;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-direction: column;
   p {
     font-size: 1rem;
-    margin-bottom: 0.5rem;
   }
   h3 {
-    margin-bottom: 2.5rem;
     font-weight: bold;
+    font-size: 2.1rem;
+  }
+  h5 {
+    font-size: 1.5rem;
+    margin-top: 2rem;
   }
 `;
 
@@ -91,40 +100,32 @@ const dot = styled.span<{ color: string }>`
   margin-right: 1rem;
 `;
 const CheckLastMonth = styled.div`
-  margin-left: 2rem;
-  margin-top: 2rem;
   display: flex;
   p {
-    margin-left: 30rem;
     font-weight: 200;
     font-size: 1rem;
   }
 `;
 const NoBudget = styled.div`
-  margin-left: 2rem;
+  margin-left: 1rem;
   margin-top: 5rem;
   p {
-    font-weight: 200;
+    font-weight: 300;
     font-size: 1.4rem;
   }
   height: 11rem;
+  color: ${COLORS.BLUE};
 `;
-const CheckLastMonthBottom = styled.div`
-  margin-top: 0.8rem;
-  margin-left: 2rem;
-  margin-bottom: 3rem;
-  h3 {
-    margin-top: 1.3rem;
-  }
-`;
+const CheckLastMonthBottom = styled.div``;
 
 const Progress = styled.div<{ color: string }>`
-  margin-left: 2rem;
-  width: 90%;
-  height: 2.5rem;
+  width: 100%;
+  height: 3rem;
   border-radius: 0.5rem;
   background-color: ${props => props.color};
   position: relative;
+  margin: 3rem 0;
+  border: 0.1rem solid #e4e4e4;
 `;
 const NowPercent = styled.div<{ dealt: number; color: string }>`
   background-color: ${props => props.color};
@@ -150,15 +151,15 @@ const GageBox = styled.div`
 const BarIndex = styled.div<{ dealt: number }>`
   margin-left: ${props => (props.dealt < 90 ? `${props.dealt}%` : "0")};
   position: absolute;
-  font-size: 1rem;
+  font-size: 1.2rem;
+  color: ${COLORS.GREY[400]};
   right: ${props => (props.dealt < 90 ? "1" : "0")};
 `;
 const GageIndex = styled.div`
-  margin-top: 1rem;
   position: absolute;
-  margin-right: 3.7rem;
+  font-size: 1.2rem;
   right: 0;
-  font-size: 1rem;
+  color: ${COLORS.GREY[400]};
 `;
 const BudgetContainer = styled.div`
   width: 41.2rem;
@@ -223,6 +224,26 @@ const Won = styled.div`
 const InputWrapper = styled.div`
   position: relative;
 `;
+
+const ButtonWrapper = styled.div`
+  position: absolute;
+  right: 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+`;
+
+const RecordButton = styled.button`
+  background-color: transparent;
+  color: ${COLORS.GREY[400]};
+  border: none;
+  font-size: 1.2rem;
+  span {
+    font-weight: 700;
+  }
+  cursor: pointer;
+`;
+
 export {
   Container,
   Wrapper,
@@ -246,4 +267,6 @@ export {
   CreateButton,
   Won,
   InputWrapper,
+  ButtonWrapper,
+  RecordButton,
 };

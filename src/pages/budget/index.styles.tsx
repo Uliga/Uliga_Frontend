@@ -6,6 +6,7 @@ export const Container = styled.div`
   display: flex;
   gap: 2.5rem;
   padding: 4rem;
+  align-items: center;
   flex-direction: column;
   color: ${COLORS.GREY[600]};
   h1 {
@@ -20,6 +21,8 @@ export const Container = styled.div`
 `;
 export const BudgetBox = styled.div`
   display: flex;
+  gap: 4rem;
+  padding-top: 2rem;
   width: 100%;
-  gap: 2rem;
+  justify-content: space-between;
 `;
