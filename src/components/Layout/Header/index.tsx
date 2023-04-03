@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { useRecoilState } from "recoil";
 import { useNavigate, useParams } from "react-router-dom";
 import Logo from "../../../assets/logo";
@@ -13,6 +13,7 @@ import allModalAtom from "../../../stores/selectors/context";
 import InvitationModal from "../InvitationModal";
 import PATH from "../../../constants/path";
 import ScheduleModal from "../ScheduleModal";
+import useDetectOutside from "../../../hooks/book/useDetectOutside";
 
 export default function Header() {
   const { bookId } = useParams();
@@ -22,6 +23,19 @@ export default function Header() {
   const [, setAllModalAtom] = useRecoilState(allModalAtom);
   const [scheduleModalOpen, setScheduleModalOpen] =
     useRecoilState(scheduleModalAtom);
+
+  const modalRef = useRef<HTMLDivElement>(null);
+  const invitationButtonRef = useRef<HTMLDivElement>(null);
+  const scheduleButtonRef = useRef<HTMLDivElement>(null);
+
+  useDetectOutside({
+    refs: [modalRef, invitationButtonRef],
+    onOutsideClick: () => setInvitationModalOpen(false),
+  });
+  useDetectOutside({
+    refs: [modalRef, scheduleButtonRef],
+    onOutsideClick: () => setScheduleModalOpen(false),
+  });
 
   const utilList = [
     {
@@ -49,6 +63,7 @@ export default function Header() {
       },
     },
   ];
+
   return (
     <S.Container>
       <S.StyledIcon
@@ -67,7 +82,7 @@ export default function Header() {
           <S.Title>우리가</S.Title>
         </S.HomeButton>
       </S.Wrapper>
-      <S.UtilWrapper>
+      <S.UtilWrapper ref={modalRef}>
         {utilList.map(util => (
           <S.ModalWrapper key={util.iconName}>
             <IconButton
@@ -78,8 +93,16 @@ export default function Header() {
               border={util.border}
               onClick={util.onClick}
             />
-            {util.id === 1 && scheduleModalOpen && <ScheduleModal />}
-            {util.id === 2 && invitationModalOpen && <InvitationModal />}
+            {util.id === 1 && scheduleModalOpen && (
+              <div ref={scheduleButtonRef}>
+                <ScheduleModal />
+              </div>
+            )}
+            {util.id === 2 && invitationModalOpen && (
+              <div ref={invitationButtonRef}>
+                <InvitationModal />
+              </div>
+            )}
           </S.ModalWrapper>
         ))}
         <S.TutorialButton title="튜토리얼" theme="basic" />
