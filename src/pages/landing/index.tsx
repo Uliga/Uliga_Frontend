@@ -42,7 +42,7 @@ const StyledButton = styled(Button)`
   padding: 1.7rem;
   font-size: 1.5rem;
 `;
-export default function LadingPage() {
+export default function LandingPage() {
   const { landingEmail, onChangeLandingEmail, mutateCheckEmail } = useLogin();
   return (
     <Container>

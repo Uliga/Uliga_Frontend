@@ -37,9 +37,12 @@ export default function CurMonth() {
           ) : (
             <h3>{getMoneyUnit(thisRemainData)}원 초과</h3>
           )}
-          <S.Progress color={COLORS.GREY[300]}>
+          <S.Progress color="#F9F9F9">
             {thisRemainData > 0 ? (
-              <S.NowPercent dealt={100 - thisDataGage} color={COLORS.BLUE} />
+              <S.NowPercent
+                dealt={100 - thisDataGage}
+                color={COLORS.GREEN.DARK}
+              />
             ) : (
               <S.NowPercent dealt={100} color={COLORS.BLUE} />
             )}
@@ -47,7 +50,6 @@ export default function CurMonth() {
               {getMoneyUnit(thisMonthData.budget.value - thisRemainData)}원
             </S.BarIndex>
           </S.Progress>
-          <hr />
 
           <S.InfoBox>
             {infos.map(info => (
@@ -55,7 +57,7 @@ export default function CurMonth() {
                 <S.dot color={info.color}>●</S.dot>
                 <div>
                   <p>{info.title}</p>
-                  <p>{info.value}</p>
+                  <span>{info.value}</span>
                 </div>
               </S.Info>
             ))}
