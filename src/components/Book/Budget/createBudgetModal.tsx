@@ -39,7 +39,7 @@ export default function Create() {
     }
   };
   return (
-    <S.Container>
+    <S.BudgetContainer>
       <h2>{date.getMonth() + 1}월 예산 설정</h2>
       <p>
         이번 달도 잘 해내실거라고 생각해요! &nbsp;&nbsp;저희가 응원합니다 💪🏻
@@ -76,6 +76,6 @@ export default function Create() {
         width="100%"
         title={thisMonthData.budget.value ? "예산 수정" : "예산 등록"}
       />
-    </S.Container>
+    </S.BudgetContainer>
   );
 }
