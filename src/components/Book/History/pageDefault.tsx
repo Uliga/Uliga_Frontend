@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { useRecoilState } from "recoil";
 import BookNav from "../../Main/BookNav";
 import PATH from "../../../constants/path";
@@ -8,6 +8,7 @@ import CategoryModal from "./categoryModal";
 import useBook from "../../../hooks/book/useBook";
 import useHistory from "../../../hooks/book/useHistory";
 import { historyTabsAtom } from "../../../stores/atoms/context";
+import useDetectOutside from "../../../hooks/book/useDetectOutside";
 
 export default function PageDefault() {
   const { useReplaceBook } = useBook();
@@ -23,6 +24,19 @@ export default function PageDefault() {
   } = useHistory();
   const [curTab] = useRecoilState(historyTabsAtom);
 
+  const categoryModalRef = useRef<HTMLDivElement>(null);
+  const historyModalRef = useRef<HTMLDivElement>(null);
+
+  useDetectOutside({
+    refs: [categoryModalRef],
+    onOutsideClick: () => setHistoryCategoryOpen(false),
+  });
+
+  useDetectOutside({
+    refs: [historyModalRef],
+    onOutsideClick: () => setHistoryModalOpen(false),
+  });
+
   return (
     <>
       <BookNav path={`/${currentPath}`} />
@@ -34,7 +48,7 @@ export default function PageDefault() {
         >
           가계부 작성 ✍🏻
         </S.WriteButton>
-        <S.HistoryWrapper>
+        <S.HistoryWrapper ref={historyModalRef}>
           <S.FilterButton
             title={curTab.tab}
             theme="normal"
@@ -50,7 +64,7 @@ export default function PageDefault() {
           />
           {historyModalOpen && <HistoryModal />}
         </S.HistoryWrapper>
-        <S.CategoryWrapper>
+        <S.CategoryWrapper ref={categoryModalRef}>
           <S.FilterButton
             title={curTab.category}
             theme="normal"
