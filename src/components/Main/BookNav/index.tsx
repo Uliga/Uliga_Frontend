@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { useParams } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import COLORS from "../../../constants/color";
@@ -10,6 +10,7 @@ import {
 } from "../../../stores/atoms/context";
 import allModalAtom from "../../../stores/selectors/context";
 import useBook from "../../../hooks/book/useBook";
+import useDetectOutside from "../../../hooks/book/useDetectOutside";
 
 interface BookNavProps {
   path: string;
@@ -23,6 +24,14 @@ export default function BookNav({ path }: BookNavProps) {
   const [createModalOpen, setCreateModalOpen] = useRecoilState(createModalAtom);
   const [, setAllModalAtom] = useRecoilState(allModalAtom);
   const { useReplaceBook } = useBook();
+
+  const bottomModalRef = useRef<HTMLDivElement>(null);
+  const etcButtonRef = useRef<HTMLDivElement>(null);
+  useDetectOutside({
+    refs: [bottomModalRef, etcButtonRef],
+    onOutsideClick: () => setBottomModalOpen(false),
+  });
+
   if (!data) return null;
 
   return (
@@ -69,14 +78,16 @@ export default function BookNav({ path }: BookNavProps) {
                 />
               ),
             )}
-        <S.ETCButton
-          iconName="dots"
-          theme={bottomModalOpen ? "tertiary" : "basic"}
-          onClick={() => {
-            setAllModalAtom(false);
-            setBottomModalOpen(!bottomModalOpen);
-          }}
-        />
+        <div ref={etcButtonRef}>
+          <S.ETCButton
+            iconName="dots"
+            theme={bottomModalOpen ? "tertiary" : "basic"}
+            onClick={() => {
+              setAllModalAtom(false);
+              setBottomModalOpen(!bottomModalOpen);
+            }}
+          />
+        </div>
         {path.includes("main") && (
           <S.ETCButton
             iconName="plus"
@@ -88,7 +99,9 @@ export default function BookNav({ path }: BookNavProps) {
           />
         )}
         {bottomModalOpen && (
-          <BottomModal path={path} accountBooks={data.accountBooks} />
+          <S.Wrapper ref={bottomModalRef}>
+            <BottomModal path={path} accountBooks={data.accountBooks} />
+          </S.Wrapper>
         )}
       </S.Nav>
     </S.Container>
