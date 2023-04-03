@@ -9,7 +9,7 @@ import { loadMonthAsset } from "../../../api/book";
 import getMoneyUnit from "../../../utils/money";
 import { createBudgetModalAtom } from "../../../stores/atoms/context";
 import Modal from "../../Modal";
-import Create from "../../../pages/budget/create";
+import Create from "../../Book/Budget/createBudgetModal";
 import PATH from "../../../constants/path";
 
 export default function CapsuleBox() {
