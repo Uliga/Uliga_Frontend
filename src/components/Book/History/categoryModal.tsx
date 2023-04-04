@@ -58,6 +58,7 @@ export default function CategoryModal({
       </IsIncome>
       {list?.map((item: CategoryType) => (
         <IsIncome
+          key={item.id}
           onClick={() => {
             navigate(`/${currentPath}/${bookId}/${item.id}`);
           }}

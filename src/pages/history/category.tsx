@@ -31,6 +31,7 @@ export default function HistoryCategory() {
       <PageDefault />
       <HistoryPaging
         data={historyData}
+        refetch={historyRefetch}
         curPage={curPage}
         ITEM_SIZE={ITEM_SIZE}
         onChangePage={onChangePage}

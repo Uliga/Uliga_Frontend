@@ -7,14 +7,14 @@ import HistoryPaging from "../../components/Book/History/paging";
 export default function Income() {
   const { bookId, curPage, useLoadIncome, ITEM_SIZE, onChangePage } =
     useHistory();
-  const { data: incomeData, refetch: recordHistoryRefetch } = useLoadIncome({
+  const { data: incomeData, refetch: incomeHistoryRefetch } = useLoadIncome({
     id: bookId,
     page: curPage - 1,
     size: ITEM_SIZE,
   });
 
   useEffect(() => {
-    recordHistoryRefetch();
+    incomeHistoryRefetch();
   }, [curPage]);
 
   return (
@@ -22,6 +22,7 @@ export default function Income() {
       <PageDefault />
       <HistoryPaging
         data={incomeData}
+        refetch={incomeHistoryRefetch}
         curPage={curPage}
         ITEM_SIZE={ITEM_SIZE}
         onChangePage={onChangePage}

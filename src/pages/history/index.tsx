@@ -22,6 +22,7 @@ export default function History() {
       <PageDefault />
       <HistoryPaging
         data={historyData}
+        refetch={historyRefetch}
         curPage={curPage}
         ITEM_SIZE={ITEM_SIZE}
         onChangePage={onChangePage}
