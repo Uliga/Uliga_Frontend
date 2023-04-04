@@ -18,7 +18,7 @@ export default function useLogin() {
   const [, setMe] = useRecoilState(meAtom);
   const mutateLogin = useMutation(["login"], authLogin, {
     onSuccess: ({ memberInfo, tokenInfo }) => {
-      toastMsg("로그인 성공");
+      toastMsg("로그인 성공 👏");
       setMe(memberInfo);
       localStorage.setItem("accessToken", tokenInfo.accessToken);
       localStorage.setItem(

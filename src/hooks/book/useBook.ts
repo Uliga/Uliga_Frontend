@@ -45,7 +45,7 @@ export default function useBook() {
 
   const mutateInvitation = useMutation(["answerInvitation"], answerInvitation, {
     onSuccess: data => {
-      toastMsg(data.join ? "초대 수락 성공" : "초대 거절 성공");
+      toastMsg(data.join ? "초대 수락 성공 👏" : "초대 거절 성공 👏");
       queryClient.invalidateQueries([QUERYKEYS.LOAD_ME]);
     },
     onError: ({
@@ -62,7 +62,7 @@ export default function useBook() {
     deleteSchedleAlarm,
     {
       onSuccess: () => {
-        toastMsg("삭제 완료!");
+        toastMsg("삭제 완료 👏");
         queryClient.invalidateQueries([QUERYKEYS.LOAD_ME]);
       },
       onError: ({
