@@ -89,7 +89,7 @@ export default function useEditSchedule() {
   });
   const mutateDeleteSchedule = useMutation(["deleteSchedule"], deleteSchedule, {
     onSuccess: () => {
-      toastMsg("선택하신 금융 일정이 삭제되었습니다.");
+      toastMsg("선택하신 금융 일정이 삭제되었습니다 👏");
       queryClient.invalidateQueries([QUERYKEYS.LOAD_SCHEDULE]);
       queryClient.invalidateQueries([QUERYKEYS.LOAD_SCHEDULE_DETAIL]);
     },

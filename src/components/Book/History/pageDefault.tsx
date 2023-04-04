@@ -1,5 +1,4 @@
-import React, { useRef } from "react";
-import { useRecoilState } from "recoil";
+import React from "react";
 import BookNav from "../../Main/BookNav";
 import PATH from "../../../constants/path";
 import * as S from "./index.styles";
@@ -7,8 +6,6 @@ import HistoryModal from "./historyModal";
 import CategoryModal from "./categoryModal";
 import useBook from "../../../hooks/book/useBook";
 import useHistory from "../../../hooks/book/useHistory";
-import { historyTabsAtom } from "../../../stores/atoms/context";
-import useDetectOutside from "../../../hooks/book/useDetectOutside";
 
 export default function PageDefault() {
   const { useReplaceBook } = useBook();
@@ -21,21 +18,11 @@ export default function PageDefault() {
     setHistoryCategoryOpen,
     setAllModalAtom,
     currentPath,
+    categoryModalRef,
+    historyModalRef,
+    historyTitle,
+    categoryTitle,
   } = useHistory();
-  const [curTab] = useRecoilState(historyTabsAtom);
-
-  const categoryModalRef = useRef<HTMLDivElement>(null);
-  const historyModalRef = useRef<HTMLDivElement>(null);
-
-  useDetectOutside({
-    refs: [categoryModalRef],
-    onOutsideClick: () => setHistoryCategoryOpen(false),
-  });
-
-  useDetectOutside({
-    refs: [historyModalRef],
-    onOutsideClick: () => setHistoryModalOpen(false),
-  });
 
   return (
     <>
@@ -50,7 +37,7 @@ export default function PageDefault() {
         </S.WriteButton>
         <S.HistoryWrapper ref={historyModalRef}>
           <S.FilterButton
-            title={curTab.tab}
+            title={historyTitle}
             theme="normal"
             iconName="arrowDown"
             iconSize="1.8rem"
@@ -66,7 +53,7 @@ export default function PageDefault() {
         </S.HistoryWrapper>
         <S.CategoryWrapper ref={categoryModalRef}>
           <S.FilterButton
-            title={curTab.category}
+            title={categoryTitle}
             theme="normal"
             iconName="arrowDown"
             iconSize="1.8rem"
@@ -83,7 +70,9 @@ export default function PageDefault() {
       </S.Top>
       <S.Menus>
         {menuList.map(menu => (
-          <S.Menu size={menu.size}>{menu.title}</S.Menu>
+          <S.Menu key={menu.title} size={menu.size}>
+            {menu.title}
+          </S.Menu>
         ))}
       </S.Menus>
     </>

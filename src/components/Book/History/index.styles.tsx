@@ -20,7 +20,7 @@ export const Wrapper = styled.div`
   width: 90rem;
   align-items: center;
   font-size: 1.3rem;
-  margin-left: 2rem;
+  margin-left: 5rem;
   div {
     overflow: hidden;
     word-wrap: break-word;
@@ -77,6 +77,10 @@ export const DeleteButton = styled.button`
 export const StyledLabel = styled.label`
   display: flex;
   align-items: center;
+  position: absolute;
+  top: 1.25rem;
+  left: 1.25rem;
+  z-index: 99;
   :hover {
     cursor: pointer;
   }
@@ -173,4 +177,82 @@ export const Menu = styled.div<{ size: number }>`
       width: ${size}rem;
 `}
   font-size: 1.4rem;
+`;
+
+export const DeleteModal = styled.div`
+  width: 35rem;
+  height: 6rem;
+  position: fixed;
+  background-color: white;
+  top: 13rem;
+  right: 24rem;
+  box-shadow: rgba(7, 42, 68, 0.1) 0px 4px 14px 0px;
+  border-radius: 1rem;
+  padding: 2rem;
+  font-size: 1.4rem;
+  color: ${COLORS.GREY[500]};
+  button {
+    font-size: 1.2rem;
+    padding: 0.7rem 1.2rem;
+    border-radius: 20rem;
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+  }
+`;
+
+export const PagingWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 42rem;
+  position: relative;
+
+  .pagination {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    gap: 0.5rem;
+    cursor: pointer;
+    z-index: 998;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  ul.pagination li {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: ${COLORS.GREY[600]};
+    border-radius: 5rem;
+  }
+
+  ul.pagination li:first-child {
+    border-radius: 1rem;
+  }
+
+  ul.pagination li:last-child {
+    border-radius: 1rem;
+  }
+
+  ul.pagination li a {
+    text-decoration: none;
+    color: ${COLORS.GREY[600]};
+    font-size: 1.5rem;
+  }
+
+  ul.pagination li.active a {
+    color: white;
+  }
+
+  ul.pagination li.active {
+    background-color: ${COLORS.BLUE};
+  }
 `;

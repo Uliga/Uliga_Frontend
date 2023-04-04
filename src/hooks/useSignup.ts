@@ -42,7 +42,7 @@ export default function useLogin() {
 
   const mutateSignup = useMutation(["signUp"], authSignup, {
     onSuccess: () => {
-      toastMsg("회원가입 성공");
+      toastMsg("회원가입 성공 👏");
       navigate(PATH.LOGIN);
     },
     onError: ({
@@ -57,7 +57,7 @@ export default function useLogin() {
   const sendEmailCode = async () => {
     const data = await sendEmail({ email });
     if (data) {
-      toastMsg("인증 코드 전송 완료");
+      toastMsg("인증 코드 전송 완료 👏");
       setMatch(false);
     }
   };
@@ -65,7 +65,7 @@ export default function useLogin() {
   const checkEmailCode = async () => {
     const data = await verifyCode({ email, code });
     if (data.matches) {
-      toastMsg("이메일 인증 완료.");
+      toastMsg("이메일 인증 완료 👏");
       setMatch(true);
     } else {
       toastMsg("올바른 인증 번호를 입력해주세요.");

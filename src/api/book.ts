@@ -150,3 +150,13 @@ export const updateBudget = async (budget: object) => {
   const { data } = await authorizationClient.patch(API.BUDGET, budget);
   return data;
 };
+
+export const deleteHistory = async (data: object) => {
+  const { data: response } = await authorizationClient.delete(
+    `${API.ACCOUNT_BOOK}/data`,
+    {
+      data,
+    },
+  );
+  return response;
+};
