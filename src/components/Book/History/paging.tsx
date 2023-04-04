@@ -75,6 +75,7 @@ export default function HistoryPaging({
             history={history}
             isIncome={isIncome}
             refetch={refetch}
+            setCheckedList={setCheckedList}
           />
         </S.Container>
       ))}
