@@ -111,7 +111,7 @@ export default function useCreate() {
 
   const mutateCreate = useMutation(["createAccountBook"], createAccountBook, {
     onSuccess: () => {
-      toastMsg("가계부 생성 완료");
+      toastMsg("가계부 생성 완료 👏");
       setCreateModalOpen(false);
       queryClient.invalidateQueries([QUERYKEYS.LOAD_BOOK_LIST]);
     },

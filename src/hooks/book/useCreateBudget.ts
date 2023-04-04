@@ -15,7 +15,7 @@ export default function useCreateBudget() {
 
   const mutateCreateBudget = useMutation(["createBudget"], createBudget, {
     onSuccess: () => {
-      toastMsg("예산이 추가되었습니다!");
+      toastMsg("예산이 추가되었습니다 👏");
       queryClient.invalidateQueries([QUERYKEYS.LOAD_MONTH_ASSET]);
     },
     onError: ({
@@ -28,7 +28,7 @@ export default function useCreateBudget() {
   });
   const mutateUpdateBudget = useMutation(["updateBudget"], updateBudget, {
     onSuccess: () => {
-      toastMsg("예산이 수정되었습니다!");
+      toastMsg("예산이 수정되었습니다 👏");
       queryClient.invalidateQueries([QUERYKEYS.LOAD_MONTH_ASSET]);
     },
     onError: ({

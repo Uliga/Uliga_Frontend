@@ -196,7 +196,7 @@ export default function useAddSchedule() {
   const queryClient = useQueryClient();
   const mutateSchedules = useMutation(["addSchedule"], addSchedule, {
     onSuccess: () => {
-      toastMsg("작성하신 금융 일정이 추가되었습니다.");
+      toastMsg("작성하신 금융 일정이 추가되었습니다 👏");
       queryClient.invalidateQueries([QUERYKEYS.LOAD_SCHEDULE]);
     },
     onError: ({
