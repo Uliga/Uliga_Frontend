@@ -1,11 +1,8 @@
 import React, { useEffect } from "react";
-import Pagination from "react-js-pagination";
-import * as S from "./index.styles";
+import Container from "./index.styles";
 import useHistory from "../../hooks/book/useHistory";
-import HistoryItem from "../../components/Book/History/item";
-import Icon from "../../components/Icon";
-import { IHistory } from "../../interfaces/book";
 import PageDefault from "../../components/Book/History/pageDefault";
+import HistoryPaging from "../../components/Book/History/paging";
 
 export default function Record() {
   const { bookId, curPage, useLoadRecord, ITEM_SIZE, onChangePage } =
@@ -21,23 +18,15 @@ export default function Record() {
   }, [curPage]);
 
   return (
-    <S.Container>
+    <Container>
       <PageDefault />
-      <S.Paging>
-        {recordData?.content?.map((history: IHistory) => (
-          <HistoryItem history={history} isIncome={false} />
-        ))}
-        <Pagination
-          activePage={curPage}
-          itemsCountPerPage={ITEM_SIZE}
-          totalItemsCount={recordData?.totalElements}
-          pageRangeDisplayed={5}
-          prevPageText={<Icon iconName="arrowLeft" size="1.2rem" />}
-          nextPageText={<Icon iconName="arrowRight" size="1.2rem" />}
-          hideFirstLastPages
-          onChange={onChangePage}
-        />
-      </S.Paging>
-    </S.Container>
+      <HistoryPaging
+        data={recordData}
+        curPage={curPage}
+        ITEM_SIZE={ITEM_SIZE}
+        onChangePage={onChangePage}
+        isIncome={false}
+      />
+    </Container>
   );
 }
