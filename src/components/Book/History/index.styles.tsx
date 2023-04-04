@@ -182,10 +182,11 @@ export const Menu = styled.div<{ size: number }>`
 export const DeleteModal = styled.div`
   width: 35rem;
   height: 6rem;
-  position: fixed;
+  position: absolute;
   background-color: white;
-  top: 13rem;
-  right: 24rem;
+  top: -13rem;
+  z-index: 90;
+  right: 0rem;
   box-shadow: rgba(7, 42, 68, 0.1) 0px 4px 14px 0px;
   border-radius: 1rem;
   padding: 2rem;
