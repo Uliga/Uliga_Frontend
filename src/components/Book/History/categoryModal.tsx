@@ -1,10 +1,8 @@
 import React from "react";
-import { useRecoilState } from "recoil";
 import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import COLORS from "../../../constants/color";
 import useBook from "../../../hooks/book/useBook";
-import { historyTabsAtom } from "../../../stores/atoms/context";
 
 const Wrapper = styled.div`
   background-color: white;
@@ -48,16 +46,11 @@ export default function CategoryModal({
   const navigate = useNavigate();
   const { useCategoryList } = useBook();
   const list = useCategoryList(bookId ? +bookId : 0);
-  const [curTab, setCurTab] = useRecoilState(historyTabsAtom);
 
   return (
     <Wrapper>
       <IsIncome
         onClick={() => {
-          setCurTab({
-            tab: curTab.tab,
-            category: "카테고리 전체보기",
-          });
           navigate(`/${currentPath}/${bookId}`);
         }}
       >
@@ -66,10 +59,6 @@ export default function CategoryModal({
       {list?.map((item: CategoryType) => (
         <IsIncome
           onClick={() => {
-            setCurTab({
-              tab: curTab.tab,
-              category: item.label,
-            });
             navigate(`/${currentPath}/${bookId}/${item.id}`);
           }}
         >
