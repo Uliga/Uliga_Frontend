@@ -43,3 +43,17 @@ export interface IHistory {
   value: number;
   year: number;
 }
+
+export interface IHistoryPage {
+  content: IHistory[];
+  empty: boolean;
+  first: boolean;
+  last: boolean;
+  number: number;
+  numberOfElements: number;
+  pageable: any;
+  size: number;
+  sort: number;
+  totalElements: number;
+  totalPages: number;
+}

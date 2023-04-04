@@ -1,11 +1,9 @@
 import React from "react";
-import { useRecoilState } from "recoil";
 import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import COLORS from "../../../constants/color";
 import Icon from "../../Icon";
 import PATH from "../../../constants/path";
-import { historyTabsAtom } from "../../../stores/atoms/context";
 
 const Wrapper = styled.div`
   background-color: white;
@@ -36,16 +34,11 @@ const IsIncome = styled.button`
 export default function HistoryModal() {
   const { bookId } = useParams();
   const navigate = useNavigate();
-  const [curTab, setCurTab] = useRecoilState(historyTabsAtom);
 
   return (
     <Wrapper>
       <IsIncome
         onClick={() => {
-          setCurTab({
-            tab: "내역 전체보기",
-            category: curTab.category,
-          });
           navigate(`${PATH.HISTORY}/${bookId}`);
         }}
       >
@@ -54,10 +47,6 @@ export default function HistoryModal() {
       </IsIncome>
       <IsIncome
         onClick={() => {
-          setCurTab({
-            tab: "지출 내역보기",
-            category: curTab.category,
-          });
           navigate(`${PATH.RECORD}/${bookId}`);
         }}
       >
@@ -66,10 +55,6 @@ export default function HistoryModal() {
       </IsIncome>
       <IsIncome
         onClick={() => {
-          setCurTab({
-            tab: "수입 내역보기",
-            category: curTab.category,
-          });
           navigate(`${PATH.INCOME}/${bookId}`);
         }}
       >
