@@ -1,16 +1,39 @@
 import React from "react";
+import { useMutation } from "@tanstack/react-query";
 import * as S from "./index.styles";
 import { IHistory } from "../../../interfaces/book";
 import getMoneyUnit from "../../../utils/money";
 import { getDayOfWeek } from "../../../utils/date";
+import { deleteHistory } from "../../../api/book";
+import toastMsg from "../../Toast";
 
 export default function HistoryItem({
   history,
   isIncome,
+  refetch,
 }: {
   history: IHistory;
   isIncome: boolean | undefined;
+  refetch: () => void;
 }) {
+  const mutateDeleteHistory = useMutation(
+    ["mutateDeleteHistory"],
+    deleteHistory,
+    {
+      onSuccess: () => {
+        toastMsg(`선택된 항목 삭제 완료 👏`);
+        refetch();
+      },
+      onError: ({
+        response: {
+          data: { errorCode, message },
+        },
+      }) => {
+        toastMsg(`${errorCode} / ${message}`);
+      },
+    },
+  );
+
   return (
     <S.Wrapper>
       <S.Box width={6}>
@@ -44,7 +67,13 @@ export default function HistoryItem({
       <S.Buttons>
         <S.CommentButton title="💬 코멘트 남기기" theme="basic" />
         <S.EditButton>수정하기</S.EditButton>
-        <S.DeleteButton>삭제하기</S.DeleteButton>
+        <S.DeleteButton
+          onClick={() => {
+            mutateDeleteHistory.mutate({ ids: [history.id] });
+          }}
+        >
+          삭제하기
+        </S.DeleteButton>
       </S.Buttons>
     </S.Wrapper>
   );

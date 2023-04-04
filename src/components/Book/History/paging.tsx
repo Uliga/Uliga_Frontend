@@ -71,7 +71,11 @@ export default function HistoryPaging({
               checked={checkedList.includes(history.id)}
             />
           </S.StyledLabel>
-          <HistoryItem history={history} isIncome={isIncome} />
+          <HistoryItem
+            history={history}
+            isIncome={isIncome}
+            refetch={refetch}
+          />
         </S.Container>
       ))}
       <Pagination
