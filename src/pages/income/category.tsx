@@ -14,7 +14,7 @@ export default function IncomeCategory() {
     onChangePage,
   } = useHistory();
 
-  const { data: incomeData, refetch: recordHistoryRefetch } =
+  const { data: incomeData, refetch: incomeHistoryRefetch } =
     useLoadIncomeCategory({
       id: bookId,
       categoryId,
@@ -23,7 +23,7 @@ export default function IncomeCategory() {
     });
 
   useEffect(() => {
-    recordHistoryRefetch();
+    incomeHistoryRefetch();
   }, [curPage, categoryId]);
 
   return (
@@ -31,6 +31,7 @@ export default function IncomeCategory() {
       <PageDefault />
       <HistoryPaging
         data={incomeData}
+        refetch={incomeHistoryRefetch}
         curPage={curPage}
         ITEM_SIZE={ITEM_SIZE}
         onChangePage={onChangePage}
