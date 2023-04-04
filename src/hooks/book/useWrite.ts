@@ -106,7 +106,7 @@ export default function useWrite() {
         id: Number(bookId),
         createRequest,
       });
-      toastMsg("작성하신 가계부 내역이 등록되었습니다.");
+      toastMsg("작성하신 가계부 내역이 등록되었습니다 👏");
       navigate(`${PATH.MAIN}/${bookId}`);
       console.log({
         id: Number(bookId),

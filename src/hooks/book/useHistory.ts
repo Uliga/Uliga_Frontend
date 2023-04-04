@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { useState } from "react";
-import { useQuery } from "@tanstack/react-query";
+import { useEffect, useRef, useState } from "react";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { useLocation, useParams } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import {
@@ -10,6 +10,7 @@ import {
   loadRecord,
   loadHistoryCategory,
   loadIncomeCategory,
+  deleteHistory,
 } from "../../api/book";
 import QUERYKEYS from "../../constants/querykey";
 import {
@@ -17,6 +18,9 @@ import {
   historyModalAtom,
 } from "../../stores/atoms/context";
 import allModalAtom from "../../stores/selectors/context";
+import useBook from "./useBook";
+import useDetectOutside from "./useDetectOutside";
+import toastMsg from "../../components/Toast";
 
 export default function useHistory() {
   const menuList = [
@@ -124,6 +128,55 @@ export default function useHistory() {
     setCurPage(page);
   };
 
+  const { useCategoryList } = useBook();
+  const list = useCategoryList(bookId ? +bookId : 0);
+
+  const categoryModalRef = useRef<HTMLDivElement>(null);
+  const historyModalRef = useRef<HTMLDivElement>(null);
+  const [historyTitle, setHistoryTitle] = useState("");
+  const [categoryTitle, setCategoryTitle] = useState("");
+
+  useDetectOutside({
+    refs: [categoryModalRef],
+    onOutsideClick: () => setHistoryCategoryOpen(false),
+  });
+
+  useDetectOutside({
+    refs: [historyModalRef],
+    onOutsideClick: () => setHistoryModalOpen(false),
+  });
+
+  useEffect(() => {
+    if (currentPath === "history") {
+      setHistoryTitle("내역 전체보기");
+    }
+    if (currentPath === "record") {
+      setHistoryTitle("지출 전체보기");
+    }
+    if (currentPath === "income") {
+      setHistoryTitle("수입 전체보기");
+    }
+  }, []);
+
+  useEffect(() => {
+    const curCategory = list?.find(
+      (ele: { id: number; value: string; label: string }) =>
+        ele.id === (categoryId ? +categoryId : 0),
+    );
+    setCategoryTitle(
+      curCategory?.value ? curCategory?.value : "카테고리 전체보기",
+    );
+  }, [categoryId, list]);
+
+  const [checkedList, setCheckedList] = useState<number[]>([]);
+  const handleDeleteList = (historyId: number, isChecked: boolean) => {
+    if (isChecked) {
+      setCheckedList(prev => [...prev, historyId]);
+    } else {
+      setCheckedList([...checkedList.filter(ele => ele !== historyId)]);
+    }
+  };
+
   return {
     categoryId,
     bookId,
@@ -144,5 +197,12 @@ export default function useHistory() {
     setHistoryCategoryOpen,
     setAllModalAtom,
     currentPath,
+    categoryModalRef,
+    historyModalRef,
+    historyTitle,
+    categoryTitle,
+    checkedList,
+    setCheckedList,
+    handleDeleteList,
   };
 }
