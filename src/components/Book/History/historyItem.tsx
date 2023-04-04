@@ -11,10 +11,12 @@ export default function HistoryItem({
   history,
   isIncome,
   refetch,
+  setCheckedList,
 }: {
   history: IHistory;
   isIncome: boolean | undefined;
   refetch: () => void;
+  setCheckedList: any;
 }) {
   const mutateDeleteHistory = useMutation(
     ["mutateDeleteHistory"],
@@ -22,6 +24,7 @@ export default function HistoryItem({
     {
       onSuccess: () => {
         toastMsg(`선택된 항목 삭제 완료 👏`);
+        setCheckedList([]);
         refetch();
       },
       onError: ({
