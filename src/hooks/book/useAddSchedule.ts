@@ -136,7 +136,7 @@ export default function useAddSchedule() {
         name,
         isIncome,
         notificationDate,
-        value,
+        value: value === "" ? "변동" : value,
         assignments: assignments.map(item => {
           return {
             id: item.memberId,
@@ -167,7 +167,7 @@ export default function useAddSchedule() {
         name,
         isIncome,
         notificationDate,
-        value,
+        value: value === "" ? "변동" : value,
         assignments: [
           {
             id: assignments[0].memberId,
