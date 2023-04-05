@@ -111,10 +111,10 @@ const NoBudget = styled.div`
   margin-top: 5rem;
   p {
     font-weight: 300;
-    font-size: 1.4rem;
+    font-size: 1.3rem;
   }
   height: 11rem;
-  color: ${COLORS.BLUE};
+  color: ${COLORS.GREY[400]};
 `;
 const CheckLastMonthBottom = styled.div``;
 

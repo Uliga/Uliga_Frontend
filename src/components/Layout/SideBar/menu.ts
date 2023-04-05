@@ -72,7 +72,7 @@ const menu = [
 
 const bottomMenu = [
   {
-    title: "내 정보",
+    title: "설정",
     theme: "primary",
     path: "",
   },
