@@ -28,7 +28,7 @@ export default function useDayWrite() {
     day: any;
   }>(bottomSheetAtom);
   const { day, open } = bottomSheetOpen;
-  const [value, onChangeValue] = useInput(null);
+  const [value, onChangeValue, setValue] = useInput(null);
   const [formattedValue, setFormattedValue] = useState("");
   const [isIncome, setIsIncome] = useState(false);
   const { useCategoryList } = useBook();
@@ -99,14 +99,12 @@ export default function useDayWrite() {
     {
       title: "거래처",
       label: "account",
-
       type: "text",
       value: "",
     },
     {
       title: "메모",
       label: "memo",
-
       type: "text",
       value: "",
     },
@@ -134,12 +132,24 @@ export default function useDayWrite() {
     }
   };
 
+  const resetForm = () => {
+    setIsIncome(false);
+    const fullList = [...inputForm];
+    fullList[0].value = "선택";
+    fullList[1].value = "선택";
+    fullList[2].value = "";
+    fullList[3].value = "";
+    setInputList(fullList);
+    setValue(0);
+  };
+
   const queryClient = useQueryClient();
   const dateUnit = `${day.getMonth() + 1}월 ${day.getDate()}일`;
 
   const mutateIncome = useMutation(["mutateIncome"], uploadIncome, {
     onSuccess: () => {
       toastMsg(`${dateUnit} 수입 등록 완료 👏`);
+      resetForm();
       queryClient.invalidateQueries([QUERYKEYS.LOAD_MONTH_ITEM]);
       queryClient.invalidateQueries([QUERYKEYS.LOAD_MONTH_ASSET]);
     },
@@ -151,10 +161,12 @@ export default function useDayWrite() {
       toastMsg(`${errorCode} / ${message}`);
     },
   });
-
+  console.log(inputList);
   const mutateRecord = useMutation(["mutateRecord"], uploadRecord, {
     onSuccess: () => {
       toastMsg(`${dateUnit} 지출 등록 완료 👏`);
+      resetForm();
+      console.log(inputList);
       queryClient.invalidateQueries([QUERYKEYS.LOAD_MONTH_ITEM]);
       queryClient.invalidateQueries([QUERYKEYS.LOAD_MONTH_ASSET]);
     },
