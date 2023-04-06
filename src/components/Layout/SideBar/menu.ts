@@ -72,9 +72,9 @@ const menu = [
 
 const bottomMenu = [
   {
-    title: "내 정보",
+    title: "설정",
     theme: "primary",
-    path: "",
+    path: `${PATH.SETTING}${PATH.ME}`,
   },
   {
     title: "로그아웃",

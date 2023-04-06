@@ -18,6 +18,7 @@ export default function CurrentList({
   bookId: string | undefined;
   clearScheduleList: any;
 }) {
+  console.log(scheduleList);
   return (
     <S.BankingAddList>
       <h4>현재 추가된 목록</h4>
@@ -29,8 +30,10 @@ export default function CurrentList({
               <h5>{schedules.name}</h5>
               <h6>
                 매달 {schedules.notificationDate}일 /{" "}
-                {getMoneyUnit(Number(schedules.value))}원 /
-                {schedules.isIncome ? <> 수입</> : <> 지출</>}
+                {schedules.value !== "변동"
+                  ? `${getMoneyUnit(Number(schedules.value))}원`
+                  : "변동"}
+                /{schedules.isIncome ? <> 수입</> : <> 지출</>}
               </h6>
               <div>
                 {schedules.assignments.map((ass, index) => (
