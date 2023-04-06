@@ -9,6 +9,9 @@ const PATH = {
   HISTORY: "/history",
   INCOME: "/income",
   RECORD: "/record",
+  SETTING: "/setting",
+  ME: "/me",
+  BOOK: "/book",
 } as const;
 
 export default PATH;
