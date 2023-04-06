@@ -1,12 +1,11 @@
 import styled from "styled-components";
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import COLORS from "../../../../constants/color";
 import { BookInfoTypes } from "../../../../interfaces/book";
 import * as S from "../index.styles";
 import useBook from "../../../../hooks/book/useBook";
-
-const Wrapper = styled.div``;
+import PATH from "../../../../constants/path";
 
 const Title = styled.div`
   margin-bottom: 1rem;
@@ -46,11 +45,11 @@ export default function BottomModal({
   path: string;
 }) {
   const { bookId } = useParams();
+  const navigate = useNavigate();
   const { useReplaceBook } = useBook();
   return (
-    <Wrapper>
+    <div>
       <Title> 소유중인 가계부</Title>
-
       <Modal>
         {accountBooks.map(book =>
           Number(bookId) === book.accountBookId ? (
@@ -76,7 +75,13 @@ export default function BottomModal({
           ),
         )}
       </Modal>
-      <Button>내 가계부 관리</Button>
-    </Wrapper>
+      <Button
+        onClick={() => {
+          navigate(`${PATH.SETTING}${PATH.BOOK}/${bookId}`);
+        }}
+      >
+        내 가계부 관리
+      </Button>
+    </div>
   );
 }
