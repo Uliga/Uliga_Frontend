@@ -14,6 +14,7 @@ const Container = styled.div`
   h3 {
     font-weight: 700;
   }
+  margin-left: 27.5rem;
 `;
 
 export default function SettingMe() {
