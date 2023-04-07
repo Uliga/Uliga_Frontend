@@ -1,8 +1,13 @@
 import React from "react";
 import styled from "styled-components";
+import { useQuery } from "@tanstack/react-query";
 import COLORS from "../../../constants/color";
 import Input from "../../../components/Input";
 import Button from "../../../components/Button";
+import { IUserInfo } from "../../../interfaces/user";
+import QUERYKEYS from "../../../constants/querykey";
+import { loadMe } from "../../../api/user";
+import LoadingBar from "../../../components/LoadingBar";
 
 const Container = styled.div`
   width: 88rem;
@@ -53,20 +58,30 @@ const DeleteButton = styled(Button)`
 `;
 
 export default function SettingMe() {
+  const { isLoading, data } = useQuery<IUserInfo | undefined>(
+    [QUERYKEYS.LOAD_ME],
+    loadMe,
+  );
+  if (isLoading || !data)
+    return (
+      <Container>
+        <LoadingBar type={6} />
+      </Container>
+    );
   const inputs = [
     {
       label: "사용자 이메일",
-      value: "ham9893@naver.com",
+      value: data.memberInfo.email,
       readOnly: true,
     },
     {
       label: "사용자 이름",
-      value: "함민혁",
+      value: data.memberInfo.userName,
       readOnly: true,
     },
     {
       label: "사용자 닉네임",
-      value: "함혁",
+      value: data.memberInfo.nickName,
       readOnly: false,
     },
     {
