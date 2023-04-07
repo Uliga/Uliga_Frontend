@@ -36,6 +36,6 @@ export interface IUserInfo {
     id: string;
     nickName: string;
     privateAccountBookId: any;
-    username: string;
+    userName: string;
   };
 }
