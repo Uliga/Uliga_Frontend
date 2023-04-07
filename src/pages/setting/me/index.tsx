@@ -1,19 +1,16 @@
 import React from "react";
 import styled from "styled-components";
 import { useQuery } from "@tanstack/react-query";
-import { useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import COLORS from "../../../constants/color";
 import Input from "../../../components/Input";
 import Button from "../../../components/Button";
 import { IUserInfo } from "../../../interfaces/user";
 import QUERYKEYS from "../../../constants/querykey";
-import { deleteMe, loadMe } from "../../../api/user";
+import { loadMe } from "../../../api/user";
 import LoadingBar from "../../../components/LoadingBar";
 import useInput from "../../../hooks/useInput";
 import useMe from "../../../hooks/book/useMe";
-import toastMsg from "../../../components/Toast";
-import { checkNicknameDuplicate } from "../../../api/auth";
 import { deleteScheduleDialogAtom } from "../../../stores/atoms/context";
 import Dialog from "../../../components/Dialog";
 
@@ -69,9 +66,8 @@ export default function SettingMe() {
   const { isLoading: loadingInfo, data: infoData } = useQuery<
     IUserInfo | undefined
   >([QUERYKEYS.LOAD_ME], loadMe);
-  const { mutateUpdateNickname, nickName, onChangeNickname } = useMe();
+  const { nickName, onChangeNickname, checkNickname, deleteUser } = useMe();
   const [password, onChangePassword] = useInput("123456");
-  const navigate = useNavigate();
   const [deleteDialogOpen, setDeleteDialogOpen] = useRecoilState(
     deleteScheduleDialogAtom,
   );
@@ -81,28 +77,6 @@ export default function SettingMe() {
         <LoadingBar type={6} />
       </Container>
     );
-
-  const checkNickname = async () => {
-    const data = await checkNicknameDuplicate(nickName);
-    if (!data.exists) {
-      toastMsg("사용 가능한 닉네임 입니다.");
-      mutateUpdateNickname.mutate({
-        nickName,
-      });
-    } else {
-      toastMsg("이미 존재하는 닉네임입니다.");
-    }
-  };
-
-  const deleteUser = async () => {
-    try {
-      await deleteMe();
-      toastMsg("회원 탈퇴가 완료되었습니다.");
-      navigate("/");
-    } catch (err) {
-      console.log(err);
-    }
-  };
 
   const inputs = [
     {
