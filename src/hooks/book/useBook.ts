@@ -11,7 +11,7 @@ import {
   loadScheduleDetail,
   deleteSchedleAlarm,
 } from "../../api/book";
-import { IBookInfo, IBookList } from "../../interfaces/book";
+import { BookInfoTypes, IBookList } from "../../interfaces/book";
 import { IItem } from "../../interfaces/item";
 import QUERYKEYS from "../../constants/querykey";
 import toastMsg from "../../components/Toast";
@@ -21,7 +21,7 @@ export default function useBook() {
 
   const useSelectedBook = (bookid: any) => {
     const queryFn = () => loadBookInfo(+bookid);
-    const { isLoading, error, data } = useQuery<IBookInfo>(
+    const { isLoading, error, data } = useQuery<BookInfoTypes>(
       [QUERYKEYS.LOAD_BOOK_INFO],
       queryFn,
     );
@@ -29,11 +29,11 @@ export default function useBook() {
   };
 
   const useBookList = () => {
-    const { data } = useQuery<IBookList>(
+    const { data, refetch } = useQuery<IBookList>(
       [QUERYKEYS.LOAD_BOOK_LIST],
       loadBookList,
     );
-    return { data };
+    return { data, refetch };
   };
 
   const useReplaceBook = (path: string, bookId: number) => {

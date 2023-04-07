@@ -161,12 +161,10 @@ export default function useDayWrite() {
       toastMsg(`${errorCode} / ${message}`);
     },
   });
-  console.log(inputList);
   const mutateRecord = useMutation(["mutateRecord"], uploadRecord, {
     onSuccess: () => {
       toastMsg(`${dateUnit} 지출 등록 완료 👏`);
       resetForm();
-      console.log(inputList);
       queryClient.invalidateQueries([QUERYKEYS.LOAD_MONTH_ITEM]);
       queryClient.invalidateQueries([QUERYKEYS.LOAD_MONTH_ASSET]);
     },

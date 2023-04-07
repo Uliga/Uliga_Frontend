@@ -3,7 +3,6 @@ import {
   bottomModalAtom,
   createBudgetModalAtom,
   createModalAtom,
-  deleteScheduleDialogAtom,
   invitationModalAtom,
   scheduleModalAtom,
   historyModalAtom,
@@ -34,7 +33,6 @@ const allModalAtom = selector<boolean>({
     set(createModalAtom, newValue);
     set(bottomModalAtom, newValue);
     set(invitationModalAtom, newValue);
-    set(deleteScheduleDialogAtom, newValue);
     set(scheduleModalAtom, newValue);
     set(historyModalAtom, newValue);
     set(historyCategoryModalAtom, newValue);

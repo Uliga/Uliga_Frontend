@@ -32,6 +32,16 @@ export const deleteScheduleDialogAtom = atom<boolean>({
   key: "deleteScheduleDialogAtom",
   default: false,
 });
+
+export const deleteCategoryDialogAtom = atom<{
+  open: boolean;
+  value: string;
+  isDeleted: boolean;
+}>({
+  key: "deleteCategoryDialogAtom",
+  default: { open: false, value: "", isDeleted: false },
+});
+
 export const createBudgetModalAtom = atom<boolean>({
   key: "createBudgetModalAtom",
   default: false,

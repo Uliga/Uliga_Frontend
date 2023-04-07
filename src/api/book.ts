@@ -160,3 +160,16 @@ export const deleteHistory = async (data: object) => {
   );
   return response;
 };
+
+export const updateBook = async (newBook: {
+  id: number;
+  newBookData: object;
+}) => {
+  const { id, newBookData } = newBook;
+  console.log(id, newBookData);
+  const { data } = await authorizationClient.patch(
+    `${API.ACCOUNT_BOOK}/${id}`,
+    newBookData,
+  );
+  return data;
+};

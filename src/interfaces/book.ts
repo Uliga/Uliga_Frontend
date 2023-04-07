@@ -1,6 +1,13 @@
 export interface IBookInfo {
   categories: object[];
-  info: BookInfoTypes;
+  info: {
+    accountBookAuthority: "ADMIN" | "USER";
+    accountBookId: number;
+    accountBookName: string;
+    getNotification: boolean;
+    isPrivate: boolean;
+    relationShip: string;
+  };
   members: object[];
   numberOfMember: {
     count: number;
@@ -8,12 +15,31 @@ export interface IBookInfo {
 }
 
 export interface BookInfoTypes {
-  accountBookAuthority: "ADMIN" | "USER";
-  accountBookId: number;
-  accountBookName: string;
-  getNotification: boolean;
-  isPrivate: boolean;
-  relationShip: string;
+  info: {
+    accountBookAuthority: "ADMIN" | "USER";
+    accountBookId: number;
+    accountBookName: string;
+    getNotification: boolean;
+    isPrivate: boolean;
+    relationShip: string;
+  };
+  categories: ICategory[];
+  members: {
+    id: number;
+    username: string;
+    accountBookAuthority: string;
+    avatarUrl: string;
+    email: string;
+  }[];
+  numberOfMember: {
+    count: number;
+  };
+}
+
+export interface ICategory {
+  id: number;
+  value: string;
+  label: string;
 }
 
 export interface IBookList {

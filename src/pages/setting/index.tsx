@@ -7,10 +7,10 @@ import COLORS from "../../constants/color";
 const Container = styled.div`
   width: 100%;
   display: flex;
-  gap: 2.5rem;
   padding: 4rem;
   flex-direction: row;
   justify-content: space-between;
+  background-color: white;
   color: ${COLORS.GREY[600]};
 `;
 

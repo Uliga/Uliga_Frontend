@@ -1,3 +1,5 @@
+import { IStringIndex } from "../interfaces/book";
+
 const COLORS = {
   WHITE: "#FFF",
   BLACK: "#000",
@@ -27,3 +29,37 @@ const COLORS = {
 };
 
 export default COLORS;
+export const AVATAR_COLORS: IStringIndex = {
+  BLUE: {
+    value: "BLUE",
+    color: COLORS.BLUE,
+  },
+  YELLOW: {
+    value: "YELLOW",
+    color: COLORS.YELLOW,
+  },
+  PURPLE: {
+    value: "PURPLE",
+    color: "#735DAE",
+  },
+  GREEN: {
+    value: "GREEN",
+    color: "#5D9E67",
+  },
+  PINK: {
+    value: "PINK",
+    color: "#ED9F8D",
+  },
+  ORANGE: {
+    value: "ORANGE",
+    color: "#F09639",
+  },
+  BRWON: {
+    value: "BRWON",
+    color: "#5A263B",
+  },
+  BEIGE: {
+    value: "BEIGE",
+    color: "#CAB394",
+  },
+};
