@@ -111,7 +111,7 @@ export default function SettingMe() {
         <Dialog
           size={37}
           title="회원 탈퇴"
-          description="정말 탈퇴를 진행하시겠습니까?"
+          description="정말 탈퇴 하시겠습니까?"
           visible
           cancellable
           onCancel={() => {
