@@ -39,41 +39,41 @@ export default function BookNav({ path }: BookNavProps) {
       <S.Nav>
         {data.accountBooks.length <= 4
           ? data.accountBooks.map(book =>
-              Number(bookId) === book.accountBookId ? (
+              Number(bookId) === book.info.accountBookId ? (
                 <S.CheckedButton
-                  key={book.accountBookId}
-                  title={book.accountBookName}
+                  key={book.info.accountBookId}
+                  title={book.info.accountBookName}
                   iconName="checkFill"
                   theme="tertiary"
                   color={COLORS.BLUE}
                 />
               ) : (
                 <S.UnCheckedButton
-                  key={book.accountBookId}
-                  title={book.accountBookName}
+                  key={book.info.accountBookId}
+                  title={book.info.accountBookName}
                   theme="basic"
                   onClick={() => {
-                    useReplaceBook(path, book.accountBookId);
+                    useReplaceBook(path, book.info.accountBookId);
                   }}
                 />
               ),
             )
           : data.accountBooks.slice(0, 4).map(book =>
-              Number(bookId) === book.accountBookId ? (
+              Number(bookId) === book.info.accountBookId ? (
                 <S.CheckedButton
-                  key={book.accountBookId}
-                  title={book.accountBookName}
+                  key={book.info.accountBookId}
+                  title={book.info.accountBookName}
                   iconName="checkFill"
                   theme="tertiary"
                   color={COLORS.BLUE}
                 />
               ) : (
                 <S.UnCheckedButton
-                  key={book.accountBookId}
-                  title={book.accountBookName}
+                  key={book.info.accountBookId}
+                  title={book.info.accountBookName}
                   theme="basic"
                   onClick={() => {
-                    useReplaceBook(path, book.accountBookId);
+                    useReplaceBook(path, book.info.accountBookId);
                   }}
                 />
               ),

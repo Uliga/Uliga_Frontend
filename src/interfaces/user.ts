@@ -33,7 +33,7 @@ export interface IUserInfo {
   memberInfo: {
     avatarUrl: string;
     email: string;
-    id: string;
+    id: number;
     nickName: string;
     privateAccountBookId: any;
     username: string;

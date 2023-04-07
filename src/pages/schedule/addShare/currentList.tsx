@@ -18,7 +18,6 @@ export default function CurrentList({
   bookId: string | undefined;
   clearScheduleList: any;
 }) {
-  console.log(scheduleList);
   return (
     <S.BankingAddList>
       <h4>현재 추가된 목록</h4>

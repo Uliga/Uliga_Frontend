@@ -52,24 +52,24 @@ export default function BottomModal({
       <Title> 소유중인 가계부</Title>
       <Modal>
         {accountBooks.map(book =>
-          Number(bookId) === book.accountBookId ? (
+          Number(bookId) === book.info.accountBookId ? (
             <S.CheckedButton
-              key={book.accountBookId}
-              title={book.accountBookName}
+              key={book.info.accountBookId}
+              title={book.info.accountBookName}
               iconName="checkFill"
               theme="tertiary"
               color={COLORS.BLUE}
               onClick={() => {
-                useReplaceBook(path, book.accountBookId);
+                useReplaceBook(path, book.info.accountBookId);
               }}
             />
           ) : (
             <S.UnCheckedButton
-              key={book.accountBookId}
-              title={book.accountBookName}
+              key={book.info.accountBookId}
+              title={book.info.accountBookName}
               theme="basic"
               onClick={() => {
-                useReplaceBook(path, book.accountBookId);
+                useReplaceBook(path, book.info.accountBookId);
               }}
             />
           ),

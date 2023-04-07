@@ -11,6 +11,8 @@ const Nav = styled.div`
   border-radius: 0.5rem;
   padding: 3rem;
   display: flex;
+  position: fixed;
+  background-color: white;
   flex-direction: column;
   align-items: start;
   gap: 1.5rem;
@@ -56,6 +58,7 @@ export default function SettingNav() {
             setCurTab(menu.title);
             navigate(menu.path);
           }}
+          key={menu.title}
         >
           {menu.title}
         </NavigateButton>

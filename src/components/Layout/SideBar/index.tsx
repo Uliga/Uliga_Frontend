@@ -1,4 +1,5 @@
 import React from "react";
+import { useQuery } from "@tanstack/react-query";
 import { useNavigate, useParams } from "react-router-dom";
 import useBook from "../../../hooks/book/useBook";
 import {
@@ -15,19 +16,29 @@ import {
 } from "./index.styles";
 import { menu, bottomMenu } from "./menu";
 import Person from "../../../assets/person";
+import { IUserInfo } from "../../../interfaces/user";
+import QUERYKEYS from "../../../constants/querykey";
+import { loadMe } from "../../../api/user";
+import { AVATAR_COLORS } from "../../../constants/color";
 
 export default function SideBar() {
   const { bookId } = useParams();
   const { useSelectedBook } = useBook();
   const { data } = useSelectedBook(Number(bookId));
   const navigate = useNavigate();
-
+  const { data: me } = useQuery<IUserInfo | undefined>(
+    [QUERYKEYS.LOAD_ME],
+    loadMe,
+  );
+  const userAvatar = data?.members?.find(
+    ele => ele.id === me?.memberInfo?.id,
+  )?.avatarUrl;
   if (!data) return null;
-
+  console.log(userAvatar);
   return (
     <Container>
       <Top>
-        <Person />
+        <Person color={AVATAR_COLORS[userAvatar || ""]?.color} />
         <div>
           <BookName>{data.info.accountBookName}</BookName>
           <BookInfo>
