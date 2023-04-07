@@ -70,6 +70,7 @@ const WhiteBox = styled.div<{
   height: 27rem;
   box-shadow: 0 4px 8px 8px rgba(0, 0, 0, 0.05);
   padding-left: 3rem;
+  padding-right: 3rem;
   padding-top: 3.5rem;
   position: relative;
   h2 {
@@ -84,7 +85,7 @@ const WhiteBox = styled.div<{
     margin-bottom: 6.5rem;
     color: ${COLORS.GREY[400]};
     white-space: pre-line;
-    width: 31rem;
+    display: flex;
   }
 `;
 const StyledConfirmButton = styled(Button)`
