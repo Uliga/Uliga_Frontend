@@ -6,4 +6,7 @@ export const loadMe = async () => {
   return data;
 };
 
-export default loadMe();
+export const patchMe = async (info: object) => {
+  const { data } = await authorizationClient.patch(API.MEMBER, info);
+  return data;
+};

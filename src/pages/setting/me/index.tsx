@@ -8,6 +8,10 @@ import { IUserInfo } from "../../../interfaces/user";
 import QUERYKEYS from "../../../constants/querykey";
 import { loadMe } from "../../../api/user";
 import LoadingBar from "../../../components/LoadingBar";
+import useInput from "../../../hooks/useInput";
+import useMe from "../../../hooks/book/useMe";
+import toastMsg from "../../../components/Toast";
+import { checkNicknameDuplicate } from "../../../api/auth";
 
 const Container = styled.div`
   width: 88rem;
@@ -58,37 +62,55 @@ const DeleteButton = styled(Button)`
 `;
 
 export default function SettingMe() {
-  const { isLoading, data } = useQuery<IUserInfo | undefined>(
-    [QUERYKEYS.LOAD_ME],
-    loadMe,
-  );
-  if (isLoading || !data)
+  const { isLoading: loadingInfo, data: infoData } = useQuery<
+    IUserInfo | undefined
+  >([QUERYKEYS.LOAD_ME], loadMe);
+  const { mutateUpdateNickname, nickName, onChangeNickname } = useMe();
+  const [password, onChangePassword] = useInput("123456");
+
+  if (loadingInfo || !infoData)
     return (
       <Container>
         <LoadingBar type={6} />
       </Container>
     );
+
+  const checkNickname = async () => {
+    const data = await checkNicknameDuplicate(nickName);
+    if (!data.exists) {
+      toastMsg("사용 가능한 닉네임 입니다.");
+      mutateUpdateNickname.mutate({
+        nickName,
+      });
+    } else {
+      toastMsg("이미 존재하는 닉네임입니다.");
+    }
+  };
+
   const inputs = [
     {
       label: "사용자 이메일",
-      value: data.memberInfo.email,
+      value: infoData.memberInfo.email,
       readOnly: true,
     },
     {
       label: "사용자 이름",
-      value: data.memberInfo.userName,
+      value: infoData.memberInfo.userName,
       readOnly: true,
     },
     {
       label: "사용자 닉네임",
-      value: data.memberInfo.nickName,
+      value: nickName,
+      placeholder: infoData.memberInfo.nickName,
       readOnly: false,
+      onChange: onChangeNickname,
     },
     {
       label: "애플리케이션 비밀번호",
-      value: "함혁",
+      value: password,
       readOnly: false,
       type: "password",
+      onChange: onChangePassword,
     },
   ];
   return (
@@ -103,10 +125,13 @@ export default function SettingMe() {
             value={input.value}
             readOnly={input.readOnly}
             type={input.type}
+            onChange={input.onChange}
+            placeholder={input.placeholder}
           />
         ))}
       </Info>
-      <ModifyButton theme="primary" title="수정하기" />
+      <ModifyButton theme="primary" title="수정하기" onClick={checkNickname} />
+
       <DeleteButton theme="tertiary" title="삭제하기" />
     </Container>
   );
