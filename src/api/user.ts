@@ -15,3 +15,7 @@ export const deleteMe = async () => {
   const { data } = await authorizationClient.delete(API.MEMBER);
   return data;
 };
+export const logout = async () => {
+  const { data } = await authorizationClient.get(API.LOGOUT);
+  return data;
+};

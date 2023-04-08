@@ -18,8 +18,9 @@ import { menu, bottomMenu } from "./menu";
 import Person from "../../../assets/person";
 import { IUserInfo } from "../../../interfaces/user";
 import QUERYKEYS from "../../../constants/querykey";
-import { loadMe } from "../../../api/user";
+import { loadMe, logout } from "../../../api/user";
 import { AVATAR_COLORS } from "../../../constants/color";
+import toastMsg from "../../Toast";
 
 export default function SideBar() {
   const { bookId } = useParams();
@@ -35,6 +36,15 @@ export default function SideBar() {
   )?.avatarUrl;
   if (!data) return null;
   console.log(userAvatar);
+  const logOut = async () => {
+    try {
+      await logout();
+      toastMsg("로그아웃 되었습니다.");
+      navigate("/");
+    } catch (err) {
+      console.log(err);
+    }
+  };
   return (
     <Container>
       <Top>
@@ -87,6 +97,9 @@ export default function SideBar() {
               theme={ele.theme}
               onClick={() => {
                 navigate(`${ele.path}/${bookId}`);
+                if (ele.title === "로그아웃") {
+                  logOut();
+                }
               }}
             />
           );

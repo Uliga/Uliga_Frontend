@@ -22,6 +22,7 @@ const HISTORY = "/history";
 const INCOME = "/income";
 const RECORD = "/record";
 const BUDGET = "/budget";
+const LOGOUT = "/logout";
 
 const API = {
   BASE_URL: `${BASE_URL}`,
@@ -50,5 +51,6 @@ const API = {
   RECORD: `${RECORD}`,
   CREATE_BUDGET: `${ACCOUNT_BOOK}${BUDGET}`,
   BUDGET: `${BUDGET}`,
+  LOGOUT: `${LOGOUT}`,
 };
 export default API;
