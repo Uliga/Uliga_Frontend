@@ -36,7 +36,7 @@ export default function SideBar() {
   )?.avatarUrl;
   if (!data) return null;
   console.log(userAvatar);
-  const logOut = async () => {
+  const logOUT = async () => {
     try {
       await logout();
       toastMsg("로그아웃 되었습니다.");
@@ -98,7 +98,7 @@ export default function SideBar() {
               onClick={() => {
                 navigate(`${ele.path}/${bookId}`);
                 if (ele.title === "로그아웃") {
-                  logOut();
+                  logOUT();
                 }
               }}
             />
