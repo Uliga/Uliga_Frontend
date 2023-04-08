@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import React from "react";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import COLORS from "../../../constants/color";
 import PATH from "../../../constants/path";
@@ -34,28 +34,30 @@ const NavigateButton = styled.button<{ selected: boolean }>`
   cursor: pointer;
 `;
 export default function SettingNav() {
-  const [curTab, setCurTab] = useState("기본 정보");
   const { bookId } = useParams();
   const navigate = useNavigate();
   const menus = [
     {
+      pathName: "me",
       title: "기본 정보",
       path: `${PATH.SETTING}${PATH.ME}/${bookId}`,
     },
     {
+      pathName: "book",
       title: "가계부 정보",
       path: `${PATH.SETTING}${PATH.BOOK}/${bookId}`,
     },
   ];
+  const location = useLocation();
+  const currentPath = location.pathname.split("/")[2];
 
   return (
     <Nav>
       <h3>설정</h3>
       {menus.map(menu => (
         <NavigateButton
-          selected={curTab === menu.title}
+          selected={menu.pathName === currentPath}
           onClick={() => {
-            setCurTab(menu.title);
             navigate(menu.path);
           }}
           key={menu.title}
