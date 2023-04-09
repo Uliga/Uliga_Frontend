@@ -6,8 +6,8 @@ import Badge from "../../Badge";
 import IconButton from "../../IconButton";
 import EditBook from "./editBook";
 import useBook from "../../../hooks/book/useBook";
-import Dialog from "../../Dialog";
-import { deleteCategoryDialogAtom } from "../../../stores/atoms/context";
+import { deleteBookDialogAtom } from "../../../stores/atoms/context";
+import DeleteDialogs from "./dialogs";
 
 const ItemWrapper = styled.div`
   display: flex;
@@ -70,7 +70,6 @@ const StyledIconButton = styled(IconButton)`
 
 const SelectModal = styled.div`
   width: 15rem;
-  height: 10rem;
   position: absolute;
   right: 1.5rem;
   top: 3rem;
@@ -88,7 +87,7 @@ const SelectModal = styled.div`
   display: flex;
   flex-direction: column;
   align-items: start;
-  gap: 1rem;
+  gap: 2rem;
   justify-content: space-between;
 `;
 
@@ -104,37 +103,14 @@ export default function BookItem() {
   const { useBookList } = useBook();
   const [isCollapse, setIsCollapse] = useState({ open: false, id: 0 });
   const [modalOpen, setModalOpen] = useState({ open: false, id: 0 });
-  const [dialogOpen, setDialogOpen] = useRecoilState(deleteCategoryDialogAtom);
+  const [, setBookDialogOpen] = useRecoilState(deleteBookDialogAtom);
   const { data } = useBookList();
   const books = data?.accountBooks;
 
   if (!books) return null;
   return (
     <ItemWrapper>
-      {dialogOpen.open && (
-        <Dialog
-          title="잠시만요! ⚠️"
-          description={`${dialogOpen.value} 카테고리를 삭제하면 해당 카테고리로 작성한 가계부 내역도 모두 삭제됩니다. 
-        
-        ✔️  마지막에 수정 버튼을 누르셔야 완전히 삭제돼요!`}
-          visible
-          cancellable
-          onCancel={() => {
-            setDialogOpen({
-              open: false,
-              value: dialogOpen.value,
-              isDeleted: false,
-            });
-          }}
-          onConfirm={() => {
-            setDialogOpen({
-              open: false,
-              value: dialogOpen.value,
-              isDeleted: true,
-            });
-          }}
-        />
-      )}
+      <DeleteDialogs />
       {books?.map(book => (
         <>
           <BookName>
@@ -177,7 +153,10 @@ export default function BookItem() {
               iconSize="2rem"
               iconOnly
               onClick={() => {
-                setModalOpen({ id: book.info.accountBookId, open: true });
+                setModalOpen({
+                  id: book.info.accountBookId,
+                  open: !modalOpen.open,
+                });
               }}
             />
             {modalOpen.open && modalOpen.id === book.info.accountBookId && (
@@ -191,7 +170,20 @@ export default function BookItem() {
                 >
                   수정하기
                 </button>
-                <button type="button">삭제하기</button>
+                {book.info.accountBookId.toString() !==
+                  localStorage.getItem("privateAccountBookId") && (
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setBookDialogOpen({
+                        open: true,
+                        bookId: book.info.accountBookId,
+                      });
+                    }}
+                  >
+                    삭제하기
+                  </button>
+                )}
               </SelectModal>
             )}
           </Container>

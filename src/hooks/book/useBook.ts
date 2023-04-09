@@ -10,11 +10,13 @@ import {
   loadSchedule,
   loadScheduleDetail,
   deleteSchedleAlarm,
+  deleteBook,
 } from "../../api/book";
 import { BookInfoTypes, IBookList } from "../../interfaces/book";
 import { IItem } from "../../interfaces/item";
 import QUERYKEYS from "../../constants/querykey";
 import toastMsg from "../../components/Toast";
+import PATH from "../../constants/path";
 
 export default function useBook() {
   const navigate = useNavigate();
@@ -43,7 +45,7 @@ export default function useBook() {
 
   const queryClient = useQueryClient();
 
-  const mutateInvitation = useMutation(["answerInvitation"], answerInvitation, {
+  const mutateInvitation = useMutation(["mutateInvitation"], answerInvitation, {
     onSuccess: data => {
       toastMsg(data.join ? "초대 수락 성공 👏" : "초대 거절 성공 👏");
       queryClient.invalidateQueries([QUERYKEYS.LOAD_ME]);
@@ -58,7 +60,7 @@ export default function useBook() {
   });
 
   const mutateDeleteAlarm = useMutation(
-    ["deleteScheduleAlarm"],
+    ["mutateDeleteAlarm"],
     deleteSchedleAlarm,
     {
       onSuccess: () => {
@@ -74,6 +76,7 @@ export default function useBook() {
       },
     },
   );
+
   const useLoadMonthItems = (id: number, year: number, month: number) => {
     const date = `${year}/${month}`;
     const queryFn = () => loadMonthItems(id, date);
@@ -101,6 +104,21 @@ export default function useBook() {
     return data;
   };
 
+  const deleteAccountBook = async (id: number) => {
+    try {
+      await deleteBook(id);
+      toastMsg("가계부 삭제가 완료되었습니다.");
+      navigate(
+        `${PATH.SETTING}${PATH.BOOK}/${localStorage.getItem(
+          `privateAccountBookId`,
+        )}`,
+      );
+      window.location.reload();
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return {
     useSelectedBook,
     useReplaceBook,
@@ -112,5 +130,6 @@ export default function useBook() {
     useSchedule,
     useScheduleDetail,
     mutateDeleteAlarm,
+    deleteAccountBook,
   };
 }

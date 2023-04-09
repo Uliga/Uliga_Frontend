@@ -173,3 +173,11 @@ export const updateBook = async (newBook: {
   );
   return data;
 };
+
+export const deleteBook = async (id: number) => {
+  const { data } = await authorizationClient.delete(
+    `${API.ACCOUNT_BOOK}/${id}`,
+  );
+
+  return data;
+};

@@ -42,6 +42,11 @@ export const deleteCategoryDialogAtom = atom<{
   default: { open: false, value: "", isDeleted: false },
 });
 
+export const deleteBookDialogAtom = atom<{ open: boolean; bookId: number }>({
+  key: "deleteBookDialogAtom",
+  default: { open: false, bookId: 0 },
+});
+
 export const createBudgetModalAtom = atom<boolean>({
   key: "createBudgetModalAtom",
   default: false,

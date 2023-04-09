@@ -44,15 +44,16 @@ const ModifyButton = styled(Button)`
   margin: 0 4rem 4rem 0;
   border-radius: 0.5rem;
   padding: 1rem 3rem 1rem 3rem;
-  font-size: 1rem;
+  font-size: 1.3rem;
 `;
 const DeleteButton = styled(Button)`
   position: absolute;
   bottom: 0;
   margin: 0 0 4rem 0;
-  color: ${COLORS.GREY[600]};
+  padding: 0;
+  color: ${COLORS.GREY[400]};
   background-color: transparent;
-
+  font-size: 1.2rem;
   &:hover {
     border: none;
     color: black;
@@ -171,11 +172,15 @@ export default function SettingMe() {
           ),
         )}
       </Info>
-      <ModifyButton theme="primary" title="수정하기" onClick={checkNickname} />
+      <ModifyButton
+        theme="quaternary"
+        title="수정하기"
+        onClick={checkNickname}
+      />
 
       <DeleteButton
         theme="tertiary"
-        title="삭제하기"
+        title="회원 탈퇴"
         onClick={() => {
           setDeleteDialogOpen(true);
         }}
