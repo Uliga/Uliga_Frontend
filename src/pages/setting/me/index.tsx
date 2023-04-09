@@ -154,7 +154,7 @@ export default function SettingMe() {
               />
               <IconButton
                 iconOnly
-                iconName={isPasswordVisible ? "eye_slash" : "eye"}
+                iconName={isPasswordVisible ? "eyeSlash" : "eye"}
                 onClick={lookPassword}
               />
             </Password>

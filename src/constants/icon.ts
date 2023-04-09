@@ -29,7 +29,7 @@ const ICONS: IconProps = {
   cancel: "bi bi-x",
   pencil: "bi bi-pencil-fill",
   eye: "bi bi-eye",
-  eye_slash: "bi bi-eye-slash",
+  eyeSlash: "bi bi-eye-slash",
 };
 
 export default ICONS;
