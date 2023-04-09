@@ -28,6 +28,8 @@ const ICONS: IconProps = {
   wallet: "bi bi-wallet2",
   cancel: "bi bi-x",
   pencil: "bi bi-pencil-fill",
+  eye: "bi bi-eye",
+  eye_slash: "bi bi-eye-slash",
 };
 
 export default ICONS;

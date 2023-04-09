@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { useQuery } from "@tanstack/react-query";
 import { useRecoilState } from "recoil";
@@ -13,10 +13,11 @@ import useInput from "../../../hooks/useInput";
 import useMe from "../../../hooks/book/useMe";
 import { deleteScheduleDialogAtom } from "../../../stores/atoms/context";
 import Dialog from "../../../components/Dialog";
+import IconButton from "../../../components/IconButton";
 
 const Container = styled.div`
   width: 88rem;
-  height: 60rem;
+  height: 70rem;
   border: 0.1rem solid ${COLORS.GREY[200]};
   border-radius: 0.5rem;
   padding: 4rem;
@@ -62,6 +63,16 @@ const DeleteButton = styled(Button)`
     color: black;
   }
 `;
+const Password = styled.div`
+  position: relative;
+  display: flex;
+  button {
+    position: absolute;
+    margin-top: 4rem;
+    margin-right: 1.5rem;
+    right: 0;
+  }
+`;
 
 export default function SettingMe() {
   const { isLoading: loadingInfo, data: infoData } = useQuery<
@@ -72,6 +83,11 @@ export default function SettingMe() {
   const [deleteDialogOpen, setDeleteDialogOpen] = useRecoilState(
     deleteScheduleDialogAtom,
   );
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+
+  const lookPassword = () => {
+    setIsPasswordVisible(!isPasswordVisible);
+  };
   if (loadingInfo || !infoData)
     return (
       <Container>
@@ -100,8 +116,7 @@ export default function SettingMe() {
     {
       label: "애플리케이션 비밀번호",
       value: password,
-      readOnly: false,
-      type: "password",
+      type: isPasswordVisible ? "text" : "password",
       onChange: onChangePassword,
     },
   ];
@@ -125,18 +140,36 @@ export default function SettingMe() {
       )}
       <Info>
         <h3>기본 정보</h3>
-        {inputs.map(input => (
-          <InfoInput
-            key={input.label}
-            size={80}
-            label={input.label}
-            value={input.value}
-            readOnly={input.readOnly}
-            type={input.type}
-            onChange={input.onChange}
-            placeholder={input.placeholder}
-          />
-        ))}
+        {inputs.map(input =>
+          input.label === "애플리케이션 비밀번호" ? (
+            <Password>
+              <InfoInput
+                key={input.label}
+                size={80}
+                label={input.label}
+                value={input.value}
+                type={input.type}
+                onChange={input.onChange}
+              />
+              <IconButton
+                iconOnly
+                iconName={isPasswordVisible ? "eye_slash" : "eye"}
+                onClick={lookPassword}
+              />
+            </Password>
+          ) : (
+            <InfoInput
+              key={input.label}
+              size={80}
+              label={input.label}
+              value={input.value}
+              readOnly={input.readOnly}
+              type={input.type}
+              onChange={input.onChange}
+              placeholder={input.placeholder}
+            />
+          ),
+        )}
       </Info>
       <ModifyButton theme="primary" title="수정하기" onClick={checkNickname} />
 

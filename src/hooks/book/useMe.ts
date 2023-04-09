@@ -45,12 +45,23 @@ export default function useMe() {
       console.log(err);
     }
   };
+  const passwordInput = document.getElementById("password") as HTMLInputElement;
+  const showPasswordBtn = document.getElementById("show-password");
 
+  showPasswordBtn?.addEventListener("click", () => {
+    if (passwordInput.type === "password") {
+      passwordInput.type = "text";
+    } else {
+      passwordInput.type = "password";
+    }
+  });
+  const lookPassword = async () => {};
   return {
     mutateUpdateNickname,
     nickName,
     onChangeNickname,
     checkNickname,
     deleteUser,
+    lookPassword,
   };
 }
