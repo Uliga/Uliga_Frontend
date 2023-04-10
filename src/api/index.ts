@@ -1,10 +1,14 @@
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import API from "./config";
 import PATH from "../constants/path";
 
 axios.defaults.baseURL = API.BASE_URL;
 axios.defaults.withCredentials = true;
+
+const handleUnauthorized = () => {
+  localStorage.clear();
+  window.location.href = PATH.LOGIN;
+};
 
 const authorizationClient = axios.create({
   baseURL: API.BASE_URL,
@@ -24,11 +28,16 @@ authorizationClient.interceptors.response.use(
     return response;
   },
   error => {
-    switch (error.response.data.code) {
+    switch (error.response.data.errorCode) {
       // 액세스 토큰 만료
       case 401: {
+        console.log(error.response.data.errorCode);
         return axios
-          .get(API.REISSUE)
+          .get(API.REISSUE, {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+            },
+          })
           .then(
             ({
               data,
@@ -39,14 +48,14 @@ authorizationClient.interceptors.response.use(
                 accessTokenExpiresIn: number;
               };
             }) => {
+              console.log(data);
               localStorage.setItem("accessToken", data.accessToken);
               return authorizationClient.request(error.config);
             },
           )
-          .catch(() => {
-            localStorage.clear();
-            const navigate = useNavigate();
-            navigate(PATH.LOGIN);
+          .catch(err => {
+            console.log(err);
+            handleUnauthorized();
           });
       }
       // 접근 권한 없음(ex. ADMIN페이지에 USER가 접근)
