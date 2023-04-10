@@ -1,5 +1,7 @@
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import API from "./config";
+import PATH from "../constants/path";
 
 axios.defaults.baseURL = API.BASE_URL;
 axios.defaults.withCredentials = true;
@@ -22,6 +24,37 @@ authorizationClient.interceptors.response.use(
     return response;
   },
   error => {
+    switch (error.response.data.code) {
+      // 액세스 토큰 만료
+      case 401: {
+        return axios
+          .get(API.REISSUE)
+          .then(
+            ({
+              data,
+            }: {
+              data: {
+                accessToken: string;
+                grantType: string;
+                accessTokenExpiresIn: number;
+              };
+            }) => {
+              localStorage.setItem("accessToken", data.accessToken);
+              return authorizationClient.request(error.config);
+            },
+          )
+          .catch(() => {
+            localStorage.clear();
+            const navigate = useNavigate();
+            navigate(PATH.LOGIN);
+          });
+      }
+      // 접근 권한 없음(ex. ADMIN페이지에 USER가 접근)
+      case 403:
+        break;
+      default:
+        break;
+    }
     console.error("[Axios]", error);
     return Promise.reject(error);
   },
