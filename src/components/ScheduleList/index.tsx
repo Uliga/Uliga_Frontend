@@ -2,6 +2,7 @@ import React from "react";
 import COLORS from "../../constants/color";
 import * as S from "./index.styles";
 import { ISchedule } from "../../interfaces/schedule";
+import { getRemainDate } from "../../utils/date";
 
 export default function ScheduleList({
   schedules,
@@ -22,6 +23,7 @@ export default function ScheduleList({
       title: "일주일 이상의 기간이 남음",
     },
   ];
+
   return (
     <S.Container>
       <h5>다가오는 금융 일정 📆</h5>
@@ -34,9 +36,9 @@ export default function ScheduleList({
               color="white"
               bgColor={
                 // eslint-disable-next-line no-nested-ternary
-                schedule.notificationDay === 15
+                getRemainDate(schedule.notificationDay) < 3
                   ? COLORS.RED.LIGHT
-                  : schedule.notificationDay === 16
+                  : getRemainDate(schedule.notificationDay) < 7
                   ? COLORS.YELLOW
                   : COLORS.GREEN.DARK
               }

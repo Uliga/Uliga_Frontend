@@ -43,3 +43,19 @@ export function getLastDate() {
   ).getDate();
   return lastDate;
 }
+
+export function getRemainDate(selectDate: number) {
+  const lastDate = new Date(
+    new Date().getFullYear(),
+    new Date().getMonth() + 1,
+    0,
+  ).getDate();
+  const curDate = new Date().getDate();
+  let remainDate;
+  if (curDate <= selectDate) {
+    remainDate = selectDate - curDate;
+  } else {
+    remainDate = lastDate - curDate + selectDate;
+  }
+  return remainDate;
+}

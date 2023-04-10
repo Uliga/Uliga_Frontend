@@ -9,7 +9,6 @@ export default function useBudget() {
   const { bookId } = useParams();
   const date = new Date();
   const lastMonthDate = new Date(date.getFullYear(), date.getMonth() - 1, 1);
-
   const lastDate = getLastDate();
   const lastMonthQueryFn = () =>
     loadMonthAsset(
