@@ -7,7 +7,7 @@ interface ValidateProps {
   initState?: string;
 }
 const useValidate = ({ validator, initState = "" }: ValidateProps) => {
-  const [value, onChangeValue] = useInput(initState);
+  const [value, onChangeValue, setValue] = useInput(initState);
   const [isValidateValue, setIsValidateValue] = useState(false);
 
   useEffect(() => {
@@ -16,7 +16,13 @@ const useValidate = ({ validator, initState = "" }: ValidateProps) => {
     }
   }, [value, validator]);
 
-  return [value, onChangeValue, isValidateValue, setIsValidateValue] as const;
+  return [
+    value,
+    onChangeValue,
+    setValue,
+    isValidateValue,
+    setIsValidateValue,
+  ] as const;
 };
 
 export default useValidate;
