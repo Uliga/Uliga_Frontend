@@ -4,7 +4,7 @@ import Input from "../../components/Input";
 import Badge from "../../components/Badge";
 import useCreate from "../../hooks/book/useCreate";
 import * as S from "./index.styles";
-import Detail from "./detail";
+import Detail from "../../components/Book/Create/detail";
 
 export default function Create() {
   const {

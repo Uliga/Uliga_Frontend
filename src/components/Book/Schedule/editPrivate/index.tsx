@@ -1,12 +1,12 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import * as S from "./index.styles";
-import getMoneyUnit from "../../../utils/money";
-import { IScheduleDetail } from "../../../interfaces/schedule";
-import useEditSchedule from "../../../hooks/book/useEditSchedule";
+import getMoneyUnit from "../../../../utils/money";
+import { IScheduleDetail } from "../../../../interfaces/schedule";
+import useEditSchedule from "../../../../hooks/book/useEditSchedule";
 import EditShareForm from "./form";
-import useBook from "../../../hooks/book/useBook";
-import Dialog from "../../../components/Dialog";
+import useBook from "../../../../hooks/book/useBook";
+import Dialog from "../../../Dialog";
 
 export default function EditPrivate() {
   const {

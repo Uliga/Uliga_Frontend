@@ -12,35 +12,15 @@ import CapsuleBox from "../../components/Main/CapsuleBox";
 import Calendar from "../../components/Main/Calendar";
 import BottomSheet from "../../components/BottomSheet";
 import MainScheduleList from "../../components/Main/Schedule";
+import * as S from "./index.styles";
 
-const WriteButton = styled(Button)`
-  font-size: 1.4rem;
-  position: absolute;
-  right: 4rem;
-  padding: 1.2rem 2.5rem;
-`;
-
-const Container = styled.div`
-  width: 100%;
-  max-width: 140rem;
-  gap: 2rem;
-  padding: 4rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-
-const Bottom = styled.div`
-  display: flex;
-  gap: 1.5rem;
-`;
 export default function Main() {
   const navigate = useNavigate();
   const { bookId } = useParams();
   const [createModalOpen, setCreateModalOpen] = useRecoilState(createModalAtom);
 
   return (
-    <Container>
+    <S.Container>
       {createModalOpen && (
         <Modal
           closeModal={() => {
@@ -51,7 +31,7 @@ export default function Main() {
         </Modal>
       )}
       <BookNav path={PATH.MAIN} />
-      <WriteButton
+      <S.WriteButton
         theme="primary"
         title="가계부 작성하기"
         onClick={() => {
@@ -59,11 +39,11 @@ export default function Main() {
         }}
       />
       <CapsuleBox />
-      <Bottom>
+      <S.Bottom>
         <Calendar />
         <MainScheduleList />
-      </Bottom>
+      </S.Bottom>
       <BottomSheet />
-    </Container>
+    </S.Container>
   );
 }

@@ -1,6 +1,6 @@
 import React from "react";
-import Input from "../../../components/Input";
-import useAddSchedule from "../../../hooks/book/useAddSchedule";
+import Input from "../../../Input";
+import useAddSchedule from "../../../../hooks/book/useAddSchedule";
 import CurrentList from "./currentList";
 import * as S from "./index.styles";
 

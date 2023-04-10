@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import * as S from "./index.styles";
-import Input from "../../../components/Input";
-import useEditSchedule from "../../../hooks/book/useEditSchedule";
-import { IScheduleDetail } from "../../../interfaces/schedule";
+import Input from "../../../Input";
+import useEditSchedule from "../../../../hooks/book/useEditSchedule";
+import { IScheduleDetail } from "../../../../interfaces/schedule";
 import { EditButton } from "./index.styles";
-import { IStringIndex } from "../../../interfaces/book";
+import { IStringIndex } from "../../../../interfaces/book";
 
 export default function EditShareForm({
   curSchedule,
