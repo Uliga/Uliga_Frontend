@@ -13,12 +13,15 @@ import PATH from "../../constants/path";
 export default function LandingPage() {
   const { landingEmail, onChangeLandingEmail, mutateCheckEmail } = useLogin();
   const navigate = useNavigate();
+
   useEffect(() => {
-    loadMe().then((data: IUserInfo) => {
-      if (data) {
-        navigate(`${PATH.MAIN}/${data.memberInfo.privateAccountBookId}`);
-      }
-    });
+    if (localStorage.getItem("accessToken")) {
+      loadMe().then((data: IUserInfo) => {
+        if (data) {
+          navigate(`${PATH.MAIN}/${data.memberInfo.privateAccountBookId}`);
+        }
+      });
+    }
   }, []);
 
   return (
