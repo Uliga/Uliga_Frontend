@@ -17,12 +17,14 @@ export default function BottomSheet() {
     onSubmit,
     value,
     onChangeValue,
+    isValidateValue,
     formattedValue,
     inputList,
     handleChange,
     radioList,
     bookId,
   } = useDayWrite();
+  console.log(inputList);
 
   const navigate = useNavigate();
   return (
@@ -48,8 +50,8 @@ export default function BottomSheet() {
             labelHidden
           />
           <Icon iconName="pencil" color={COLORS.GREY[600]} size="1.3rem" />
+          <p>{isValidateValue ? "" : "금액을 입력해주세요."}</p>
         </S.MoneyUnit>
-
         <S.Wrapper>
           <S.InputContainer>
             <S.Menu>분류</S.Menu>
@@ -105,7 +107,14 @@ export default function BottomSheet() {
           >
             여러개의 내역 입력하러 가기
           </S.MultipleButton>
-          <S.SubmitButton title="작성 완료" onClick={onSubmit} />
+          <S.SubmitButton
+            title="작성 완료"
+            onClick={onSubmit}
+            disabled={
+              !isValidateValue ||
+              inputList.some(obj => obj.value === "" || obj.value === undefined)
+            }
+          />
         </S.Wrapper>
       </div>
     </S.Container>

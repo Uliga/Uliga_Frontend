@@ -183,4 +183,10 @@ export const MoneyUnit = styled.div`
       margin: 0;
     }
   }
+  p {
+    position: absolute;
+    font-size: 1rem;
+    bottom: 0.5rem;
+    color: ${COLORS.MEDIUM_BLUE};
+  }
 `;

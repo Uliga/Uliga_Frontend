@@ -2,15 +2,16 @@ import React, { useEffect, useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 import { useRecoilState } from "recoil";
-import useInput from "../useInput";
 import getMoneyUnit from "../../utils/money";
 import { bottomSheetAtom } from "../../stores/atoms/context";
 import getDateUnit from "../../utils/date";
+import REGEX from "../../constants/regex";
 import { uploadIncome, uploadRecord } from "../../api/book";
 import toastMsg from "../../components/Toast";
 import QUERYKEYS from "../../constants/querykey";
 import useBook from "./useBook";
 import { IStringIndex } from "../../interfaces/book";
+import useValidate from "../useValidate";
 
 type InputTypes = {
   title: string;
@@ -28,12 +29,15 @@ export default function useDayWrite() {
     day: any;
   }>(bottomSheetAtom);
   const { day, open } = bottomSheetOpen;
-  const [value, onChangeValue, setValue] = useInput(null);
   const [formattedValue, setFormattedValue] = useState("");
   const [isIncome, setIsIncome] = useState(false);
   const { useCategoryList } = useBook();
   const list = useCategoryList(bookId ? +bookId : 0);
   const [categoryOptions, setCategoryOptions] = useState<any>(undefined);
+
+  const [value, onChangeValue, setValue, isValidateValue] = useValidate({
+    validator: (input: string) => REGEX.INTEGER.test(input),
+  });
 
   useEffect(() => {
     if (list) {
@@ -198,6 +202,7 @@ export default function useDayWrite() {
 
   return {
     isIncome,
+    isValidateValue,
     day,
     open,
     bottomSheetOpen,
