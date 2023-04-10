@@ -39,6 +39,7 @@ export default function SideBar() {
   const logOUT = async () => {
     try {
       await logout();
+      localStorage.clear();
       toastMsg("로그아웃 되었습니다.");
       navigate("/");
     } catch (err) {

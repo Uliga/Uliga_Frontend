@@ -40,6 +40,7 @@ export default function useMe() {
     try {
       await deleteMe();
       toastMsg("회원 탈퇴가 완료되었습니다.");
+      localStorage.clear();
       navigate("/");
     } catch (err) {
       console.log(err);
