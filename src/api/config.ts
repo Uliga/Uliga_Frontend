@@ -52,5 +52,6 @@ const API = {
   CREATE_BUDGET: `${ACCOUNT_BOOK}${BUDGET}`,
   BUDGET: `${BUDGET}`,
   LOGOUT: `${LOGOUT}`,
+  REISSUE: `${AUTH}reissue`,
 };
 export default API;

@@ -3,12 +3,12 @@ import { useParams } from "react-router-dom";
 import BookNav from "../../components/Main/BookNav";
 import PATH from "../../constants/path";
 import * as S from "./index.styles";
-import AddShare from "../../components/Book/Schedule/addShare";
 import useBook from "../../hooks/book/useBook";
 import ScheduleList from "../../components/ScheduleList";
-import AddPrivate from "../../components/Book/Schedule/addPrivate";
 import EditShare from "../../components/Book/Schedule/editShare";
 import EditPrivate from "../../components/Book/Schedule/editPrivate";
+import AddShare from "../../components/Book/Schedule/addShare";
+import AddPrivate from "../../components/Book/Schedule/addPrivate";
 
 export default function Schedule() {
   const { useSchedule } = useBook();
