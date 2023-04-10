@@ -35,7 +35,7 @@ export default function SideBar() {
     ele => ele.id === me?.memberInfo?.id,
   )?.avatarUrl;
   if (!data) return null;
-  console.log(userAvatar);
+
   const logOUT = async () => {
     try {
       await logout();
