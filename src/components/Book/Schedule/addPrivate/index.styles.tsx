@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import COLORS from "../../../constants/color";
-import IconButton from "../../../components/IconButton";
-import Icon from "../../../components/Icon";
-import Button from "../../../components/Button";
+import COLORS from "../../../../constants/color";
+import IconButton from "../../../IconButton";
+import Icon from "../../../Icon";
+import Button from "../../../Button";
 
 export const Container = styled.div`
   display: flex;

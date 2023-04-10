@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import React from "react";
-import Icon from "../../components/Icon";
-import COLORS from "../../constants/color";
-import { TwoPerson } from "../../assets/person";
+import Icon from "../../Icon";
+import COLORS from "../../../constants/color";
+import { TwoPerson } from "../../../assets/person";
 
 const Container = styled.div`
   width: 100%;
