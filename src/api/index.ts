@@ -31,7 +31,6 @@ authorizationClient.interceptors.response.use(
     switch (error.response.data.errorCode) {
       // 액세스 토큰 만료
       case 401: {
-        console.log(error.response.data.errorCode);
         return axios
           .get(API.REISSUE, {
             headers: {
@@ -53,8 +52,7 @@ authorizationClient.interceptors.response.use(
               return authorizationClient.request(error.config);
             },
           )
-          .catch(err => {
-            console.log(err);
+          .catch(() => {
             handleUnauthorized();
           });
       }
