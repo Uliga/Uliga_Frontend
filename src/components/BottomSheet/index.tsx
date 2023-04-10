@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import COLORS from "../../constants/color";
 import * as S from "./index.styles";
 import useDayWrite from "../../hooks/book/useDayWrite";
-import SelectWindow from "../../pages/write/SelectContainer";
+import SelectWindow from "../SelectContainer/SelectContainer";
 import Icon from "../Icon";
 import PATH from "../../constants/path";
 

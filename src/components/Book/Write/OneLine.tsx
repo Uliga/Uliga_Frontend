@@ -1,6 +1,6 @@
 import React from "react";
-import * as S from "./index.styles";
-import SelectWindow from "./SelectContainer";
+import * as S from "../../../pages/write/index.styles";
+import SelectWindow from "../../SelectContainer/SelectContainer";
 
 export default function oneLine({
   inputList,

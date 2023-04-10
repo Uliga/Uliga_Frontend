@@ -1,7 +1,7 @@
 import React from "react";
-import BookInfo from "./BookInfo";
+import BookInfo from "../../components/Book/Write/BookInfo";
 import * as S from "./index.styles";
-import OneLine from "./OneLine";
+import OneLine from "../../components/Book/Write/OneLine";
 import COLORS from "../../constants/color";
 import useWrite from "../../hooks/book/useWrite";
 
