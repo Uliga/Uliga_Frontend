@@ -16,7 +16,6 @@ export default function Schedule() {
   const [isAddTab, setTab] = useState(true);
   const { bookId } = useParams();
   const privateBook = localStorage.getItem("privateAccountBookId");
-
   if (!data) return null;
   const buttonList = [
     {

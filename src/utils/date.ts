@@ -34,3 +34,12 @@ export function getDayOfWeek(date: string) {
 
   return dayOfWeek;
 }
+
+export function getLastDate() {
+  const lastDate = new Date(
+    new Date().getFullYear(),
+    new Date().getMonth() + 1,
+    0,
+  ).getDate();
+  return lastDate;
+}
