@@ -1,11 +1,13 @@
 import styled from "styled-components";
 import React from "react";
+import { useRecoilState } from "recoil";
 import { useNavigate, useParams } from "react-router-dom";
 import COLORS from "../../../../constants/color";
 import { BookInfoTypes } from "../../../../interfaces/book";
 import * as S from "../index.styles";
 import useBook from "../../../../hooks/book/useBook";
 import PATH from "../../../../constants/path";
+import allModalAtom from "../../../../stores/selectors/context";
 
 const Title = styled.div`
   margin-bottom: 1rem;
@@ -46,6 +48,7 @@ export default function BottomModal({
 }) {
   const { bookId } = useParams();
   const navigate = useNavigate();
+  const [, setAllModalOpen] = useRecoilState(allModalAtom);
   const { useReplaceBook } = useBook();
   return (
     <div>
@@ -78,6 +81,7 @@ export default function BottomModal({
       <Button
         onClick={() => {
           navigate(`${PATH.SETTING}${PATH.BOOK}/${bookId}`);
+          setAllModalOpen(false);
         }}
       >
         내 가계부 관리
