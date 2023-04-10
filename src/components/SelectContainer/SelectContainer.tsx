@@ -1,5 +1,5 @@
 import React from "react";
-import { SelectContainer } from "./index.styles";
+import { SelectContainer } from "../../pages/write/index.styles";
 
 interface Props {
   options: Array<{ value: string | undefined; label: string }>;

@@ -1,6 +1,6 @@
 import React from "react";
-import Logo from "../../assets/logo";
-import * as S from "./index.styles";
+import Logo from "../../../assets/logo";
+import * as S from "../../../pages/signup/index.styles";
 
 export default function TopSection() {
   return (
