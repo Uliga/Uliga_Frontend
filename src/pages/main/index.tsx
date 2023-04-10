@@ -1,8 +1,6 @@
 import React from "react";
-import styled from "styled-components";
 import { useNavigate, useParams } from "react-router-dom";
 import { useRecoilState } from "recoil";
-import Button from "../../components/Button";
 import Modal from "../../components/Modal";
 import Create from "../create";
 import BookNav from "../../components/Main/BookNav";

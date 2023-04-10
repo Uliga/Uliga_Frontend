@@ -147,33 +147,31 @@ export default function Signup() {
         <TopSection />
         {InputList.map(input =>
           input.label === "인증번호 입력" ? (
-            // eslint-disable-next-line react/jsx-no-useless-fragment
-            <>
-              {min < 5 && showText && (
-                <S.CodeContainer className="show-text">
-                  <Input
-                    size={35.38}
-                    label="인증번호 입력"
-                    value={code}
-                    onChange={setCode}
-                    placeholder=""
-                    readOnly={match || code.length < 0}
-                    message={
-                      showText && !match
-                        ? curTime
-                        : "이메일 인증이 완료되었습니다!"
-                    }
-                  />
-                  <S.CodeStyledButton
-                    title="인증 완료"
-                    size="small"
-                    theme={match || code.length < 0 ? "disabled" : "quaternary"}
-                    disabled={match || code.length < 0}
-                    onClick={input.isCertification?.onClick}
-                  />
-                </S.CodeContainer>
-              )}
-            </>
+            min < 5 &&
+            showText && (
+              <S.CodeContainer className="show-text">
+                <Input
+                  size={35.38}
+                  label="인증번호 입력"
+                  value={code}
+                  onChange={setCode}
+                  placeholder=""
+                  readOnly={match || code.length < 0}
+                  message={
+                    showText && !match
+                      ? curTime
+                      : "이메일 인증이 완료되었습니다!"
+                  }
+                />
+                <S.CodeStyledButton
+                  title="인증 완료"
+                  size="small"
+                  theme={match || code.length < 0 ? "disabled" : "quaternary"}
+                  disabled={match || code.length < 0}
+                  onClick={input.isCertification?.onClick}
+                />
+              </S.CodeContainer>
+            )
           ) : (
             <S.InputContainer>
               <Input
