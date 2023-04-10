@@ -7,7 +7,7 @@ axios.defaults.withCredentials = true;
 
 const handleUnauthorized = () => {
   localStorage.clear();
-  window.location.href = PATH.LOGIN;
+  window.location.href = PATH.LANDING;
 };
 
 const authorizationClient = axios.create({
