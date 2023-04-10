@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import React from "react";
+import { useNavigate } from "react-router-dom";
+import React, { useEffect } from "react";
 import COLORS from "../../constants/color";
 import { LargeLogo } from "../../assets/logo";
 import Input from "../../components/Input";
@@ -7,6 +8,9 @@ import Button from "../../components/Button";
 import SNSLogin from "./sns";
 import useLogin from "../../hooks/useLogin";
 import Detail from "./detail";
+import { loadMe } from "../../api/user";
+import { IUserInfo } from "../../interfaces/user";
+import PATH from "../../constants/path";
 
 const Container = styled.div`
   width: 52rem;
@@ -44,6 +48,15 @@ const StyledButton = styled(Button)`
 `;
 export default function LandingPage() {
   const { landingEmail, onChangeLandingEmail, mutateCheckEmail } = useLogin();
+  const navigate = useNavigate();
+  useEffect(() => {
+    loadMe().then((data: IUserInfo) => {
+      if (data) {
+        navigate(`${PATH.MAIN}/${data.memberInfo.privateAccountBookId}`);
+      }
+    });
+  }, []);
+
   return (
     <Container>
       <LargeLogo />
