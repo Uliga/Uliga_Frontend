@@ -83,6 +83,7 @@ export default function useBudget() {
     setLastDataGage((lastRemainData / lastMonthData.budget.value) * 100);
     setOneDayBudget(Math.trunc(thisRemainData / lastDate));
   }, [thisRemainData, lastRemainData]);
+  console.log(thisRemainData);
 
   return {
     thisRemainData,

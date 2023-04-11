@@ -4,6 +4,7 @@ import COLORS from "../../../constants/color";
 import * as S from "./index.styles";
 import PATH from "../../../constants/path";
 import useBook from "../../../hooks/book/useBook";
+import { getRemainDate } from "../../../utils/date";
 
 interface ScheduleProps {
   name: string;
@@ -36,9 +37,9 @@ export default function MainScheduleList() {
               color="white"
               bgColor={
                 // eslint-disable-next-line no-nested-ternary
-                schedule.notificationDay === 15
+                getRemainDate(schedule.notificationDay) < 3
                   ? COLORS.RED.LIGHT
-                  : schedule.notificationDay === 16
+                  : getRemainDate(schedule.notificationDay) < 7
                   ? COLORS.YELLOW
                   : COLORS.GREEN.DARK
               }
