@@ -1,14 +1,15 @@
 import axios from "axios";
 import API from "./config";
-// import PATH from "../constants/path";
+import PATH from "../constants/path";
+import toastMsg from "../components/Toast";
 
 axios.defaults.baseURL = API.BASE_URL;
 axios.defaults.withCredentials = true;
 
-// const handleUnauthorized = () => {
-//   localStorage.clear();
-//   window.location.href = PATH.LANDING;
-// };
+const handleUnauthorized = () => {
+  localStorage.clear();
+  window.location.href = PATH.LANDING;
+};
 
 const authorizationClient = axios.create({
   baseURL: API.BASE_URL,
@@ -23,44 +24,78 @@ authorizationClient.interceptors.request.use(config => {
   });
 });
 
+let isAlreadyFetchingAccessToken = false;
+type Subscriber = (accessToken: string) => void;
+let subscribers: Subscriber[] = [];
+
+function addSubscriber(callback: Subscriber) {
+  subscribers.push(callback);
+}
+
+function onAccessTokenFetched(accessToken: string) {
+  subscribers.forEach(callback => callback(accessToken));
+  subscribers = [];
+}
+
+async function resetTokenAndReattemptRequest(error: any) {
+  try {
+    const { response: errorResponse } = error;
+
+    const retryOriginalRequest = new Promise((resolve, reject) => {
+      addSubscriber(async (accessToken: string) => {
+        try {
+          errorResponse.config.headers.Authorization = `Bearer ${accessToken}`;
+          resolve(authorizationClient(errorResponse.config));
+        } catch (err) {
+          reject(err);
+        }
+      });
+    });
+
+    if (!isAlreadyFetchingAccessToken) {
+      isAlreadyFetchingAccessToken = true;
+      await axios
+        .post(API.REISSUE, { token: localStorage.getItem("accessToken") })
+        .then(
+          ({
+            data,
+          }: {
+            data: {
+              accessToken: string;
+              grantType: string;
+              accessTokenExpiresIn: number;
+            };
+          }) => {
+            localStorage.setItem("accessToken", data.accessToken);
+            isAlreadyFetchingAccessToken = false;
+            onAccessTokenFetched(data.accessToken);
+          },
+        )
+        .catch(err => {
+          toastMsg("로그인 정보가 없어 메인 화면으로 이동합니다.");
+          handleUnauthorized();
+          return Promise.reject(err);
+        });
+    }
+    return await retryOriginalRequest;
+  } catch (refreshError) {
+    toastMsg("로그인 정보가 없어 메인 화면으로 이동합니다.");
+    handleUnauthorized();
+    return Promise.reject(refreshError);
+  }
+}
+
 authorizationClient.interceptors.response.use(
   response => {
     return response;
   },
-  error => {
-    console.log(error);
-    switch (error.response.data.errorCode) {
-      // 액세스 토큰 만료
-      case 401: {
-        return axios
-          .post(API.REISSUE, { token: localStorage.getItem("accessToken") })
-          .then(
-            ({
-              data,
-            }: {
-              data: {
-                accessToken: string;
-                grantType: string;
-                accessTokenExpiresIn: number;
-              };
-            }) => {
-              // console.log(data);
-              localStorage.setItem("accessToken", data.accessToken);
-              return authorizationClient.request(error.config);
-            },
-          )
-          .catch(err => {
-            console.log("두번째 에러 : ", err);
-            // handleUnauthorized();
-          });
-      }
-      // 접근 권한 없음(ex. ADMIN페이지에 USER가 접근)
-      case 403:
-        break;
-      default:
-        break;
+  async function (error) {
+    if (
+      error.response.data.errorCode === 401 &&
+      localStorage.getItem("accessToken")
+    ) {
+      return resetTokenAndReattemptRequest(error);
     }
-    console.error("[Axios]", error);
     return Promise.reject(error);
   },
 );
