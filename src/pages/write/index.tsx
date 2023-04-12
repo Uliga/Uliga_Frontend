@@ -14,6 +14,7 @@ export default function Write() {
     UploadFull,
     inputForm,
   } = useWrite();
+
   return (
     <S.Wrapper>
       <BookInfo />
@@ -25,14 +26,27 @@ export default function Write() {
       </S.Menu>
       <S.MiddleWrapper>
         {inputList.map((inputs, listIdx) => (
-          <OneLine
-            /* eslint-disable-next-line react/no-array-index-key */
-            key={listIdx}
-            inputs={inputs}
-            listIdx={listIdx}
-            inputList={inputList}
-            setInputList={setInputList}
-          />
+          <S.OneLineContainer>
+            <OneLine
+              /* eslint-disable-next-line react/no-array-index-key */
+              key={listIdx}
+              inputs={inputs}
+              listIdx={listIdx}
+              inputList={inputList}
+              setInputList={setInputList}
+            />
+            <S.RemoveLineButton
+              iconName="circleClose"
+              iconOnly
+              iconSize="2rem"
+              color={COLORS.GREY[400]}
+              onClick={() => {
+                const filteredList = [...inputList];
+                filteredList.splice(listIdx, 1);
+                setInputList(filteredList);
+              }}
+            />
+          </S.OneLineContainer>
         ))}
       </S.MiddleWrapper>
       <S.BottomWrapper>
@@ -42,21 +56,27 @@ export default function Write() {
           iconName="circlePlus"
           iconSize="2.5rem"
           border={0.0001}
-          color={COLORS.GREY[500]}
+          color={COLORS.GREY[400]}
           onClick={() => {
             const newList = [...inputList, inputForm];
             setInputList(newList);
           }}
         />
-        <S.UploadButton
-          width="100%"
-          title="작성 완료"
-          theme="primary"
-          onClick={() => {
-            onSubmitForm();
-            UploadFull();
-          }}
-        />
+        {inputList.some(ele =>
+          ele.some(subEle => subEle.value === "" || subEle.value === false),
+        ) ? (
+          <S.UploadButton width="100%" title="작성 완료" disabled />
+        ) : (
+          <S.UploadButton
+            width="100%"
+            title="작성 완료"
+            theme="primary"
+            onClick={() => {
+              onSubmitForm();
+              UploadFull();
+            }}
+          />
+        )}
       </S.BottomWrapper>
     </S.Wrapper>
   );

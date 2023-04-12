@@ -30,6 +30,7 @@ const ICONS: IconProps = {
   pencil: "bi bi-pencil-fill",
   eye: "bi bi-eye",
   eyeSlash: "bi bi-eye-slash",
+  circleClose: "bi bi-x-circle",
 };
 
 export default ICONS;

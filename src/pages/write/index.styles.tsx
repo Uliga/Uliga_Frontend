@@ -60,6 +60,8 @@ const MiddleWrapper = styled.div`
 `;
 
 const Menu = styled.div`
+  width: 111rem;
+  padding-right: 2rem;
   gap: 1.7rem;
   display: flex;
 `;
@@ -68,13 +70,17 @@ const Menu1 = styled.div`
   font-size: 1.45rem;
   text-align: left;
 `;
+const OneLineContainer = styled.div`
+  display: flex;
+  gap: 1rem;
+  padding-right: 1rem;
+`;
 
 const InputWrapper = styled.div`
   display: flex;
   justify-content: left;
   gap: 1.7rem;
   border-radius: 0.5rem;
-
   input {
     outline: none;
     border: none;
@@ -127,11 +133,10 @@ const StyledInput = styled(Input)`
 `;
 
 const StyledButton = styled(IconButton)`
-  gap: 1.5rem;
   color: ${COLORS.GREY[600]};
   border-radius: 10px;
   height: 4rem;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   background-color: ${COLORS.GREY[100]};
   &:hover {
     background-color: ${COLORS.GREY[500]};
@@ -153,6 +158,12 @@ const UploadButton = styled(Button)`
   padding: 1.4rem 0;
 `;
 
+const RemoveLineButton = styled(IconButton)`
+  padding-bottom: 0.5rem;
+  &:hover {
+    opacity: 0.5;
+  }
+`;
 export {
   Wrapper,
   Menu,
@@ -167,4 +178,6 @@ export {
   BottomWrapper,
   StyledPlusButton,
   UploadButton,
+  OneLineContainer,
+  RemoveLineButton,
 };
