@@ -54,15 +54,27 @@ export default function useBudget() {
   const [oneDayBudget, setOneDayBudget] = useState(0);
 
   useEffect(() => {
-    if (thisMonthQueryData?.budget && thisMonthData.budget.value === 0) {
-      setThisMonthData(
-        Object.assign(thisMonthData, { budget: thisMonthQueryData?.budget }),
-      );
+    if (thisMonthQueryData?.budget) {
+      if (thisMonthData.budget.value === 0) {
+        setThisMonthData(
+          Object.assign(thisMonthData, { budget: thisMonthQueryData?.budget }),
+        );
+      } else {
+        setThisMonthData(
+          Object.assign(thisMonthData, { budget: thisMonthQueryData?.budget }),
+        );
+      }
     }
-    if (thisMonthQueryData?.record && thisMonthData.record.value === 0) {
-      setThisMonthData(
-        Object.assign(thisMonthData, { record: thisMonthQueryData?.record }),
-      );
+    if (thisMonthQueryData?.record) {
+      if (thisMonthData.record.value === 0) {
+        setThisMonthData(
+          Object.assign(thisMonthData, { record: thisMonthQueryData?.record }),
+        );
+      } else {
+        setThisMonthData(
+          Object.assign(thisMonthData, { record: thisMonthQueryData?.record }),
+        );
+      }
     }
     if (lastMonthQueryData?.budget && lastMonthData.budget.value === 0) {
       setLastMonthData(
@@ -83,7 +95,6 @@ export default function useBudget() {
     setLastDataGage((lastRemainData / lastMonthData.budget.value) * 100);
     setOneDayBudget(Math.trunc(thisRemainData / lastDate));
   }, [thisRemainData, lastRemainData]);
-  console.log(thisRemainData);
 
   return {
     thisRemainData,
@@ -95,5 +106,6 @@ export default function useBudget() {
     lastMonthData,
     lastMonthDate,
     date,
+    thisMonthQueryData,
   };
 }
