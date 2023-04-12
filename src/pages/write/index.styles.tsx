@@ -69,6 +69,7 @@ const Menu1 = styled.div`
   width: 11rem;
   font-size: 1.45rem;
   text-align: left;
+  position: relative;
 `;
 const OneLineContainer = styled.div`
   display: flex;
@@ -81,9 +82,11 @@ const InputWrapper = styled.div`
   justify-content: left;
   gap: 1.7rem;
   border-radius: 0.5rem;
+  position: relative;
   input {
     outline: none;
     border: none;
+    background-color: transparent;
     padding: 1rem 0 1rem 0;
     &:focus {
       outline: none;
@@ -164,6 +167,13 @@ const RemoveLineButton = styled(IconButton)`
     opacity: 0.5;
   }
 `;
+
+const ValidateNumber = styled.div`
+  position: absolute;
+  bottom: -1.5rem;
+  font-size: 1rem;
+  color: ${COLORS.MEDIUM_BLUE};
+`;
 export {
   Wrapper,
   Menu,
@@ -180,4 +190,5 @@ export {
   UploadButton,
   OneLineContainer,
   RemoveLineButton,
+  ValidateNumber,
 };

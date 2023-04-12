@@ -13,15 +13,22 @@ export default function Write() {
     onSubmitForm,
     UploadFull,
     inputForm,
+    isValidateValue,
+    setIsValidateValue,
   } = useWrite();
-
+  console.log(isValidateValue);
   return (
     <S.Wrapper>
       <BookInfo />
       <h3>가계부 작성</h3>
       <S.Menu>
-        {inputMenu.map(ele => (
-          <S.Menu1 key={ele}>{ele}</S.Menu1>
+        {inputMenu.map((ele, idx) => (
+          <S.Menu1 key={ele}>
+            {ele}
+            {!isValidateValue && idx === 5 && (
+              <S.ValidateNumber>금액을 입력해주세요.</S.ValidateNumber>
+            )}
+          </S.Menu1>
         ))}
       </S.Menu>
       <S.MiddleWrapper>
@@ -34,11 +41,12 @@ export default function Write() {
               listIdx={listIdx}
               inputList={inputList}
               setInputList={setInputList}
+              setIsValidateValue={setIsValidateValue}
             />
             <S.RemoveLineButton
-              iconName="circleClose"
+              iconName="close"
               iconOnly
-              iconSize="2rem"
+              iconSize="1.5rem"
               color={COLORS.GREY[400]}
               onClick={() => {
                 const filteredList = [...inputList];
@@ -64,8 +72,8 @@ export default function Write() {
         />
         {inputList.some(ele =>
           ele.some(subEle => subEle.value === "" || subEle.value === false),
-        ) ? (
-          <S.UploadButton width="100%" title="작성 완료" disabled />
+        ) || !isValidateValue ? (
+          <S.UploadButton width="100%" title="빈 칸을 입력해주세요!" disabled />
         ) : (
           <S.UploadButton
             width="100%"

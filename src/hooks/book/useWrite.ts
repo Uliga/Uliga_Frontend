@@ -94,6 +94,7 @@ export default function useWrite() {
   ];
 
   const [inputList, setInputList] = useState([inputForm]);
+  const [isValidateValue, setIsValidateValue] = useState(false);
 
   useEffect(() => {
     setInputList([inputForm]);
@@ -168,5 +169,7 @@ export default function useWrite() {
     inputForm,
     onSubmitForm,
     UploadFull,
+    isValidateValue,
+    setIsValidateValue,
   };
 }
