@@ -3,11 +3,12 @@ import Input from "../../../Input";
 import useAddSchedule from "../../../../hooks/book/useAddSchedule";
 import CurrentList from "./currentList";
 import * as S from "./index.styles";
+import { ISchedule } from "../../../../interfaces/schedule";
 
-export default function AddPrivate() {
+export default function AddPrivate({ schedules }: { schedules: ISchedule[] }) {
   const {
     notificationDate,
-    onChangetNotificationDate,
+    onChangeNotificationDate,
     radioList,
     inputList,
     bookId,
@@ -16,7 +17,7 @@ export default function AddPrivate() {
     mutateSchedules,
     scheduleList,
     addInputSchedulePrivate,
-  } = useAddSchedule();
+  } = useAddSchedule({ schedules });
 
   return (
     <S.Container>
@@ -30,7 +31,7 @@ export default function AddPrivate() {
                 labelHidden
                 size={7}
                 value={notificationDate}
-                onChange={onChangetNotificationDate}
+                onChange={onChangeNotificationDate}
                 type="number"
               />
               일
