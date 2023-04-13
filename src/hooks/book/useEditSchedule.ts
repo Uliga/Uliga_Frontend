@@ -151,14 +151,6 @@ export default function useEditSchedule() {
   };
 
   const onSubmitEditFormPrivate = (scheduleId: number) => {
-    console.log(
-      data?.schedules?.some(
-        (ele: IScheduleDetail) =>
-          ele.info.name === name && ele.info.id !== scheduleId,
-      ),
-    );
-    console.log(data?.schedules);
-    console.log(scheduleId);
     if (
       !isValidateDate ||
       notificationDate === "" ||
