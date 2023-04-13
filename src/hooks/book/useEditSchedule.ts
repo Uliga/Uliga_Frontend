@@ -110,6 +110,7 @@ export default function useEditSchedule() {
   });
 
   const onSubmitEditForm = (scheduleId: number) => {
+    console.log(data?.schedules);
     if (
       !isValidateDate ||
       notificationDate === "" ||
@@ -141,6 +142,51 @@ export default function useEditSchedule() {
         id: scheduleId,
         name,
         value: value !== 0 ? value : -1,
+        notificationDate,
+        isIncome,
+        assignments: newAssignments,
+      };
+      mutateUpdateSchedule.mutate(newSchedule);
+    }
+  };
+
+  const onSubmitEditFormPrivate = (scheduleId: number) => {
+    console.log(
+      data?.schedules?.some(
+        (ele: IScheduleDetail) =>
+          ele.info.name === name && ele.info.id !== scheduleId,
+      ),
+    );
+    console.log(data?.schedules);
+    console.log(scheduleId);
+    if (
+      !isValidateDate ||
+      notificationDate === "" ||
+      !name ||
+      isIncome === undefined
+    ) {
+      toastMsg(
+        "잘못된 입력값이 들어가있습니다. 입력 형식을 다시 확인해주세요!",
+      );
+    } else if (!REGEX.INTEGER.test(String(value)) && +value !== 0) {
+      toastMsg("금액을 다시 확인해주세요!");
+    } else if (
+      data?.schedules?.some(
+        (ele: IScheduleDetail) =>
+          ele.info.name === name && ele.info.id !== scheduleId,
+      )
+    ) {
+      toastMsg("이미 추가된 금융 일정 입니다.");
+    } else {
+      const newAssignments: IStringIndex = {};
+      assignments.map(item => {
+        newAssignments[item.memberId] = +value !== 0 ? item.value : -1;
+        return newAssignments;
+      });
+      const newSchedule = {
+        id: scheduleId,
+        name,
+        value: +value !== 0 ? +value : -1,
         notificationDate,
         isIncome,
         assignments: newAssignments,
@@ -187,5 +233,6 @@ export default function useEditSchedule() {
     setSelectedSchedule,
     selectedSchedule,
     onSubmitEditForm,
+    onSubmitEditFormPrivate,
   };
 }

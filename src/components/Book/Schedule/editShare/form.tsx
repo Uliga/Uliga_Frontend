@@ -38,7 +38,7 @@ export default function EditShareForm({
       return {
         memberId: item.id,
         username: item.username,
-        value: item.value === -1 ? "" : item.value,
+        value: item.value === -1 ? 0 : item.value,
       };
     });
     setAssignments(newAssignment);
@@ -104,7 +104,7 @@ export default function EditShareForm({
               value={value}
               onChange={onChangeValue}
               size={21}
-              message={`* 입력하지 않으면 '변동'이라는 값으로 들어갑니다.`}
+              message={`* 0원을 입력하시면 '변동'이라는 값으로 들어갑니다.`}
             />
             <S.AddMemberPartitionForm>
               <div>

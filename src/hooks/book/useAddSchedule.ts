@@ -97,7 +97,7 @@ export default function useAddSchedule({
       value,
       onChange: onChangeValue,
       size: INPUT_SIZE,
-      message: `* 입력하지 않으면 '변동'이라는 값으로 들어갑니다.`,
+      message: `* 0원을 입력하시면 '변동'이라는 값으로 들어갑니다.`,
     },
   ];
 
@@ -210,32 +210,50 @@ export default function useAddSchedule({
   };
 
   const addInputSchedulePrivate = () => {
-    setScheduleList((prevState: any) => [
-      ...prevState,
-      {
-        name,
-        isIncome,
-        notificationDate,
-        value: value === 0 ? -1 : value,
-        assignments: [
-          {
-            id: assignments[0].memberId,
-            value: +value,
-          },
-        ],
-      },
-    ]);
-    const initialPrice = members.map(member => ({
-      memberId: member.id,
-      username: member.username,
-      value: 0,
-    }));
-
-    setName("");
-    setIsIncome(false);
-    setNotificationDate("");
-    setValue("");
-    setAssignments(initialPrice);
+    if (
+      !isValidateDate ||
+      notificationDate === "" ||
+      !name ||
+      isIncome === undefined ||
+      value === ""
+    ) {
+      toastMsg(
+        "잘못된 입력값이 들어가있습니다. 입력 형식을 다시 확인해주세요!",
+      );
+    } else if (!REGEX.INTEGER.test(String(value)) && value !== 0) {
+      toastMsg("금액을 다시 확인해주세요!");
+    } else if (
+      scheduleList.some(ele => ele.name === name) ||
+      schedules.some(ele => ele.name === name)
+    ) {
+      toastMsg("이미 추가된 금융 일정 입니다.");
+    } else {
+      setScheduleList((prevState: any) => [
+        ...prevState,
+        {
+          name,
+          isIncome,
+          notificationDate,
+          value: +value === 0 ? -1 : value,
+          assignments: [
+            {
+              id: assignments[0].memberId,
+              value: +value === 0 ? -1 : value,
+            },
+          ],
+        },
+      ]);
+      const initialPrice = members.map(member => ({
+        memberId: member.id,
+        username: member.username,
+        value: 0,
+      }));
+      setName("");
+      setIsIncome(false);
+      setNotificationDate("");
+      setValue("");
+      setAssignments(initialPrice);
+    }
   };
 
   const clearScheduleList = () => {
