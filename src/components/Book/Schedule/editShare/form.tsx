@@ -4,7 +4,6 @@ import Input from "../../../Input";
 import useEditSchedule from "../../../../hooks/book/useEditSchedule";
 import { IScheduleDetail } from "../../../../interfaces/schedule";
 import { EditButton } from "./index.styles";
-import { IStringIndex } from "../../../../interfaces/book";
 
 export default function EditShareForm({
   curSchedule,
@@ -27,7 +26,7 @@ export default function EditShareForm({
     handlePriceChange,
     assignments,
     setAssignments,
-    mutateUpdateSchedule,
+    onSubmitEditForm,
   } = useEditSchedule();
 
   useEffect(() => {
@@ -39,7 +38,7 @@ export default function EditShareForm({
       return {
         memberId: item.id,
         username: item.username,
-        value: item.value,
+        value: item.value === -1 ? "" : item.value,
       };
     });
     setAssignments(newAssignment);
@@ -110,7 +109,6 @@ export default function EditShareForm({
             <S.AddMemberPartitionForm>
               <div>
                 <h4>구성원 할당하기</h4>
-                <p>* 설정하지 않으면 자신에게 모든 금액이 할당됩니다.</p>
                 <p>* 구성원을 할당하게 되면 알림 메시지가 전송됩니다.</p>
               </div>
               <div>
@@ -139,22 +137,7 @@ export default function EditShareForm({
             </S.AddMemberPartitionForm>
             <EditButton
               title="수정 완료"
-              onClick={() => {
-                const newAssignments: IStringIndex = {};
-                assignments.map(item => {
-                  newAssignments[item.memberId] = item.value;
-                  return newAssignments;
-                });
-                const newSchedule = {
-                  id: curSchedule?.info?.id,
-                  name,
-                  value,
-                  notificationDate,
-                  isIncome,
-                  assignments: newAssignments,
-                };
-                mutateUpdateSchedule.mutate(newSchedule);
-              }}
+              onClick={() => onSubmitEditForm(curSchedule?.info?.id)}
             />
           </>
         ) : (
