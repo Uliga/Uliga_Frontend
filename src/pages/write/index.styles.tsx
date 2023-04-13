@@ -16,6 +16,7 @@ const Wrapper = styled.div`
   width: 100%;
   max-width: 140rem;
   display: flex;
+  position: relative;
   color: ${COLORS.GREY[600]};
   gap: 1.5rem;
   padding: 4rem;
@@ -64,12 +65,12 @@ const Menu = styled.div`
   padding-right: 2rem;
   gap: 1.7rem;
   display: flex;
+  position: relative;
 `;
 const Menu1 = styled.div`
   width: 11rem;
   font-size: 1.45rem;
   text-align: left;
-  position: relative;
 `;
 const OneLineContainer = styled.div`
   display: flex;
@@ -168,11 +169,21 @@ const RemoveLineButton = styled(IconButton)`
   }
 `;
 
-const ValidateNumber = styled.div`
+const AlarmModal = styled.div`
+  width: 22rem;
+  height: 3rem;
   position: absolute;
-  bottom: -1.5rem;
-  font-size: 1rem;
-  color: ${COLORS.MEDIUM_BLUE};
+  background-color: white;
+  top: -3.5rem;
+  right: -4rem;
+  z-index: 90;
+  display: flex;
+  align-items: center;
+  box-shadow: rgba(7, 42, 68, 0.1) 0px 4px 14px 0px;
+  border-radius: 1rem;
+  font-size: 1.4rem;
+  padding: 2rem;
+  color: ${COLORS.GREY[500]};
 `;
 export {
   Wrapper,
@@ -190,5 +201,5 @@ export {
   UploadButton,
   OneLineContainer,
   RemoveLineButton,
-  ValidateNumber,
+  AlarmModal,
 };

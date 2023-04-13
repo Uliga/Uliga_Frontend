@@ -94,7 +94,7 @@ export default function useWrite() {
   ];
 
   const [inputList, setInputList] = useState([inputForm]);
-  const [isValidateValue, setIsValidateValue] = useState(false);
+  const [isValidateValue, setIsValidateValue] = useState(true);
 
   useEffect(() => {
     setInputList([inputForm]);

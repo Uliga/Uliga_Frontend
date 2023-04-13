@@ -25,6 +25,7 @@ export default function oneLine({
     if (idx === 5) {
       setIsValidateValue(REGEX.INTEGER.test(e.target.value));
     }
+    console.log(e.target.value);
     setInputList(fullList);
   };
   return (

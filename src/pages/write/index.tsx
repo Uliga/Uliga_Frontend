@@ -22,14 +22,13 @@ export default function Write() {
       <BookInfo />
       <h3>가계부 작성</h3>
       <S.Menu>
-        {inputMenu.map((ele, idx) => (
-          <S.Menu1 key={ele}>
-            {ele}
-            {!isValidateValue && idx === 5 && (
-              <S.ValidateNumber>금액을 입력해주세요.</S.ValidateNumber>
-            )}
-          </S.Menu1>
+        {inputMenu.map(ele => (
+          <S.Menu1 key={ele}>{ele}</S.Menu1>
         ))}
+        {!isValidateValue &&
+          inputList.some(
+            list => list[5].value && list[5].value?.toString().length > 0,
+          ) && <S.AlarmModal>⚠️ 올바른 금액을 입력해주세요!</S.AlarmModal>}
       </S.Menu>
       <S.MiddleWrapper>
         {inputList.map((inputs, listIdx) => (
