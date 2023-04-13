@@ -51,7 +51,12 @@ export default function Schedule() {
             {button.title}
           </S.TabButton>
         ))}
-        {isAddTab && (privateBook === bookId ? <AddPrivate /> : <AddShare />)}
+        {isAddTab &&
+          (privateBook === bookId ? (
+            <AddPrivate schedules={data.schedules} />
+          ) : (
+            <AddShare schedules={data.schedules} />
+          ))}
         {!isAddTab &&
           (privateBook === bookId ? <EditPrivate /> : <EditShare />)}
         <S.ScheduleWrapper>
