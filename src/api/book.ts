@@ -166,7 +166,6 @@ export const updateBook = async (newBook: {
   newBookData: object;
 }) => {
   const { id, newBookData } = newBook;
-  console.log(id, newBookData);
   const { data } = await authorizationClient.patch(
     `${API.ACCOUNT_BOOK}/${id}`,
     newBookData,

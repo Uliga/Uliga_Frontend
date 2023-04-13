@@ -24,7 +24,6 @@ export default function BottomSheet() {
     radioList,
     bookId,
   } = useDayWrite();
-  console.log(inputList);
 
   const navigate = useNavigate();
   return (

@@ -16,7 +16,7 @@ export default function Write() {
     isValidateValue,
     setIsValidateValue,
   } = useWrite();
-  console.log(isValidateValue);
+
   return (
     <S.Wrapper>
       <BookInfo />
