@@ -124,10 +124,6 @@ export default function useHistory() {
     return { data, refetch };
   };
 
-  const onChangePage = (page: number) => {
-    setCurPage(page);
-  };
-
   const { useCategoryList } = useBook();
   const list = useCategoryList(bookId ? +bookId : 0);
 
@@ -168,7 +164,13 @@ export default function useHistory() {
     );
   }, [categoryId, list]);
 
+  const [allChecked, setAllChecked] = useState(false);
   const [checkedList, setCheckedList] = useState<number[]>([]);
+
+  const onChangePage = (page: number) => {
+    setCurPage(page);
+  };
+
   const handleDeleteList = (historyId: number, isChecked: boolean) => {
     if (isChecked) {
       setCheckedList(prev => [...prev, historyId]);
@@ -177,6 +179,10 @@ export default function useHistory() {
     }
   };
 
+  const handleAllChecked = (checkedIdList: number[], checked: boolean) => {
+    if (checked) setCheckedList([...checkedIdList]);
+    else setCheckedList([]);
+  };
   return {
     categoryId,
     bookId,
@@ -204,5 +210,8 @@ export default function useHistory() {
     checkedList,
     setCheckedList,
     handleDeleteList,
+    handleAllChecked,
+    allChecked,
+    setAllChecked,
   };
 }

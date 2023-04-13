@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { useMutation } from "@tanstack/react-query";
 import Pagination from "react-js-pagination";
@@ -113,7 +113,6 @@ const PagingWrapper = styled.div`
   }
 
   ul.pagination li {
-    display: inline-block;
     width: 30px;
     height: 30px;
     display: flex;
@@ -146,6 +145,12 @@ const PagingWrapper = styled.div`
   }
 `;
 
+const AllCheckWrapper = styled.div`
+  position: absolute;
+  top: -3.24rem;
+  left: 1.2rem;
+`;
+
 export default function HistoryPaging({
   data,
   refetch,
@@ -161,7 +166,14 @@ export default function HistoryPaging({
   ITEM_SIZE: number;
   onChangePage: (page: number) => void;
 }) {
-  const { checkedList, setCheckedList, handleDeleteList } = useHistory();
+  const {
+    checkedList,
+    setCheckedList,
+    handleDeleteList,
+    handleAllChecked,
+    allChecked,
+    setAllChecked,
+  } = useHistory();
   const mutateDeleteHistory = useMutation(
     ["mutateDeleteHistory"],
     deleteHistory,
@@ -169,6 +181,7 @@ export default function HistoryPaging({
       onSuccess: () => {
         toastMsg(`선택된 항목 삭제 완료 👏`);
         setCheckedList([]);
+        setAllChecked(false);
         refetch();
       },
       onError: ({
@@ -181,8 +194,24 @@ export default function HistoryPaging({
     },
   );
 
+  useEffect(() => {
+    setAllChecked(false);
+    setCheckedList([]);
+  }, [curPage]);
   return (
     <PagingWrapper>
+      <AllCheckWrapper>
+        <StyledCheckbox
+          onChange={() => {
+            handleAllChecked(
+              data.content.map(item => item.id),
+              !allChecked,
+            );
+            setAllChecked(!allChecked);
+          }}
+          checked={allChecked}
+        />
+      </AllCheckWrapper>
       {checkedList.length > 0 && (
         <DeleteModal>
           <p>{checkedList.length}개의 항목을 선택하셨습니다.</p>
