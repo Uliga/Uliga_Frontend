@@ -33,6 +33,7 @@ export const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
   .react-calendar {
     padding: 0 1.3rem;
     width: 88rem;
@@ -49,9 +50,11 @@ export const Container = styled.div`
   .react-calendar__navigation {
     display: flex;
     align-items: center;
-    position: fixed;
-    width: 87rem;
+    position: -webkit-sticky; /* Safari */
+    position: sticky;
+    top: 0;
     background-color: white;
+    width: 87rem;
     height: 4rem;
     z-index: 1;
   }
@@ -95,6 +98,7 @@ export const Container = styled.div`
 
   .react-calendar__navigation__next-button {
     position: absolute;
+    top: 0;
     right: 1rem;
     font-size: 0;
     display: flex;
@@ -139,7 +143,6 @@ export const Container = styled.div`
   .react-calendar__month-view__weekdays {
     text-align: start;
     text-decoration: none;
-    padding-top: 5.5rem;
     abbr {
       /*월,화,수... 글자 부분*/
       color: ${COLORS.GREY[400]};
