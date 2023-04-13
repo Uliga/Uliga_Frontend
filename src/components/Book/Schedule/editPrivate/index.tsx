@@ -62,14 +62,12 @@ export default function EditPrivate() {
             <S.Badge>{schedule.info.notificationDay}일</S.Badge>
             <div>
               <h5>{schedule.info.name}</h5>
-              <h6>{`${getMoneyUnit(schedule.info.value)} / ${
-                schedule.info.isIncome ? "수입" : "지출"
-              }`}</h6>
-              {schedule.assignments.map(item => (
-                <S.Users key={item.username}>
-                  {item.username} {getMoneyUnit(Number(item.value))}
-                </S.Users>
-              ))}
+              <h6>{`${
+                schedule.info.value !== -1
+                  ? getMoneyUnit(schedule.info.value)
+                  : "변동"
+              } / ${schedule.info.isIncome ? "수입" : "지출"}`}</h6>
+              <S.Users>개인 금융 일정</S.Users>
             </div>
             <S.DeleteButton
               onClick={() => {

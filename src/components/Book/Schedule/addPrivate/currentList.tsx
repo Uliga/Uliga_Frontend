@@ -22,7 +22,7 @@ export default function CurrentList({
               <h5>{schedules.name}</h5>
               <h6>
                 매달 {schedules.notificationDate}일 /{" "}
-                {schedules.value !== "변동"
+                {schedules.value !== -1
                   ? `${getMoneyUnit(Number(schedules.value))}원`
                   : "변동"}{" "}
                 /{schedules.isIncome ? <> 수입</> : <> 지출</>}

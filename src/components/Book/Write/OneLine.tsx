@@ -1,13 +1,16 @@
-import React from "react";
+import React, { Dispatch, SetStateAction } from "react";
 import * as S from "../../../pages/write/index.styles";
 import SelectWindow from "../../SelectContainer/SelectContainer";
+import REGEX from "../../../constants/regex";
 
 export default function oneLine({
+  setIsValidateValue,
   inputList,
   listIdx,
   setInputList,
   inputs,
 }: {
+  setIsValidateValue: Dispatch<SetStateAction<boolean>>;
   inputList: any;
   listIdx: number;
   setInputList: any;
@@ -19,9 +22,11 @@ export default function oneLine({
   ) => {
     const fullList = [...inputList];
     fullList[listIdx][idx].value = e.target.value;
+    if (idx === 5) {
+      setIsValidateValue(REGEX.INTEGER.test(e.target.value));
+    }
     setInputList(fullList);
   };
-
   return (
     <S.InputWrapper>
       {inputs.map((input: any, idx: number) =>

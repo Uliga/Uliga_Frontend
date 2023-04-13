@@ -4,7 +4,6 @@ import Input from "../../../Input";
 import useEditSchedule from "../../../../hooks/book/useEditSchedule";
 import { IScheduleDetail } from "../../../../interfaces/schedule";
 import { EditButton } from "./index.styles";
-import { IStringIndex } from "../../../../interfaces/book";
 
 export default function EditShareForm({
   curSchedule,
@@ -24,21 +23,20 @@ export default function EditShareForm({
     isIncome,
     setIsIncome,
     handleIsIncome,
-    assignments,
+    onSubmitEditFormPrivate,
     setAssignments,
-    mutateUpdateSchedule,
   } = useEditSchedule();
 
   useEffect(() => {
     setNotificationDate(curSchedule?.info?.notificationDay);
     setName(curSchedule?.info?.name);
-    setValue(curSchedule?.info?.value);
+    setValue(curSchedule?.info?.value !== -1 ? curSchedule?.info?.value : 0);
     setIsIncome(curSchedule?.info?.isIncome);
     const newAssignment = curSchedule?.assignments.map(item => {
       return {
         memberId: item.id,
         usename: item.username,
-        value: item.value,
+        value: item.value !== -1 ? item.value : 0,
       };
     });
     setAssignments(newAssignment);
@@ -109,20 +107,7 @@ export default function EditShareForm({
             <EditButton
               title="수정 완료"
               onClick={() => {
-                const newAssignments: IStringIndex = {};
-                assignments.map(item => {
-                  newAssignments[item.memberId] = value;
-                  return newAssignments;
-                });
-                const newSchedule = {
-                  id: curSchedule?.info?.id,
-                  name,
-                  value,
-                  notificationDate,
-                  isIncome,
-                  assignments: newAssignments,
-                };
-                mutateUpdateSchedule.mutate(newSchedule);
+                onSubmitEditFormPrivate(curSchedule?.info?.id);
               }}
             />
           </>

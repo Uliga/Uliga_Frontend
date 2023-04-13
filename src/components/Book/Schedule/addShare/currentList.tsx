@@ -29,19 +29,20 @@ export default function CurrentList({
               <h5>{schedules.name}</h5>
               <h6>
                 매달 {schedules.notificationDate}일 /{" "}
-                {schedules.value !== "변동"
-                  ? `${getMoneyUnit(Number(schedules.value))}원`
-                  : "변동"}
+                {schedules.value !== -1
+                  ? `${getMoneyUnit(Number(schedules.value))}원 `
+                  : "변동 "}
                 /{schedules.isIncome ? <> 수입</> : <> 지출</>}
               </h6>
-              <div>
-                {schedules.assignments.map((ass, index) => (
-                  <S.Users key={ass.username}>
-                    {ass.username} {getMoneyUnit(Number(ass.value))}
-                    {index !== schedules.assignments.length - 1 && ` / `}
-                  </S.Users>
-                ))}
-              </div>
+              {schedules.value !== -1 && (
+                <div>
+                  {schedules.assignments.map(ass => (
+                    <S.Users key={ass.username}>
+                      {ass.username} {getMoneyUnit(Number(ass.value))}
+                    </S.Users>
+                  ))}
+                </div>
+              )}
             </S.BankingAddInfoWrapper>
             <S.CancelIconButton
               iconSize="2rem"

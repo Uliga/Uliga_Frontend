@@ -11,6 +11,9 @@ import toastMsg from "../../components/Toast";
 import QUERYKEYS from "../../constants/querykey";
 import { deleteScheduleDialogAtom } from "../../stores/atoms/context";
 import allModalAtom from "../../stores/selectors/context";
+import useValidate from "../useValidate";
+import REGEX from "../../constants/regex";
+import { IStringIndex } from "../../interfaces/book";
 
 interface SelectedSchedule {
   id: number;
@@ -30,12 +33,16 @@ export default function useEditSchedule() {
     )[0];
     setCurSchedule(selectedData);
   }, [curId]);
+  const [
+    notificationDate,
+    onChangeNotificationDate,
+    setNotificationDate,
+    isValidateDate,
+  ] = useValidate({ validator: (input: string) => REGEX.DAY.test(input) });
 
-  const [notificationDate, onChangeNotificationDate, setNotificationDate] =
-    useInput("");
   const [name, onChangeName, setName] = useInput("");
   const [isIncome, setIsIncome] = useState<boolean | undefined>(undefined);
-  const [value, onChangeValue, setValue] = useInput("");
+  const [value, onChangeValue, setValue] = useInput(0);
   const [assignments, setAssignments] = useState<AssignmentProps[]>([]);
   const [deleteDialogOpen, setDeleteDialogOpen] = useRecoilState(
     deleteScheduleDialogAtom,
@@ -65,7 +72,7 @@ export default function useEditSchedule() {
           ? {
               memberId,
               username: memberName,
-              value: parseInt(event.target.value, 10),
+              value: event.target.value ? parseInt(event.target.value, 10) : 0,
             }
           : values,
       ),
@@ -101,6 +108,103 @@ export default function useEditSchedule() {
       toastMsg(`${errorCode} / ${message}`);
     },
   });
+
+  const onSubmitEditForm = (scheduleId: number) => {
+    console.log(data?.schedules);
+    if (
+      !isValidateDate ||
+      notificationDate === "" ||
+      !name ||
+      isIncome === undefined
+    ) {
+      toastMsg(
+        "잘못된 입력값이 들어가있습니다. 입력 형식을 다시 확인해주세요!",
+      );
+    } else if (
+      !assignments.some(ele => REGEX.INTEGER.test(String(ele.value))) &&
+      !assignments.every(ele => ele.value === 0 || Number.isNaN(ele.value))
+    ) {
+      toastMsg("금액을 다시 확인해주세요!");
+    } else if (
+      data?.schedules?.some(
+        (ele: IScheduleDetail) =>
+          ele.info.name === name && ele.info.id !== scheduleId,
+      )
+    ) {
+      toastMsg("이미 추가된 금융 일정 입니다.");
+    } else {
+      const newAssignments: IStringIndex = {};
+      assignments.map(item => {
+        newAssignments[item.memberId] = value !== 0 ? item.value : -1;
+        return newAssignments;
+      });
+      const newSchedule = {
+        id: scheduleId,
+        name,
+        value: value !== 0 ? value : -1,
+        notificationDate,
+        isIncome,
+        assignments: newAssignments,
+      };
+      mutateUpdateSchedule.mutate(newSchedule);
+    }
+  };
+
+  const onSubmitEditFormPrivate = (scheduleId: number) => {
+    console.log(
+      data?.schedules?.some(
+        (ele: IScheduleDetail) =>
+          ele.info.name === name && ele.info.id !== scheduleId,
+      ),
+    );
+    console.log(data?.schedules);
+    console.log(scheduleId);
+    if (
+      !isValidateDate ||
+      notificationDate === "" ||
+      !name ||
+      isIncome === undefined
+    ) {
+      toastMsg(
+        "잘못된 입력값이 들어가있습니다. 입력 형식을 다시 확인해주세요!",
+      );
+    } else if (!REGEX.INTEGER.test(String(value)) && +value !== 0) {
+      toastMsg("금액을 다시 확인해주세요!");
+    } else if (
+      data?.schedules?.some(
+        (ele: IScheduleDetail) =>
+          ele.info.name === name && ele.info.id !== scheduleId,
+      )
+    ) {
+      toastMsg("이미 추가된 금융 일정 입니다.");
+    } else {
+      const newAssignments: IStringIndex = {};
+      assignments.map(item => {
+        newAssignments[item.memberId] = +value !== 0 ? item.value : -1;
+        return newAssignments;
+      });
+      const newSchedule = {
+        id: scheduleId,
+        name,
+        value: +value !== 0 ? +value : -1,
+        notificationDate,
+        isIncome,
+        assignments: newAssignments,
+      };
+      mutateUpdateSchedule.mutate(newSchedule);
+    }
+  };
+
+  useEffect(() => {
+    if (assignments) {
+      setValue(
+        assignments.reduce((acc, cur) => {
+          return acc + Number(cur.value ? cur.value : 0);
+        }, 0),
+      );
+    }
+  }, [assignments]);
+
   return {
     data,
     setCurId,
@@ -128,5 +232,7 @@ export default function useEditSchedule() {
     setAllModalAtom,
     setSelectedSchedule,
     selectedSchedule,
+    onSubmitEditForm,
+    onSubmitEditFormPrivate,
   };
 }

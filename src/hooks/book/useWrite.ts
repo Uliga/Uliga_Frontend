@@ -25,6 +25,7 @@ export default function useWrite() {
     value?: boolean | number | string;
     size?: number;
     type?: string;
+    id?: number;
   };
 
   const { useCategoryList } = useBook();
@@ -33,7 +34,7 @@ export default function useWrite() {
 
   useEffect(() => {
     if (list) {
-      const newList = [{ id: 0, value: undefined, label: "선택" }, ...list];
+      const newList = [{ id: 0, value: false, label: "선택" }, ...list];
       setCategoryOptions([...newList]);
     } else {
       setCategoryOptions([]);
@@ -45,7 +46,7 @@ export default function useWrite() {
     {
       label: "isIncome",
       options: [
-        { value: undefined, label: "선택" },
+        { value: false, label: "선택" },
         { value: "지출", label: "지출" },
         { value: "수입", label: "수입" },
       ],
@@ -60,17 +61,17 @@ export default function useWrite() {
     {
       label: "category",
       options: categoryOptions,
-      value: undefined,
+      value: false,
     },
     {
       label: "payment",
       options: [
-        { value: undefined, label: "선택" },
+        { value: false, label: "선택" },
         { value: "현금", label: "현금" },
         { value: "카드", label: "카드" },
         { value: "이체", label: "이체" },
       ],
-      value: undefined,
+      value: false,
     },
     {
       label: "account",
@@ -86,13 +87,14 @@ export default function useWrite() {
     },
     {
       label: "memo",
-      size: 19,
+      size: 18,
       type: "text",
       value: "",
     },
   ];
 
   const [inputList, setInputList] = useState([inputForm]);
+  const [isValidateValue, setIsValidateValue] = useState(false);
 
   useEffect(() => {
     setInputList([inputForm]);
@@ -108,10 +110,6 @@ export default function useWrite() {
       });
       toastMsg("작성하신 가계부 내역이 등록되었습니다 👏");
       navigate(`${PATH.MAIN}/${bookId}`);
-      console.log({
-        id: Number(bookId),
-        createRequest,
-      });
     } catch (err) {
       console.log(err);
     }
@@ -167,5 +165,7 @@ export default function useWrite() {
     inputForm,
     onSubmitForm,
     UploadFull,
+    isValidateValue,
+    setIsValidateValue,
   };
 }

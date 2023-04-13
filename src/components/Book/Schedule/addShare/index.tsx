@@ -3,11 +3,12 @@ import Input from "../../../Input";
 import useAddSchedule from "../../../../hooks/book/useAddSchedule";
 import CurrentList from "./currentList";
 import * as S from "./index.styles";
+import { ISchedule } from "../../../../interfaces/schedule";
 
-export default function AddShare() {
+export default function AddShare({ schedules }: { schedules: ISchedule[] }) {
   const {
     notificationDate,
-    onChangetNotificationDate,
+    onChangeNotificationDate,
     radioList,
     inputList,
     members,
@@ -19,21 +20,21 @@ export default function AddShare() {
     scheduleList,
     addInputSchedule,
     handlePriceChange,
-  } = useAddSchedule();
+  } = useAddSchedule({ schedules });
 
   return (
     <S.Container>
       <S.Form>
         <S.Background>
           <div>
-            <S.InputLabel> 날짜</S.InputLabel>
+            <S.InputLabel>날짜</S.InputLabel>
             <S.InputWrapper>
               매달
               <Input
                 labelHidden
                 size={7}
                 value={notificationDate}
-                onChange={onChangetNotificationDate}
+                onChange={onChangeNotificationDate}
                 type="number"
               />
               일
@@ -65,12 +66,12 @@ export default function AddShare() {
               type={input.type}
               message={input.message}
               key={input.label}
+              readOnly={input.label === "금액"}
             />
           ))}
           <S.AddMemberPartitionForm>
             <div>
               <h4>구성원 할당하기</h4>
-              <p>* 설정하지 않으면 자신에게 모든 금액이 할당됩니다.</p>
               <p>* 구성원을 할당하게 되면 알림 메시지가 전송됩니다.</p>
             </div>
             <div>

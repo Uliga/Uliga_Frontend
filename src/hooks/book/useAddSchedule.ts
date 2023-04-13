@@ -6,11 +6,14 @@ import { addSchedule, loadBookMember } from "../../api/book";
 import toastMsg from "../../components/Toast";
 import QUERYKEYS from "../../constants/querykey";
 import { BookMemberProps } from "../../interfaces/book";
+import useValidate from "../useValidate";
+import REGEX from "../../constants/regex";
+import { ISchedule } from "../../interfaces/schedule";
 
 export interface AssignmentProps {
   memberId: number;
   username?: string;
-  value: number;
+  value: number | string;
 }
 
 export interface ScheduleProps {
@@ -22,15 +25,23 @@ export interface ScheduleProps {
   isIncome: boolean;
   name: string;
   notificationDate: string;
-  value: string;
+  value: number;
 }
-export default function useAddSchedule() {
+export default function useAddSchedule({
+  schedules,
+}: {
+  schedules: ISchedule[];
+}) {
   const { bookId } = useParams();
-  const [notificationDate, onChangetNotificationDate, setNotificationDate] =
-    useInput("");
+  const [
+    notificationDate,
+    onChangeNotificationDate,
+    setNotificationDate,
+    isValidateDate,
+  ] = useValidate({ validator: (input: string) => REGEX.DAY.test(input) });
   const [isIncome, setIsIncome] = useState(false);
   const [name, onChangeName, setName] = useInput("");
-  const [value, onChangeValue, setValue] = useInput("");
+  const [value, onChangeValue, setValue] = useInput(0);
   const [members, setMembers] = useState<BookMemberProps[]>([]);
   const [assignments, setAssignments] = useState<AssignmentProps[]>([]);
   const [scheduleList, setScheduleList] = useState<ScheduleProps[]>([]);
@@ -86,7 +97,7 @@ export default function useAddSchedule() {
       value,
       onChange: onChangeValue,
       size: INPUT_SIZE,
-      message: `* 입력하지 않으면 '변동'이라는 값으로 들어갑니다.`,
+      message: `* 0원을 입력하시면 '변동'이라는 값으로 들어갑니다.`,
     },
   ];
 
@@ -101,7 +112,7 @@ export default function useAddSchedule() {
           ? {
               memberId,
               username: memberName,
-              value: parseInt(event.target.value, 10),
+              value: event.target.value ? parseInt(event.target.value, 10) : 0,
             }
           : values,
       ),
@@ -129,64 +140,120 @@ export default function useAddSchedule() {
     setAssignments(initialInfo);
   }, [members]);
 
+  useEffect(() => {
+    setValue(
+      assignments.reduce((acc, cur) => {
+        return acc + Number(cur.value ? cur.value : 0);
+      }, 0),
+    );
+  }, [assignments]);
+
   const addInputSchedule = () => {
-    setScheduleList((prevState: any) => [
-      ...prevState,
-      {
-        name,
-        isIncome,
-        notificationDate,
-        value: value === "" ? "변동" : value,
-        assignments: assignments.map(item => {
-          return {
-            id: item.memberId,
-            username: item.username,
-            value: item.value,
-          };
-        }),
-      },
-    ]);
+    if (
+      !isValidateDate ||
+      notificationDate === "" ||
+      !name ||
+      isIncome === undefined
+    ) {
+      toastMsg(
+        "잘못된 입력값이 들어가있습니다. 입력 형식을 다시 확인해주세요!",
+      );
+    } else if (
+      !assignments.some(ele => REGEX.INTEGER.test(String(ele.value))) &&
+      !assignments.every(ele => ele.value === 0 || Number.isNaN(ele.value))
+    ) {
+      toastMsg("금액을 다시 확인해주세요!");
+    } else if (
+      scheduleList.some(ele => ele.name === name) ||
+      schedules.some(ele => ele.name === name)
+    ) {
+      toastMsg("이미 추가된 금융 일정 입니다.");
+    } else {
+      setScheduleList((prevState: any) => [
+        ...prevState,
+        {
+          name,
+          isIncome,
+          notificationDate,
+          value: value !== 0 ? value : -1,
+          assignments:
+            value !== 0
+              ? assignments.map(item => {
+                  return {
+                    id: item.memberId,
+                    username: item.username,
+                    value: item.value,
+                  };
+                })
+              : assignments.map(item => {
+                  return {
+                    id: item.memberId,
+                    username: item.username,
+                    value: -1,
+                  };
+                }),
+        },
+      ]);
 
-    const initialPrice = members.map(member => ({
-      memberId: member.id,
-      username: member.username,
-      value: 0,
-    }));
+      const initialPrice = members.map(member => ({
+        memberId: member.id,
+        username: member.username,
+        value: 0,
+      }));
 
-    setName("");
-    setIsIncome(false);
-    setNotificationDate("");
-    setValue("");
-    setAssignments(initialPrice);
+      setName("");
+      setIsIncome(false);
+      setNotificationDate("");
+      setValue("");
+      setAssignments(initialPrice);
+    }
   };
 
   const addInputSchedulePrivate = () => {
-    setScheduleList((prevState: any) => [
-      ...prevState,
-      {
-        name,
-        isIncome,
-        notificationDate,
-        value: value === "" ? "변동" : value,
-        assignments: [
-          {
-            id: assignments[0].memberId,
-            value: +value,
-          },
-        ],
-      },
-    ]);
-    const initialPrice = members.map(member => ({
-      memberId: member.id,
-      username: member.username,
-      value: 0,
-    }));
-
-    setName("");
-    setIsIncome(false);
-    setNotificationDate("");
-    setValue("");
-    setAssignments(initialPrice);
+    if (
+      !isValidateDate ||
+      notificationDate === "" ||
+      !name ||
+      isIncome === undefined ||
+      value === ""
+    ) {
+      toastMsg(
+        "잘못된 입력값이 들어가있습니다. 입력 형식을 다시 확인해주세요!",
+      );
+    } else if (!REGEX.INTEGER.test(String(value)) && value !== 0) {
+      toastMsg("금액을 다시 확인해주세요!");
+    } else if (
+      scheduleList.some(ele => ele.name === name) ||
+      schedules.some(ele => ele.name === name)
+    ) {
+      toastMsg("이미 추가된 금융 일정 입니다.");
+    } else {
+      setScheduleList((prevState: any) => [
+        ...prevState,
+        {
+          name,
+          isIncome,
+          notificationDate,
+          value: +value === 0 ? -1 : value,
+          assignments: [
+            {
+              id: assignments[0].memberId,
+              value: +value === 0 ? -1 : value,
+            },
+          ],
+        },
+      ]);
+      const initialPrice = members.map(member => ({
+        memberId: member.id,
+        username: member.username,
+        value: 0,
+      }));
+      setName("");
+      setIsIncome(false);
+      setNotificationDate("");
+      setValue("");
+      setAssignments(initialPrice);
+    }
   };
 
   const clearScheduleList = () => {
@@ -226,7 +293,7 @@ export default function useAddSchedule() {
     getMember,
     assignments,
     addInputSchedule,
-    onChangetNotificationDate,
+    onChangeNotificationDate,
     handleIsIncome,
     setAssignments,
     notificationDate,

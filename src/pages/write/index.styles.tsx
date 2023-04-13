@@ -60,6 +60,8 @@ const MiddleWrapper = styled.div`
 `;
 
 const Menu = styled.div`
+  width: 111rem;
+  padding-right: 2rem;
   gap: 1.7rem;
   display: flex;
 `;
@@ -67,6 +69,12 @@ const Menu1 = styled.div`
   width: 11rem;
   font-size: 1.45rem;
   text-align: left;
+  position: relative;
+`;
+const OneLineContainer = styled.div`
+  display: flex;
+  gap: 1rem;
+  padding-right: 1rem;
 `;
 
 const InputWrapper = styled.div`
@@ -74,10 +82,11 @@ const InputWrapper = styled.div`
   justify-content: left;
   gap: 1.7rem;
   border-radius: 0.5rem;
-
+  position: relative;
   input {
     outline: none;
     border: none;
+    background-color: transparent;
     padding: 1rem 0 1rem 0;
     &:focus {
       outline: none;
@@ -127,11 +136,10 @@ const StyledInput = styled(Input)`
 `;
 
 const StyledButton = styled(IconButton)`
-  gap: 1.5rem;
   color: ${COLORS.GREY[600]};
   border-radius: 10px;
   height: 4rem;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   background-color: ${COLORS.GREY[100]};
   &:hover {
     background-color: ${COLORS.GREY[500]};
@@ -153,6 +161,19 @@ const UploadButton = styled(Button)`
   padding: 1.4rem 0;
 `;
 
+const RemoveLineButton = styled(IconButton)`
+  padding-bottom: 0.5rem;
+  &:hover {
+    opacity: 0.5;
+  }
+`;
+
+const ValidateNumber = styled.div`
+  position: absolute;
+  bottom: -1.5rem;
+  font-size: 1rem;
+  color: ${COLORS.MEDIUM_BLUE};
+`;
 export {
   Wrapper,
   Menu,
@@ -167,4 +188,7 @@ export {
   BottomWrapper,
   StyledPlusButton,
   UploadButton,
+  OneLineContainer,
+  RemoveLineButton,
+  ValidateNumber,
 };
