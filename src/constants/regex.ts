@@ -4,6 +4,7 @@ const REGEX = {
   NICKNAME: /^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9|]{2,19}$/,
   MONEY: /\B(?=(\d{3})+(?!\d))/g,
   INTEGER: /^[1-9]\d*$/,
+  DAY: /^(0?[1-9]|[1-2][0-9]|3[0-1])$/,
 };
 
 export default REGEX;
