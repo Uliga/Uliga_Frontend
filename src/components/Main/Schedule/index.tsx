@@ -46,7 +46,8 @@ export default function MainScheduleList() {
             <div>
               <h6>{schedule.name}</h6>
               <p>
-                {schedule.value}원 / {schedule.isIncome ? <>수입</> : <>지출</>}
+                {schedule.value !== -1 ? `${schedule.value}원` : "변동"} /{" "}
+                {schedule.isIncome ? <>수입</> : <>지출</>}
               </p>
             </div>
           </S.ScheduleWrapper>
