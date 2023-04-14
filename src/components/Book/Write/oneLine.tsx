@@ -2,6 +2,7 @@ import React, { Dispatch, SetStateAction } from "react";
 import * as S from "../../../pages/write/index.styles";
 import SelectWindow from "../../SelectContainer/SelectContainer";
 import REGEX from "../../../constants/regex";
+import ShareModal from "./shareModal";
 
 export default function oneLine({
   setIsValidateValue,
@@ -25,37 +26,39 @@ export default function oneLine({
     if (idx === 5) {
       setIsValidateValue(REGEX.INTEGER.test(e.target.value));
     }
-    console.log(e.target.value);
     setInputList(fullList);
   };
   return (
-    <S.InputWrapper>
-      {inputs.map((input: any, idx: number) =>
-        input.options ? (
-          <SelectWindow
-            key={input.label}
-            options={input.options}
-            value={input.value}
-            onChange={(e: any) => handleChange(idx, e)}
-          />
-        ) : (
-          <div key={input.label}>
-            <S.StyledInput
+    <>
+      <ShareModal />
+      <S.InputWrapper>
+        {inputs.map((input: any, idx: number) =>
+          input.options ? (
+            <SelectWindow
               key={input.label}
-              size={input.size}
-              type={input.type}
+              options={input.options}
               value={input.value}
-              onChange={e => handleChange(idx, e)}
+              onChange={(e: any) => handleChange(idx, e)}
             />
-          </div>
-        ),
-      )}
-      <S.StyledButton
-        reverseIconButton
-        title="공유 가계부 내역에 추가"
-        theme="primary"
-        iconName="plus"
-      />
-    </S.InputWrapper>
+          ) : (
+            <div key={input.label}>
+              <S.StyledInput
+                key={input.label}
+                size={input.size}
+                type={input.type}
+                value={input.value}
+                onChange={e => handleChange(idx, e)}
+              />
+            </div>
+          ),
+        )}
+        <S.StyledButton
+          reverseIconButton
+          title="공유 가계부 내역에 추가"
+          theme="primary"
+          iconName="plus"
+        />
+      </S.InputWrapper>
+    </>
   );
 }
