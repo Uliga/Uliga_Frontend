@@ -1,10 +1,22 @@
 import { useEffect, useState } from "react";
+import { useRecoilState } from "recoil";
 import { useParams, useNavigate } from "react-router-dom";
 import { uploadBook } from "../../api/book";
 import toastMsg from "../../components/Toast";
 import PATH from "../../constants/path";
 import useBook from "./useBook";
 import { IStringIndex } from "../../interfaces/book";
+import { addSharedBookModalAtom } from "../../stores/atoms/context";
+import allModalAtom from "../../stores/selectors/context";
+
+export type InputTypes = {
+  label: string;
+  options?: object[];
+  value?: boolean | number | string | number[];
+  size?: number;
+  type?: string;
+  id?: number;
+};
 
 export default function useWrite() {
   const { bookId } = useParams();
@@ -19,14 +31,6 @@ export default function useWrite() {
     "금액",
     "메모",
   ];
-  type InputTypes = {
-    label: string;
-    options?: object[];
-    value?: boolean | number | string;
-    size?: number;
-    type?: string;
-    id?: number;
-  };
 
   const { useCategoryList } = useBook();
   const list = useCategoryList(bookId ? +bookId : 0);
@@ -90,6 +94,10 @@ export default function useWrite() {
       size: 18,
       type: "text",
       value: "",
+    },
+    {
+      label: "sharedAccountBook",
+      value: [],
     },
   ];
 
@@ -158,6 +166,12 @@ export default function useWrite() {
       return null;
     });
   };
+
+  const [sharedBookModalOpen, setSharedBookModalOpen] = useRecoilState(
+    addSharedBookModalAtom,
+  );
+  const [, setAllModalOpen] = useRecoilState(allModalAtom);
+
   return {
     inputMenu,
     inputList,
@@ -167,5 +181,8 @@ export default function useWrite() {
     UploadFull,
     isValidateValue,
     setIsValidateValue,
+    sharedBookModalOpen,
+    setSharedBookModalOpen,
+    setAllModalOpen,
   };
 }

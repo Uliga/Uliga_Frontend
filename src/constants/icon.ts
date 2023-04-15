@@ -3,6 +3,7 @@ type IconProps = {
 }; // key에 string으로 접근할 수 있도록 인덱스 선언
 
 const ICONS: IconProps = {
+  checkEmpty: "bi bi-check-circle",
   checkFill: "bi bi-check-circle-fill",
   book: "bi bi-journals",
   pig: "bi bi-piggy-bank",

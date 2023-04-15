@@ -61,3 +61,8 @@ export const historyCategoryModalAtom = atom<boolean>({
   key: "historyCategoryModalAtom",
   default: false,
 });
+
+export const addSharedBookModalAtom = atom<boolean>({
+  key: "addSharedBookModalAtom",
+  default: false,
+});

@@ -1,10 +1,13 @@
-import React from "react";
+import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import Modal from "../../Modal";
 import COLORS from "../../../constants/color";
 import Button from "../../Button";
 import useBook from "../../../hooks/book/useBook";
 import Badge from "../../Badge";
+import IconButton from "../../IconButton";
+import useWrite from "../../../hooks/book/useWrite";
 
 const Container = styled.div`
   h4 {
@@ -41,8 +44,8 @@ const Box = styled.div`
     position: absolute;
     padding: 1.3rem 2.2rem;
     font-size: 1.4rem;
-    right: 1.5rem;
-    bottom: 1.9rem;
+    right: 1rem;
+    bottom: 1.2rem;
   }
 `;
 
@@ -73,36 +76,91 @@ const ButtonWrapper = styled.div`
     font-size: 1.5rem;
   }
 `;
-export default function ShareModal() {
+
+export default function ShareModal({
+  inputList,
+  setInputList,
+  listIdx,
+}: {
+  inputList: any;
+  setInputList: Dispatch<SetStateAction<any>>;
+  listIdx: number;
+}) {
   const { useBookList } = useBook();
   const { data } = useBookList();
+  const { bookId } = useParams();
+
+  const [isChecked, setIsChecked] = useState<number[]>([]);
+  const handleSharedBook = (id: number) => {
+    if (isChecked.includes(id)) {
+      const fullList = [...inputList];
+      fullList[listIdx][7].value = [
+        ...fullList[listIdx][7].value.filter((ele: number) => ele !== id),
+      ];
+      setInputList(fullList);
+      setIsChecked([...isChecked.filter(ele => ele !== id)]);
+    } else {
+      const fullList = [...inputList];
+      fullList[listIdx][7].value = [...fullList[listIdx][7].value.concat([id])];
+      setInputList(fullList);
+      setIsChecked([...isChecked, id]);
+    }
+  };
+
+  useEffect(() => {}, []);
+
+  const { setSharedBookModalOpen, setAllModalOpen } = useWrite();
+
   return (
-    <Modal closeModal={() => {}}>
+    <Modal
+      closeModal={() => {
+        setSharedBookModalOpen(false);
+      }}
+    >
       <Container>
         <div>
           <h4>공유 가계부에 동일 내역 추가</h4>
           <p>공유 가계부를 선택하시면 동일한 가계부 내역이 추가됩니다 👪</p>
         </div>
         <Wrapper>
-          {data?.accountBooks.map(book => (
-            <Box>
-              {book.info.accountBookName}
-              <MemberWrapper>
-                {book.members.map(member => (
-                  <Badge
-                    size={1}
-                    title={member.username}
-                    color={COLORS.GREY[400]}
+          {data?.accountBooks.map(
+            book =>
+              Number(bookId || 0) !== book.info.accountBookId && (
+                <Box>
+                  {book.info.accountBookName}
+                  <MemberWrapper>
+                    {book.members.map(member => (
+                      <Badge
+                        size={1}
+                        title={member.username}
+                        color={COLORS.GREY[400]}
+                      />
+                    ))}
+                  </MemberWrapper>
+                  <IconButton
+                    iconOnly
+                    iconName={
+                      !isChecked.includes(book.info.accountBookId)
+                        ? "checkEmpty"
+                        : "checkFill"
+                    }
+                    iconSize="2.7rem"
+                    color={COLORS.MEDIUM_BLUE}
+                    onClick={() => handleSharedBook(book.info.accountBookId)}
                   />
-                ))}
-              </MemberWrapper>
-              <Button title="선택" theme="quaternary" />
-            </Box>
-          ))}
+                </Box>
+              ),
+          )}
         </Wrapper>
         <ButtonWrapper>
           <Button title="취소" theme="unfocus" />
-          <Button title="확인" />
+          <Button
+            title="확인"
+            onClick={() => {
+              setSharedBookModalOpen(false);
+              setAllModalOpen(false);
+            }}
+          />
         </ButtonWrapper>
       </Container>
     </Modal>

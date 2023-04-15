@@ -7,6 +7,7 @@ import {
   scheduleModalAtom,
   historyModalAtom,
   historyCategoryModalAtom,
+  addSharedBookModalAtom,
 } from "../atoms/context";
 
 const allModalAtom = selector<boolean>({
@@ -19,6 +20,7 @@ const allModalAtom = selector<boolean>({
     const historyModal = get(historyModalAtom);
     const historyCategoryModal = get(historyCategoryModalAtom);
     const budgetModal = get(createBudgetModalAtom);
+    const sharedBookModal = get(addSharedBookModalAtom);
     return (
       createModal ||
       bottomModal ||
@@ -26,7 +28,8 @@ const allModalAtom = selector<boolean>({
       scheduleModal ||
       historyModal ||
       historyCategoryModal ||
-      budgetModal
+      budgetModal ||
+      sharedBookModal
     );
   },
   set: ({ set }, newValue) => {
@@ -37,6 +40,7 @@ const allModalAtom = selector<boolean>({
     set(historyModalAtom, newValue);
     set(historyCategoryModalAtom, newValue);
     set(createBudgetModalAtom, newValue);
+    set(addSharedBookModalAtom, newValue);
   },
 });
 
