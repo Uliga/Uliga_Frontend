@@ -107,7 +107,9 @@ export default function ShareModal({
     }
   };
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    setIsChecked([...inputList[listIdx][7].value]);
+  }, []);
 
   const { setSharedBookModalOpen, setAllModalOpen } = useWrite();
 
