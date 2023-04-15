@@ -152,7 +152,7 @@ export default function LastMonth() {
             {lastRemainData > 0 ? (
               <h3>{getMoneyUnit(lastRemainData)}원 남음</h3>
             ) : (
-              <h3>{getMoneyUnit(lastRemainData)}원 초과</h3>
+              <h3>{getMoneyUnit(-lastRemainData)}원 초과</h3>
             )}
           </div>
           <Progress color="#F9F9F9">

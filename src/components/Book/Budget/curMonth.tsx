@@ -103,14 +103,15 @@ export default function CurMonth() {
     {
       color: COLORS.GREY[300],
       title: `${date.getMonth() + 1}월 예산`,
-      value: `${getMoneyUnit(thisMonthData.budget.value)}원`,
+      value: `${getMoneyUnit(Number(thisMonthData.budget.value))}원`,
     },
     {
       color: COLORS.GREY[300],
       title: `남은 1일 예산`,
-      value: `${getMoneyUnit(oneDayBudget)}원`,
+      value: `${getMoneyUnit(oneDayBudget < 0 ? 0 : oneDayBudget)}원`,
     },
   ];
+
   return (
     <Left>
       <h5>{date.getMonth() + 1}월 예산</h5>
@@ -126,7 +127,7 @@ export default function CurMonth() {
           {thisRemainData > 0 ? (
             <h3>{getMoneyUnit(thisRemainData)}원 남음</h3>
           ) : (
-            <h3>{getMoneyUnit(thisRemainData)}원 초과</h3>
+            <h3>{getMoneyUnit(-thisRemainData)}원 초과</h3>
           )}
           <Progress color="#F9F9F9">
             {thisRemainData > 0 ? (
