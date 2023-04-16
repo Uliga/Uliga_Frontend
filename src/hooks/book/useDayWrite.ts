@@ -3,7 +3,10 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import getMoneyUnit from "../../utils/money";
-import { bottomSheetAtom } from "../../stores/atoms/context";
+import {
+  addSharedBookModalAtom,
+  bottomSheetAtom,
+} from "../../stores/atoms/context";
 import getDateUnit from "../../utils/date";
 import REGEX from "../../constants/regex";
 import { uploadIncome, uploadRecord } from "../../api/book";
@@ -12,6 +15,7 @@ import QUERYKEYS from "../../constants/querykey";
 import useBook from "./useBook";
 import { IStringIndex } from "../../interfaces/book";
 import useValidate from "../useValidate";
+import allModalAtom from "../../stores/selectors/context";
 
 type InputTypes = {
   title: string;
@@ -28,12 +32,18 @@ export default function useDayWrite() {
     open: boolean;
     day: any;
   }>(bottomSheetAtom);
+  const [sharedBookModalOpen, setSharedBookModalOpen] = useRecoilState<{
+    open: boolean;
+    idx: number;
+  }>(addSharedBookModalAtom);
+  const [, setAllModalOpen] = useRecoilState(allModalAtom);
   const { day, open } = bottomSheetOpen;
   const [formattedValue, setFormattedValue] = useState("");
   const [isIncome, setIsIncome] = useState(false);
   const { useCategoryList } = useBook();
   const list = useCategoryList(bookId ? +bookId : 0);
   const [categoryOptions, setCategoryOptions] = useState<any>(undefined);
+  const [sharedAccountBook, setSharedAccountBook] = useState<number[]>([]);
 
   const [value, onChangeValue, setValue, isValidateValue] = useValidate({
     validator: (input: string) => REGEX.INTEGER.test(input),
@@ -144,6 +154,7 @@ export default function useDayWrite() {
     fullList[2].value = "";
     fullList[3].value = "";
     setInputList(fullList);
+    setSharedAccountBook([]);
     setValue(0);
   };
 
@@ -192,7 +203,8 @@ export default function useDayWrite() {
     bookData.value = +value;
     bookData.id = bookId ? +bookId : undefined;
     bookData.date = date;
-    bookData.sharedAccountBook = [];
+    bookData.sharedAccountBook = [...sharedAccountBook];
+    console.log(bookData);
     if (isIncome) {
       mutateIncome.mutate(bookData);
     } else {
@@ -218,5 +230,10 @@ export default function useDayWrite() {
     handleChange,
     handleRadio,
     bookId,
+    sharedBookModalOpen,
+    setSharedBookModalOpen,
+    sharedAccountBook,
+    setSharedAccountBook,
+    setAllModalOpen,
   };
 }

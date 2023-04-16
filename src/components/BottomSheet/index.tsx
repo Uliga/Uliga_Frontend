@@ -6,6 +6,8 @@ import useDayWrite from "../../hooks/book/useDayWrite";
 import SelectWindow from "../SelectContainer/SelectContainer";
 import Icon from "../Icon";
 import PATH from "../../constants/path";
+import Modal from "../Modal";
+import ShareModal from "../Book/Write/shareModal";
 
 export default function BottomSheet() {
   const {
@@ -23,6 +25,11 @@ export default function BottomSheet() {
     handleChange,
     radioList,
     bookId,
+    sharedBookModalOpen,
+    setSharedBookModalOpen,
+    sharedAccountBook,
+    setSharedAccountBook,
+    setAllModalOpen,
   } = useDayWrite();
 
   const navigate = useNavigate();
@@ -70,7 +77,6 @@ export default function BottomSheet() {
               ))}
             </S.RadioWrapper>
           </S.InputContainer>
-
           {inputList.map((input: any, idx: number) => (
             <S.InputContainer key={input.title}>
               <S.Menu>{input.title}</S.Menu>
@@ -92,13 +98,31 @@ export default function BottomSheet() {
               )}
             </S.InputContainer>
           ))}
-          <S.StyledInput
-            size={14}
-            type="select"
-            value="공유 가계부에 추가"
-            readOnly
-            labelHidden
-          />
+          {sharedBookModalOpen.open && (
+            <Modal
+              closeModal={() => {
+                setSharedBookModalOpen({ idx: day.getDay(), open: false });
+              }}
+            >
+              <ShareModal
+                inputList={sharedAccountBook}
+                setInputList={setSharedAccountBook}
+                listIdx={day.getDay()}
+                isMultiple={false}
+              />
+            </Modal>
+          )}
+          <S.SharedButton
+            reverseIconButton
+            title="공유 가계부 내역에 추가"
+            iconName={sharedAccountBook.length > 0 ? "check" : "plus"}
+            iconSize={sharedAccountBook.length > 0 ? "2rem" : "1.5rem"}
+            onClick={() => {
+              setAllModalOpen(false);
+              setSharedBookModalOpen({ idx: day.getDay(), open: true });
+            }}
+            checked={sharedAccountBook.length > 0}
+          />{" "}
           <S.MultipleButton
             onClick={() => {
               navigate(`${PATH.WRITE}/${bookId}`);

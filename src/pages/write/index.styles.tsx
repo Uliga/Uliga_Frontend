@@ -136,12 +136,14 @@ const StyledInput = styled(Input)`
   }
 `;
 
-const StyledButton = styled(IconButton)`
-  color: ${COLORS.GREY[600]};
+const StyledButton = styled(IconButton)<{ checked: boolean }>`
+  ${({ checked }) => `
+      background-color: ${checked ? COLORS.GREY[500] : COLORS.GREY[100]};
+      color: ${checked ? "white" : COLORS.GREY[600]};
+    `}
   border-radius: 10px;
   height: 4rem;
   font-size: 1.1rem;
-  background-color: ${COLORS.GREY[100]};
   &:hover {
     background-color: ${COLORS.GREY[500]};
   }

@@ -18,7 +18,7 @@ export const Container = styled.div`
   position: absolute;
   bottom: 0;
   right: 4rem;
-  z-index: 70;
+  z-index: 999;
   h5 {
     font-weight: 500;
     color: ${COLORS.GREY[500]};
@@ -96,6 +96,20 @@ export const StyledInput = styled(Input)`
   border-bottom: 0.5px solid ${COLORS.GREY[300]};
 `;
 
+export const SharedButton = styled(IconButton)<{ checked: boolean }>`
+  ${({ checked }) => `
+      background-color: ${checked ? COLORS.GREY[500] : COLORS.GREY[100]};
+      color: ${checked ? "white" : COLORS.GREY[600]};
+    `}
+  border-radius: 10px;
+  height: 3rem;
+  font-size: 1.2rem;
+  margin-top: 0.7rem;
+  &:hover {
+    background-color: ${COLORS.GREY[500]};
+  }
+`;
+
 export const Wrapper = styled.div`
   display: flex;
   position: relative;
@@ -122,7 +136,7 @@ export const MultipleButton = styled.div`
   background-color: ${COLORS.GREY[100]};
   padding: 0.5rem;
   width: 14rem;
-  bottom: 8rem;
+  bottom: 7.5rem;
   position: absolute;
   right: 0;
   text-align: center;

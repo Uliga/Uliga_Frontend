@@ -57,7 +57,7 @@ const Menus = styled.div`
   display: flex;
   gap: 2rem;
   width: 90rem;
-  margin-left: 5.5rem;
+  margin-left: 5rem;
 `;
 
 const Menu = styled.div<{ size: number }>`
