@@ -12,7 +12,7 @@ import allModalAtom from "../../stores/selectors/context";
 export type InputTypes = {
   label: string;
   options?: object[];
-  value?: boolean | number | string | number[];
+  value?: any;
   size?: number;
   type?: string;
   id?: number;

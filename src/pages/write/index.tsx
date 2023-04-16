@@ -4,6 +4,8 @@ import * as S from "./index.styles";
 import OneLine from "../../components/Book/Write/oneLine";
 import COLORS from "../../constants/color";
 import useWrite from "../../hooks/book/useWrite";
+import Modal from "../../components/Modal";
+import ShareModal from "../../components/Book/Write/shareModal";
 
 export default function Write() {
   const {
@@ -15,6 +17,8 @@ export default function Write() {
     inputForm,
     isValidateValue,
     setIsValidateValue,
+    sharedBookModalOpen,
+    setSharedBookModalOpen,
   } = useWrite();
 
   return (
@@ -32,28 +36,44 @@ export default function Write() {
       </S.Menu>
       <S.MiddleWrapper>
         {inputList.map((inputs, listIdx) => (
-          <S.OneLineContainer>
-            <OneLine
-              /* eslint-disable-next-line react/no-array-index-key */
-              key={listIdx}
-              inputs={inputs}
-              listIdx={listIdx}
-              inputList={inputList}
-              setInputList={setInputList}
-              setIsValidateValue={setIsValidateValue}
-            />
-            <S.RemoveLineButton
-              iconName="close"
-              iconOnly
-              iconSize="1.5rem"
-              color={COLORS.GREY[400]}
-              onClick={() => {
-                const filteredList = [...inputList];
-                filteredList.splice(listIdx, 1);
-                setInputList(filteredList);
-              }}
-            />
-          </S.OneLineContainer>
+          <>
+            {sharedBookModalOpen.idx === listIdx &&
+              sharedBookModalOpen.open && (
+                <Modal
+                  closeModal={() => {
+                    setSharedBookModalOpen({ idx: listIdx, open: false });
+                  }}
+                >
+                  <ShareModal
+                    inputList={inputList}
+                    setInputList={setInputList}
+                    listIdx={listIdx}
+                  />
+                </Modal>
+              )}
+            <S.OneLineContainer>
+              <OneLine
+                /* eslint-disable-next-line react/no-array-index-key */
+                key={listIdx}
+                inputs={inputs}
+                listIdx={listIdx}
+                inputList={inputList}
+                setInputList={setInputList}
+                setIsValidateValue={setIsValidateValue}
+              />
+              <S.RemoveLineButton
+                iconName="close"
+                iconOnly
+                iconSize="1.5rem"
+                color={COLORS.GREY[400]}
+                onClick={() => {
+                  const filteredList = [...inputList];
+                  filteredList.splice(listIdx, 1);
+                  setInputList(filteredList);
+                }}
+              />
+            </S.OneLineContainer>
+          </>
         ))}
       </S.MiddleWrapper>
       <S.BottomWrapper>
