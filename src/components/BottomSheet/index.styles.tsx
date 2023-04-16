@@ -18,7 +18,7 @@ export const Container = styled.div`
   position: absolute;
   bottom: 0;
   right: 4rem;
-  z-index: 70;
+  z-index: 999;
   h5 {
     font-weight: 500;
     color: ${COLORS.GREY[500]};
