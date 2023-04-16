@@ -80,10 +80,12 @@ export default function ShareModal({
   inputList,
   setInputList,
   listIdx,
+  isMultiple,
 }: {
   inputList: any;
   setInputList: Dispatch<SetStateAction<any>>;
   listIdx: number;
+  isMultiple: boolean;
 }) {
   const { useBookList } = useBook();
   const { data } = useBookList();
@@ -100,13 +102,20 @@ export default function ShareModal({
   };
 
   const onSubmitModal = () => {
-    const fullList = [...inputList];
-    fullList[listIdx][7].value = [...isChecked];
-    setInputList(fullList);
+    if (isMultiple) {
+      const fullList = [...inputList];
+      fullList[listIdx][7].value = [...isChecked];
+      setInputList(fullList);
+    } else {
+      setInputList([...isChecked]);
+    }
   };
 
   useEffect(() => {
-    setIsChecked([...inputList[listIdx][7].value]);
+    if (inputList && isMultiple) setIsChecked([...inputList[listIdx][7].value]);
+    if (inputList && !isMultiple) {
+      setIsChecked([...inputList]);
+    }
   }, []);
 
   const { setSharedBookModalOpen } = useWrite();
