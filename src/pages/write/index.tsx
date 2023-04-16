@@ -48,6 +48,7 @@ export default function Write() {
                     inputList={inputList}
                     setInputList={setInputList}
                     listIdx={listIdx}
+                    isMultiple
                   />
                 </Modal>
               )}
