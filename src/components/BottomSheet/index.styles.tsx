@@ -102,9 +102,9 @@ export const SharedButton = styled(IconButton)<{ checked: boolean }>`
       color: ${checked ? "white" : COLORS.GREY[600]};
     `}
   border-radius: 10px;
-  height: 3rem;
+  height: 3.4rem;
   font-size: 1.2rem;
-  margin-top: 0.7rem;
+  margin-top: 1rem;
   &:hover {
     background-color: ${COLORS.GREY[500]};
   }
@@ -133,10 +133,9 @@ export const Wrapper = styled.div`
 `;
 
 export const MultipleButton = styled.div`
-  background-color: ${COLORS.GREY[100]};
   padding: 0.5rem;
   width: 14rem;
-  bottom: 7.5rem;
+  bottom: 7rem;
   position: absolute;
   right: 0;
   text-align: center;
@@ -144,6 +143,10 @@ export const MultipleButton = styled.div`
   color: ${COLORS.GREY[400]};
   font-size: 1rem;
   cursor: pointer;
+  text-decoration: underline;
+  &:hover {
+    color: ${COLORS.GREY[600]};
+  }
 `;
 
 export const SubmitButton = styled(Button)`

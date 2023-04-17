@@ -6,7 +6,6 @@ import useDayWrite from "../../hooks/book/useDayWrite";
 import SelectWindow from "../SelectContainer/SelectContainer";
 import Icon from "../Icon";
 import PATH from "../../constants/path";
-import Modal from "../Modal";
 import ShareModal from "../Book/Write/shareModal";
 
 export default function BottomSheet() {
@@ -99,18 +98,12 @@ export default function BottomSheet() {
             </S.InputContainer>
           ))}
           {sharedBookModalOpen.open && (
-            <Modal
-              closeModal={() => {
-                setSharedBookModalOpen({ idx: day.getDay(), open: false });
-              }}
-            >
-              <ShareModal
-                inputList={sharedAccountBook}
-                setInputList={setSharedAccountBook}
-                listIdx={day.getDay()}
-                isMultiple={false}
-              />
-            </Modal>
+            <ShareModal
+              inputList={sharedAccountBook}
+              setInputList={setSharedAccountBook}
+              listIdx={day.getDay()}
+              isMultiple={false}
+            />
           )}
           <S.SharedButton
             reverseIconButton
