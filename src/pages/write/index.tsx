@@ -4,7 +4,6 @@ import * as S from "./index.styles";
 import OneLine from "../../components/Book/Write/oneLine";
 import COLORS from "../../constants/color";
 import useWrite from "../../hooks/book/useWrite";
-import Modal from "../../components/Modal";
 import ShareModal from "../../components/Book/Write/shareModal";
 
 export default function Write() {
@@ -18,7 +17,6 @@ export default function Write() {
     isValidateValue,
     setIsValidateValue,
     sharedBookModalOpen,
-    setSharedBookModalOpen,
   } = useWrite();
 
   return (
@@ -39,18 +37,12 @@ export default function Write() {
           <>
             {sharedBookModalOpen.idx === listIdx &&
               sharedBookModalOpen.open && (
-                <Modal
-                  closeModal={() => {
-                    setSharedBookModalOpen({ idx: listIdx, open: false });
-                  }}
-                >
-                  <ShareModal
-                    inputList={inputList}
-                    setInputList={setInputList}
-                    listIdx={listIdx}
-                    isMultiple
-                  />
-                </Modal>
+                <ShareModal
+                  inputList={inputList}
+                  setInputList={setInputList}
+                  listIdx={listIdx}
+                  isMultiple
+                />
               )}
             <S.OneLineContainer>
               <OneLine

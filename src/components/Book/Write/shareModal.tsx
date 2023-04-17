@@ -7,6 +7,7 @@ import useBook from "../../../hooks/book/useBook";
 import Badge from "../../Badge";
 import IconButton from "../../IconButton";
 import useWrite from "../../../hooks/book/useWrite";
+import Modal from "../../Modal";
 
 const Container = styled.div`
   h4 {
@@ -121,57 +122,63 @@ export default function ShareModal({
   const { setSharedBookModalOpen } = useWrite();
 
   return (
-    <Container>
-      <div>
-        <h4>공유 가계부에 동일 내역 추가</h4>
-        <p>공유 가계부를 선택하시면 동일한 가계부 내역이 추가됩니다 👪</p>
-      </div>
-      <Wrapper>
-        {data?.accountBooks.map(
-          book =>
-            Number(bookId || 0) !== book.info.accountBookId && (
-              <Box>
-                {book.info.accountBookName}
-                <MemberWrapper>
-                  {book.members.map(member => (
-                    <Badge
-                      size={1}
-                      title={member.username}
-                      color={COLORS.GREY[400]}
-                    />
-                  ))}
-                </MemberWrapper>
-                <IconButton
-                  iconOnly
-                  iconName={
-                    !isChecked.includes(book.info.accountBookId)
-                      ? "checkEmpty"
-                      : "checkFill"
-                  }
-                  iconSize="2.7rem"
-                  color={COLORS.MEDIUM_BLUE}
-                  onClick={() => handleSharedBook(book.info.accountBookId)}
-                />
-              </Box>
-            ),
-        )}
-      </Wrapper>
-      <ButtonWrapper>
-        <Button
-          title="취소"
-          theme="unfocus"
-          onClick={() => {
-            setSharedBookModalOpen({ idx: listIdx, open: false });
-          }}
-        />
-        <Button
-          title="확인"
-          onClick={() => {
-            onSubmitModal();
-            setSharedBookModalOpen({ idx: listIdx, open: false });
-          }}
-        />
-      </ButtonWrapper>
-    </Container>
+    <Modal
+      closeModal={() => {
+        setSharedBookModalOpen({ idx: listIdx, open: false });
+      }}
+    >
+      <Container>
+        <div>
+          <h4>공유 가계부에 동일 내역 추가</h4>
+          <p>공유 가계부를 선택하시면 동일한 가계부 내역이 추가됩니다 👪</p>
+        </div>
+        <Wrapper>
+          {data?.accountBooks.map(
+            book =>
+              Number(bookId || 0) !== book.info.accountBookId && (
+                <Box>
+                  {book.info.accountBookName}
+                  <MemberWrapper>
+                    {book.members.map(member => (
+                      <Badge
+                        size={1}
+                        title={member.username}
+                        color={COLORS.GREY[400]}
+                      />
+                    ))}
+                  </MemberWrapper>
+                  <IconButton
+                    iconOnly
+                    iconName={
+                      !isChecked.includes(book.info.accountBookId)
+                        ? "checkEmpty"
+                        : "checkFill"
+                    }
+                    iconSize="2.7rem"
+                    color={COLORS.MEDIUM_BLUE}
+                    onClick={() => handleSharedBook(book.info.accountBookId)}
+                  />
+                </Box>
+              ),
+          )}
+        </Wrapper>
+        <ButtonWrapper>
+          <Button
+            title="취소"
+            theme="unfocus"
+            onClick={() => {
+              setSharedBookModalOpen({ idx: listIdx, open: false });
+            }}
+          />
+          <Button
+            title="확인"
+            onClick={() => {
+              onSubmitModal();
+              setSharedBookModalOpen({ idx: listIdx, open: false });
+            }}
+          />
+        </ButtonWrapper>
+      </Container>
+    </Modal>
   );
 }
