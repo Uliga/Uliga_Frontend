@@ -101,7 +101,7 @@ export const SharedButton = styled(IconButton)<{ checked: boolean }>`
       background-color: ${checked ? COLORS.GREY[500] : COLORS.GREY[100]};
       color: ${checked ? "white" : COLORS.GREY[600]};
     `}
-  border-radius: 10px;
+  border-radius: 3rem;
   height: 3.4rem;
   font-size: 1.2rem;
   margin-top: 1rem;

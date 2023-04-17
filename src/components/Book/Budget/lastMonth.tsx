@@ -8,7 +8,7 @@ import PATH from "../../../constants/path";
 
 const Right = styled.div`
   position: relative;
-  background-color: #f9f9f9;
+  background-color: ${COLORS.GREY[50]};
   border-radius: 1rem;
   height: 27rem;
   padding: 0rem 3rem;
@@ -155,7 +155,7 @@ export default function LastMonth() {
               <h3>{getMoneyUnit(-lastRemainData)}원 초과</h3>
             )}
           </div>
-          <Progress color="#F9F9F9">
+          <Progress color={COLORS.GREY[50]}>
             {lastRemainData > 0 ? (
               <NowPercent dealt={100 - lastDataGage} color={COLORS.RED.LIGHT} />
             ) : (
