@@ -13,7 +13,7 @@ import {
 import toastMsg from "../components/Toast";
 import PATH from "../constants/path";
 
-export default function useLogin() {
+export default function useSignup() {
   const navigate = useNavigate();
 
   const { state } = useLocation();

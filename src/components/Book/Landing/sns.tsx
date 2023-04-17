@@ -1,9 +1,11 @@
 import styled from "styled-components";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import COLORS from "../../../constants/color";
 import ImgButton from "../../ImgButton";
 import { getSocialPrivateAccountBookId } from "../../../api/book";
-// import { kakaoLogin } from "../../../api/auth";
+import { loadMe } from "../../../api/user";
+import PATH from "../../../constants/path";
 
 const Container = styled.div`
   font-size: 1.4rem;
@@ -42,40 +44,44 @@ const Label = styled.div`
   font-weight: 300;
   font-size: 1.3rem;
 `;
-
 export default function SNSLogin() {
-  // const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=78450d299f7e5277f3270c8d1785b163&redirect_uri=http://localhost:3000&response_type=code&prompt=login`;
-  const [privateAccountBookId, setPrivateAccountBookId] = useState(null);
-  // const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=78450d299f7e5277f3270c8d1785b163&redirect_uri=http://localhost:3000&response_type=code&prompt=login`;
-  const KAKAO_AUTH_URL = `http://ec2-15-164-216-11.ap-northeast-2.compute.amazonaws.com/oauth2/authorization/kakao?redirect_uri=http://localhost:3000/main/${privateAccountBookId}`;
+  const KAKAO_AUTH_URL = `http://ec2-15-164-216-11.ap-northeast-2.compute.amazonaws.com/oauth2/authorization/kakao?redirect_uri=http://localhost:3000`;
   const GOOGLE_AUTH_URL = `http://ec2-15-164-216-11.ap-northeast-2.compute.amazonaws.com/oauth2/authorization/google?redirect_uri=http://localhost:3000`;
+  const navigate = useNavigate();
 
   const social = async () => {
     try {
       const response = await getSocialPrivateAccountBookId();
-      console.log("ddd", response);
-      setPrivateAccountBookId(response);
+      localStorage.setItem("privateAccountBookId", response);
     } catch (err) {
       console.log(err);
     }
   };
-  // if (!privateAccountBookId) {
-  //   return null;
-  // }
+  const loadData = async () => {
+    try {
+      await loadMe();
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   useEffect(() => {
     // URL에서 인가 코드 값을 추출합니다.
     const searchParams = new URLSearchParams(window.location.search);
     const authCode = searchParams.get("token");
-    console.log(authCode);
-    if (typeof authCode === "string") {
+    const authCreate = searchParams.get("created");
+
+    if (typeof authCode === "string" && typeof authCreate === "string") {
       localStorage.setItem("accessToken", authCode);
+      social();
+      loadData();
+      if (authCreate === "false") {
+        localStorage.setItem("created", authCreate);
+      } else {
+        navigate(PATH.SOCIAL);
+      }
     }
   }, []);
-  useEffect(() => {
-    // URL에서 인가 코드 값을 추출합니다.
-    social();
-  }, [localStorage]);
 
   return (
     <Container>

@@ -1,4 +1,4 @@
-import { authorizationClient, unAuthorizationClient } from ".";
+import { authorizationClient } from ".";
 import API from "./config";
 
 export const createAccountBook = async (bookInfo: object) => {

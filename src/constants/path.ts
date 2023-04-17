@@ -12,6 +12,7 @@ const PATH = {
   SETTING: "/setting",
   ME: "/me",
   BOOK: "/book",
+  SOCIAL: "/social",
 } as const;
 
 export default PATH;
