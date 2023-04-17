@@ -21,6 +21,7 @@ export default function useLogin() {
       toastMsg("로그인 성공 👏");
       setMe(memberInfo);
       localStorage.setItem("accessToken", tokenInfo.accessToken);
+      localStorage.setItem("created", "true");
       localStorage.setItem(
         "privateAccountBookId",
         memberInfo.privateAccountBookId,

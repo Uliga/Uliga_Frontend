@@ -1,7 +1,11 @@
 import styled from "styled-components";
-import React from "react";
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import COLORS from "../../../constants/color";
 import ImgButton from "../../ImgButton";
+import { getSocialPrivateAccountBookId } from "../../../api/book";
+import { loadMe } from "../../../api/user";
+import PATH from "../../../constants/path";
 
 const Container = styled.div`
   font-size: 1.4rem;
@@ -40,14 +44,52 @@ const Label = styled.div`
   font-weight: 300;
   font-size: 1.3rem;
 `;
-
 export default function SNSLogin() {
+  const KAKAO_AUTH_URL = `http://ec2-15-164-216-11.ap-northeast-2.compute.amazonaws.com/oauth2/authorization/kakao?redirect_uri=http://localhost:3000`;
+  const GOOGLE_AUTH_URL = `http://ec2-15-164-216-11.ap-northeast-2.compute.amazonaws.com/oauth2/authorization/google?redirect_uri=http://localhost:3000`;
+  const navigate = useNavigate();
+
+  const social = async () => {
+    try {
+      const response = await getSocialPrivateAccountBookId();
+      localStorage.setItem("privateAccountBookId", response);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  const loadData = async () => {
+    try {
+      await loadMe();
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    // URL에서 인가 코드 값을 추출합니다.
+    const searchParams = new URLSearchParams(window.location.search);
+    const authCode = searchParams.get("token");
+    const authCreate = searchParams.get("created");
+
+    if (typeof authCode === "string" && typeof authCreate === "string") {
+      localStorage.setItem("accessToken", authCode);
+      social();
+      loadData();
+      if (authCreate === "false") {
+        localStorage.setItem("created", authCreate);
+      } else {
+        navigate(PATH.SOCIAL);
+      }
+    }
+  }, []);
+
   return (
     <Container>
       SNS로 간편하게 로그인
       <SNSWrapper>
         <ImgWrapper>
           <SNSIMG
+            href={GOOGLE_AUTH_URL}
             size={5}
             ImgSrc="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/320px-Google_%22G%22_Logo.svg.png"
           />
@@ -55,6 +97,7 @@ export default function SNSLogin() {
         </ImgWrapper>
         <ImgWrapper>
           <SNSIMG
+            href={KAKAO_AUTH_URL}
             size={5}
             ImgSrc="https://cdn.imweb.me/upload/S20210304872ba49a108a8/89a68d1e3674a.png"
           />

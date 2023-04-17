@@ -7,6 +7,7 @@ import Login from "./pages/login";
 import Main from "./pages/main";
 import PATH from "./constants/path";
 import Signup from "./pages/signup";
+import Social from "./pages/social";
 import StyledContainer from "./components/Toast/container";
 import Landing from "./pages/landing";
 import Write from "./pages/write";
@@ -49,6 +50,9 @@ function App() {
           </Route>
           <Route path={PATH.SIGNUP} element={<DefaultLayout />}>
             <Route index element={<Signup />} />
+          </Route>
+          <Route path={PATH.SOCIAL} element={<DefaultLayout />}>
+            <Route index element={<Social />} />
           </Route>
           <Route path={PATH.MAIN} element={<MainLayout />}>
             <Route path=":bookId" element={<Main />} />

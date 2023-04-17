@@ -126,6 +126,10 @@ export const loadIncomeCategory = async (historyData: any) => {
   return data;
 };
 
+export const getSocialPrivateAccountBookId = async () => {
+  const { data } = await authorizationClient.get(`${API.SOCIAL}`);
+  return data;
+};
 export const loadRecord = async (historyData: any) => {
   const { id, page, size } = historyData;
   const { data } = await authorizationClient.get(

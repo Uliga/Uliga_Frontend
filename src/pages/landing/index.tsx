@@ -15,7 +15,10 @@ export default function LandingPage() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (localStorage.getItem("accessToken")) {
+    if (
+      localStorage.getItem("accessToken") &&
+      localStorage.getItem("created")
+    ) {
       loadMe().then((data: IUserInfo) => {
         if (data) {
           navigate(`${PATH.MAIN}/${data.memberInfo.privateAccountBookId}`);
