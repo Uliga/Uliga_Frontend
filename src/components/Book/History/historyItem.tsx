@@ -131,8 +131,8 @@ export default function HistoryItem({
       <Box width={7}>{history.payment}</Box>
       <Box width={9}>{history.account}</Box>
       <Value>{getMoneyUnit(history.value)} 원</Value>
-      <Box width={8}>{history.creator}</Box>
       <Box width={14}>{history.memo}</Box>
+      <Box width={8}>{history.creator}</Box>
       <Buttons>
         <CommentButton title="💬 코멘트 남기기" theme="basic" />
         <EditButton

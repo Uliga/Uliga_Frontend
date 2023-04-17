@@ -247,7 +247,11 @@ export default function HistoryPaging({
             </StyledLabel>
           )}
           {isEditFormOpen.id === history.id && isEditFormOpen.open ? (
-            <EditForm />
+            <EditForm
+              history={history}
+              // refetch,
+              setIsEditFormOpen={setIsEditFormOpen}
+            />
           ) : (
             <HistoryItem
               history={history}

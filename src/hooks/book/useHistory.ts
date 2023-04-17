@@ -49,12 +49,12 @@ export default function useHistory() {
       size: 8,
     },
     {
-      title: "작성자",
-      size: 8,
-    },
-    {
       title: "메모",
       size: 14,
+    },
+    {
+      title: "작성자",
+      size: 8,
     },
   ];
 
