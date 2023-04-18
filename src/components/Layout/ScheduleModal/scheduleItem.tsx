@@ -59,7 +59,8 @@ export default function ScheduleItem({ item }: { item: NotificationProps }) {
         </UserName>
         <ScheduleName>{item.scheduleName}</ScheduleName>
         <SubInfo>
-          {`매달 ${item.day} 일`} <p>{getMoneyUnit(item.value)}원</p>
+          {`매달 ${item.day} 일`}{" "}
+          <p>{item.value === -1 ? "변동" : `${getMoneyUnit(item.value)}원`}</p>
         </SubInfo>
       </Info>
     </Container>

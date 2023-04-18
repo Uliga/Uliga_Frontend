@@ -129,7 +129,7 @@ export default function CurMonth() {
           ) : (
             <h3>{getMoneyUnit(-thisRemainData)}원 초과</h3>
           )}
-          <Progress color="#F9F9F9">
+          <Progress color={COLORS.GREY[50]}>
             {thisRemainData > 0 ? (
               <NowPercent
                 dealt={100 - thisDataGage}

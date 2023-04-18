@@ -10,6 +10,7 @@ import useHistory from "../../../hooks/book/useHistory";
 import { deleteHistory } from "../../../api/book";
 import toastMsg from "../../Toast";
 import COLORS from "../../../constants/color";
+import EditForm from "./editForm";
 
 const Container = styled.div`
   width: 100%;
@@ -173,6 +174,8 @@ export default function HistoryPaging({
     handleAllChecked,
     allChecked,
     setAllChecked,
+    isEditFormOpen,
+    setIsEditFormOpen,
   } = useHistory();
   const mutateDeleteHistory = useMutation(
     ["mutateDeleteHistory"],
@@ -200,18 +203,20 @@ export default function HistoryPaging({
   }, [curPage]);
   return (
     <PagingWrapper>
-      <AllCheckWrapper>
-        <StyledCheckbox
-          onChange={() => {
-            handleAllChecked(
-              data.content.map(item => item.id),
-              !allChecked,
-            );
-            setAllChecked(!allChecked);
-          }}
-          checked={allChecked}
-        />
-      </AllCheckWrapper>
+      {!isEditFormOpen && (
+        <AllCheckWrapper>
+          <StyledCheckbox
+            onChange={() => {
+              handleAllChecked(
+                data.content.map(item => item.id),
+                !allChecked,
+              );
+              setAllChecked(!allChecked);
+            }}
+            checked={allChecked}
+          />
+        </AllCheckWrapper>
+      )}
       {checkedList.length > 0 && (
         <DeleteModal>
           <p>{checkedList.length}개의 항목을 선택하셨습니다.</p>
@@ -226,22 +231,36 @@ export default function HistoryPaging({
       )}
       {data?.content?.map((history: IHistory) => (
         <Container key={history.id}>
-          <StyledLabel htmlFor={history.id.toString()}>
-            <StyledCheckbox
-              value={history.id.toString()}
-              onChange={() => {
-                handleDeleteList(history.id, !checkedList.includes(history.id));
-              }}
-              id={history.id.toString()}
-              checked={checkedList.includes(history.id)}
+          {!isEditFormOpen.open && (
+            <StyledLabel htmlFor={history.id.toString()}>
+              <StyledCheckbox
+                value={history.id.toString()}
+                onChange={() => {
+                  handleDeleteList(
+                    history.id,
+                    !checkedList.includes(history.id),
+                  );
+                }}
+                id={history.id.toString()}
+                checked={checkedList.includes(history.id)}
+              />
+            </StyledLabel>
+          )}
+          {isEditFormOpen.id === history.id && isEditFormOpen.open ? (
+            <EditForm
+              history={history}
+              refetch={refetch}
+              setIsEditFormOpen={setIsEditFormOpen}
             />
-          </StyledLabel>
-          <HistoryItem
-            history={history}
-            isIncome={isIncome}
-            refetch={refetch}
-            setCheckedList={setCheckedList}
-          />
+          ) : (
+            <HistoryItem
+              history={history}
+              isIncome={isIncome}
+              refetch={refetch}
+              setCheckedList={setCheckedList}
+              setIsEditFormOpen={setIsEditFormOpen}
+            />
+          )}
         </Container>
       ))}
       <Pagination

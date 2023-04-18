@@ -24,7 +24,7 @@ export const Background = styled.div`
   height: 37rem;
   padding: 2.5rem;
   border-radius: 0.5rem;
-  background-color: #f9f9f9;
+  background-color: ${COLORS.GREY[50]};
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
@@ -59,7 +59,7 @@ export const ListWrapper = styled.div`
 `;
 export const Box = styled.button<{ selected: boolean }>`
   ${({ selected }) => `
-    background-color: ${selected ? COLORS.LIGHT_BLUE : "#f9f9f9"};
+    background-color: ${selected ? COLORS.LIGHT_BLUE : COLORS.GREY[50]};
     `}
   display: flex;
   position: relative;

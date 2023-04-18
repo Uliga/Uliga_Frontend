@@ -76,11 +76,13 @@ export default function HistoryItem({
   isIncome,
   refetch,
   setCheckedList,
+  setIsEditFormOpen,
 }: {
   history: IHistory;
   isIncome: boolean | undefined;
   refetch: () => void;
   setCheckedList: any;
+  setIsEditFormOpen: any;
 }) {
   const mutateDeleteHistory = useMutation(
     ["mutateDeleteHistory"],
@@ -133,7 +135,11 @@ export default function HistoryItem({
       <Box width={8}>{history.creator}</Box>
       <Buttons>
         <CommentButton title="💬 코멘트 남기기" theme="basic" />
-        <EditButton>수정하기</EditButton>
+        <EditButton
+          onClick={() => setIsEditFormOpen({ id: history.id, open: true })}
+        >
+          수정하기
+        </EditButton>
         <DeleteButton
           onClick={() => {
             mutateDeleteHistory.mutate({ ids: [history.id] });

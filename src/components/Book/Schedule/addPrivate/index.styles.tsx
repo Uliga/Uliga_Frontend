@@ -25,7 +25,7 @@ export const Background = styled.div`
   height: 37rem;
   padding: 2.5rem;
   border-radius: 0.5rem;
-  background-color: #f9f9f9;
+  background-color: ${COLORS.GREY[50]};
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
@@ -140,7 +140,7 @@ export const Box = styled.div`
   justify-content: space-between;
   width: 25rem;
   height: 8.5rem;
-  background-color: #f9f9f9;
+  background-color: ${COLORS.GREY[50]};
   border-radius: 0.5rem;
   h5 {
     font-size: 1.35rem;
