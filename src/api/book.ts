@@ -37,6 +37,16 @@ export const uploadIncome = async (bookData: object) => {
   return data;
 };
 
+export const updateRecord = async (history: object) => {
+  const { data } = await authorizationClient.patch(API.RECORD, history);
+  return data;
+};
+
+export const updateIncome = async (history: object) => {
+  const { data } = await authorizationClient.patch(API.INCOME, history);
+  return data;
+};
+
 export const loadMonthItems = async (id: number, date: string) => {
   const { data } = await authorizationClient.get(
     `${API.ACCOUNT_BOOK}/${id}/${API.ITEM}/${date}`,

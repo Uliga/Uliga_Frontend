@@ -12,6 +12,8 @@ const KAKAO = "social_login/kakao";
 const ACCOUNT_BOOK = "/accountBook";
 const ASSET = "asset";
 const UPLOAD_BOOK = "accountBook/item";
+const INCOME = "/income";
+const RECORD = "/record";
 const UPLOAD_INCOME = "accountBook/income";
 const UPLOAD_RECORD = "accountBook/record";
 const INVITATION = "/invitation";
@@ -19,8 +21,6 @@ const ITEM = "item";
 const SCHEDULE = "/schedule";
 const NOTIFICATION = "/notification";
 const HISTORY = "/history";
-const INCOME = "/income";
-const RECORD = "/record";
 const BUDGET = "/budget";
 const LOGOUT = "/logout";
 
