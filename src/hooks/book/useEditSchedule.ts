@@ -110,7 +110,6 @@ export default function useEditSchedule() {
   });
 
   const onSubmitEditForm = (scheduleId: number) => {
-    console.log(data?.schedules);
     if (
       !isValidateDate ||
       notificationDate === "" ||

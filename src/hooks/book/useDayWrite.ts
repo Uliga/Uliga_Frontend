@@ -204,7 +204,7 @@ export default function useDayWrite() {
     bookData.id = bookId ? +bookId : undefined;
     bookData.date = date;
     bookData.sharedAccountBook = [...sharedAccountBook];
-    console.log(bookData);
+
     if (isIncome) {
       mutateIncome.mutate(bookData);
     } else {

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import { useParams, useNavigate } from "react-router-dom";
 import { uploadBook } from "../../api/book";
@@ -16,6 +16,7 @@ export type InputTypes = {
   size?: number;
   type?: string;
   id?: number;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
 export default function useWrite() {

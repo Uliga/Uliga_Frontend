@@ -249,7 +249,7 @@ export default function HistoryPaging({
           {isEditFormOpen.id === history.id && isEditFormOpen.open ? (
             <EditForm
               history={history}
-              // refetch,
+              refetch={refetch}
               setIsEditFormOpen={setIsEditFormOpen}
             />
           ) : (

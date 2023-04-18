@@ -72,14 +72,19 @@ const StyledInput = styled(Input)`
 `;
 export default function EditForm({
   history,
-  // refetch,
+  refetch,
   setIsEditFormOpen,
 }: {
   history: IHistory;
-  // refetch: () => void;
+  refetch: () => void;
   setIsEditFormOpen: any;
 }) {
-  const { inputList } = useEditHistory({ history });
+  const { disabled, inputList, onSubmitEditForm } = useEditHistory({
+    history,
+    refetch,
+    setIsEditFormOpen,
+  });
+
   return (
     <Wrapper>
       {inputList.map((input: any) =>
@@ -89,7 +94,7 @@ export default function EditForm({
             key={input.label}
             options={input.options}
             value={input.value}
-            onChange={() => {}}
+            onChange={input.onChange}
           />
         ) : (
           input.label !== "sharedAccountBook" && (
@@ -99,7 +104,7 @@ export default function EditForm({
                 size={input.size}
                 type={input.type}
                 value={input.value}
-                onChange={() => {}}
+                onChange={input.onChange}
                 labelHidden
               />
             </div>
@@ -107,14 +112,17 @@ export default function EditForm({
         ),
       )}
       <Box width={8}>{history.creator}</Box>
-
       <Buttons>
         <CancelButton
           title="취소"
           onClick={() => setIsEditFormOpen({ id: history.id, open: false })}
           theme="unfocus"
         />
-        <EditButton title="수정" />
+        <EditButton
+          title="수정"
+          disabled={disabled}
+          onClick={onSubmitEditForm}
+        />
       </Buttons>
     </Wrapper>
   );
