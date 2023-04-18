@@ -148,6 +148,7 @@ export default function useEditHistory({
   );
   const onSubmitEditForm = () => {
     const historyData = {
+      type: isIncome === "수입" ? "INCOME" : "RECORD",
       id: history.id,
       value: +value,
       payment,
