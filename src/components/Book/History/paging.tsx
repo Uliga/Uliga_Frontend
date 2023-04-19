@@ -203,7 +203,7 @@ export default function HistoryPaging({
   }, [curPage]);
   return (
     <PagingWrapper>
-      {!isEditFormOpen && (
+      {!isEditFormOpen.open && (
         <AllCheckWrapper>
           <StyledCheckbox
             onChange={() => {
