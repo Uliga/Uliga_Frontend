@@ -8,7 +8,7 @@ import PATH from "../../constants/path";
 import { createModalAtom } from "../../stores/atoms/context";
 import CapsuleBox from "../../components/Main/CapsuleBox";
 import Calendar from "../../components/Main/Calendar";
-import BottomSheet from "../../components/BottomSheet";
+import BottomSheet from "../../components/Main/BottomSheet";
 import MainScheduleList from "../../components/Main/Schedule";
 import * as S from "./index.styles";
 

@@ -59,7 +59,6 @@ export default function useDayWrite() {
   }, [list]);
   const closeBottomSheet = () => {
     setBottomSheetOpen({
-      ...bottomSheetOpen,
       open: false,
       day: new Date(),
     });
