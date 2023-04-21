@@ -13,7 +13,7 @@ export const Container = styled.div`
   border-bottom: 0.1rem solid ${COLORS.GREY[200]};
   position: fixed;
   top: 0;
-  z-index: 999;
+  z-index: 10;
 `;
 
 export const Wrapper = styled.div`

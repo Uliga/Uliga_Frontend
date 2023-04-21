@@ -6,6 +6,7 @@ import IconButton from "../IconButton";
 interface ModalProps {
   children: React.ReactNode;
   closeModal: () => void;
+  width?: number;
 }
 
 const ModalBackground = styled.div`
@@ -21,10 +22,12 @@ const ModalBackground = styled.div`
   z-index: 999;
 `;
 
-const ModalBox = styled.div`
+const ModalBox = styled.div<{ width: number }>`
+  ${({ width }) => `
+    width: ${width && width}rem;
+  `}
   position: fixed;
   border-radius: 1rem;
-  width: 50rem;
   background-color: white;
   padding: 1rem;
   display: flex;
@@ -38,10 +41,14 @@ const Button = styled(IconButton)`
   top: 2rem;
 `;
 
-export default function Modal({ children, closeModal }: ModalProps) {
+export default function Modal({
+  children,
+  closeModal,
+  width = 50,
+}: ModalProps) {
   return (
     <ModalBackground onClick={closeModal}>
-      <ModalBox onClick={e => e.stopPropagation()}>
+      <ModalBox onClick={e => e.stopPropagation()} width={width}>
         {children}
         <Button
           iconOnly

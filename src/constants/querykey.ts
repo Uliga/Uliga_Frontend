@@ -9,6 +9,7 @@ const QUERYKEYS = {
   LOAD_SCHEDULE_DETAIL: "loadScheduleDetail",
   LOAD_HISTORY: "loadHistory",
   LOAD_HISTORY_CATEGORY: "loadHistoryCategory",
+  LOAD_DAY_HISTORY: "loadDayHistory",
   LOAD_INCOME: "loadIncome",
   LOAD_INCOME_CATEGORY: "loadIncomeCategory",
   LOAD_RECORD: "loadRecord",

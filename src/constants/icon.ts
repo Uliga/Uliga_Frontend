@@ -29,6 +29,7 @@ const ICONS: IconProps = {
   wallet: "bi bi-wallet2",
   cancel: "bi bi-x",
   pencil: "bi bi-pencil-fill",
+  pencilEmpty: "bi bi-pencil",
   eye: "bi bi-eye",
   eyeSlash: "bi bi-eye-slash",
   circleClose: "bi bi-x-circle",
