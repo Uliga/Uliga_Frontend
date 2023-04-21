@@ -11,7 +11,7 @@ const Container = styled.div`
   border-left: 0.1rem solid ${COLORS.GREY[200]};
   border-right: 0.1rem solid ${COLORS.GREY[200]};
   position: fixed;
-  z-index: 999;
+  z-index: 10;
 `;
 
 const Top = styled.div`
@@ -20,7 +20,6 @@ const Top = styled.div`
   background-color: white;
   align-items: center;
   display: flex;
-  padding-left: 1rem;
   padding-left: 2rem;
   gap: 1rem;
   border-bottom: 0.1rem solid ${COLORS.GREY[200]};

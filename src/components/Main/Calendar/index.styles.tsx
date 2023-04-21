@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import COLORS from "../../../constants/color";
+import IconButton from "../../IconButton";
 
 export const ColorWrapper = styled.div`
   position: absolute;
@@ -9,7 +10,7 @@ export const ColorWrapper = styled.div`
   gap: 1rem;
   top: 2.4rem;
   left: 13rem;
-  z-index: 100;
+  z-index: 10;
 `;
 export const Income = styled.span`
   color: ${COLORS.RED.LIGHT};
@@ -23,6 +24,36 @@ export const Record = styled.span`
   font-size: 1.2rem;
   padding-right: 0.3rem;
 `;
+
+export const Wrapper = styled.div<{ buttonDisplay: boolean }>`
+  ${({ buttonDisplay }) => `
+    button {
+      display: ${buttonDisplay ? "flex" : "none"};
+    }
+
+    &:hover button {
+      display: flex;
+    }
+  `}
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+`;
+export const WriteButton = styled(IconButton)`
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  padding: 0.5rem;
+  z-index: 80;
+  background-color: ${COLORS.LIGHT_BLUE};
+  i {
+    color: ${COLORS.BLUE};
+  }
+  &:hover {
+    background-color: ${COLORS.LIGHT_BLUE};
+    border: 0.1rem solid ${COLORS.BLUE};
+  }
+`;
 export const Container = styled.div`
   width: 90rem;
   background: white;
@@ -33,7 +64,6 @@ export const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  position: relative;
   .react-calendar {
     padding: 0 1.3rem;
     width: 88rem;
@@ -45,6 +75,7 @@ export const Container = styled.div`
       display: none;
     }
     overflow-x: hidden;
+    z-index: 0;
   }
 
   .react-calendar__navigation {
