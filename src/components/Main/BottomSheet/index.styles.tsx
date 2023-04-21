@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import IconButton from "../IconButton";
-import COLORS from "../../constants/color";
-import Input from "../Input";
-import Button from "../Button";
+import IconButton from "../../IconButton";
+import COLORS from "../../../constants/color";
+import Input from "../../Input";
+import Button from "../../Button";
 
 export const StyledIconButton = styled(IconButton)`
   width: 100%;
@@ -18,7 +18,7 @@ export const Container = styled.div`
   position: absolute;
   bottom: 0;
   right: 4rem;
-  z-index: 999;
+
   h5 {
     font-weight: 500;
     color: ${COLORS.GREY[500]};
