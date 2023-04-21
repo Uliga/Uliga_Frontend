@@ -152,6 +152,10 @@ const AllCheckWrapper = styled.div`
   left: 1.2rem;
 `;
 
+const HistoryWrapper = styled.div`
+  margin-left: 5rem;
+`;
+
 export default function HistoryPaging({
   data,
   refetch,
@@ -253,13 +257,15 @@ export default function HistoryPaging({
               setIsEditFormOpen={setIsEditFormOpen}
             />
           ) : (
-            <HistoryItem
-              history={history}
-              isIncome={isIncome}
-              refetch={refetch}
-              setCheckedList={setCheckedList}
-              setIsEditFormOpen={setIsEditFormOpen}
-            />
+            <HistoryWrapper>
+              <HistoryItem
+                history={history}
+                isIncome={isIncome}
+                refetch={refetch}
+                setCheckedList={setCheckedList}
+                setIsEditFormOpen={setIsEditFormOpen}
+              />
+            </HistoryWrapper>
           )}
         </Container>
       ))}

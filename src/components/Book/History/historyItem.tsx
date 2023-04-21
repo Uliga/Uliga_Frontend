@@ -14,10 +14,8 @@ const Wrapper = styled.div`
   display: flex;
   min-height: 4.5rem;
   gap: 2rem;
-  width: 90rem;
   align-items: center;
   font-size: 1.3rem;
-  margin-left: 5rem;
   div {
     overflow: hidden;
     word-wrap: break-word;
@@ -81,8 +79,8 @@ export default function HistoryItem({
   history: IHistory;
   isIncome: boolean | undefined;
   refetch: () => void;
-  setCheckedList: any;
-  setIsEditFormOpen: any;
+  setCheckedList?: any;
+  setIsEditFormOpen?: any;
 }) {
   const mutateDeleteHistory = useMutation(
     ["mutateDeleteHistory"],
@@ -134,19 +132,23 @@ export default function HistoryItem({
       <Box width={14}>{history.memo}</Box>
       <Box width={8}>{history.creator}</Box>
       <Buttons>
-        <CommentButton title="💬 코멘트 남기기" theme="basic" />
-        <EditButton
-          onClick={() => setIsEditFormOpen({ id: history.id, open: true })}
-        >
-          수정하기
-        </EditButton>
-        <DeleteButton
-          onClick={() => {
-            mutateDeleteHistory.mutate({ ids: [history.id] });
-          }}
-        >
-          삭제하기
-        </DeleteButton>
+        {setIsEditFormOpen && (
+          <>
+            <CommentButton title="💬 코멘트 남기기" theme="basic" />
+            <EditButton
+              onClick={() => setIsEditFormOpen({ id: history.id, open: true })}
+            >
+              수정하기
+            </EditButton>
+            <DeleteButton
+              onClick={() => {
+                mutateDeleteHistory.mutate({ ids: [history.id] });
+              }}
+            >
+              삭제하기
+            </DeleteButton>
+          </>
+        )}
       </Buttons>
     </Wrapper>
   );
