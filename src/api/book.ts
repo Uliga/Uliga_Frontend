@@ -194,3 +194,18 @@ export const deleteBook = async (id: number) => {
 
   return data;
 };
+
+export const loadDayHistory = async (dayHistory: {
+  id: number;
+  year: number;
+  month: number;
+  day: number;
+}) => {
+  const { id, year, month, day } = dayHistory;
+
+  const { data } = await authorizationClient.get(
+    `${API.ACCOUNT_BOOK}/${id}/item/${year}/${month}/${day}`,
+  );
+
+  return data;
+};
