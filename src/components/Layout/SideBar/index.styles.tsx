@@ -42,16 +42,21 @@ const Bottom = styled.div`
   align-items: center;
 `;
 
-const MainMenu = styled(IconButton)`
+const MainMenu = styled(IconButton)<{ isActive: boolean }>`
+  ${({ isActive }) => `
+      color: ${isActive ? COLORS.BLUE : COLORS.GREY[600]};
+  `}
   font-weight: 700;
   justify-content: left;
   font-size: 1.4rem;
   &:hover {
     color: ${COLORS.BLUE};
   }
-  color: ${COLORS.GREY[600]};
 `;
-const SubMenu = styled(IconButton)`
+const SubMenu = styled(IconButton)<{ isActive: boolean }>`
+  ${({ isActive }) => `
+      color: ${isActive ? COLORS.BLUE : COLORS.GREY[500]};
+  `}
   width: 13rem;
   font-size: 1.25rem;
   padding-top: 1rem;
@@ -59,14 +64,15 @@ const SubMenu = styled(IconButton)`
   &:hover {
     color: ${COLORS.BLUE};
   }
-  color: ${COLORS.GREY[500]};
 `;
 
-const BottomButton = styled(Button)`
+const BottomButton = styled(Button)<{ isActive: boolean }>`
+  ${({ isActive }) => `
+      color: ${isActive ? COLORS.BLUE : COLORS.GREY[600]};
+  `}
   padding: 1.5rem 0 0 2rem;
   font-size: 1.3rem;
   background-color: transparent;
-  color: ${COLORS.GREY[600]};
   &:hover {
     color: ${COLORS.BLUE};
     background-color: transparent;

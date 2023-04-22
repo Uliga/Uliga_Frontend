@@ -1,6 +1,6 @@
 import React from "react";
 import { useQuery } from "@tanstack/react-query";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import useBook from "../../../hooks/book/useBook";
 import {
   Container,
@@ -21,6 +21,7 @@ import QUERYKEYS from "../../../constants/querykey";
 import { loadMe, logout } from "../../../api/user";
 import { AVATAR_COLORS } from "../../../constants/color";
 import toastMsg from "../../Toast";
+import PATH from "../../../constants/path";
 
 export default function SideBar() {
   const { bookId } = useParams();
@@ -36,11 +37,15 @@ export default function SideBar() {
   )?.avatarUrl;
   if (!data) return null;
 
+  const location = useLocation();
+  const currentPath = location.pathname.split("/")[1];
+
+  console.log(location.pathname);
   const logOUT = async () => {
     try {
       await logout();
       localStorage.clear();
-      toastMsg("로그아웃 되었습니다.");
+      toastMsg("로F그아웃 되었습니다.");
       navigate("/");
     } catch (err) {
       console.log(err);
@@ -66,6 +71,9 @@ export default function SideBar() {
                 theme={ele.theme}
                 iconName={ele.iconName}
                 iconSize={ele.iconSize}
+                isActive={
+                  ele.path === PATH.BUDGET && ele.path === `/${currentPath}`
+                }
                 onClick={() => {
                   navigate(`${ele.path}/${bookId}`);
                 }}
@@ -79,6 +87,7 @@ export default function SideBar() {
                     theme={sub.theme}
                     iconName={sub.iconName}
                     iconSize={sub.iconSize}
+                    isActive={sub.path === `/${currentPath}`}
                     onClick={() => {
                       navigate(`${sub.path}/${bookId}`);
                     }}
@@ -96,6 +105,10 @@ export default function SideBar() {
               key={ele.title}
               title={ele.title}
               theme={ele.theme}
+              isActive={
+                ele.path === `${PATH.SETTING}${PATH.ME}` &&
+                ele.path.split("/")[1] === currentPath
+              }
               onClick={() => {
                 navigate(`${ele.path}/${bookId}`);
                 if (ele.title === "로그아웃") {
