@@ -7,8 +7,8 @@ import {
   Income,
   Record,
   ColorWrapper,
-  WriteButton,
   Wrapper,
+  WriteButton,
 } from "./index.styles";
 import "react-calendar/dist/Calendar.css";
 import useBook from "../../../hooks/book/useBook";
@@ -35,6 +35,14 @@ export default function MonthCalendar() {
     curDate.getMonth() + 1,
   );
 
+  const handleWriteButtonClick = (event: any, date: any) => {
+    event.stopPropagation();
+    setBottomSheetOpen({
+      day: new Date(date.date),
+      open: true,
+    });
+  };
+
   useEffect(() => {
     refetch();
   }, [curDate.getMonth() + 1]);
@@ -47,10 +55,6 @@ export default function MonthCalendar() {
         value={curDate}
         onChange={(date: any) => {
           onChangeCurDate(date);
-          setBottomSheetOpen(prevBottomSheetOpen => ({
-            ...prevBottomSheetOpen,
-            day: date,
-          }));
           setAllModalOpen(false);
           setHistoryDayModalOpen(true);
         }}
@@ -71,17 +75,16 @@ export default function MonthCalendar() {
           });
           return (
             <Wrapper
-              buttonDisplay={new Date(date).getDate() === new Date().getDate()}
+              buttonDisplay={
+                new Date(date).getFullYear() === new Date().getFullYear() &&
+                new Date(date).getMonth() === new Date().getMonth() &&
+                new Date(date).getDate() === new Date().getDate()
+              }
             >
               <WriteButton
                 iconName="pencil"
                 iconSize="1.3rem"
-                onClick={() => {
-                  setBottomSheetOpen(prevBottomSheetOpen => ({
-                    ...prevBottomSheetOpen,
-                    open: true,
-                  }));
-                }}
+                onClick={event => handleWriteButtonClick(event, { date })}
               />
               <div>
                 {income && (
