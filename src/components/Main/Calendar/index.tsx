@@ -35,8 +35,11 @@ export default function MonthCalendar() {
     curDate.getMonth() + 1,
   );
 
-  const handleWriteButtonClick = (event: any, date: any) => {
-    event.stopPropagation();
+  const handleWriteButtonClick = (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent> | undefined,
+    date: { date: Date },
+  ) => {
+    if (event) event.stopPropagation();
     setBottomSheetOpen({
       day: new Date(date.date),
       open: true,
