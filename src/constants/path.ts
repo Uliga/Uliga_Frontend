@@ -13,6 +13,8 @@ const PATH = {
   ME: "/me",
   BOOK: "/book",
   SOCIAL: "/social",
+  DATE_RANGE_CHART: "/dateChart",
+  CATEGORY_CHART: "/categoryChart",
 } as const;
 
 export default PATH;
