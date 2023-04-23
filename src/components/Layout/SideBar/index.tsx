@@ -41,11 +41,11 @@ export default function SideBar() {
   const currentPath = location.pathname.split("/")[1];
 
   console.log(location.pathname);
-  const logOUT = async () => {
+  const authLogout = async () => {
     try {
       await logout();
       localStorage.clear();
-      toastMsg("로F그아웃 되었습니다.");
+      toastMsg("로그아웃 되었습니다.");
       navigate("/");
     } catch (err) {
       console.log(err);
@@ -112,7 +112,7 @@ export default function SideBar() {
               onClick={() => {
                 navigate(`${ele.path}/${bookId}`);
                 if (ele.title === "로그아웃") {
-                  logOUT();
+                  authLogout();
                 }
               }}
             />
