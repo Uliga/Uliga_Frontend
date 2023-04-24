@@ -41,6 +41,13 @@ const options = {
     legend: {
       display: false,
     },
+    tooltip: {
+      callbacks: {
+        label(value: any) {
+          return `${getMoneyUnit(value.parsed.y)}원`;
+        },
+      },
+    },
   },
   interaction: {
     mode: "index" as const,
@@ -56,7 +63,7 @@ export default function DailyChart() {
     datasets: [
       {
         fill: true,
-        data: labels.map(() => Math.random()),
+        data: labels.map(() => Math.floor(Math.random() * (100000 - 100 + 1))),
         pointRadius: 1,
         pointHitRadius: 0,
         borderColor: COLORS.RED.LIGHT,
