@@ -2,12 +2,16 @@ import React, { useState, useEffect, useMemo } from "react";
 import styled from "styled-components";
 import COLORS from "../../constants/color";
 
-const Bar = styled.div<{ bgColor: string; percentage: number }>`
-  ${({ bgColor, percentage }) => `
+const Bar = styled.div<{
+  bgColor: string;
+  percentage: number;
+  isReversed: boolean;
+}>`
+  ${({ bgColor, percentage, isReversed }) => `
       background-color: ${bgColor};
-      height:${percentage}%;
+      height:${isReversed ? "22px" : `${percentage}%`};
+      width: ${!isReversed ? "30px" : `${percentage}%`};
       `}
-  width: 30px;
   border-radius: 0.3rem;
   position: relative;
 `;
@@ -51,11 +55,13 @@ export default function ProgressBar({
   duration,
   color,
   labels,
+  isReversed,
 }: {
   targetValue: number;
   duration: number;
   color: string;
-  labels: string[];
+  labels?: string[];
+  isReversed: boolean;
 }) {
   const [progress, setProgress] = useState(0);
 
@@ -86,12 +92,16 @@ export default function ProgressBar({
   }, [targetValue]);
 
   return (
-    <Bar bgColor={color} percentage={progress}>
-      {labels[2] && <Chip bgColor={color}>{labels[2]}</Chip>}
-      <Title>
-        {labels[0]}
-        <SubTitle>{labels[1]}</SubTitle>
-      </Title>
+    <Bar bgColor={color} percentage={progress} isReversed={isReversed}>
+      {labels && (
+        <>
+          {labels[2] && <Chip bgColor={color}>{labels[2]}</Chip>}
+          <Title>
+            {labels[0]}
+            <SubTitle>{labels[1]}</SubTitle>
+          </Title>
+        </>
+      )}
     </Bar>
   );
 }

@@ -26,8 +26,9 @@ const DatePickerInput = styled.input`
   border: none;
   font-size: 1.9rem;
   font-weight: 700;
-  width: 14rem;
+  width: 15rem;
   color: ${COLORS.GREY[600]};
+  cursor: pointer;
 `;
 
 const ChartWrapper = styled.div`

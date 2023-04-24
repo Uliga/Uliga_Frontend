@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import COLORS from "../../../constants/color";
 import ProgressBar from "../../ProgressBar";
+import getMoneyUnit from "../../../utils/money";
 
 const Container = styled.div`
   width: 80rem;
@@ -58,48 +59,70 @@ const Info = styled.div`
   gap: 0.5rem;
 `;
 export default function MonthlyChart() {
+  const monthData = [
+    {
+      value: 15000,
+      duration: 500,
+      color: COLORS.GREY[300],
+      labels: ["963,913원", "2월 지출"],
+    },
+    {
+      value: 10000,
+      duration: 300,
+      color: COLORS.GREY[300],
+      labels: ["898,913원", "3월 지출"],
+    },
+    {
+      value: 5000,
+      duration: 200,
+      color: COLORS.BLUE,
+      labels: ["446,756원", "4월 지출", "일 평균 14,891원"],
+    },
+  ];
+  const bugetData = [
+    {
+      value: 10000,
+      duration: 300,
+      color: COLORS.GREY[300],
+      labels: ["700,000원", "4월 예산"],
+    },
+    {
+      value: 15000,
+      duration: 500,
+      color: COLORS.GREEN.DARK,
+      labels: ["446,756원", "4월 지출", "-253,244원"],
+    },
+  ];
   return (
     <Container>
       <Info>
         <h5>4월 분석</h5>
-        <p>이번 달에는 지난 달보다 451,549원 덜 쓰셨어요!</p>
+        <p>이번 달에는 지난 달보다 {getMoneyUnit(451549)}원 덜 쓰셨어요!</p>
       </Info>
       <WithLastMonth>
         <Bars>
-          <ProgressBar
-            targetValue={15000}
-            duration={500}
-            color={COLORS.GREY[300]}
-            labels={["963,913원", "2월 지출"]}
-          />
-          <ProgressBar
-            targetValue={10000}
-            duration={300}
-            color={COLORS.GREY[300]}
-            labels={["898,913원", "3월 지출"]}
-          />
-          <ProgressBar
-            targetValue={5000}
-            duration={200}
-            color={COLORS.BLUE}
-            labels={["446,756원", "4월 지출", "일 평균 14,891원"]}
-          />
+          {monthData.map(bar => (
+            <ProgressBar
+              targetValue={bar.value}
+              duration={bar.duration}
+              color={bar.color}
+              labels={bar.labels}
+              isReversed={false}
+            />
+          ))}
         </Bars>
       </WithLastMonth>
       <WithBudget>
         <Bars>
-          <ProgressBar
-            targetValue={10000}
-            duration={300}
-            color={COLORS.GREY[300]}
-            labels={["700,000원", "4월 예산"]}
-          />
-          <ProgressBar
-            targetValue={15000}
-            duration={500}
-            color={COLORS.GREEN.DARK}
-            labels={["446,756원", "4월 지출", "-253,244원"]}
-          />
+          {bugetData.map(bar => (
+            <ProgressBar
+              targetValue={bar.value}
+              duration={bar.duration}
+              color={bar.color}
+              labels={bar.labels}
+              isReversed={false}
+            />
+          ))}
         </Bars>
       </WithBudget>
     </Container>
