@@ -3,13 +3,16 @@ import styled from "styled-components";
 import BookNav from "../../../components/Main/BookNav";
 import PATH from "../../../constants/path";
 import COLORS from "../../../constants/color";
+import DailyChart from "../../../components/Book/Chart/dailyChart";
+import MonthlyChart from "../../../components/Book/Chart/monthlyChart";
+import WeeklyChart from "../../../components/Book/Chart/weeklyChart";
+import FixedExpenses from "../../../components/Book/Chart/fixedExpenses";
 
 const Container = styled.div`
   width: 100%;
   display: flex;
   gap: 2.5rem;
   padding: 4rem;
-  align-items: center;
   flex-direction: column;
   color: ${COLORS.GREY[600]};
   h3 {
@@ -21,26 +24,29 @@ const Container = styled.div`
 
 const DatePickerInput = styled.input`
   border: none;
-  font-size: 2rem;
+  font-size: 1.9rem;
   font-weight: 700;
+  width: 14rem;
   color: ${COLORS.GREY[600]};
 `;
 
-const Wrapper = styled.div`
+const ChartWrapper = styled.div`
   width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
 `;
 export default function DateRangeChart() {
   return (
     <Container>
       <BookNav path={PATH.DATE_RANGE_CHART} />
-      <Wrapper>
-        <DatePickerInput
-          type="month"
-          value={`${new Date().getFullYear()}-${(new Date().getMonth() + 1)
-            .toString()
-            .padStart(2, "0")}`}
-        />
-      </Wrapper>
+      <DatePickerInput type="month" />
+      <ChartWrapper>
+        <DailyChart />
+        <MonthlyChart />
+        <WeeklyChart />
+        <FixedExpenses />
+      </ChartWrapper>
     </Container>
   );
 }
