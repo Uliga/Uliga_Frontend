@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import styled from "styled-components";
 import COLORS from "../../constants/color";
 
@@ -45,6 +45,7 @@ const Chip = styled.div<{ bgColor: string }>`
   font-size: 1.2rem;
   white-space: nowrap;
 `;
+
 export default function ProgressBar({
   targetValue,
   duration,
@@ -58,17 +59,30 @@ export default function ProgressBar({
 }) {
   const [progress, setProgress] = useState(0);
 
-  useEffect(() => {
-    const targetProgress = (targetValue / 15000) * 100;
-    let currentProgress = 0;
-    const timer = setInterval(() => {
-      currentProgress += (targetProgress - currentProgress) / 100;
-      setProgress(currentProgress);
-    }, duration / 100);
+  const targetProgress = useMemo(
+    () => (targetValue / 15000) * 100,
+    [targetValue],
+  );
 
-    return () => {
-      clearInterval(timer);
+  const animateProgressBar = () => {
+    let currentProgress = 0;
+    const startTime = performance.now();
+
+    const updateProgress = (timestamp: number) => {
+      const elapsedTime = timestamp - startTime;
+      currentProgress = (elapsedTime / duration) * targetProgress;
+      setProgress(currentProgress);
+
+      if (elapsedTime < duration) {
+        requestAnimationFrame(updateProgress);
+      }
     };
+
+    requestAnimationFrame(updateProgress);
+  };
+
+  useEffect(() => {
+    animateProgressBar();
   }, [targetValue]);
 
   return (
