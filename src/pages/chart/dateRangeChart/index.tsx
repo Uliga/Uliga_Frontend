@@ -22,26 +22,27 @@ const Container = styled.div`
   }
 `;
 
-const DatePickerInput = styled.input`
-  border: none;
-  font-size: 1.9rem;
-  font-weight: 700;
-  width: 15rem;
-  color: ${COLORS.GREY[600]};
-  cursor: pointer;
-`;
+// const DatePickerInput = styled.input`
+//   border: none;
+//   font-size: 1.9rem;
+//   font-weight: 700;
+//   width: 15rem;
+//   color: ${COLORS.GREY[600]};
+//   cursor: pointer;
+// `;
 
 const ChartWrapper = styled.div`
   width: 100%;
   display: flex;
   flex-wrap: wrap;
   gap: 4rem;
+  padding-top: 1rem;
 `;
 export default function DateRangeChart() {
   return (
     <Container>
       <BookNav path={PATH.DATE_RANGE_CHART} />
-      <DatePickerInput type="month" />
+      {/* <DatePickerInput type="month" /> */}
       <ChartWrapper>
         <DailyChart />
         <MonthlyChart />

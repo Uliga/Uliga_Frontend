@@ -8,16 +8,9 @@ const Container = styled.div`
   width: 66rem;
   height: 22rem;
   h5 {
-    font-size: 2rem;
+    font-size: 1.9rem;
     font-weight: 700;
     padding-bottom: 1rem;
-  }
-  p {
-    position: absolute;
-    right: 0;
-    bottom: 1rem;
-    font-size: 1.2rem;
-    color: ${COLORS.GREY[400]};
   }
   display: flex;
   flex-direction: column;
@@ -52,6 +45,19 @@ const ChartWrapper = styled.div`
   width: 30rem;
   position: absolute;
   right: 5rem;
+`;
+
+const Result = styled.div`
+  position: absolute;
+  bottom: -3rem;
+  right: 0;
+  font-weight: 700;
+  p {
+    font-weight: 300;
+    color: ${COLORS.GREY[400]};
+  }
+  display: flex;
+  gap: 1rem;
 `;
 export default function WeeklyChart() {
   const data = [
@@ -99,7 +105,7 @@ export default function WeeklyChart() {
           </ChartWrapper>
         </Wrapper>
       ))}
-      <p>주간 평균 {getMoneyUnit(111689)}원</p>
+      <Result>주간 평균 {getMoneyUnit(111689)}원</Result>
     </Container>
   );
 }

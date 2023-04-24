@@ -8,7 +8,7 @@ const Container = styled.div`
   width: 80rem;
   height: 23rem;
   h5 {
-    font-size: 2rem;
+    font-size: 1.9rem;
     font-weight: 700;
   }
   p {
