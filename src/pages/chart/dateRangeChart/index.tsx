@@ -12,7 +12,7 @@ const Container = styled.div`
   width: 100%;
   display: flex;
   gap: 2.5rem;
-  padding: 4rem;
+  padding: 4rem 4rem 0 4rem;
   flex-direction: column;
   color: ${COLORS.GREY[600]};
   h3 {
