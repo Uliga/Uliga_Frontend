@@ -57,6 +57,51 @@ const options = {
 
 const labels = [...new Array(31).fill(0).map((i, idx) => `${idx + 1}일`)];
 
+const Container = styled.div`
+  width: 28rem;
+  height: 23rem;
+  background-color: ${COLORS.GREY[50]};
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  color: ${COLORS.GREY[600]};
+  position: relative;
+`;
+
+const Info = styled.div`
+  padding: 2rem 0 0 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  font-size: 1.3rem;
+  h4 {
+    font-size: 1.7rem;
+  }
+  h5 {
+    font-size: 2.3rem;
+    font-weight: 700;
+  }
+  p {
+    font-weight: 300;
+  }
+  span {
+    color: ${COLORS.BLUE};
+  }
+`;
+
+const RangeInfo = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  font-size: 1rem;
+  padding: 0.7rem 0.7rem;
+  color: ${COLORS.GREY[300]};
+  border-top: 0.1rem solid ${COLORS.GREY[300]};
+  position: absolute;
+  bottom: 0;
+`;
+
 export default function DailyChart() {
   const data = {
     labels,
@@ -72,50 +117,6 @@ export default function DailyChart() {
     ],
   };
 
-  const Container = styled.div`
-    width: 28rem;
-    height: 23rem;
-    background-color: ${COLORS.GREY[50]};
-    border-radius: 1rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    color: ${COLORS.GREY[600]};
-    position: relative;
-  `;
-  const Info = styled.div`
-    padding: 2rem 0 0 2rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.8rem;
-    font-size: 1.3rem;
-
-    h4 {
-      font-size: 1.7rem;
-    }
-    h5 {
-      font-size: 2.3rem;
-      font-weight: 700;
-    }
-    p {
-      font-weight: 300;
-    }
-    span {
-      color: ${COLORS.BLUE};
-    }
-  `;
-
-  const RangeInfo = styled.div`
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    font-size: 1rem;
-    padding: 0.7rem 0.7rem;
-    color: ${COLORS.GREY[300]};
-    border-top: 0.1rem solid ${COLORS.GREY[300]};
-    position: absolute;
-    bottom: 0;
-  `;
   return (
     <Container>
       <Info>
