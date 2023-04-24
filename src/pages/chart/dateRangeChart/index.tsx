@@ -34,7 +34,7 @@ const ChartWrapper = styled.div`
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  gap: 2rem;
+  gap: 4rem;
 `;
 export default function DateRangeChart() {
   return (

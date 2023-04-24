@@ -4,7 +4,7 @@ import { IHistory } from "../../../interfaces/book";
 import COLORS from "../../../constants/color";
 import Input from "../../Input";
 import useEditHistory from "../../../hooks/book/useEditHistory";
-import SelectWindow from "../../SelectContainer/SelectContainer";
+import SelectWindow from "../../SelectContainer";
 import Button from "../../Button";
 
 const Wrapper = styled.div`
