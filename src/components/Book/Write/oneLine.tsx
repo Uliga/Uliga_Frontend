@@ -1,6 +1,6 @@
 import React, { Dispatch, SetStateAction } from "react";
 import * as S from "../../../pages/write/index.styles";
-import SelectWindow from "../../SelectContainer/SelectContainer";
+import SelectWindow from "../../SelectContainer";
 import REGEX from "../../../constants/regex";
 import useWrite from "../../../hooks/book/useWrite";
 

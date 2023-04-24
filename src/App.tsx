@@ -22,6 +22,8 @@ import IncomeCategory from "./pages/income/category";
 import Setting from "./pages/setting";
 import SettingMe from "./pages/setting/me";
 import SettingBook from "./pages/setting/book";
+import DateRangeChart from "./pages/chart/dateRangeChart";
+import CategoryChart from "./pages/chart/categoryChart";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -77,6 +79,12 @@ function App() {
           <Route path={PATH.INCOME} element={<MainLayout />}>
             <Route path=":bookId" element={<Income />} />
             <Route path=":bookId/:categoryId" element={<IncomeCategory />} />
+          </Route>
+          <Route path={PATH.DATE_RANGE_CHART} element={<MainLayout />}>
+            <Route path=":bookId" element={<DateRangeChart />} />
+          </Route>
+          <Route path={PATH.CATEGORY_CHART} element={<MainLayout />}>
+            <Route path=":bookId" element={<CategoryChart />} />
           </Route>
           <Route path="/setting" element={<MainLayout />}>
             <Route element={<Setting />}>
