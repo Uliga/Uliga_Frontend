@@ -33,6 +33,7 @@ const ICONS: IconProps = {
   eye: "bi bi-eye",
   eyeSlash: "bi bi-eye-slash",
   circleClose: "bi bi-x-circle",
+  exclamation: "bi bi-exclamation-circle-fill",
 };
 
 export default ICONS;
