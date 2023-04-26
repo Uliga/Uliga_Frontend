@@ -24,6 +24,7 @@ import SettingMe from "./pages/setting/me";
 import SettingBook from "./pages/setting/book";
 import DateRangeChart from "./pages/chart/dateRangeChart";
 import CategoryChart from "./pages/chart/categoryChart";
+import NoExist from "./pages/NoExist";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -86,12 +87,13 @@ function App() {
           <Route path={PATH.CATEGORY_CHART} element={<MainLayout />}>
             <Route path=":bookId" element={<CategoryChart />} />
           </Route>
-          <Route path="/setting" element={<MainLayout />}>
+          <Route path={PATH.SETTING} element={<MainLayout />}>
             <Route element={<Setting />}>
               <Route path="book/:bookId" element={<SettingBook />} />
               <Route path="me/:bookId" element={<SettingMe />} />
             </Route>
           </Route>
+          <Route path="*" element={<NoExist />} />
         </Routes>
       </Router>
     </QueryClientProvider>
