@@ -132,7 +132,7 @@ export default function LastMonth() {
         지난 달 예산 및 결과
         <ButtonWrapper>
           {buttons.map(button => (
-            <RecordButton onClick={button.onClick}>
+            <RecordButton onClick={button.onClick} key={button.title}>
               <span>{button.title}</span> {button.sub}
             </RecordButton>
           ))}

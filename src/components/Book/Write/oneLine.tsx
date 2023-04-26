@@ -57,7 +57,7 @@ export default function oneLine({
       )}
       <S.StyledButton
         reverseIconButton
-        title="공유 가계부 내역에 추가"
+        title="다른 가계부 내역에 추가"
         iconName={inputList[listIdx][7].value.length > 0 ? "check" : "plus"}
         iconSize={inputList[listIdx][7].value.length > 0 ? "2rem" : "1.5rem"}
         onClick={() => {

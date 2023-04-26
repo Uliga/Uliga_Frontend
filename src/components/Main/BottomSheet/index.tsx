@@ -107,7 +107,7 @@ export default function BottomSheet() {
           )}
           <S.SharedButton
             reverseIconButton
-            title="공유 가계부 내역에 추가"
+            title="다른 가계부 내역에 추가"
             iconName={sharedAccountBook.length > 0 ? "check" : "plus"}
             iconSize={sharedAccountBook.length > 0 ? "2rem" : "1.5rem"}
             onClick={() => {
