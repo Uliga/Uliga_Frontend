@@ -28,19 +28,9 @@ export default function SideBar() {
   const { useSelectedBook } = useBook();
   const { data } = useSelectedBook(Number(bookId));
   const navigate = useNavigate();
-  const { data: me } = useQuery<IUserInfo | undefined>(
-    [QUERYKEYS.LOAD_ME],
-    loadMe,
-  );
-  const userAvatar = data?.members?.find(
-    ele => ele.id === me?.memberInfo?.id,
-  )?.avatarUrl;
-  if (!data) return null;
-
   const location = useLocation();
   const currentPath = location.pathname.split("/")[1];
 
-  console.log(location.pathname);
   const authLogout = async () => {
     try {
       await logout();
@@ -51,6 +41,15 @@ export default function SideBar() {
       console.log(err);
     }
   };
+  const { data: me } = useQuery<IUserInfo | undefined>(
+    [QUERYKEYS.LOAD_ME],
+    loadMe,
+  );
+  const userAvatar = data?.members?.find(
+    ele => ele.id === me?.memberInfo?.id,
+  )?.avatarUrl;
+  if (!data) return null;
+
   return (
     <Container>
       <Top>
