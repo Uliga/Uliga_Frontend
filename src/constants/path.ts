@@ -13,6 +13,7 @@ const PATH = {
   ME: "/me",
   BOOK: "/book",
   SOCIAL: "/social",
+  FINANCIAL: "/financial",
   DATE_RANGE_CHART: "/dateChart",
   CATEGORY_CHART: "/categoryChart",
 } as const;

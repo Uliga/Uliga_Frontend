@@ -66,7 +66,7 @@ const menu = [
     theme: "normal",
     iconName: "bank",
     iconSize: "1.25rem",
-    path: "",
+    path: PATH.FINANCIAL,
   },
 ];
 
