@@ -34,6 +34,7 @@ const ICONS: IconProps = {
   eyeSlash: "bi bi-eye-slash",
   circleClose: "bi bi-x-circle",
   exclamation: "bi bi-exclamation-circle-fill",
+  calendar: "bi bi-calendar-event",
 };
 
 export default ICONS;

@@ -32,6 +32,13 @@ const menu = [
     ],
   },
   {
+    title: "금융 일정",
+    theme: "normal",
+    iconName: "calendar",
+    iconSize: "1.4rem",
+    path: PATH.SCHEDULE,
+  },
+  {
     title: "예산",
     theme: "normal",
     iconName: "pig",

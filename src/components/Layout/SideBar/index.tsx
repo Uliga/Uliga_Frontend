@@ -71,7 +71,9 @@ export default function SideBar() {
                 iconName={ele.iconName}
                 iconSize={ele.iconSize}
                 isActive={
-                  ele.path === PATH.BUDGET && ele.path === `/${currentPath}`
+                  (ele.path === PATH.BUDGET &&
+                    ele.path === `/${currentPath}`) ||
+                  (ele.path === PATH.SCHEDULE && ele.path === `/${currentPath}`)
                 }
                 onClick={() => {
                   navigate(`${ele.path}/${bookId}`);
