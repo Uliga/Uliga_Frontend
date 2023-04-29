@@ -62,7 +62,7 @@ const Result = styled.div`
   display: flex;
   gap: 1rem;
 `;
-interface Schedule {
+interface ScheduleType {
   name: string;
   day: number;
   value: number;
@@ -79,7 +79,7 @@ export default function FixedExpenses() {
     <Container>
       <h5>{date.getMonth() + 1}월 고정지출</h5>
       <Wrapper>
-        {data.schedules.map((schedule: Schedule) => (
+        {data.schedules.map((schedule: ScheduleType) => (
           <Schedules>
             <span>{schedule.day}일</span>
             <span>{schedule.name}</span>
