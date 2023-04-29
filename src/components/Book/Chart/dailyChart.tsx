@@ -145,8 +145,6 @@ export default function DailyChart() {
       },
     ],
   };
-
-  console.log("recordData", dailyData.records);
   return (
     <Container>
       <Info>

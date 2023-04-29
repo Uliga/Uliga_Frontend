@@ -103,7 +103,6 @@ export default function CategoryChart() {
   if (!categoryData) {
     return null;
   }
-  console.log("recordData", categoryData.categories);
 
   return (
     <S.Container>
