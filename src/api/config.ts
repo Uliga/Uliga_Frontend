@@ -56,6 +56,6 @@ const API = {
   LOGOUT: `${LOGOUT}`,
   REISSUE: `${AUTH}reissue`,
   SOCIAL: `${MEMBER}${SOCIAL}`,
-  ANALYZE: `${ANALYZE}${SCHEDULE}`,
+  ANALYZE: `${ANALYZE}`,
 };
 export default API;
