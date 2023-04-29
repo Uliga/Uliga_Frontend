@@ -1,7 +1,11 @@
 import React from "react";
 import styled from "styled-components";
+import { useQuery } from "@tanstack/react-query";
+import { useParams } from "react-router-dom";
 import getMoneyUnit from "../../../utils/money";
 import COLORS from "../../../constants/color";
+import QUERYKEYS from "../../../constants/querykey";
+import { loadFixedExpenses } from "../../../api/book";
 
 const Container = styled.div`
   width: 45rem;
@@ -58,63 +62,23 @@ const Result = styled.div`
   display: flex;
   gap: 1rem;
 `;
-
+interface Schedule {
+  name: string;
+  day: number;
+  value: number;
+}
 export default function FixedExpenses() {
-  const data = [
-    {
-      day: "7일",
-      contents: "보험료 (롯데)",
-      value: 45450,
-    },
-    {
-      day: "23일",
-      contents: "통신요금 (LGUPLUS)",
-      value: 105450,
-    },
-    {
-      day: "23일",
-      contents: "넷플릭스",
-      value: 12000,
-    },
-    {
-      day: "7일",
-      contents: "보험료 (롯데)",
-      value: 45450,
-    },
-    {
-      day: "23일",
-      contents: "통신요금 (LGUPLUS)",
-      value: 105450,
-    },
-    {
-      day: "23일",
-      contents: "넷플릭스",
-      value: 12000,
-    },
-    {
-      day: "7일",
-      contents: "보험료 (롯데)",
-      value: 45450,
-    },
-    {
-      day: "23일",
-      contents: "통신요금 (LGUPLUS)",
-      value: 105450,
-    },
-    {
-      day: "23일",
-      contents: "넷플릭스",
-      value: 12000,
-    },
-  ];
+  const { bookId } = useParams();
+  const queryFn = () => loadFixedExpenses(Number(bookId));
+  const { data } = useQuery([QUERYKEYS.LOAD_FIXED_EXPENSES], queryFn);
   return (
     <Container>
       <h5>4월 고정지출</h5>
       <Wrapper>
-        {data.map(schedule => (
+        {data.schedules.map((schedule: Schedule) => (
           <Schedules>
-            <span>{schedule.day}</span>
-            <span>{schedule.contents}</span>
+            <span>{schedule.day}일</span>
+            <span>{schedule.name}</span>
             <span>{getMoneyUnit(schedule.value)}원</span>
           </Schedules>
         ))}
