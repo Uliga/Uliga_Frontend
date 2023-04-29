@@ -72,9 +72,12 @@ export default function FixedExpenses() {
   const date = new Date();
   const queryFn = () => loadFixedExpenses(Number(bookId));
   const { data } = useQuery([QUERYKEYS.LOAD_FIXED_EXPENSES], queryFn);
+  if (!data) {
+    return null;
+  }
   return (
     <Container>
-      <h5>${date.getMonth() + 1}월 고정지출</h5>
+      <h5>{date.getMonth() + 1}월 고정지출</h5>
       <Wrapper>
         {data.schedules.map((schedule: Schedule) => (
           <Schedules>
