@@ -69,11 +69,12 @@ interface Schedule {
 }
 export default function FixedExpenses() {
   const { bookId } = useParams();
+  const date = new Date();
   const queryFn = () => loadFixedExpenses(Number(bookId));
   const { data } = useQuery([QUERYKEYS.LOAD_FIXED_EXPENSES], queryFn);
   return (
     <Container>
-      <h5>4월 고정지출</h5>
+      <h5>${date.getMonth() + 1}월 고정지출</h5>
       <Wrapper>
         {data.schedules.map((schedule: Schedule) => (
           <Schedules>
@@ -83,7 +84,7 @@ export default function FixedExpenses() {
           </Schedules>
         ))}
       </Wrapper>
-      <Result>총 {getMoneyUnit(462900)}원</Result>
+      <Result>총 {getMoneyUnit(data.sum)}원</Result>
     </Container>
   );
 }
