@@ -68,6 +68,7 @@ export interface IHistory {
   type: string;
   value: number;
   year: number;
+  avatarUrl: string;
 }
 
 export interface IHistoryPage {
