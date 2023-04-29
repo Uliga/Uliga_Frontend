@@ -224,3 +224,11 @@ export const loadCategoryChart = async (schedule: any) => {
   );
   return data;
 };
+
+export const loadDailyChart = async (schedule: any) => {
+  const { id, year, month } = schedule;
+  const { data } = await authorizationClient.get(
+    `${API.ACCOUNT_BOOK}/${id}${API.ANALYZE}/${year}/${month}`,
+  );
+  return data;
+};
