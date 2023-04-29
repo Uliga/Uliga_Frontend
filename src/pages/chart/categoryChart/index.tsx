@@ -110,7 +110,9 @@ export default function CategoryChart() {
       <BookNav path={PATH.CATEGORY_CHART} />
       <S.Wrapper>
         <S.Left>
-          <h1>2023년 4월</h1>
+          <h1>
+            {date.getFullYear()}년 {date.getMonth() + 1}월
+          </h1>
           <h4>카테고리별 분석</h4>
           <S.ChartWrapper>
             <Doughnut data={chartData} options={options} />
