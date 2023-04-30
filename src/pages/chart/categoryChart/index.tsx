@@ -15,29 +15,29 @@ import { loadCategoryChart } from "../../../api/book";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-export const chartData = {
-  labels: [
-    "☕ 카페 · 간식",
-    "🍽️ 식비",
-    "🍙 편의점,마트,잡화",
-    "👕 쇼핑",
-    "기타",
-  ],
-  datasets: [
-    {
-      data: [12000, 19000, 3000, 5000, 2000],
-      backgroundColor: [
-        COLORS.YELLOW,
-        COLORS.BLUE,
-        COLORS.GREEN.DARK,
-        COLORS.PURPLE,
-        COLORS.GREY[200],
-      ],
-      borderWidth: 0,
-    },
-  ],
-};
-
+// export const chartData = {
+//   labels: [
+//     "☕ 카페 · 간식",
+//     "🍽️ 식비",
+//     "🍙 편의점,마트,잡화",
+//     "👕 쇼핑",
+//     "기타",
+//   ],
+//   datasets: [
+//     {
+//       data: [12000, 19000, 3000, 5000, 2000],
+//       backgroundColor: [
+//         COLORS.YELLOW,
+//         COLORS.BLUE,
+//         COLORS.GREEN.DARK,
+//         COLORS.PURPLE,
+//         COLORS.GREY[200],
+//       ],
+//       borderWidth: 0,
+//     },
+//   ],
+// };
+//
 const options = {
   responsive: true,
   plugins: {
@@ -103,7 +103,33 @@ export default function CategoryChart() {
   if (!categoryData) {
     return null;
   }
+  const maxCategoriesToShow = 5;
+  const userCategories = categoryData.categories
+    .slice(0, maxCategoriesToShow)
+    .map((ele: any) => ele.value);
 
+  const chartData = {
+    labels: [
+      "☕ 카페 · 간식",
+      "🍽️ 식비",
+      "🍙 편의점,마트,잡화",
+      "👕 쇼핑",
+      "기타",
+    ],
+    datasets: [
+      {
+        data: userCategories,
+        backgroundColor: [
+          COLORS.YELLOW,
+          COLORS.BLUE,
+          COLORS.GREEN.DARK,
+          COLORS.PURPLE,
+          COLORS.GREY[200],
+        ],
+        borderWidth: 0,
+      },
+    ],
+  };
   return (
     <S.Container>
       <BookNav path={PATH.CATEGORY_CHART} />
