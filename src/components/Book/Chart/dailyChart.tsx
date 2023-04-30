@@ -144,7 +144,6 @@ export default function DailyChart() {
       },
     ],
   };
-  console.log(dailyData.diff);
   return (
     <Container>
       <Info>
