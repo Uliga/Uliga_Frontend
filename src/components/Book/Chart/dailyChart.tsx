@@ -144,20 +144,22 @@ export default function DailyChart() {
       },
     ],
   };
+  console.log(dailyData.diff);
   return (
     <Container>
       <Info>
         <h4>🔎 {date.getMonth() + 1}월 총 지출</h4>
-        {dailyData.sum === null ? (
-          <h5>등록된 이번 달 예산이 없어요!</h5>
-        ) : (
-          <h5>{getMoneyUnit(dailyData.sum)}원</h5>
-        )}
+        <h5>{getMoneyUnit(dailyData.sum)}원</h5>
         {dailyData.diff === null ? (
-          <p>등록된 지난 달 예산이 없어요!</p>
+          <p>등록된 지난 달 지출이 없어요!</p>
         ) : (
           <p>
-            지난 달보다 <span>{dailyData.diff}원</span>
+            지난 달보다{" "}
+            {dailyData.diff > 0 ? (
+              <span>+{dailyData.diff}원</span>
+            ) : (
+              <span>-{dailyData.diff}원</span>
+            )}
           </p>
         )}
       </Info>
