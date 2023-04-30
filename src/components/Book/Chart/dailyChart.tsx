@@ -121,7 +121,6 @@ export default function DailyChart() {
   const useDailyChart = (inputData: object) => {
     const queryFn = () => loadDailyChart(inputData);
     const { data } = useQuery([QUERYKEYS.LOAD_DAILY_CHART], queryFn);
-
     return { data };
   };
   const { data: dailyData } = useDailyChart({
@@ -149,10 +148,18 @@ export default function DailyChart() {
     <Container>
       <Info>
         <h4>🔎 {date.getMonth() + 1}월 총 지출</h4>
-        <h5>{getMoneyUnit(dailyData.sum)}원</h5>
-        <p>
-          지난 달보다 <span>-59,400원</span>
-        </p>
+        {dailyData.sum === null ? (
+          <h5>등록된 이번 달 예산이 없어요!</h5>
+        ) : (
+          <h5>{getMoneyUnit(dailyData.sum)}원</h5>
+        )}
+        {dailyData.diff === null ? (
+          <p>등록된 지난 달 예산이 없어요!</p>
+        ) : (
+          <p>
+            지난 달보다 <span>{dailyData.diff}원</span>
+          </p>
+        )}
       </Info>
       <Line options={options} data={chartData} width="500px" height="150px" />
       <RangeInfo>

@@ -87,7 +87,11 @@ export default function FixedExpenses() {
           </Schedules>
         ))}
       </Wrapper>
-      <Result>총 {getMoneyUnit(data.sum)}원</Result>
+      {data.sum === null ? (
+        <Result>총 0원</Result>
+      ) : (
+        <Result>총 {getMoneyUnit(data.sum)}원</Result>
+      )}
     </Container>
   );
 }
