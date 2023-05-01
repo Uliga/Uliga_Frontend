@@ -2,6 +2,7 @@ import styled from "styled-components";
 import COLORS from "../../../constants/color";
 import Icon from "../../Icon";
 import Button from "../../Button";
+import media from "../../../styles/media";
 
 export const Container = styled.div`
   width: 100%;
@@ -24,8 +25,11 @@ export const Wrapper = styled.div`
   align-items: center;
 `;
 export const StyledIcon = styled(Icon)`
-  margin-left: 4rem;
   cursor: pointer;
+  margin-left: 4rem;
+  visibility: hidden;
+  ${media.medium} {
+    visibility: visible;
 `;
 
 export const Title = styled.div`
