@@ -19,6 +19,44 @@ font-family: "Pretendard-Web", serif;
   font-weight: 500;
   box-sizing: border-box;
 }
+/* 
+  ##Device = Tablets, Ipads (landscape)
+  ##Screen = B/w 768px to 1024px
+*/
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+  html {
+    font-size: 9px;
+  }
+}
+/* 
+  ##Device = Tablets, Ipads (portrait)
+  ##Screen = B/w 768px to 1024px
+*/
+@media (min-width: 768px) and (max-width: 1024px) {
+  html {
+    font-size: 9.5px;
+  }
+}
+/* 
+  ##Device = Laptops, Desktops
+  ##Screen = B/w 1025px to 1280px
+*/
+@media (min-width: 1025px) and (max-width: 1919px) {
+  html {
+    font-size: 10px;
+  }
+}
+@media (min-width: 1920px) and (max-width: 2559px) {
+  html {
+    font-size: 10.5px;
+  }
+}
+@media (min-width: 2560px) {
+  html {
+    font-size: 11px;
+  }
+}
+
 body,
 button,
 dd,
