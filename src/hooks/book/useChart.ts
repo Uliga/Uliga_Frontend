@@ -4,9 +4,14 @@ import { useQuery } from "@tanstack/react-query";
 import {
   loadBudgetCompareAnalyze,
   loadMonthCompareAnalyze,
+  loadWeeklyCompareAnalyze,
 } from "../../api/book";
 import QUERYKEYS from "../../constants/querykey";
-import { IBudgetCompare, ICompare } from "../../interfaces/book";
+import {
+  IBudgetCompare,
+  IMonthCompare,
+  IWeeklyCompare,
+} from "../../interfaces/book";
 import { getLastDate } from "../../utils/date";
 import getMoneyUnit from "../../utils/money";
 
@@ -20,7 +25,7 @@ export default function useChart() {
       month: new Date().getMonth() + 1,
     });
 
-  const { data: monthData } = useQuery<ICompare>(
+  const { data: monthData } = useQuery<IMonthCompare>(
     [QUERYKEYS.LOAD_MONTH_COMPARE_ANALYZE],
     queryFn,
   );
@@ -61,5 +66,18 @@ export default function useChart() {
     budgetQueryFn,
   );
 
-  return { budgetData, monthData, average, sum, diff };
+  const weeklyQueryFn = () =>
+    loadWeeklyCompareAnalyze({
+      id: bookId ? +bookId : 0,
+      year: new Date().getFullYear(),
+      month: new Date().getMonth(),
+      startDay: 1,
+    });
+
+  const { data: weeklyData } = useQuery<IWeeklyCompare>(
+    [QUERYKEYS.LOAD_WEEKLY_COMPARE_ANALYZE],
+    weeklyQueryFn,
+  );
+
+  return { budgetData, monthData, average, sum, diff, weeklyData };
 }

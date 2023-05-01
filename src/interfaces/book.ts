@@ -85,7 +85,7 @@ export interface IHistoryPage {
   totalPages: number;
 }
 
-export interface ICompare {
+export interface IMonthCompare {
   compare: { month: number; year: number; value: number }[];
 }
 
@@ -93,4 +93,13 @@ export interface IBudgetCompare {
   budget: number;
   spend: number;
   diff: number;
+}
+
+export interface IWeeklyCompare {
+  weeklySums: {
+    startDay: number;
+    endDay: number;
+    value: number;
+  }[];
+  sum: number;
 }

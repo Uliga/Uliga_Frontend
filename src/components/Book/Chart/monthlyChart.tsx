@@ -65,7 +65,7 @@ export default function MonthlyChart() {
   return (
     <Container>
       <Info>
-        <h5>{new Date().getMonth() + 1}월 분석</h5>
+        <h5>{new Date().getMonth()}월 분석</h5>
         <p>
           {diff === null && `비교할 지난 달 기록이 없습니다.`}
           {diff !== null &&

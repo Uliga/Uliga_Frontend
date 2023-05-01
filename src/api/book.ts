@@ -232,7 +232,22 @@ export const loadBudgetCompareAnalyze = async (budgetData: {
   const { id, year, month } = budgetData;
 
   const { data } = await authorizationClient.get(
-    `${API.ACCOUNT_BOOK}/${id}${API.BUDGET_ANALZE}/${year}/${month}`,
+    `${API.ACCOUNT_BOOK}/${id}${API.COMPARE_BUDGET_ANALZE}/${year}/${month}`,
+  );
+
+  return data;
+};
+
+export const loadWeeklyCompareAnalyze = async (weeklyData: {
+  id: number;
+  year: number;
+  month: number;
+  startDay: number;
+}) => {
+  const { id, year, month, startDay } = weeklyData;
+
+  const { data } = await authorizationClient.get(
+    `${API.ACCOUNT_BOOK}/${id}${API.COMPARE_WEEKLY_ANALYZE}/${year}/${month}/${startDay}`,
   );
 
   return data;
