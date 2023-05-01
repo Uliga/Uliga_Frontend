@@ -61,7 +61,10 @@ const Info = styled.div`
 `;
 export default function MonthlyChart() {
   const { budgetData, monthData, sum, average, diff } = useChart();
-  console.log(budgetData);
+
+  if (!monthData || !budgetData) {
+    return null;
+  }
   return (
     <Container>
       <Info>
