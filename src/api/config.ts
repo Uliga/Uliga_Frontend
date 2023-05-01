@@ -25,6 +25,7 @@ const BUDGET = "/budget";
 const LOGOUT = "/logout";
 const SOCIAL = "/privateAccountBook";
 const ANALYZE = "/analyze";
+const WEEKLY = "/weekly";
 
 const API = {
   BASE_URL: `${BASE_URL}`,
@@ -56,6 +57,9 @@ const API = {
   LOGOUT: `${LOGOUT}`,
   REISSUE: `${AUTH}reissue`,
   SOCIAL: `${MEMBER}${SOCIAL}`,
+  COMPARE_MONTH_ANALYZE: `${ANALYZE}/compare`,
+  COMPARE_BUDGET_ANALZE: `${ANALYZE}${BUDGET}`,
+  COMPARE_WEEKLY_ANALYZE: `${ANALYZE}${WEEKLY}`,
   ANALYZE: `${ANALYZE}`,
 };
 export default API;

@@ -59,3 +59,24 @@ export function getRemainDate(selectDate: number) {
   }
   return remainDate;
 }
+
+export function getDateRangeUnit(startDay: number, endDay: number) {
+  const startDate = new Date(
+    new Date().getFullYear(),
+    new Date().getMonth(),
+    startDay,
+  );
+  const endDate = new Date(
+    new Date().getFullYear(),
+    new Date().getMonth(),
+    endDay,
+  );
+  const dateFormat = new Intl.DateTimeFormat("en-US", {
+    month: "2-digit",
+    day: "2-digit",
+  });
+
+  const startString = dateFormat.format(startDate);
+  const endString = dateFormat.format(endDate);
+  return `(${startString} - ${endString})`;
+}

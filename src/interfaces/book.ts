@@ -68,6 +68,7 @@ export interface IHistory {
   type: string;
   value: number;
   year: number;
+  avatarUrl: string;
 }
 
 export interface IHistoryPage {
@@ -82,4 +83,23 @@ export interface IHistoryPage {
   sort: number;
   totalElements: number;
   totalPages: number;
+}
+
+export interface IMonthCompare {
+  compare: { month: number; year: number; value: number }[];
+}
+
+export interface IBudgetCompare {
+  budget: number;
+  spend: number;
+  diff: number;
+}
+
+export interface IWeeklyCompare {
+  weeklySums: {
+    startDay: number;
+    endDay: number;
+    value: number;
+  }[];
+  sum: number;
 }
