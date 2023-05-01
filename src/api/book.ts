@@ -249,7 +249,8 @@ export const loadWeeklyCompareAnalyze = async (weeklyData: {
   const { data } = await authorizationClient.get(
     `${API.ACCOUNT_BOOK}/${id}${API.COMPARE_WEEKLY_ANALYZE}/${year}/${month}/${startDay}`,
   );
-
+  return data;
+};
 export const loadFixedExpenses = async (id: number) => {
   const { data } = await authorizationClient.get(
     `${API.ACCOUNT_BOOK}/${id}${API.ANALYZE}${API.SCHEDULE}`,
