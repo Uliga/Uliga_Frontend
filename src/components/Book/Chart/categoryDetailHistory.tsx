@@ -97,14 +97,16 @@ const PagingWrapper = styled.div`
 `;
 
 export default function CategoryDetailHistory({ category }: { category: any }) {
-  const { useLoadRecordCategory } = useHistory();
+  const date = new Date();
+  const { useLoadMonthRecord } = useHistory();
   const { bookId } = useParams();
   const [curPage, setCurPage] = useState(1);
   const ITEM_SIZE = 8;
   const { data: recordData, refetch: recordHistoryRefetch } =
-    useLoadRecordCategory({
+    useLoadMonthRecord({
       id: bookId,
-      categoryId: category.id,
+      year: date.getFullYear(),
+      month: date.getMonth() + 1,
       page: curPage - 1,
       size: ITEM_SIZE,
     });
@@ -114,6 +116,10 @@ export default function CategoryDetailHistory({ category }: { category: any }) {
   useEffect(() => {
     recordHistoryRefetch();
   }, [curPage, category.id]);
+  if (!recordData) {
+    return null;
+  }
+  console.log("category", recordData.totalElements);
   return (
     <Container>
       <Top>
@@ -134,11 +140,7 @@ export default function CategoryDetailHistory({ category }: { category: any }) {
           ))}
         </S.Menus>
         {recordData?.content?.map((history: IHistory) => (
-          <HistoryItem
-            history={history}
-            isIncome={false}
-            refetch={recordHistoryRefetch}
-          />
+          <HistoryItem history={history} refetch={recordHistoryRefetch} />
         ))}
         <Pagination
           activePage={curPage}
