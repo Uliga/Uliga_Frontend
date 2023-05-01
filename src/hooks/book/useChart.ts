@@ -80,6 +80,5 @@ export default function useChart() {
     [QUERYKEYS.LOAD_WEEKLY_COMPARE_ANALYZE],
     weeklyQueryFn,
   );
-
   return { budgetData, monthData, average, sum, diff, weeklyData };
 }

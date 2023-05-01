@@ -96,6 +96,9 @@ const InputWrapper = styled.div`
   }
 `;
 const SelectContainer = styled.select`
+  -webkit-appearance: none; /* Safari, Chrome, Opera */
+  -moz-appearance: none; /* Firefox */
+  appearance: none;
   font-size: 1.3rem;
   width: 11rem;
   border: none;
