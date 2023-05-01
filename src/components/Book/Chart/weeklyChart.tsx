@@ -86,6 +86,14 @@ export default function WeeklyChart() {
       percentage: 9000,
     },
   ];
+  const { weeklyData } = useChart();
+  const weekMap = new Map([
+    [0, "첫째주"],
+    [1, "둘째주"],
+    [2, "셋째주"],
+    [3, "넷째주"],
+  ]);
+
   return (
     <Container>
       <h5>주간별 분석</h5>
