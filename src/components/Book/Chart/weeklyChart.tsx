@@ -70,7 +70,6 @@ export default function WeeklyChart() {
     [3, "넷째주"],
   ]);
 
-  console.log(weeklyData);
   return (
     <Container>
       <h5>주간별 분석</h5>
