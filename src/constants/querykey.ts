@@ -17,6 +17,9 @@ const QUERYKEYS = {
   LOAD_MONTH_COMPARE_ANALYZE: "loadMonthCompareAnalyze",
   LOAD_BUDGET_COMPARE_ANALYZE: "loadBudgetCompareAnalyze",
   LOAD_WEEKLY_COMPARE_ANALYZE: "loadWeeklyCompareAnalyze",
+  LOAD_FIXED_EXPENSES: "loadFixedExpenses",
+  LOAD_CATEGORY_CHART: "loadCategoryChart",
+  LOAD_DAILY_CHART: "loadDailyChart",
 } as const;
 
 export default QUERYKEYS;
