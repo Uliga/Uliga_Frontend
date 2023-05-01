@@ -117,7 +117,6 @@ export default function DailyChart() {
   const labels = [
     ...new Array(lastDate).fill(0).map((i, idx) => `${idx + 1}일`),
   ];
-  //
   const useDailyChart = (inputData: object) => {
     const queryFn = () => loadDailyChart(inputData);
     const { data } = useQuery([QUERYKEYS.LOAD_DAILY_CHART], queryFn);
@@ -155,9 +154,9 @@ export default function DailyChart() {
           <p>
             지난 달보다{" "}
             {dailyData.diff > 0 ? (
-              <span>+{dailyData.diff}원</span>
+              <span>+{getMoneyUnit(dailyData.diff)}원</span>
             ) : (
-              <span>-{dailyData.diff}원</span>
+              <span>{getMoneyUnit(dailyData.diff)}원</span>
             )}
           </p>
         )}
