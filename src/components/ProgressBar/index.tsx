@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import COLORS from "../../constants/color";
 
@@ -56,18 +56,19 @@ export default function ProgressBar({
   color,
   labels,
   isReversed,
+  sum,
 }: {
   targetValue: number;
   duration: number;
   color: string;
   labels?: string[];
   isReversed: boolean;
+  sum: number;
 }) {
   const [progress, setProgress] = useState(0);
 
-  const targetProgress = useMemo(
-    () => (targetValue / 15000) * 100,
-    [targetValue],
+  const [targetProgress, setTargetProgress] = useState(
+    (targetValue / sum) * 100,
   );
 
   const animateProgressBar = () => {
@@ -88,8 +89,12 @@ export default function ProgressBar({
   };
 
   useEffect(() => {
+    setTargetProgress((targetValue / sum) * 100);
+  }, [sum]);
+
+  useEffect(() => {
     animateProgressBar();
-  }, [targetValue]);
+  }, [targetValue, targetProgress]);
 
   return (
     <Bar bgColor={color} percentage={progress} isReversed={isReversed}>

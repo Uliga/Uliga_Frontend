@@ -42,7 +42,7 @@ const menu = [
     title: "예산",
     theme: "normal",
     iconName: "pig",
-    iconSize: "1.5rem",
+    iconSize: "1.45rem",
     path: PATH.BUDGET,
   },
   {

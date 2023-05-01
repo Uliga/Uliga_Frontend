@@ -217,6 +217,46 @@ export const loadDayHistory = async (dayHistory: {
   return data;
 };
 
+export const loadMonthCompareAnalyze = async (monthData: {
+  id: number;
+  year: number;
+  month: number;
+}) => {
+  const { id, year, month } = monthData;
+
+  const { data } = await authorizationClient.get(
+    `${API.ACCOUNT_BOOK}/${id}${API.COMPARE_MONTH_ANALYZE}/${year}/${month}`,
+  );
+
+  return data;
+};
+
+export const loadBudgetCompareAnalyze = async (budgetData: {
+  id: number;
+  year: number;
+  month: number;
+}) => {
+  const { id, year, month } = budgetData;
+
+  const { data } = await authorizationClient.get(
+    `${API.ACCOUNT_BOOK}/${id}${API.COMPARE_BUDGET_ANALZE}/${year}/${month}`,
+  );
+
+  return data;
+};
+
+export const loadWeeklyCompareAnalyze = async (weeklyData: {
+  id: number;
+  year: number;
+  month: number;
+  startDay: number;
+}) => {
+  const { id, year, month, startDay } = weeklyData;
+
+  const { data } = await authorizationClient.get(
+    `${API.ACCOUNT_BOOK}/${id}${API.COMPARE_WEEKLY_ANALYZE}/${year}/${month}/${startDay}`,
+  );
+
 export const loadFixedExpenses = async (id: number) => {
   const { data } = await authorizationClient.get(
     `${API.ACCOUNT_BOOK}/${id}${API.ANALYZE}${API.SCHEDULE}`,
