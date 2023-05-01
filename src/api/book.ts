@@ -252,7 +252,6 @@ export const loadWeeklyCompareAnalyze = async (weeklyData: {
   startDay: number;
 }) => {
   const { id, year, month, startDay } = weeklyData;
-
   const { data } = await authorizationClient.get(
     `${API.ACCOUNT_BOOK}/${id}${API.COMPARE_WEEKLY_ANALYZE}/${year}/${month}/${startDay}`,
   );
