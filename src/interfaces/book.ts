@@ -84,3 +84,13 @@ export interface IHistoryPage {
   totalElements: number;
   totalPages: number;
 }
+
+export interface ICompare {
+  compare: { month: number; year: number; value: number }[];
+}
+
+export interface IBudgetCompare {
+  budget: number;
+  spend: number;
+  diff: number;
+}

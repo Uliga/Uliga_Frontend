@@ -223,3 +223,17 @@ export const loadMonthCompareAnalyze = async (monthData: {
 
   return data;
 };
+
+export const loadBudgetCompareAnalyze = async (budgetData: {
+  id: number;
+  year: number;
+  month: number;
+}) => {
+  const { id, year, month } = budgetData;
+
+  const { data } = await authorizationClient.get(
+    `${API.ACCOUNT_BOOK}/${id}${API.BUDGET_ANALZE}/${year}/${month}`,
+  );
+
+  return data;
+};

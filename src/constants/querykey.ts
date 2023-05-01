@@ -15,6 +15,7 @@ const QUERYKEYS = {
   LOAD_RECORD: "loadRecord",
   LOAD_RECORD_CATEGORY: "loadRecordCategory",
   LOAD_MONTH_COMPARE_ANALYZE: "loadMonthCompareAnalyze",
+  LOAD_BUDGET_COMPARE_ANALYZE: "loadBudgetCompareAnalyze",
 } as const;
 
 export default QUERYKEYS;
