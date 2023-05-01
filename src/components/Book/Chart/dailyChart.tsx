@@ -117,7 +117,7 @@ export default function DailyChart() {
   const labels = [
     ...new Array(lastDate).fill(0).map((i, idx) => `${idx + 1}일`),
   ];
-
+  //
   const useDailyChart = (inputData: object) => {
     const queryFn = () => loadDailyChart(inputData);
     const { data } = useQuery([QUERYKEYS.LOAD_DAILY_CHART], queryFn);
