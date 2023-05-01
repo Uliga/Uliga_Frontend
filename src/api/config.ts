@@ -24,6 +24,7 @@ const HISTORY = "/history";
 const BUDGET = "/budget";
 const LOGOUT = "/logout";
 const SOCIAL = "/privateAccountBook";
+const ANALYZE = "/analyze";
 
 const API = {
   BASE_URL: `${BASE_URL}`,
@@ -55,5 +56,6 @@ const API = {
   LOGOUT: `${LOGOUT}`,
   REISSUE: `${AUTH}reissue`,
   SOCIAL: `${MEMBER}${SOCIAL}`,
+  ANALYZE: `${ANALYZE}`,
 };
 export default API;

@@ -209,3 +209,26 @@ export const loadDayHistory = async (dayHistory: {
 
   return data;
 };
+
+export const loadFixedExpenses = async (id: number) => {
+  const { data } = await authorizationClient.get(
+    `${API.ACCOUNT_BOOK}/${id}${API.ANALYZE}${API.SCHEDULE}`,
+  );
+  return data;
+};
+
+export const loadCategoryChart = async (schedule: any) => {
+  const { id, year, month } = schedule;
+  const { data } = await authorizationClient.get(
+    `${API.ACCOUNT_BOOK}/${id}${API.ANALYZE}/category/${year}/${month}`,
+  );
+  return data;
+};
+
+export const loadDailyChart = async (schedule: any) => {
+  const { id, year, month } = schedule;
+  const { data } = await authorizationClient.get(
+    `${API.ACCOUNT_BOOK}/${id}${API.ANALYZE}/${year}/${month}`,
+  );
+  return data;
+};

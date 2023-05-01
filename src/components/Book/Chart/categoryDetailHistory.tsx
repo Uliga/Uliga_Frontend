@@ -114,12 +114,15 @@ export default function CategoryDetailHistory({ category }: { category: any }) {
   useEffect(() => {
     recordHistoryRefetch();
   }, [curPage, category.id]);
-
   return (
     <Container>
       <Top>
         <h5>{category.title}</h5>
-        <h1>{getMoneyUnit(462900)}원</h1>
+        {category.value === 0 ? (
+          <> </>
+        ) : (
+          <h1>{getMoneyUnit(category.value)}원</h1>
+        )}
         <WriteButton>내역 수정하러 가기</WriteButton>
       </Top>
       <PagingWrapper>

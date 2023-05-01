@@ -14,6 +14,9 @@ const QUERYKEYS = {
   LOAD_INCOME_CATEGORY: "loadIncomeCategory",
   LOAD_RECORD: "loadRecord",
   LOAD_RECORD_CATEGORY: "loadRecordCategory",
+  LOAD_FIXED_EXPENSES: "loadFixedExpenses",
+  LOAD_CATEGORY_CHART: "loadCategoryChart",
+  LOAD_DAILY_CHART: "loadDailyChart",
 } as const;
 
 export default QUERYKEYS;

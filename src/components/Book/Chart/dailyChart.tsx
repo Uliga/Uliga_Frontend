@@ -11,8 +11,13 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
+import { useParams } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
 import COLORS from "../../../constants/color";
 import getMoneyUnit from "../../../utils/money";
+import { loadDailyChart } from "../../../api/book";
+import QUERYKEYS from "../../../constants/querykey";
+import { getLastDate } from "../../../utils/date";
 
 ChartJS.register(
   CategoryScale,
@@ -54,8 +59,6 @@ const options = {
     intersect: false,
   },
 };
-
-const labels = [...new Array(31).fill(0).map((i, idx) => `${idx + 1}일`)];
 
 const Container = styled.div`
   width: 28rem;
@@ -102,13 +105,37 @@ const RangeInfo = styled.div`
   bottom: 0;
 `;
 
+interface DailyType {
+  day: number;
+  value: number;
+}
 export default function DailyChart() {
-  const data = {
+  const { bookId } = useParams();
+  const date = new Date();
+  const lastDate = getLastDate();
+
+  const labels = [
+    ...new Array(lastDate).fill(0).map((i, idx) => `${idx + 1}일`),
+  ];
+  const useDailyChart = (inputData: object) => {
+    const queryFn = () => loadDailyChart(inputData);
+    const { data } = useQuery([QUERYKEYS.LOAD_DAILY_CHART], queryFn);
+    return { data };
+  };
+  const { data: dailyData } = useDailyChart({
+    id: bookId,
+    year: date.getFullYear(),
+    month: date.getMonth() + 1,
+  });
+  if (!dailyData) {
+    return null;
+  }
+  const chartData = {
     labels,
     datasets: [
       {
         fill: true,
-        data: labels.map(() => Math.floor(Math.random() * (100000 - 100 + 1))),
+        data: dailyData.records.map((ele: DailyType) => ele.value),
         pointRadius: 1,
         pointHitRadius: 0,
         borderColor: COLORS.RED.LIGHT,
@@ -116,17 +143,25 @@ export default function DailyChart() {
       },
     ],
   };
-
   return (
     <Container>
       <Info>
-        <h4>🔎 4월 총 지출</h4>
-        <h5>{getMoneyUnit(756736)}원</h5>
-        <p>
-          지난 달보다 <span>-59,400원</span>
-        </p>
+        <h4>🔎 {date.getMonth() + 1}월 총 지출</h4>
+        <h5>{getMoneyUnit(dailyData.sum)}원</h5>
+        {dailyData.diff === null ? (
+          <p>등록된 지난 달 지출이 없어요!</p>
+        ) : (
+          <p>
+            지난 달보다{" "}
+            {dailyData.diff > 0 ? (
+              <span>+{getMoneyUnit(dailyData.diff)}원</span>
+            ) : (
+              <span>{getMoneyUnit(dailyData.diff)}원</span>
+            )}
+          </p>
+        )}
       </Info>
-      <Line options={options} data={data} width="500px" height="150px" />
+      <Line options={options} data={chartData} width="500px" height="150px" />
       <RangeInfo>
         <span>1일</span>
         <span>말일</span>
