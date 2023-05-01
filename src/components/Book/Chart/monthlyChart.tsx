@@ -3,6 +3,7 @@ import styled from "styled-components";
 import COLORS from "../../../constants/color";
 import ProgressBar from "../../ProgressBar";
 import getMoneyUnit from "../../../utils/money";
+import useChart from "../../../hooks/book/useChart";
 
 const Container = styled.div`
   width: 80rem;
@@ -44,7 +45,7 @@ const WithBudget = styled.div`
 const Bars = styled.div`
   display: flex;
   width: 25rem;
-  height: 12.5rem;
+  height: 9rem;
   justify-content: center;
   align-items: end;
   gap: 8rem;
@@ -59,54 +60,35 @@ const Info = styled.div`
   gap: 0.5rem;
 `;
 export default function MonthlyChart() {
-  const monthData = [
-    {
-      value: 15000,
-      duration: 500,
-      color: COLORS.GREY[300],
-      labels: ["963,913원", "2월 지출"],
-    },
-    {
-      value: 10000,
-      duration: 300,
-      color: COLORS.GREY[300],
-      labels: ["898,913원", "3월 지출"],
-    },
-    {
-      value: 5000,
-      duration: 200,
-      color: COLORS.BLUE,
-      labels: ["446,756원", "4월 지출", "일 평균 14,891원"],
-    },
-  ];
-  const bugetData = [
-    {
-      value: 10000,
-      duration: 300,
-      color: COLORS.GREY[300],
-      labels: ["700,000원", "4월 예산"],
-    },
-    {
-      value: 15000,
-      duration: 500,
-      color: COLORS.GREEN.DARK,
-      labels: ["446,756원", "4월 지출", "-253,244원"],
-    },
-  ];
+  const { budgetData, monthData, sum, average, diff } = useChart();
+  console.log(budgetData);
   return (
     <Container>
       <Info>
-        <h5>4월 분석</h5>
-        <p>이번 달에는 지난 달보다 {getMoneyUnit(451549)}원 덜 쓰셨어요!</p>
+        <h5>{new Date().getMonth()}월 분석</h5>
+        <p>
+          {diff === null && `비교할 지난 달 기록이 없습니다.`}
+          {diff !== null &&
+            (diff > 0
+              ? `이번 달에는 지난 달 보다 ${getMoneyUnit(diff)}원 덜 쓰셨어요!`
+              : `이번 달에는 지난 달 보다 ${getMoneyUnit(
+                  Math.abs(diff),
+                )}원 더 많이 쓰셨어요!`)}
+        </p>
       </Info>
       <WithLastMonth>
         <Bars>
-          {monthData.map(bar => (
+          {monthData?.compare?.reverse().map((bar, idx) => (
             <ProgressBar
               targetValue={bar.value}
-              duration={bar.duration}
-              color={bar.color}
-              labels={bar.labels}
+              duration={500}
+              color={idx === 0 ? COLORS.BLUE : COLORS.GREY[300]}
+              labels={[
+                `${getMoneyUnit(bar.value)}원`,
+                `${bar.month}월 지출`,
+                idx === 0 ? average : "",
+              ]}
+              sum={sum}
               isReversed={false}
             />
           ))}
@@ -114,15 +96,35 @@ export default function MonthlyChart() {
       </WithLastMonth>
       <WithBudget>
         <Bars>
-          {bugetData.map(bar => (
-            <ProgressBar
-              targetValue={bar.value}
-              duration={bar.duration}
-              color={bar.color}
-              labels={bar.labels}
-              isReversed={false}
-            />
-          ))}
+          {budgetData && (
+            <>
+              <ProgressBar
+                targetValue={budgetData?.spend}
+                duration={500}
+                color={COLORS.GREEN.DARK}
+                labels={[
+                  `${getMoneyUnit(budgetData?.spend)}원`,
+                  `${new Date().getMonth() + 1}월 지출`,
+                  `${budgetData?.diff > 0 ? `+` : ``}${getMoneyUnit(
+                    budgetData?.diff,
+                  )}원`,
+                ]}
+                isReversed={false}
+                sum={budgetData.spend + budgetData.budget}
+              />
+              <ProgressBar
+                targetValue={budgetData?.budget}
+                duration={500}
+                color={COLORS.GREY[300]}
+                labels={[
+                  `${getMoneyUnit(budgetData?.budget)}원`,
+                  `${new Date().getMonth() + 1}월 예산`,
+                ]}
+                isReversed={false}
+                sum={budgetData.spend + budgetData.budget}
+              />
+            </>
+          )}
         </Bars>
       </WithBudget>
     </Container>
