@@ -41,11 +41,13 @@ export default function useChart() {
           return acc + Number(cur.value ? cur.value : 0);
         }, 0),
       );
-      setAverage(
-        `일 평균 ${getMoneyUnit(
-          Math.round(monthData.compare[0].value / getLastDate()),
-        )}원`,
-      );
+      if (monthData?.compare[0]?.value) {
+        setAverage(
+          `일 평균 ${getMoneyUnit(
+            Math.round(monthData.compare[0].value / getLastDate()),
+          )}원`,
+        );
+      }
       setDiff(
         monthData.compare[1]
           ? monthData.compare[1].value - monthData.compare[0].value
