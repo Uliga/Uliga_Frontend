@@ -76,7 +76,7 @@ export default function WeeklyChart() {
       {weeklyData?.weeklySums.map((ele, idx) => (
         <Wrapper>
           <Week>
-            {new Date().getMonth()}월 {weekMap.get(idx)}
+            {new Date().getMonth() + 1}월 {weekMap.get(idx)}
             <span> {getDateRangeUnit(ele.startDay, ele.endDay)}</span>
           </Week>
           <Record>{getMoneyUnit(ele.value)}원</Record>

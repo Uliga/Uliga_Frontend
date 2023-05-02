@@ -60,7 +60,7 @@ export default function useChart() {
     loadBudgetCompareAnalyze({
       id: bookId ? +bookId : 0,
       year: new Date().getFullYear(),
-      month: new Date().getMonth(),
+      month: new Date().getMonth() + 1,
     });
 
   const { data: budgetData } = useQuery<IBudgetCompare>(
@@ -72,7 +72,7 @@ export default function useChart() {
     loadWeeklyCompareAnalyze({
       id: bookId ? +bookId : 0,
       year: new Date().getFullYear(),
-      month: new Date().getMonth(),
+      month: new Date().getMonth() + 1,
       startDay: 1,
     });
 

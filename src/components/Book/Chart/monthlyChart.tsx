@@ -68,7 +68,7 @@ export default function MonthlyChart() {
   return (
     <Container>
       <Info>
-        <h5>{new Date().getMonth()}월 분석</h5>
+        <h5>{new Date().getMonth() + 1}월 분석</h5>
         <p>
           {diff === null && `비교할 지난 달 기록이 없습니다.`}
           {diff !== null &&
@@ -85,11 +85,11 @@ export default function MonthlyChart() {
             <ProgressBar
               targetValue={bar.value}
               duration={500}
-              color={idx === 0 ? COLORS.BLUE : COLORS.GREY[300]}
+              color={idx === 2 ? COLORS.BLUE : COLORS.GREY[300]}
               labels={[
                 `${getMoneyUnit(bar.value)}원`,
                 `${bar.month}월 지출`,
-                idx === 0 ? average : "",
+                idx === 2 ? average : "",
               ]}
               sum={sum}
               isReversed={false}
@@ -102,6 +102,17 @@ export default function MonthlyChart() {
           {budgetData && (
             <>
               <ProgressBar
+                targetValue={budgetData?.budget}
+                duration={500}
+                color={COLORS.GREY[300]}
+                labels={[
+                  `${getMoneyUnit(budgetData?.budget)}원`,
+                  `${new Date().getMonth() + 1}월 예산`,
+                ]}
+                isReversed={false}
+                sum={budgetData.spend + budgetData.budget}
+              />
+              <ProgressBar
                 targetValue={budgetData?.spend}
                 duration={500}
                 color={COLORS.GREEN.DARK}
@@ -111,17 +122,6 @@ export default function MonthlyChart() {
                   `${budgetData?.diff > 0 ? `+` : ``}${getMoneyUnit(
                     budgetData?.diff,
                   )}원`,
-                ]}
-                isReversed={false}
-                sum={budgetData.spend + budgetData.budget}
-              />
-              <ProgressBar
-                targetValue={budgetData?.budget}
-                duration={500}
-                color={COLORS.GREY[300]}
-                labels={[
-                  `${getMoneyUnit(budgetData?.budget)}원`,
-                  `${new Date().getMonth() + 1}월 예산`,
                 ]}
                 isReversed={false}
                 sum={budgetData.spend + budgetData.budget}
