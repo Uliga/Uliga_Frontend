@@ -10,7 +10,7 @@ export const ColorWrapper = styled.div`
   gap: 1rem;
   top: 2.4rem;
   left: 13rem;
-  z-index: 10;
+  z-index: 9;
 `;
 export const Income = styled.span`
   color: ${COLORS.RED.LIGHT};
