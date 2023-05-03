@@ -274,7 +274,6 @@ export default function HistoryPaging({
         itemsCountPerPage={ITEM_SIZE}
         totalItemsCount={data?.totalElements || 1}
         pageRangeDisplayed={5}
-
         prevPageText={<Icon iconName="arrowLeft" size="1.2rem" />}
         nextPageText={<Icon iconName="arrowRight" size="1.2rem" />}
         hideFirstLastPages

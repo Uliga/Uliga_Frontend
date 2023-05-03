@@ -148,9 +148,9 @@ export const loadRecord = async (historyData: any) => {
   return data;
 };
 export const loadMonthRecord = async (historyData: any) => {
-  const { id, page, size, year, month } = historyData;
+  const { id, page, size, year, month, category } = historyData;
   const { data } = await authorizationClient.get(
-    `${API.ACCOUNT_BOOK}/${id}${API.ANALYZE}/month/${year}/${month}?page=${page}&size=${size}`,
+    `${API.ACCOUNT_BOOK}/${id}${API.ANALYZE}/month/${year}/${month}?page=${page}&size=${size}&category=${category}`,
   );
   return data;
 };

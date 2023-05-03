@@ -109,7 +109,9 @@ export default function CategoryDetailHistory({ category }: { category: any }) {
       month: date.getMonth() + 1,
       page: curPage - 1,
       size: ITEM_SIZE,
+      category: category.name,
     });
+  console.log("category", category);
   const onChangePage = (page: number) => {
     setCurPage(page);
   };

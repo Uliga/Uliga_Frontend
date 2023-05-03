@@ -43,10 +43,6 @@ export default function MainLayout() {
     setShowSideBar(!showSideBar);
   };
 
-  const handleCloseSideBar = () => {
-    setShowSideBar(false);
-  };
-
   const handleOutletClick = () => {
     if (
       window.matchMedia("(min-width: 768px) and (max-width: 1024px)").matches
@@ -72,7 +68,7 @@ export default function MainLayout() {
       <Inner onClick={handleOutletClick}>
         {showSideBar && (
           <>
-            <SideBar onClose={handleCloseSideBar} />
+            <SideBar />
             <Container onClick={handleOutletClick}>
               <Outlet />
             </Container>
