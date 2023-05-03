@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
 import Header from "./Header";
 import SideBar from "./SideBar";
-import COLORS from "../../constants/color";
 import media from "../../styles/media";
 
 const Full = styled.div`
@@ -13,14 +12,19 @@ const Full = styled.div`
   align-items: center;
   font-size: 1.5rem;
   flex-direction: column;
+  background-color: white;
+
+  ${media.xlarge} {
+    background-color: white;
+  }
 `;
 
 const Inner = styled.div`
-  width: 140.8rem;
+  width: 91%;
+  max-width: 140.8rem;
   padding-top: 5.5rem;
   background-color: white;
   height: 100vh;
-  border-right: 0.1rem solid ${COLORS.GREY[200]};
   ${media.medium} {
     width: 123.8rem;
   }
@@ -28,23 +32,22 @@ const Inner = styled.div`
 
 const Container = styled.div`
   width: 123.8rem;
-  left: 17rem;
+  overflow-x: scroll;
+  height: 100%;
   display: flex;
   justify-content: center;
   position: relative;
+  flex-wrap: wrap;
+  left: 17rem;
   ${media.medium} {
     left: 0;
   }
 `;
 export default function MainLayout() {
-  const [showSideBar, setShowSideBar] = useState(false);
+  const [showSideBar, setShowSideBar] = useState(true);
 
   const toggleSideBar = () => {
     setShowSideBar(!showSideBar);
-  };
-
-  const handleCloseSideBar = () => {
-    setShowSideBar(false);
   };
 
   const handleOutletClick = () => {
@@ -72,7 +75,7 @@ export default function MainLayout() {
       <Inner onClick={handleOutletClick}>
         {showSideBar && (
           <>
-            <SideBar onClose={handleCloseSideBar} />
+            <SideBar />
             <Container onClick={handleOutletClick}>
               <Outlet />
             </Container>
