@@ -111,7 +111,6 @@ export default function CategoryDetailHistory({ category }: { category: any }) {
       size: ITEM_SIZE,
       category: category.name,
     });
-  console.log("category", category);
   const onChangePage = (page: number) => {
     setCurPage(page);
   };
