@@ -23,14 +23,7 @@ import { AVATAR_COLORS } from "../../../constants/color";
 import toastMsg from "../../Toast";
 import PATH from "../../../constants/path";
 
-interface SideBarProps {
-  onClose: () => void;
-}
-export default function SideBar(props: SideBarProps) {
-  const { onClose } = props;
-  const handleClickMenu = () => {
-    onClose();
-  };
+export default function SideBar() {
   const { bookId } = useParams();
   const { useSelectedBook } = useBook();
   const { data } = useSelectedBook(Number(bookId));
@@ -58,7 +51,7 @@ export default function SideBar(props: SideBarProps) {
   if (!data) return null;
 
   return (
-    <Container onClick={handleClickMenu}>
+    <Container>
       <Top>
         <Person color={AVATAR_COLORS[userAvatar || ""]?.color} />
         <div>
