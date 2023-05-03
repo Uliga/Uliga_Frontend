@@ -29,6 +29,12 @@ interface CategoryType {
   id: number;
   value: number;
 }
+interface ColorCategoryType {
+  name: string;
+  id: number;
+  value: number;
+  color: string;
+}
 type CategoryStateType = {
   id: number | null;
   name: string | null;
@@ -78,6 +84,20 @@ export default function CategoryChart() {
       },
     ],
   };
+  const colors = [
+    COLORS.BLUE,
+    COLORS.YELLOW,
+    COLORS.GREEN.DARK,
+    COLORS.PURPLE,
+    COLORS.PINK,
+    COLORS.GREY[200],
+  ];
+  const coloredCategories = categoryData.categories.map(
+    (ele: CategoryType, index: number) => ({
+      ...ele,
+      color: colors[index],
+    }),
+  );
   if (!categoryData) {
     return null;
   }
@@ -95,9 +115,11 @@ export default function CategoryChart() {
             <Doughnut data={chartData} options={options} />
           </S.ChartWrapper>
           <S.CategoryList>
-            {categoryData.categories.map((ele: CategoryType) => (
+            {coloredCategories.map((ele: ColorCategoryType) => (
               <S.ListWrapper key={ele.name}>
-                <p>{ele.name}</p>
+                <S.Label color={ele.color}>
+                  <p>{ele.name}</p>
+                </S.Label>
                 <IconButton
                   title={`${getMoneyUnit(ele.value)}원`}
                   iconName="arrowRight"
