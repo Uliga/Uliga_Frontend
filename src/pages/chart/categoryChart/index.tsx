@@ -66,12 +66,14 @@ export default function CategoryChart() {
       {
         data: userCategories,
         backgroundColor: [
-          COLORS.YELLOW,
           COLORS.BLUE,
+          COLORS.YELLOW,
           COLORS.GREEN.DARK,
           COLORS.PURPLE,
+          COLORS.PINK,
           COLORS.GREY[200],
         ],
+
         borderWidth: 0,
       },
     ],
