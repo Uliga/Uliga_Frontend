@@ -37,10 +37,15 @@ const Week = styled.div`
     font-weight: 300;
   }
   margin-right: 2rem;
+  position: relative;
+  width: 27rem;
 `;
 const Record = styled.div`
   text-align: right;
   width: 8rem;
+  position: absolute;
+  right: 0;
+  top: 0;
 `;
 
 const ChartWrapper = styled.div`
@@ -61,40 +66,55 @@ const Result = styled.div`
   display: flex;
   gap: 1rem;
 `;
+
+const Nothing = styled.div`
+  width: 100%;
+  height: 20rem;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  color: ${COLORS.GREY[400]};
+`;
 export default function WeeklyChart() {
   const { weeklyData } = useChart();
   const weekMap = new Map([
-    [0, "첫째주"],
-    [1, "둘째주"],
-    [2, "셋째주"],
-    [3, "넷째주"],
+    [0, "1주"],
+    [1, "2주"],
+    [2, "3주"],
+    [3, "4주"],
+    [4, "5주"],
   ]);
 
   return (
     <Container>
       <h5>주간별 분석</h5>
-      {weeklyData?.weeklySums.map((ele, idx) => (
-        <Wrapper>
-          <Week>
-            {new Date().getMonth() + 1}월 {weekMap.get(idx)}
-            <span> {getDateRangeUnit(ele.startDay, ele.endDay)}</span>
-          </Week>
-          <Record>{getMoneyUnit(ele.value)}원</Record>
-          <ChartWrapper>
-            <ProgressBar
-              targetValue={ele.value}
-              duration={500}
-              color={COLORS.YELLOW}
-              isReversed
-              sum={weeklyData?.sum}
-            />
-          </ChartWrapper>
-        </Wrapper>
-      ))}
-      {weeklyData?.sum && (
-        <Result>
-          주간 평균 {getMoneyUnit(Math.round(weeklyData.sum / 4))}원
-        </Result>
+
+      {weeklyData?.sum !== 0 ? (
+        weeklyData?.weeklySums.map((ele, idx) => (
+          <>
+            <Wrapper>
+              <Week>
+                {new Date().getMonth() + 1}월 {weekMap.get(idx)}
+                <span> {getDateRangeUnit(ele.startDay, ele.endDay)}</span>
+                <Record>{getMoneyUnit(ele.value)}원</Record>
+              </Week>
+              <ChartWrapper>
+                <ProgressBar
+                  targetValue={ele.value}
+                  duration={500}
+                  color={COLORS.YELLOW}
+                  isReversed
+                  sum={weeklyData?.sum}
+                />
+              </ChartWrapper>
+            </Wrapper>
+            <Result>
+              주간 평균 {getMoneyUnit(Math.round(weeklyData.sum / 4))}원
+            </Result>
+          </>
+        ))
+      ) : (
+        <Nothing>이번 달 지출이 존재하지 않습니다.</Nothing>
       )}
     </Container>
   );
