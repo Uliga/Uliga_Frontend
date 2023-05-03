@@ -93,9 +93,9 @@ export default function CategoryChart() {
     COLORS.GREY[200],
   ];
   const coloredCategories = categoryData.categories.map(
-    (ele: CategoryType, index: number) => ({
+    (ele: CategoryType, idx: number) => ({
       ...ele,
-      color: colors[index],
+      color: colors[idx],
     }),
   );
   if (!categoryData) {
