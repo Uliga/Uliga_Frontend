@@ -66,7 +66,6 @@ export default function MainLayout() {
     };
   }, []);
 
-  console.log("showSideBar", showSideBar);
   return (
     <Full>
       <Header onToggleSideBar={toggleSideBar} />
