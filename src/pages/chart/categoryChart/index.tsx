@@ -56,7 +56,7 @@ export default function CategoryChart() {
   if (!categoryData) {
     return null;
   }
-  const maxCategoriesToShow = 5;
+  const maxCategoriesToShow = 6;
   const userCategories = categoryData.categories
     .slice(0, maxCategoriesToShow)
     .map((ele: any) => ele.value);
@@ -78,7 +78,10 @@ export default function CategoryChart() {
       },
     ],
   };
-  console.log("index", categoryData);
+  if (!categoryData) {
+    return null;
+  }
+  console.log("index", categoryData.categories);
   return (
     <S.Container>
       <BookNav path={PATH.CATEGORY_CHART} />
@@ -93,7 +96,7 @@ export default function CategoryChart() {
           </S.ChartWrapper>
           <S.CategoryList>
             {categoryData.categories.map((ele: CategoryType) => (
-              <S.ListWrapper key={ele.id}>
+              <S.ListWrapper key={ele.name}>
                 <p>{ele.name}</p>
                 <IconButton
                   title={`${getMoneyUnit(ele.value)}원`}

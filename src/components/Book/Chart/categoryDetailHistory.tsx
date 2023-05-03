@@ -116,11 +116,11 @@ export default function CategoryDetailHistory({ category }: { category: any }) {
   };
   useEffect(() => {
     recordHistoryRefetch();
-  }, [curPage, category.id]);
+  }, [curPage, category.name]);
   if (!recordData) {
     return null;
   }
-  console.log("categoryData", category);
+  console.log("categoryData이름", category.name);
   return (
     <Container>
       <Top>
