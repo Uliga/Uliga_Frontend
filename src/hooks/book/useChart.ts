@@ -12,7 +12,6 @@ import {
   IMonthCompare,
   IWeeklyCompare,
 } from "../../interfaces/book";
-import { getLastDate } from "../../utils/date";
 import getMoneyUnit from "../../utils/money";
 
 export default function useChart() {
@@ -41,10 +40,10 @@ export default function useChart() {
           return acc + Number(cur.value ? cur.value : 0);
         }, 0),
       );
-      if (monthData?.compare[0]?.value) {
+      if (monthData?.compare[2]?.value) {
         setAverage(
           `일 평균 ${getMoneyUnit(
-            Math.round(monthData.compare[0].value / getLastDate()),
+            Math.round(monthData.compare[2].value / new Date().getDate()),
           )}원`,
         );
       }

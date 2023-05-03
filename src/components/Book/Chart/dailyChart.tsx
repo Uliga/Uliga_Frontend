@@ -149,7 +149,7 @@ export default function DailyChart() {
         <h4>🔎 {date.getMonth() + 1}월 총 지출</h4>
         <h5>{getMoneyUnit(dailyData.sum)}원</h5>
         {dailyData.diff === null ? (
-          <p>등록된 지난 달 지출이 없어요!</p>
+          <p>등록된 이번 달 지출이 없어요!</p>
         ) : (
           <p>
             지난 달보다{" "}
