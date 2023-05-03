@@ -26,7 +26,7 @@ export const Wrapper = styled.div`
 `;
 export const StyledIconButton = styled(IconButton)`
   cursor: pointer;
-  margin-left: 4rem;
+  margin-left: 2rem;
   visibility: hidden;
   background-color: transparent;
   &:hover {
