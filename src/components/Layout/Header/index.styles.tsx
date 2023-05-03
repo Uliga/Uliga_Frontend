@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import COLORS from "../../../constants/color";
-import Icon from "../../Icon";
 import Button from "../../Button";
 import media from "../../../styles/media";
+import IconButton from "../../IconButton";
 
 export const Container = styled.div`
   width: 100%;
@@ -24,12 +24,17 @@ export const Wrapper = styled.div`
   padding-left: 2rem;
   align-items: center;
 `;
-export const StyledIcon = styled(Icon)`
+export const StyledIconButton = styled(IconButton)`
   cursor: pointer;
   margin-left: 4rem;
   visibility: hidden;
+  background-color: transparent;
+  &:hover {
+    background-color: transparent;
+  }
   ${media.medium} {
     visibility: visible;
+  }
 `;
 
 export const Title = styled.div`
