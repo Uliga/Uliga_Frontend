@@ -11,7 +11,8 @@ const Container = styled.div`
   border-left: 0.1rem solid ${COLORS.GREY[200]};
   border-right: 0.1rem solid ${COLORS.GREY[200]};
   position: fixed;
-  z-index: 10;
+  z-index: 100;
+  transition: transform 0.2s ease-in-out;
 `;
 
 const Top = styled.div`

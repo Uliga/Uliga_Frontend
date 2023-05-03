@@ -11,6 +11,7 @@ import {
   loadHistoryCategory,
   loadIncomeCategory,
   deleteHistory,
+  loadMonthRecord,
 } from "../../api/book";
 import QUERYKEYS from "../../constants/querykey";
 import {
@@ -103,6 +104,13 @@ export default function useHistory() {
       [QUERYKEYS.LOAD_RECORD_CATEGORY],
       queryFn,
     );
+
+    return { data, refetch };
+  };
+
+  const useLoadMonthRecord = (historyData: object) => {
+    const queryFn = () => loadMonthRecord(historyData);
+    const { data, refetch } = useQuery([QUERYKEYS.LOAD_MONTH_RECORD], queryFn);
 
     return { data, refetch };
   };
@@ -217,5 +225,6 @@ export default function useHistory() {
     setAllChecked,
     isEditFormOpen,
     setIsEditFormOpen,
+    useLoadMonthRecord,
   };
 }

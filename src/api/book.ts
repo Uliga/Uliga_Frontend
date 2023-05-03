@@ -147,6 +147,13 @@ export const loadRecord = async (historyData: any) => {
   );
   return data;
 };
+export const loadMonthRecord = async (historyData: any) => {
+  const { id, page, size, year, month } = historyData;
+  const { data } = await authorizationClient.get(
+    `${API.ACCOUNT_BOOK}/${id}${API.ANALYZE}/month/${year}/${month}?page=${page}&size=${size}`,
+  );
+  return data;
+};
 
 export const loadRecordCategory = async (historyData: any) => {
   const { id, categoryId, page, size } = historyData;
@@ -245,7 +252,6 @@ export const loadWeeklyCompareAnalyze = async (weeklyData: {
   startDay: number;
 }) => {
   const { id, year, month, startDay } = weeklyData;
-
   const { data } = await authorizationClient.get(
     `${API.ACCOUNT_BOOK}/${id}${API.COMPARE_WEEKLY_ANALYZE}/${year}/${month}/${startDay}`,
   );

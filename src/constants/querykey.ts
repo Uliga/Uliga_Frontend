@@ -13,6 +13,7 @@ const QUERYKEYS = {
   LOAD_INCOME: "loadIncome",
   LOAD_INCOME_CATEGORY: "loadIncomeCategory",
   LOAD_RECORD: "loadRecord",
+  LOAD_MONTH_RECORD: "loadMonthRecord",
   LOAD_RECORD_CATEGORY: "loadRecordCategory",
   LOAD_MONTH_COMPARE_ANALYZE: "loadMonthCompareAnalyze",
   LOAD_BUDGET_COMPARE_ANALYZE: "loadBudgetCompareAnalyze",

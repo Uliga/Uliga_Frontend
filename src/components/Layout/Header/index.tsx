@@ -15,7 +15,11 @@ import PATH from "../../../constants/path";
 import ScheduleModal from "../ScheduleModal";
 import useDetectOutside from "../../../hooks/book/useDetectOutside";
 
-export default function Header() {
+type HeaderProps = {
+  onToggleSideBar: () => void;
+};
+
+export default function Header({ onToggleSideBar }: HeaderProps) {
   const { bookId } = useParams();
   const navigate = useNavigate();
   const [invitationModalOpen, setInvitationModalOpen] =
@@ -66,11 +70,12 @@ export default function Header() {
 
   return (
     <S.Container>
-      <S.StyledIcon
+      <S.StyledIconButton
         iconName="list"
-        size="2rem"
+        iconSize="2rem"
         border={1}
         color={COLORS.GREY[500]}
+        onClick={onToggleSideBar}
       />
       <S.Wrapper>
         <S.HomeButton

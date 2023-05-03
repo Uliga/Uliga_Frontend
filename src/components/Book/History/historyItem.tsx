@@ -77,7 +77,7 @@ export default function HistoryItem({
   setIsEditFormOpen,
 }: {
   history: IHistory;
-  isIncome: boolean | undefined;
+  isIncome?: boolean | undefined;
   refetch: () => void;
   setCheckedList?: any;
   setIsEditFormOpen?: any;
