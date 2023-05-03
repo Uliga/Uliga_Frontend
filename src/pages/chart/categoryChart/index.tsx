@@ -101,7 +101,6 @@ export default function CategoryChart() {
   if (!categoryData) {
     return null;
   }
-  console.log("index", categoryData.categories);
   return (
     <S.Container>
       <BookNav path={PATH.CATEGORY_CHART} />

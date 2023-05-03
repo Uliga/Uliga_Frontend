@@ -120,7 +120,6 @@ export default function CategoryDetailHistory({ category }: { category: any }) {
   if (!recordData) {
     return null;
   }
-  console.log("categoryData이름", category.name);
   return (
     <Container>
       <Top>
