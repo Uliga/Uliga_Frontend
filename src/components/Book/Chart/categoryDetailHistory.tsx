@@ -117,6 +117,10 @@ export default function CategoryDetailHistory({ category }: { category: any }) {
   useEffect(() => {
     recordHistoryRefetch();
   }, [curPage, category.id]);
+  if (!recordData) {
+    return null;
+  }
+  console.log("categoryData", category);
   return (
     <Container>
       <Top>

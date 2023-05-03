@@ -111,7 +111,6 @@ export default function useHistory() {
   const useLoadMonthRecord = (historyData: object) => {
     const queryFn = () => loadMonthRecord(historyData);
     const { data, refetch } = useQuery([QUERYKEYS.LOAD_MONTH_RECORD], queryFn);
-
     return { data, refetch };
   };
 

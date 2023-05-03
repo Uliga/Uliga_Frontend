@@ -60,15 +60,8 @@ export default function CategoryChart() {
   const userCategories = categoryData.categories
     .slice(0, maxCategoriesToShow)
     .map((ele: any) => ele.value);
-
   const chartData = {
-    labels: [
-      "☕ 카페 · 간식",
-      "🍽️ 식비",
-      "🍙 편의점,마트,잡화",
-      "👕 쇼핑",
-      "기타",
-    ],
+    labels: categoryData.categories.map((ele: CategoryType) => ele.name),
     datasets: [
       {
         data: userCategories,
@@ -83,6 +76,7 @@ export default function CategoryChart() {
       },
     ],
   };
+  console.log("index", categoryData);
   return (
     <S.Container>
       <BookNav path={PATH.CATEGORY_CHART} />
