@@ -114,7 +114,7 @@ export default function WeeklyChart() {
           </>
         ))
       ) : (
-        <Nothing>이번 달 지출이 존재하지 않습니다.</Nothing>
+        <Nothing>데이터가 없습니다.</Nothing>
       )}
     </Container>
   );

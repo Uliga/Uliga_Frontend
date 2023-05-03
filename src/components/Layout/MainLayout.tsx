@@ -4,6 +4,7 @@ import { Outlet } from "react-router-dom";
 import Header from "./Header";
 import SideBar from "./SideBar";
 import media from "../../styles/media";
+import COLORS from "../../constants/color";
 
 const Full = styled.div`
   width: 100%;
@@ -20,24 +21,39 @@ const Full = styled.div`
 `;
 
 const Inner = styled.div`
-  width: 91%;
+  width: 92%;
   max-width: 140.8rem;
   padding-top: 5.5rem;
   background-color: white;
   height: 100vh;
+  position: relative;
+  overflow-x: auto;
+
+  ::-webkit-scrollbar {
+    width: 0px;
+    height: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    height: 30%; /* 스크롤바의 길이 */
+    background: ${COLORS.MEDIUM_BLUE}; /* 스크롤바의 색상 */
+    border-radius: 2px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: ${COLORS.GREY[100]}; /*스크롤바 뒷 배경 색상*/
+  }
   ${media.medium} {
-    width: 123.8rem;
+    max-width: 123.8rem;
   }
 `;
 
 const Container = styled.div`
   width: 123.8rem;
-  overflow-x: scroll;
-  height: 100%;
   display: flex;
   justify-content: center;
-  position: relative;
-  flex-wrap: wrap;
+  position: absolute; /* 수정 */
+  flex-wrap: nowrap;
   left: 17rem;
   ${media.medium} {
     left: 0;

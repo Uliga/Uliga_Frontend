@@ -119,9 +119,11 @@ export default function MonthlyChart() {
                 labels={[
                   `${getMoneyUnit(budgetData?.spend)}원`,
                   `${new Date().getMonth() + 1}월 지출`,
-                  `${budgetData?.diff > 0 ? `+` : ``}${getMoneyUnit(
-                    budgetData?.diff,
-                  )}원`,
+                  budgetData.diff !== 0
+                    ? `${budgetData?.diff > 0 ? `+` : ``}${getMoneyUnit(
+                        budgetData?.diff,
+                      )}원`
+                    : "",
                 ]}
                 isReversed={false}
                 sum={budgetData.spend + budgetData.budget}
