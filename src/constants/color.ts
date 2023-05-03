@@ -28,6 +28,7 @@ const COLORS = {
   LIGHT_YELLOW: "#FFD37A",
   DARK_YELLOW: "#F4BC4A",
   PURPLE: "#9B80E9",
+  PINK: "#ED9F8D",
 };
 
 export default COLORS;
@@ -42,7 +43,7 @@ export const AVATAR_COLORS: IStringIndex = {
   },
   PURPLE: {
     value: "PURPLE",
-    color: "#735DAE",
+    color: COLORS.PURPLE,
   },
   GREEN: {
     value: "GREEN",
@@ -50,7 +51,7 @@ export const AVATAR_COLORS: IStringIndex = {
   },
   PINK: {
     value: "PINK",
-    color: "#ED9F8D",
+    color: COLORS.PINK,
   },
   ORANGE: {
     value: "ORANGE",

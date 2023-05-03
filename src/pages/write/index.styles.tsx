@@ -21,6 +21,7 @@ const Wrapper = styled.div`
   gap: 1.5rem;
   padding: 4rem;
   flex-direction: column;
+  flex-wrap: wrap;
   h3 {
     font-weight: 700;
     font-size: 2rem;

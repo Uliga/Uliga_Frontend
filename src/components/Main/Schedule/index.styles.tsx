@@ -12,7 +12,7 @@ export const Container = styled.div`
   padding: 2rem;
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   align-items: center;
   h5 {
     width: 100%;
@@ -75,12 +75,11 @@ export const dot = styled.span<{ color: string }>`
 `;
 
 export const EditButton = styled(Button)`
-  padding: 1.2rem;
+  padding: 1.2rem 5rem;
   font-size: 1.3rem;
   position: absolute;
   bottom: 0;
   margin: 2rem;
-  width: 21rem;
 `;
 
 export const Nothing = styled.div`
