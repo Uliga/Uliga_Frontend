@@ -15,7 +15,6 @@ const TopWrapper = styled.div`
 
 const Wrapper = styled.div`
   width: 100%;
-  max-width: 140rem;
   display: flex;
   position: relative;
   color: ${COLORS.GREY[600]};
@@ -30,6 +29,7 @@ const Wrapper = styled.div`
   }
   ${media.medium} {
     padding: 4rem 0;
+    width: 120rem;
   }
 `;
 

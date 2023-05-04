@@ -8,6 +8,7 @@ import useBook from "../../../hooks/book/useBook";
 import useHistory from "../../../hooks/book/useHistory";
 import COLORS from "../../../constants/color";
 import IconButton from "../../IconButton";
+import media from "../../../styles/media";
 
 const Top = styled.div`
   display: flex;
@@ -51,6 +52,9 @@ const WriteButton = styled.button`
   padding: 0.7rem 1.5rem;
   color: ${COLORS.BLUE};
   cursor: pointer;
+  ${media.medium} {
+    font-size: 1.45rem;
+  }
 `;
 const Menus = styled.div`
   padding-top: 1rem;

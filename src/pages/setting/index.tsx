@@ -13,7 +13,6 @@ const Container = styled.div`
   justify-content: space-between;
   background-color: white;
   color: ${COLORS.GREY[600]};
-  border-right: 0.1rem solid ${COLORS.GREY[200]};
   ${media.medium} {
     padding: 4rem 0;
   }
