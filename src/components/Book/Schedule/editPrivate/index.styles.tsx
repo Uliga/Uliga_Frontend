@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import COLORS from "../../../../constants/color";
 import Button from "../../../Button";
+import media from "../../../../styles/media";
 
 export const Container = styled.div`
   display: flex;
@@ -10,6 +11,9 @@ export const Container = styled.div`
 
   p {
     color: ${COLORS.GREY[400]};
+  }
+  ${media.medium} {
+    width: 93rem;
   }
 `;
 export const Form = styled.div`
@@ -56,6 +60,9 @@ export const ListWrapper = styled.div`
     top: 0.5rem;
     position: absolute;
   }
+  ${media.medium} {
+    width: 58rem;
+  }
 `;
 export const Box = styled.button<{ selected: boolean }>`
   ${({ selected }) => `
@@ -84,6 +91,9 @@ export const Box = styled.button<{ selected: boolean }>`
     font-size: 1.2rem;
     color: ${COLORS.GREY[400]};
     font-weight: 200;
+  }
+  ${media.medium} {
+    width: 28.5rem;
   }
 `;
 

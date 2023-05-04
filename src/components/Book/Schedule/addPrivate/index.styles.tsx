@@ -3,6 +3,7 @@ import COLORS from "../../../../constants/color";
 import IconButton from "../../../IconButton";
 import Icon from "../../../Icon";
 import Button from "../../../Button";
+import media from "../../../../styles/media";
 
 export const Container = styled.div`
   display: flex;
@@ -12,12 +13,18 @@ export const Container = styled.div`
     color: ${COLORS.GREY[400]};
   }
   position: relative;
+  ${media.medium} {
+    width: 93rem;
+  }
 `;
 export const Form = styled.div`
   width: 30rem;
   height: 40rem;
   border-right: 0.1rem solid ${COLORS.GREY[200]};
   padding-top: 2rem;
+  ${media.medium} {
+    height: 42rem;
+  }
 `;
 
 export const Background = styled.div`
@@ -35,6 +42,9 @@ export const Background = styled.div`
   font-size: 1.3rem;
   input {
     padding: 1rem;
+  }
+  ${media.medium} {
+    height: 39rem;
   }
 `;
 
@@ -132,6 +142,9 @@ export const BankingAddListWrapper = styled.div`
     position: absolute;
     bottom: 0;
   }
+  ${media.medium} {
+    width: 58rem;
+  }
 `;
 export const Box = styled.div`
   display: flex;
@@ -162,10 +175,12 @@ export const Box = styled.div`
     color: ${COLORS.BLUE};
   }
   position: relative;
+  ${media.medium} {
+    width: 28.5rem;
+  }
 `;
 
 export const StyledIcon = styled(Icon)`
-  background-color: black;
   padding: 0.8rem;
   background-color: ${COLORS.LIGHT_BLUE};
   border-radius: 100%;
