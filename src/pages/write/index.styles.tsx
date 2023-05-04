@@ -3,6 +3,7 @@ import Button from "../../components/Button";
 import COLORS from "../../constants/color";
 import Input from "../../components/Input";
 import IconButton from "../../components/IconButton";
+import media from "../../styles/media";
 
 const TopWrapper = styled.div`
   display: flex;
@@ -26,6 +27,9 @@ const Wrapper = styled.div`
     font-weight: 700;
     font-size: 2rem;
     padding: 2rem 0 1rem 0;
+  }
+  ${media.medium} {
+    padding: 4rem 0;
   }
 `;
 

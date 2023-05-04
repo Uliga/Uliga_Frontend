@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import COLORS from "../../constants/color";
+import media from "../../styles/media";
 
 export const Container = styled.div`
   width: 100%;
@@ -10,6 +11,9 @@ export const Container = styled.div`
   height: 64rem;
   padding: 4rem;
   flex-direction: column;
+  ${media.medium} {
+    padding: 4rem 0;
+  }
 `;
 
 export const Paging = styled.div`
