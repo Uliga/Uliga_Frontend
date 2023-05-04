@@ -20,7 +20,11 @@ import toastMsg from "../../Toast";
 import PATH from "../../../constants/path";
 import { authLogout } from "../../../api/auth";
 
-export default function SideBar() {
+type HeaderProps = {
+  onClickSideBar: () => void;
+};
+
+export default function SideBar({ onClickSideBar }: HeaderProps) {
   const { bookId } = useParams();
   const { useSelectedBook } = useBook();
   const { data } = useSelectedBook(Number(bookId));
@@ -68,6 +72,7 @@ export default function SideBar() {
                 }
                 onClick={() => {
                   navigate(`${ele.path}/${bookId}`);
+                  onClickSideBar();
                 }}
               />
               {ele.subMenu?.map(sub => {
@@ -82,6 +87,7 @@ export default function SideBar() {
                     isActive={sub.path === `/${currentPath}`}
                     onClick={() => {
                       navigate(`${sub.path}/${bookId}`);
+                      onClickSideBar();
                     }}
                   />
                 );
@@ -103,6 +109,7 @@ export default function SideBar() {
               }
               onClick={() => {
                 navigate(`${ele.path}/${bookId}`);
+                onClickSideBar();
                 if (ele.title === "로그아웃") {
                   onLogout();
                 }

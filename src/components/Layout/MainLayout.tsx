@@ -87,9 +87,12 @@ export default function MainLayout() {
 
   return (
     <Full>
-      <Header onToggleSideBar={toggleSideBar} />
-      <Inner onClick={handleOutletClick}>
-        {showSideBar && <SideBar />}
+      <Header
+        onToggleSideBar={toggleSideBar}
+        onClickSideBar={handleOutletClick}
+      />
+      <Inner>
+        {showSideBar && <SideBar onClickSideBar={handleOutletClick} />}
         <Container onClick={handleOutletClick}>
           <Outlet />
         </Container>
