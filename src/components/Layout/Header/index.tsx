@@ -17,9 +17,13 @@ import useDetectOutside from "../../../hooks/book/useDetectOutside";
 
 type HeaderProps = {
   onToggleSideBar: () => void;
+  onClickSideBar: () => void;
 };
 
-export default function Header({ onToggleSideBar }: HeaderProps) {
+export default function Header({
+  onToggleSideBar,
+  onClickSideBar,
+}: HeaderProps) {
   const { bookId } = useParams();
   const navigate = useNavigate();
   const [invitationModalOpen, setInvitationModalOpen] =
@@ -81,6 +85,7 @@ export default function Header({ onToggleSideBar }: HeaderProps) {
         <S.HomeButton
           onClick={() => {
             navigate(`${PATH.MAIN}/${bookId}`);
+            onClickSideBar();
           }}
         >
           <Logo />
@@ -96,7 +101,10 @@ export default function Header({ onToggleSideBar }: HeaderProps) {
               iconSize={util.iconSize}
               color={util.color}
               border={util.border}
-              onClick={util.onClick}
+              onClick={() => {
+                util.onClick();
+                onClickSideBar();
+              }}
             />
             {util.id === 1 && scheduleModalOpen && (
               <div ref={scheduleButtonRef}>
