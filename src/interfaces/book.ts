@@ -22,6 +22,7 @@ export interface BookInfoTypes {
     getNotification: boolean;
     isPrivate: boolean;
     relationShip: string;
+    avatarUrl: string;
   };
   categories: ICategory[];
   members: {

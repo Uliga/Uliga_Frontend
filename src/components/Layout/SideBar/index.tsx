@@ -1,5 +1,4 @@
 import React from "react";
-import { useQuery } from "@tanstack/react-query";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import useBook from "../../../hooks/book/useBook";
 import {
@@ -16,9 +15,7 @@ import {
 } from "./index.styles";
 import { menu, bottomMenu } from "./menu";
 import Person from "../../../assets/person";
-import { IUserInfo } from "../../../interfaces/user";
-import QUERYKEYS from "../../../constants/querykey";
-import { loadMe, logout } from "../../../api/user";
+import { logout } from "../../../api/user";
 import { AVATAR_COLORS } from "../../../constants/color";
 import toastMsg from "../../Toast";
 import PATH from "../../../constants/path";
@@ -41,19 +38,13 @@ export default function SideBar() {
       console.log(err);
     }
   };
-  const { data: me } = useQuery<IUserInfo | undefined>(
-    [QUERYKEYS.LOAD_ME],
-    loadMe,
-  );
-  const userAvatar = data?.members?.find(
-    ele => ele.id === me?.memberInfo?.id,
-  )?.avatarUrl;
+
   if (!data) return null;
 
   return (
     <Container>
       <Top>
-        <Person color={AVATAR_COLORS[userAvatar || ""]?.color} />
+        <Person color={AVATAR_COLORS[data.info.avatarUrl || ""]?.color} />
         <div>
           <BookName>{data.info.accountBookName}</BookName>
           <BookInfo>
