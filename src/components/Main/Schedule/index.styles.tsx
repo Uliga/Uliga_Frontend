@@ -2,10 +2,11 @@ import styled from "styled-components";
 import COLORS from "../../../constants/color";
 import Badge from "../../Badge";
 import Button from "../../Button";
+import media from "../../../styles/media";
 
 export const Container = styled.div`
   top: 0;
-  width: 24.5rem;
+  width: 32.3rem;
   height: 39rem;
   border: 0.1rem solid ${COLORS.GREY[200]};
   border-radius: 0.5rem;
@@ -75,11 +76,15 @@ export const dot = styled.span<{ color: string }>`
 `;
 
 export const EditButton = styled(Button)`
-  padding: 1.2rem 5rem;
+  padding: 1.2rem 6rem;
   font-size: 1.3rem;
   position: absolute;
   bottom: 0;
   margin: 2rem;
+  ${media.medium} {
+    padding: 1.2rem 8rem;
+    font-size: 1.5rem;
+  }
 `;
 
 export const Nothing = styled.div`

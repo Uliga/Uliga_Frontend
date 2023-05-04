@@ -19,6 +19,9 @@ export const WriteButton = styled(Button)`
   position: absolute;
   right: 4rem;
   padding: 1.2rem 2.5rem;
+  ${media.medium} {
+    right: 0;
+  }
 `;
 
 export const Bottom = styled.div`
