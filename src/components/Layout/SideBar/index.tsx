@@ -15,10 +15,10 @@ import {
 } from "./index.styles";
 import { menu, bottomMenu } from "./menu";
 import Person from "../../../assets/person";
-import { logout } from "../../../api/user";
 import { AVATAR_COLORS } from "../../../constants/color";
 import toastMsg from "../../Toast";
 import PATH from "../../../constants/path";
+import { authLogout } from "../../../api/auth";
 
 export default function SideBar() {
   const { bookId } = useParams();
@@ -28,9 +28,9 @@ export default function SideBar() {
   const location = useLocation();
   const currentPath = location.pathname.split("/")[1];
 
-  const authLogout = async () => {
+  const onLogout = async () => {
     try {
-      await logout();
+      await authLogout();
       localStorage.clear();
       toastMsg("로그아웃 되었습니다.");
       navigate("/");
@@ -104,7 +104,7 @@ export default function SideBar() {
               onClick={() => {
                 navigate(`${ele.path}/${bookId}`);
                 if (ele.title === "로그아웃") {
-                  authLogout();
+                  onLogout();
                 }
               }}
             />

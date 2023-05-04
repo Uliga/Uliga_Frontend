@@ -1,4 +1,4 @@
-import { unAuthorizationClient } from ".";
+import { authorizationClient, unAuthorizationClient } from ".";
 import API from "./config";
 
 export const authLogin = async (userLoginData: object) => {
@@ -28,5 +28,10 @@ export const checkEmail = async (email: string) => {
   const { data } = await unAuthorizationClient.get(
     `${API.CHECK_EMAIL}${email}`,
   );
+  return data;
+};
+
+export const authLogout = async () => {
+  const { data } = await authorizationClient.get(API.LOGOUT);
   return data;
 };
