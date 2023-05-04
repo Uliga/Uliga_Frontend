@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import Pagination from "react-js-pagination";
 import getMoneyUnit from "../../../utils/money";
@@ -10,6 +10,8 @@ import HistoryItem from "../History/historyItem";
 import Icon from "../../Icon";
 import * as S from "../../Main/HistoryModal/index.styles";
 import menuList from "./menu";
+import media from "../../../styles/media";
+import PATH from "../../../constants/path";
 
 const Container = styled.div`
   width: 76rem;
@@ -39,6 +41,10 @@ export const WriteButton = styled.button`
   padding: 0.7rem 1.5rem;
   color: ${COLORS.BLUE};
   cursor: pointer;
+  ${media.medium} {
+    font-size: 1.5rem;
+    padding: 0.7rem 1.5rem;
+  }
 `;
 
 const PagingWrapper = styled.div`
@@ -102,6 +108,7 @@ export default function CategoryDetailHistory({ category }: { category: any }) {
   const { bookId } = useParams();
   const [curPage, setCurPage] = useState(1);
   const ITEM_SIZE = 8;
+  const navigate = useNavigate();
   const { data: recordData, refetch: recordHistoryRefetch } =
     useLoadMonthRecord({
       id: bookId,
@@ -120,16 +127,23 @@ export default function CategoryDetailHistory({ category }: { category: any }) {
   if (!recordData) {
     return null;
   }
+
   return (
     <Container>
       <Top>
-        <h5>{category.title}</h5>
+        <h5>{category.name === null ? "카테고리 이름" : category.name}</h5>
         {category.value === 0 ? (
-          <> </>
+          <h1>총 지출</h1>
         ) : (
           <h1>{getMoneyUnit(category.value)}원</h1>
         )}
-        <WriteButton>내역 수정하러 가기</WriteButton>
+        <WriteButton
+          onClick={() => {
+            navigate(`${PATH.HISTORY}/${bookId}/${category.id}`);
+          }}
+        >
+          내역 수정하러 가기
+        </WriteButton>
       </Top>
       <PagingWrapper>
         <S.Menus>
