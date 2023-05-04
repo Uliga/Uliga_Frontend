@@ -117,6 +117,7 @@ export default function EditBook({
     setRelationship(book.info.relationShip);
     setDefaultCategories(book.categories.map(ele => ele.value));
     setDefaultEmails(book.members.map(ele => ele.email));
+    setAvatar(book.info.avatarUrl);
   }, [book]);
 
   useEffect(() => {
