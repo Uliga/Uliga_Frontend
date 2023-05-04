@@ -2,6 +2,7 @@ import styled from "styled-components";
 import IconButton from "../../IconButton";
 import Button from "../../Button";
 import COLORS from "../../../constants/color";
+import media from "../../../styles/media";
 
 const Container = styled.div`
   width: 17rem;
@@ -13,6 +14,10 @@ const Container = styled.div`
   position: fixed;
   z-index: 100;
   transition: transform 0.2s ease-in-out;
+  ${media.medium} {
+    margin-left: -2rem;
+    z-index: 999;
+  }
 `;
 
 const Top = styled.div`
@@ -33,7 +38,6 @@ const Middle = styled.div`
 
 const Wrapper = styled.div`
   padding: 2rem 0 2rem 2rem;
-  padding-left: 2rem;
   border-bottom: 0.1rem solid ${COLORS.GREY[200]};
 `;
 const Bottom = styled.div`

@@ -11,6 +11,7 @@ import { deleteHistory } from "../../../api/book";
 import toastMsg from "../../Toast";
 import COLORS from "../../../constants/color";
 import EditForm from "./editForm";
+import media from "../../../styles/media";
 
 const Container = styled.div`
   width: 100%;
@@ -94,18 +95,21 @@ const DeleteModal = styled.div`
 const PagingWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  height: 42rem;
+  height: 43rem;
   position: relative;
 
   .pagination {
     display: flex;
     justify-content: center;
     position: absolute;
-    bottom: 0;
+    bottom: -1rem;
     right: 0;
     gap: 0.5rem;
     cursor: pointer;
     z-index: 998;
+    ${media.medium} {
+      bottom: -2rem;
+    }
   }
 
   ul {

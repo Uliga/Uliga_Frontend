@@ -2,6 +2,8 @@ import styled from "styled-components";
 import COLORS from "../../../../constants/color";
 import IconButton from "../../../IconButton";
 import Icon from "../../../Icon";
+import media from "../../../../styles/media";
+import Button from "../../../Button";
 
 export const Container = styled.div`
   display: flex;
@@ -9,6 +11,9 @@ export const Container = styled.div`
   border-top: 0.1rem solid ${COLORS.GREY[200]};
   p {
     color: ${COLORS.GREY[400]};
+  }
+  ${media.medium} {
+    width: 93rem;
   }
 `;
 export const Form = styled.div`
@@ -179,6 +184,9 @@ export const BankingAddListWrapper = styled.div`
     position: absolute;
     bottom: 0;
   }
+  ${media.medium} {
+    width: 32.5rem;
+  }
 `;
 export const Box = styled.div`
   display: flex;
@@ -188,22 +196,29 @@ export const Box = styled.div`
   width: 100%;
   background-color: ${COLORS.GREY[50]};
   border-radius: 0.5rem;
+  position: relative;
+  ${media.medium} {
+    display: flex;
+    justify-content: space-evenly;
+    position: relative;
+  ;
+  }
   h5 {
     font-size: 1.35rem;
     font-weight: 500;
     color: ${COLORS.GREY[600]};
-  }
+  
   h6 {
     margin-top: 0.4rem;
     font-size: 1.2rem;
     color: ${COLORS.GREY[400]};
     font-weight: 200;
   }
-
   &:hover {
     background-color: ${COLORS.LIGHT_BLUE};
   }
-  position: relative;
+
+
 `;
 
 export const Users = styled.div`
@@ -215,7 +230,6 @@ export const Users = styled.div`
   white-space: pre-wrap;
 `;
 export const StyledIcon = styled(Icon)`
-  background-color: black;
   padding: 0.8rem;
   background-color: ${COLORS.LIGHT_BLUE};
   border-radius: 100%;
@@ -261,5 +275,15 @@ export const BankingAddList = styled.div`
     font-size: 1.4rem;
     bottom: 0;
     border-radius: 0.5rem;
+  }
+  ${media.medium} {
+    width: 37rem;
+  }
+`;
+
+export const AddScheduleButton = styled(Button)`
+  width: 27rem;
+  ${media.medium} {
+    width: 32rem;
   }
 `;

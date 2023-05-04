@@ -1,7 +1,6 @@
 import React from "react";
 import * as S from "./index.styles";
 import COLORS from "../../../../constants/color";
-import Button from "../../../Button";
 import getMoneyUnit from "../../../../utils/money";
 import { ScheduleProps } from "../../../../hooks/book/useAddSchedule";
 
@@ -55,10 +54,9 @@ export default function CurrentList({
           </S.Box>
         ))}
       </S.BankingAddListWrapper>
-      <Button
+      <S.AddScheduleButton
         title="금융 일정 추가하기"
         theme="quaternary"
-        width="27rem"
         onClick={() => {
           mutateSchedules.mutate({
             id: Number(bookId),

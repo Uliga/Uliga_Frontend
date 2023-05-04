@@ -7,6 +7,7 @@ import DailyChart from "../../../components/Book/Chart/dailyChart";
 import MonthlyChart from "../../../components/Book/Chart/monthlyChart";
 import WeeklyChart from "../../../components/Book/Chart/weeklyChart";
 import FixedExpenses from "../../../components/Book/Chart/fixedExpenses";
+import media from "../../../styles/media";
 
 const Container = styled.div`
   width: 100%;
@@ -20,16 +21,10 @@ const Container = styled.div`
     font-size: 2rem;
     padding: 2rem 0 1rem 0;
   }
+  ${media.medium} {
+    padding: 4rem 0;
+  }
 `;
-
-// const DatePickerInput = styled.input`
-//   border: none;
-//   font-size: 1.9rem;
-//   font-weight: 700;
-//   width: 15rem;
-//   color: ${COLORS.GREY[600]};
-//   cursor: pointer;
-// `;
 
 const ChartWrapper = styled.div`
   width: 100%;

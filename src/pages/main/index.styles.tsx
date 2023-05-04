@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import Button from "../../components/Button";
+import media from "../../styles/media";
 
 export const Container = styled.div`
   width: 100%;
@@ -8,6 +9,9 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  ${media.medium} {
+    padding: 4rem 0;
+  }
 `;
 
 export const WriteButton = styled(Button)`
@@ -15,6 +19,9 @@ export const WriteButton = styled(Button)`
   position: absolute;
   right: 4rem;
   padding: 1.2rem 2.5rem;
+  ${media.medium} {
+    right: 0;
+  }
 `;
 
 export const Bottom = styled.div`

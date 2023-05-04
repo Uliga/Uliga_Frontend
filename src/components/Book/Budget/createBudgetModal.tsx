@@ -9,6 +9,7 @@ import getMoneyUnit from "../../../utils/money";
 import COLORS from "../../../constants/color";
 import Button from "../../Button";
 import Input from "../../Input";
+import media from "../../../styles/media";
 
 const BudgetContainer = styled.div`
   width: 41.2rem;
@@ -60,6 +61,9 @@ const LastMonthInfo = styled.div`
   }
   p {
     font-size: 1rem;
+  }
+  ${media.medium} {
+    width: 16rem;
   }
 `;
 

@@ -3,6 +3,7 @@ import Button from "../../components/Button";
 import COLORS from "../../constants/color";
 import Input from "../../components/Input";
 import IconButton from "../../components/IconButton";
+import media from "../../styles/media";
 
 const TopWrapper = styled.div`
   display: flex;
@@ -14,7 +15,6 @@ const TopWrapper = styled.div`
 
 const Wrapper = styled.div`
   width: 100%;
-  max-width: 140rem;
   display: flex;
   position: relative;
   color: ${COLORS.GREY[600]};
@@ -26,6 +26,10 @@ const Wrapper = styled.div`
     font-weight: 700;
     font-size: 2rem;
     padding: 2rem 0 1rem 0;
+  }
+  ${media.medium} {
+    padding: 4rem 0;
+    width: 120rem;
   }
 `;
 

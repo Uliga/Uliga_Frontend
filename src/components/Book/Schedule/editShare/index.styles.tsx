@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import COLORS from "../../../../constants/color";
 import Button from "../../../Button";
+import media from "../../../../styles/media";
 
 export const Container = styled.div`
   display: flex;
@@ -12,6 +13,9 @@ export const Container = styled.div`
   }
   p {
     color: ${COLORS.GREY[400]};
+  }
+  ${media.medium} {
+    width: 93rem;
   }
 `;
 export const Form = styled.div`
@@ -51,6 +55,9 @@ export const ListWrapper = styled.div`
   ::-webkit-scrollbar {
     display: none;
   }
+  ${media.medium} {
+    width: 32.5rem;
+  }
 `;
 export const Box = styled.button<{ selected: boolean }>`
   ${({ selected }) => `
@@ -67,6 +74,13 @@ export const Box = styled.button<{ selected: boolean }>`
   cursor: pointer;
   gap: 1.5rem;
   border-radius: 0.5rem;
+  ${media.medium} {
+    display: flex;
+    justify-content: start;
+    gap: 2rem;
+    position: relative;
+    padding: 1.4rem;
+  }
   &:hover {
     background-color: ${COLORS.LIGHT_BLUE};
   }
@@ -101,6 +115,11 @@ export const Badge = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  ${media.medium} {
+    width: 8rem;
+    height: 9rem;
+    font-size: 1.8rem;
+  }
 `;
 
 export const DeleteButton = styled.button`

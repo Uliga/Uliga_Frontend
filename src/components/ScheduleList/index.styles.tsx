@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import COLORS from "../../constants/color";
 import Badge from "../Badge";
+import media from "../../styles/media";
 
 export const Container = styled.div`
   top: 0;
@@ -21,6 +22,9 @@ export const Container = styled.div`
     color: ${COLORS.GREY[600]};
   }
   position: relative;
+  ${media.medium} {
+    height: 47rem;
+  }
 `;
 
 export const Wrapper = styled.div`
@@ -86,4 +90,7 @@ export const dot = styled.span<{ color: string }>`
   position: absolute;
   left: 7rem;
   font-size: 1rem;
+  ${media.medium} {
+    left: 5rem;
+  }
 `;

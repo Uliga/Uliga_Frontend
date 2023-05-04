@@ -5,6 +5,7 @@ import COLORS from "../../constants/color";
 import Button from "../../components/Button";
 import NoExistLogo from "../../assets/404";
 import PATH from "../../constants/path";
+import media from "../../styles/media";
 
 const Container = styled.div`
   width: 100vw;
@@ -14,6 +15,7 @@ const Container = styled.div`
   background-color: white;
   padding-top: 10rem;
   flex-direction: column;
+  text-align: center;
   gap: 1rem;
   h1 {
     font-weight: 700;
@@ -42,6 +44,10 @@ const StyledButton = styled(Button)`
   font-size: 1.6rem;
   padding: 1.3rem 8rem;
   border-radius: 20rem;
+  ${media.medium} {
+    font-size: 1.8rem;
+    padding: 1.5rem 10rem;
+  }
 `;
 export default function NoExist() {
   const navigate = useNavigate();

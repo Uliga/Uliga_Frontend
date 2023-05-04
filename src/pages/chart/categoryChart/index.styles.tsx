@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import COLORS from "../../../constants/color";
+import media from "../../../styles/media";
 
 export const Container = styled.div`
   width: 100%;
@@ -17,6 +18,9 @@ export const Container = styled.div`
     font-size: 1.7rem;
     font-weight: 700;
     width: 100%;
+  }
+  ${media.medium} {
+    padding: 4rem 0;
   }
 `;
 

@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import COLORS from "../../constants/color";
 import Button from "../../components/Button";
+import media from "../../styles/media";
 
 export const Container = styled.div`
   width: 52rem;
@@ -27,7 +28,7 @@ export const Wrapper = styled.form`
     padding-top: 1.5rem;
     padding-bottom: 2rem;
     color: ${COLORS.GREY[400]};
-    size: 1.5rem;
+    font-size: 1.5rem;
     text-align: center;
   }
 `;
@@ -35,4 +36,7 @@ export const Wrapper = styled.form`
 export const StyledButton = styled(Button)`
   padding: 1.7rem;
   font-size: 1.5rem;
+  ${media.medium} {
+    font-size: 1.7rem;
+  }
 `;
