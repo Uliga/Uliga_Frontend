@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import React from "react";
 import { Outlet } from "react-router-dom";
+import media from "../../styles/media";
 
 const Full = styled.div`
   width: 100%;
@@ -18,6 +19,10 @@ const Inner = styled.div`
   padding-top: 5.5rem;
   display: flex;
   justify-content: center;
+  ${media.medium} {
+    height: 80vh;
+    padding-top: 8.5rem;
+  }
 `;
 
 export default function DefaultLayout() {

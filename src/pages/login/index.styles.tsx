@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import COLORS from "../../constants/color";
 import Button from "../../components/Button";
+import media from "../../styles/media";
 
 const Container = styled.form`
   display: flex;
@@ -10,6 +11,11 @@ const Container = styled.form`
   position: relative;
   gap: 4rem;
   padding-top: 2rem;
+  input {
+    ${media.medium} {
+      font-size: 1.5rem;
+    }
+  }
 `;
 const LogoWrapper = styled.div`
   display: flex;
@@ -38,6 +44,9 @@ const StyledButton = styled(Button)`
   position: absolute;
   right: 0;
   bottom: 0;
+  ${media.medium} {
+    font-size: 1.5rem;
+  }
 `;
 
 export { Container, LogoWrapper, Title, StyledButton };
