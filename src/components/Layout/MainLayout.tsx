@@ -89,19 +89,10 @@ export default function MainLayout() {
     <Full>
       <Header onToggleSideBar={toggleSideBar} />
       <Inner onClick={handleOutletClick}>
-        {showSideBar && (
-          <>
-            <SideBar />
-            <Container onClick={handleOutletClick}>
-              <Outlet />
-            </Container>
-          </>
-        )}
-        {!showSideBar && (
-          <Container onClick={handleOutletClick}>
-            <Outlet />
-          </Container>
-        )}
+        {showSideBar && <SideBar />}
+        <Container onClick={handleOutletClick}>
+          <Outlet />
+        </Container>
       </Inner>
     </Full>
   );
