@@ -61,7 +61,6 @@ const Container = styled.div`
 `;
 export default function MainLayout() {
   const [showSideBar, setShowSideBar] = useState(true);
-
   const toggleSideBar = () => {
     setShowSideBar(!showSideBar);
   };
