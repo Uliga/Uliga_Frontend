@@ -42,7 +42,7 @@ font-family: "Pretendard-Web", serif;
 */
 @media (min-width: 1025px) and (max-width: 1919px) {
   html {
-    font-size: 10px;
+    font-size: 9.5px;
   }
 }
 @media (min-width: 1920px) and (max-width: 2559px) {
