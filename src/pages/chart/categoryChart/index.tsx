@@ -110,32 +110,39 @@ export default function CategoryChart() {
             {date.getFullYear()}년 {date.getMonth() + 1}월
           </h1>
           <h4>카테고리별 분석</h4>
-          <S.ChartWrapper>
-            <Doughnut data={chartData} options={options} />
-          </S.ChartWrapper>
-          <S.CategoryList>
-            {coloredCategories.map((ele: ColorCategoryType) => (
-              <S.ListWrapper key={ele.name}>
-                <S.Label color={ele.color}>
-                  <p>{ele.name}</p>
-                </S.Label>
-                <IconButton
-                  title={`${getMoneyUnit(ele.value)}원`}
-                  iconName="arrowRight"
-                  theme="normal"
-                  reverseIconButton
-                  border={0.7}
-                  onClick={() => {
-                    setCategory(ele);
-                  }}
-                />
-              </S.ListWrapper>
-            ))}
-          </S.CategoryList>
-          <S.Sum>총 {getMoneyUnit(categoryData.sum)}원</S.Sum>
+          {categoryData.sum !== 0 && (
+            <>
+              <S.ChartWrapper>
+                <Doughnut data={chartData} options={options} />
+              </S.ChartWrapper>
+              <S.CategoryList>
+                {coloredCategories.map((ele: ColorCategoryType) => (
+                  <S.ListWrapper key={ele.name}>
+                    <S.Label color={ele.color}>
+                      <p>{ele.name}</p>
+                    </S.Label>
+                    <IconButton
+                      title={`${getMoneyUnit(ele.value)}원`}
+                      iconName="arrowRight"
+                      theme="normal"
+                      reverseIconButton
+                      border={0.7}
+                      onClick={() => {
+                        setCategory(ele);
+                      }}
+                    />
+                  </S.ListWrapper>
+                ))}
+              </S.CategoryList>
+              <S.Sum>총 {getMoneyUnit(categoryData.sum)}원</S.Sum>
+            </>
+          )}
         </S.Left>
-        <CategoryDetailHistory category={category} />
+        {categoryData.sum !== 0 && (
+          <CategoryDetailHistory category={category} />
+        )}
       </S.Wrapper>
+      {categoryData.sum === 0 && <S.Nothing>데이터가 없습니다.</S.Nothing>}
     </S.Container>
   );
 }
