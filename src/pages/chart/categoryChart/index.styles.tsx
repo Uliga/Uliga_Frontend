@@ -99,3 +99,12 @@ export const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
 `;
+
+export const Nothing = styled.div`
+  width: 100%;
+  height: 20rem;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  color: ${COLORS.GREY[400]};
+`;
