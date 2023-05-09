@@ -47,7 +47,8 @@
     "build": "yarn react-build && electron-builder",
     "release": "yarn react-build && electron-builder --publish=always",
     "storybook": "start-storybook -p 6006 -s public",
-    "build-storybook": "build-storybook -s public"
+    "build-storybook": "build-storybook -s public",
+    "test": "jest"
   },
   "eslintConfig": {
     "extends": [
