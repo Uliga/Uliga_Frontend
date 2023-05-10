@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`버튼 컴포넌트 단위 테스트 버튼의 css 속성이 제대로 들어가있는지 확인한다. 1`] = `
+<button
+  class="sc-bcXHqe DLusH"
+  type="button"
+>
+  secondary theme과 large size 속성을 가지고 있는 버튼 컴포넌트입니다.
+</button>
+`;
+
+exports[`버튼 컴포넌트 단위 테스트 버튼이 dom에 존재하는지 확인한다. 1`] = `
+<button
+  class="sc-bcXHqe hbqTtc"
+  type="button"
+>
+  버튼 컴포넌트입니다.
+</button>
+`;
