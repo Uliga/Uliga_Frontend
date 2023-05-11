@@ -53,7 +53,7 @@ const menu = [
     path: PATH.DATE_RANGE_CHART,
     subMenu: [
       {
-        title: "주간별 · 월별",
+        title: "주간별 · 월별 분석",
         theme: "normal",
         iconName: "arrowRight",
         iconSize: "1.2rem",

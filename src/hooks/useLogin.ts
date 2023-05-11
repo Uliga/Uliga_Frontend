@@ -1,13 +1,11 @@
 import { useMutation } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
-import { useRecoilState } from "recoil";
 import useInput from "./useInput";
 import REGEX from "../constants/regex";
 import { authLogin, checkEmail } from "../api/auth";
 import toastMsg from "../components/Toast";
 import PATH from "../constants/path";
 import useValidate from "./useValidate";
-import meAtom from "../stores/atoms/user";
 
 export default function useLogin() {
   const navigate = useNavigate();
@@ -15,11 +13,9 @@ export default function useLogin() {
     validator: (input: string) => REGEX.ID.test(input),
   });
   const [password, onChangePassword] = useInput("");
-  const [, setMe] = useRecoilState(meAtom);
   const mutateLogin = useMutation(["login"], authLogin, {
     onSuccess: ({ memberInfo, tokenInfo }) => {
       toastMsg("로그인 성공 👏");
-      setMe(memberInfo);
       localStorage.setItem("accessToken", tokenInfo.accessToken);
       localStorage.setItem("created", "true");
       localStorage.setItem(
