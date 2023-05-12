@@ -4,7 +4,7 @@ import "@testing-library/jest-dom";
 import Button from "../index";
 
 // describe는 테스트 케이스를 하나로 묶어주는 단위라고 생각하면 된다.
-describe("버튼 컴포넌트 단위 테스트", () => {
+describe("<Button />", () => {
   // it 또는 test 둘 중 아무거나 사용해도 문제없다.
   it("버튼이 dom에 존재하는지 확인한다.", () => {
     const buttonTitle = "버튼 컴포넌트입니다.";
