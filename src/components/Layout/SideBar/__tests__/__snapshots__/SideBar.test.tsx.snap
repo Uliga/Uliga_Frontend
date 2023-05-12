@@ -1,0 +1,479 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<SideBar /> 사이드바 스냅샷 테스트 1`] = `
+{
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="sc-hLBbgP btgaLm"
+      >
+        <div
+          class="sc-eDvSVe ioEtvE"
+        >
+          <div
+            class="sc-csuSiG grwbTt"
+          >
+            <svg
+              fill="none"
+              height="30"
+              viewBox="0 2 15 24"
+              width="15"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <circle
+                cx="6.8983"
+                cy="3.89831"
+                fill="#FFC144"
+                r="3.89831"
+              />
+              <path
+                clip-rule="evenodd"
+                d="M7.18202 10.6158C7.15158 10.6158 7.12126 10.616 7.09106 10.6163C7.06087 10.616 7.03055 10.6158 7.0001 10.6158V10.6177C0.820362 10.7458 -0.222249 17.4055 0.035133 20.7514C0.035133 23.4834 3.24864 24.0652 5.717 23.994L5.71759 23.9998H9.09612L9.09516 23.9973C11.4465 23.9533 14.147 23.2558 14.147 20.7514C14.4044 17.4055 13.3618 10.7458 7.18202 10.6177V10.6158Z"
+                fill="#FFC144"
+                fill-rule="evenodd"
+              />
+            </svg>
+          </div>
+          <div>
+            <div
+              class="sc-kDvujY bBQcxY"
+            >
+              TEST
+            </div>
+            <div
+              class="sc-ipEyDJ kXVDcG"
+            >
+              1
+              명의 멤버 (
+              TEST
+              )
+            </div>
+          </div>
+        </div>
+        <div
+          class="sc-jSUZER fDxcKE"
+        >
+          <div
+            class="sc-gKPRtg bCZmMO"
+          >
+            <button
+              class="sc-bcXHqe eiSaub sc-ftTHYK DFCqO"
+            >
+              <i
+                class="sc-gswNZR hEimFU bi bi-journals"
+                style="font-size: 1.25rem;"
+              />
+              가계부
+            </button>
+            <button
+              class="sc-bcXHqe eiSaub sc-pyfCe ftmXUj"
+            >
+              작성
+              <i
+                class="sc-gswNZR hEimFU bi bi-chevron-right"
+                style="font-size: 1.2rem;"
+              />
+            </button>
+            <button
+              class="sc-bcXHqe eiSaub sc-pyfCe ftmXUj"
+            >
+              캘린더
+              <i
+                class="sc-gswNZR hEimFU bi bi-chevron-right"
+                style="font-size: 1.2rem;"
+              />
+            </button>
+            <button
+              class="sc-bcXHqe eiSaub sc-pyfCe ftmXUj"
+            >
+              내역
+              <i
+                class="sc-gswNZR hEimFU bi bi-chevron-right"
+                style="font-size: 1.2rem;"
+              />
+            </button>
+          </div>
+          <div
+            class="sc-gKPRtg bCZmMO"
+          >
+            <button
+              class="sc-bcXHqe eiSaub sc-ftTHYK DFCqO"
+            >
+              <i
+                class="sc-gswNZR hEimFU bi bi-calendar-event"
+                style="font-size: 1.4rem;"
+              />
+              금융 일정
+            </button>
+          </div>
+          <div
+            class="sc-gKPRtg bCZmMO"
+          >
+            <button
+              class="sc-bcXHqe eiSaub sc-ftTHYK DFCqO"
+            >
+              <i
+                class="sc-gswNZR hEimFU bi bi-piggy-bank"
+                style="font-size: 1.45rem;"
+              />
+              예산
+            </button>
+          </div>
+          <div
+            class="sc-gKPRtg bCZmMO"
+          >
+            <button
+              class="sc-bcXHqe eiSaub sc-ftTHYK DFCqO"
+            >
+              <i
+                class="sc-gswNZR hEimFU bi bi-clipboard-data"
+                style="font-size: 1.25rem;"
+              />
+              분석
+            </button>
+            <button
+              class="sc-bcXHqe eiSaub sc-pyfCe ftmXUj"
+            >
+              주간별 · 월별 분석
+              <i
+                class="sc-gswNZR hEimFU bi bi-chevron-right"
+                style="font-size: 1.2rem;"
+              />
+            </button>
+            <button
+              class="sc-bcXHqe eiSaub sc-pyfCe ftmXUj"
+            >
+              카테고리별 분석
+              <i
+                class="sc-gswNZR hEimFU bi bi-chevron-right"
+                style="font-size: 1.2rem;"
+              />
+            </button>
+          </div>
+          <div
+            class="sc-gKPRtg bCZmMO"
+          >
+            <button
+              class="sc-bcXHqe eiSaub sc-ftTHYK DFCqO"
+            >
+              <i
+                class="sc-gswNZR hEimFU bi bi-bank"
+                style="font-size: 1.25rem;"
+              />
+              청약 · 대출 · 보험
+            </button>
+          </div>
+        </div>
+        <div
+          class="sc-iBYQkv iUvwJW"
+        >
+          <button
+            class="sc-dkrFOg euTfju sc-jrcTuL qWRmF"
+            type="button"
+          >
+            설정
+          </button>
+          <button
+            class="sc-dkrFOg euTfju sc-jrcTuL qWRmF"
+            type="button"
+          >
+            로그아웃
+          </button>
+        </div>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="sc-hLBbgP btgaLm"
+    >
+      <div
+        class="sc-eDvSVe ioEtvE"
+      >
+        <div
+          class="sc-csuSiG grwbTt"
+        >
+          <svg
+            fill="none"
+            height="30"
+            viewBox="0 2 15 24"
+            width="15"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle
+              cx="6.8983"
+              cy="3.89831"
+              fill="#FFC144"
+              r="3.89831"
+            />
+            <path
+              clip-rule="evenodd"
+              d="M7.18202 10.6158C7.15158 10.6158 7.12126 10.616 7.09106 10.6163C7.06087 10.616 7.03055 10.6158 7.0001 10.6158V10.6177C0.820362 10.7458 -0.222249 17.4055 0.035133 20.7514C0.035133 23.4834 3.24864 24.0652 5.717 23.994L5.71759 23.9998H9.09612L9.09516 23.9973C11.4465 23.9533 14.147 23.2558 14.147 20.7514C14.4044 17.4055 13.3618 10.7458 7.18202 10.6177V10.6158Z"
+              fill="#FFC144"
+              fill-rule="evenodd"
+            />
+          </svg>
+        </div>
+        <div>
+          <div
+            class="sc-kDvujY bBQcxY"
+          >
+            TEST
+          </div>
+          <div
+            class="sc-ipEyDJ kXVDcG"
+          >
+            1
+            명의 멤버 (
+            TEST
+            )
+          </div>
+        </div>
+      </div>
+      <div
+        class="sc-jSUZER fDxcKE"
+      >
+        <div
+          class="sc-gKPRtg bCZmMO"
+        >
+          <button
+            class="sc-bcXHqe eiSaub sc-ftTHYK DFCqO"
+          >
+            <i
+              class="sc-gswNZR hEimFU bi bi-journals"
+              style="font-size: 1.25rem;"
+            />
+            가계부
+          </button>
+          <button
+            class="sc-bcXHqe eiSaub sc-pyfCe ftmXUj"
+          >
+            작성
+            <i
+              class="sc-gswNZR hEimFU bi bi-chevron-right"
+              style="font-size: 1.2rem;"
+            />
+          </button>
+          <button
+            class="sc-bcXHqe eiSaub sc-pyfCe ftmXUj"
+          >
+            캘린더
+            <i
+              class="sc-gswNZR hEimFU bi bi-chevron-right"
+              style="font-size: 1.2rem;"
+            />
+          </button>
+          <button
+            class="sc-bcXHqe eiSaub sc-pyfCe ftmXUj"
+          >
+            내역
+            <i
+              class="sc-gswNZR hEimFU bi bi-chevron-right"
+              style="font-size: 1.2rem;"
+            />
+          </button>
+        </div>
+        <div
+          class="sc-gKPRtg bCZmMO"
+        >
+          <button
+            class="sc-bcXHqe eiSaub sc-ftTHYK DFCqO"
+          >
+            <i
+              class="sc-gswNZR hEimFU bi bi-calendar-event"
+              style="font-size: 1.4rem;"
+            />
+            금융 일정
+          </button>
+        </div>
+        <div
+          class="sc-gKPRtg bCZmMO"
+        >
+          <button
+            class="sc-bcXHqe eiSaub sc-ftTHYK DFCqO"
+          >
+            <i
+              class="sc-gswNZR hEimFU bi bi-piggy-bank"
+              style="font-size: 1.45rem;"
+            />
+            예산
+          </button>
+        </div>
+        <div
+          class="sc-gKPRtg bCZmMO"
+        >
+          <button
+            class="sc-bcXHqe eiSaub sc-ftTHYK DFCqO"
+          >
+            <i
+              class="sc-gswNZR hEimFU bi bi-clipboard-data"
+              style="font-size: 1.25rem;"
+            />
+            분석
+          </button>
+          <button
+            class="sc-bcXHqe eiSaub sc-pyfCe ftmXUj"
+          >
+            주간별 · 월별 분석
+            <i
+              class="sc-gswNZR hEimFU bi bi-chevron-right"
+              style="font-size: 1.2rem;"
+            />
+          </button>
+          <button
+            class="sc-bcXHqe eiSaub sc-pyfCe ftmXUj"
+          >
+            카테고리별 분석
+            <i
+              class="sc-gswNZR hEimFU bi bi-chevron-right"
+              style="font-size: 1.2rem;"
+            />
+          </button>
+        </div>
+        <div
+          class="sc-gKPRtg bCZmMO"
+        >
+          <button
+            class="sc-bcXHqe eiSaub sc-ftTHYK DFCqO"
+          >
+            <i
+              class="sc-gswNZR hEimFU bi bi-bank"
+              style="font-size: 1.25rem;"
+            />
+            청약 · 대출 · 보험
+          </button>
+        </div>
+      </div>
+      <div
+        class="sc-iBYQkv iUvwJW"
+      >
+        <button
+          class="sc-dkrFOg euTfju sc-jrcTuL qWRmF"
+          type="button"
+        >
+          설정
+        </button>
+        <button
+          class="sc-dkrFOg euTfju sc-jrcTuL qWRmF"
+          type="button"
+        >
+          로그아웃
+        </button>
+      </div>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
+
+exports[`사이드바 렌더링 테스트 사이드바 스냅샷 테스트 1`] = `
+{
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div />
+  </body>,
+  "container": <div />,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
