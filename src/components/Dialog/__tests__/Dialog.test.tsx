@@ -56,7 +56,7 @@ describe("다이얼로그 컴포넌트 단위 테스트", () => {
 
   test("다이얼로그의 Title과 Description이 스냅샷과 일치해야 합니다", () => {
     const { container } = render(
-      <Dialog visible title="테스트 제목" description="테스트 설명" />,
+      <Dialog visible title="Test Title" description="Test Description" />,
     );
 
     expect(container.firstChild).toMatchSnapshot();
