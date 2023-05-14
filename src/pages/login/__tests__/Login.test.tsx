@@ -34,6 +34,8 @@ function renderLogin() {
     testUtils.getByText("로그인", { selector: "button" });
 
   return {
+    Email,
+    Password,
     testUtils,
     mutateLogin,
     typeEmail,
@@ -46,5 +48,12 @@ describe("<Login />", () => {
   it("로그인 컴포넌트 스냅샷 테스트", () => {
     const { testUtils } = renderLogin();
     expect(testUtils.container).toMatchSnapshot();
+  });
+  it("로그인 컴포넌트 렌더링 테스트", () => {
+    const { Email, Password, LoginButton } = renderLogin();
+
+    expect(Email()).toBeInTheDocument();
+    expect(Password()).toBeInTheDocument();
+    expect(LoginButton()).toBeInTheDocument();
   });
 });
