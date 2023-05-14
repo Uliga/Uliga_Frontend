@@ -1,5 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`<Dialog /> 다이얼로그의 Title과 Description이 스냅샷과 일치해야 합니다 1`] = `
+<div
+  class="sc-gswNZR ebuQKt"
+/>
+`;
+
 exports[`다이얼로그 컴포넌트 단위 테스트 다이얼로그의 Title과 Description이 스냅샷과 일치해야 합니다 1`] = `
 <div
   class="sc-gswNZR ebuQKt"

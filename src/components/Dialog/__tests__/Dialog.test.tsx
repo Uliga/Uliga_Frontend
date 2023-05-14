@@ -2,7 +2,7 @@ import React from "react";
 import { render, fireEvent } from "@testing-library/react";
 import Dialog from "../index"; // 다이얼로그 컴포넌트의 실제 파일 경로로 변경해야 합니다.
 
-describe("다이얼로그 컴포넌트 단위 테스트", () => {
+describe("<Dialog />", () => {
   test("확인 버튼이 클릭되었을 때 동작을 확인합니다", () => {
     let confirmClicked = false; // 확인 버튼 클릭 여부를 저장할 변수
     const handleConfirm = () => {
