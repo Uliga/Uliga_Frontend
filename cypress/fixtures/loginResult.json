@@ -1,0 +1,14 @@
+{
+  "memberInfo": {
+    "id": 1,
+    "avatarUrl": "default",
+    "userName": "testUser",
+    "nickName": "test",
+    "email": "test@email.com"
+  },
+  "tokenInfo": {
+    "accessToken": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiYXV0aCI6IlJPTEVfVVNFUiIsImV4cCI6MTY3NzgyMjg1Nn0.-HYhLn_3WXfHSQ2PF31HJd81f4OGjU8fsTrPSRTo-F6KKKdU28PALAZbiBA0L-kRiBR0AaqtdbrGTxumXZVgIw",
+    "grantType": "Bearer",
+    "accessTokenExpiresIn": 1677822856170
+  }
+}
