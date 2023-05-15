@@ -16,7 +16,7 @@ describe("회원가입 컴포넌트 테스트", () => {
     );
     expect(container).toMatchSnapshot();
   });
-  it("인증버튼 클릭 전에는 인증번호 입력 레이블이 숨겨져 있어야 함", () => {
+  it("인증버튼 클릭 전에는 인증번호 입력 레이블이 숨겨져 있어야 함", async () => {
     render(
       <QueryClientProvider client={new QueryClient()}>
         <Router>
@@ -31,7 +31,7 @@ describe("회원가입 컴포넌트 테스트", () => {
     const codeInputLabel = screen.queryByText("인증번호 입력");
     expect(codeInputLabel).toBeNull();
   });
-  it("회원가입 성공 확인", () => {
+  it("회원가입 성공 확인", async () => {
     render(
       <QueryClientProvider client={new QueryClient()}>
         <Router>
@@ -70,7 +70,7 @@ describe("회원가입 컴포넌트 테스트", () => {
     fireEvent.click(signupButton);
   });
 
-  it("잘못된 값 들어왔을 때 처리 확인", () => {
+  it("잘못된 값 들어왔을 때 처리 확인", async () => {
     render(
       <QueryClientProvider client={new QueryClient()}>
         <Router>
