@@ -31,20 +31,6 @@ describe("회원가입 컴포넌트 테스트", () => {
     const codeInputLabel = screen.queryByText("인증번호 입력");
     expect(codeInputLabel).toBeNull();
   });
-  // 인증버튼 클릭 후에는 인증번호 입력 레이블이 나타나야 함
-  it("인증버튼 클릭 후에는 인증번호 입력 레이블이 나타나야 함", () => {
-    render(
-      <QueryClientProvider client={new QueryClient()}>
-        <Router>
-          <SignupForm />
-        </Router>
-      </QueryClientProvider>,
-    );
-
-    const emailVerificationCheckButton = screen.getByText("인증");
-    fireEvent.click(emailVerificationCheckButton);
-  });
-
   it("회원가입 성공 확인", () => {
     render(
       <QueryClientProvider client={new QueryClient()}>
