@@ -73,7 +73,7 @@ describe("회원가입 컴포넌트 테스트", () => {
     // 닉네임 입력란에 값을 입력
     const nicknameInput = screen.getByText("닉네임");
     const nicknameInputElement = nicknameInput.nextSibling as HTMLInputElement;
-    fireEvent.change(nicknameInputElement, { target: { value: "함미녁" } });
+    fireEvent.change(nicknameInputElement, { target: { value: "하미녁" } });
 
     // 중복 확인 버튼 클릭
     const duplicateCheckButton = screen.getByText("확인");
