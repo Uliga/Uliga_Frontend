@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Input /> Input 컴포넌트 스냅샷 테스트 1`] = `
+<div>
+  <div
+    class="sc-bcXHqe"
+  >
+    <div
+      class="sc-gswNZR cdSGNK"
+    />
+    <input
+      class="sc-dkrFOg dyctdc"
+      placeholder=""
+      size="35"
+      value="value"
+    />
+  </div>
+</div>
+`;
