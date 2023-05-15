@@ -85,8 +85,6 @@ describe("회원가입 컴포넌트 테스트", () => {
   });
 
   it("잘못된 값 들어왔을 때 처리 확인", () => {
-    // 필요한 mock 데이터나 환경 설정을 준비
-
     render(
       <QueryClientProvider client={new QueryClient()}>
         <Router>
