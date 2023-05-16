@@ -90,6 +90,7 @@ export default function BookNav({ path }: BookNavProps) {
         </div>
         {path.includes("main") && (
           <S.ETCButton
+            dataCy="create-book-button"
             iconName="plus"
             theme={createModalOpen ? "tertiary" : "basic"}
             onClick={() => {
