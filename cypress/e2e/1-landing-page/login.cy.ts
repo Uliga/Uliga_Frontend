@@ -13,7 +13,6 @@ describe("login e2e test", () => {
     cy.contains("이메일 주소").parent().type("dbscogus4467@naver.com");
     cy.contains("비밀번호").parent().type("rhdqngkwk7!");
     cy.get("button").click();
-    cy.wait(500);
 
     cy.wait("@loginSuccess")
       .its("response.body")
