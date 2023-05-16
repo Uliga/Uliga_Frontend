@@ -31,7 +31,7 @@ export const Container = styled.div`
   }
 
   .bottom-sheet {
-    width: 24.5rem;
+    width: 26.2rem;
     height: 0;
     background-color: white;
     overflow-y: hidden;

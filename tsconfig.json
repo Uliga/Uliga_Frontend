@@ -14,7 +14,9 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "baseUrl": "./src",
+    "types": ["node", "@testing-library/jest-dom", "cypress", "cypress-react-selector"]
   },
   "include": ["**/*.ts", "**/*.tsx", "**/*.css", "**/*.json", "babel.config.js"],
   "exclude": ["node_modules"]

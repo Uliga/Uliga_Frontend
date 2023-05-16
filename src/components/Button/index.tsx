@@ -27,6 +27,7 @@ type ButtonProps = {
   /** 클릭했을 때 호출할 함수 */
   onClick?: (e?: React.MouseEvent<HTMLButtonElement>) => void;
   className?: string;
+  dataCy?: string;
 };
 
 const Wrapper = styled.button<{
@@ -118,6 +119,7 @@ export default function Button({
   type = "button",
   onClick,
   className,
+  dataCy = "",
 }: ButtonProps) {
   return (
     <Wrapper
@@ -128,6 +130,7 @@ export default function Button({
       disabled={disabled}
       width={width!}
       type={type}
+      data-cy={dataCy}
     >
       {title}
     </Wrapper>

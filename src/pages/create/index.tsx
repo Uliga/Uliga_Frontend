@@ -18,7 +18,7 @@ export default function Create() {
   } = useCreate();
 
   return (
-    <S.Container>
+    <S.Container data-cy="create-modal-container">
       <h2>공유 가계부 생성</h2>
       <S.Wrapper>
         {InputList.map(input => (
@@ -45,7 +45,7 @@ export default function Create() {
             {input.label === "카테고리 추가" && (
               <>
                 <h5>현재 카테고리</h5>
-                <S.ETCWrapper>
+                <S.ETCWrapper data-cy="category-container">
                   {DefaultCategories.map(category => (
                     <Badge
                       key={category}
@@ -70,7 +70,7 @@ export default function Create() {
               </>
             )}
             {input.label === "사용자 초대" && (
-              <S.ETCWrapper>
+              <S.ETCWrapper data-cy="email-container">
                 {Emails.map(email => (
                   <Badge
                     key={email}

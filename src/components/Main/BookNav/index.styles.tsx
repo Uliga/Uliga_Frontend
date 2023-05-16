@@ -20,7 +20,7 @@ const UnCheckedButton = styled(Button)`
   padding: 1rem 2.5rem;
 `;
 
-const ETCButton = styled(IconButton)<{}>`
+const ETCButton = styled(IconButton)`
   border-radius: 30rem;
   padding: 1rem 1.2rem;
 `;
