@@ -62,7 +62,13 @@ export default function Login() {
           />
         </div>
       ))}
-      <S.StyledButton type="submit" title="로그인" width="13.5rem" />
+
+      <S.StyledButton
+        type="submit"
+        title="로그인"
+        width="13.5rem"
+        disabled={email.length <= 0 || password.length <= 0 || !isValidateEmail}
+      />
     </S.Container>
   );
 }
