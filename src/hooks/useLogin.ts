@@ -9,7 +9,7 @@ import useValidate from "./useValidate";
 
 export default function useLogin() {
   const navigate = useNavigate();
-  const [email, onChangeEmail, isValidateEmail] = useValidate({
+  const [email, onChangeEmail, , isValidateEmail] = useValidate({
     validator: (input: string) => REGEX.ID.test(input),
   });
   const [password, onChangePassword] = useInput("");
