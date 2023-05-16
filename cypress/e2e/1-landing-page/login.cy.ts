@@ -1,4 +1,4 @@
-import API from "../../src/api/config";
+import API from "../../../src/api/config";
 
 describe("login e2e test", () => {
   beforeEach(() => {
