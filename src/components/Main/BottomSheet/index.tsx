@@ -33,7 +33,7 @@ export default function BottomSheet() {
 
   const navigate = useNavigate();
   return (
-    <S.Container>
+    <S.Container data-cy="bottom-sheet-wrapper">
       <div className={`bottom-sheet ${open ? "active" : ""}`}>
         <S.StyledIconButton
           iconOnly
@@ -45,7 +45,7 @@ export default function BottomSheet() {
         />
         <h5>{`${day.getMonth() + 1}월 ${day.getDate()}일 가계부 작성`}</h5>
 
-        <S.MoneyUnit>
+        <S.MoneyUnit data-cy="value-input-conatiner">
           <h4>{formattedValue}원</h4>
           <S.ValueInput
             size={16}
@@ -57,7 +57,7 @@ export default function BottomSheet() {
           <Icon iconName="pencil" color={COLORS.GREY[600]} size="1.3rem" />
           <p>{isValidateValue ? "" : "금액을 입력해주세요."}</p>
         </S.MoneyUnit>
-        <S.Wrapper>
+        <S.Wrapper data-cy="bottom-sheet-input-container">
           <S.InputContainer>
             <S.Menu>분류</S.Menu>
             <S.RadioWrapper>
@@ -124,6 +124,7 @@ export default function BottomSheet() {
             여러개의 내역 입력하러 가기
           </S.MultipleButton>
           <S.SubmitButton
+            dataCy="day-write-submit-button"
             title="작성 완료"
             onClick={onSubmit}
             disabled={

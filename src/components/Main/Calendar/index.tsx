@@ -83,11 +83,13 @@ export default function MonthCalendar() {
                 new Date(date).getMonth() === new Date().getMonth() &&
                 new Date(date).getDate() === new Date().getDate()
               }
+              data-cy={`calendar-day-${new Date(date).getDate()}`}
             >
               <WriteButton
                 iconName="pencil"
                 iconSize="1.3rem"
                 onClick={event => handleWriteButtonClick(event, { date })}
+                dataCy="write-day-button"
               />
               <div>
                 {income && (
