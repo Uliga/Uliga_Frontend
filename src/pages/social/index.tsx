@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import Input from "../../components/Input";
 import * as S from "./index.styles";
@@ -135,9 +135,7 @@ export default function Social() {
             onChange={handleCheckboxChange}
           />
           우리가 개인정보 수집 및 동의 (필수)
-          <S.PersonalInfo>
-            <Link to={PATH.LOGIN}>자세히</Link>
-          </S.PersonalInfo>
+          <S.PersonalInfo>자세히</S.PersonalInfo>
         </S.Buttons2>
         <S.Buttons>
           <S.SignUpStyledButton
