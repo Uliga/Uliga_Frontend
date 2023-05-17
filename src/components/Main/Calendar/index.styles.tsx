@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import COLORS from "../../../constants/color";
 import IconButton from "../../IconButton";
+import media from "../../../styles/media";
 
 export const ColorWrapper = styled.div`
   position: absolute;
@@ -103,7 +104,7 @@ export const Container = styled.div`
   }
   .react-calendar__navigation__prev-button {
     position: absolute;
-    right: 6rem;
+    right: 7.2rem;
     font-size: 0;
     display: flex;
     justify-content: center;
@@ -111,7 +112,9 @@ export const Container = styled.div`
     border-radius: 0.5rem;
     height: 3.4rem;
     background: #f0f2f4;
-
+    ${media.medium} {
+      right: 8.5rem;
+    }
     &::before {
       display: block;
       width: 0.9rem;
@@ -130,7 +133,7 @@ export const Container = styled.div`
   .react-calendar__navigation__next-button {
     position: absolute;
     top: 0;
-    right: 1rem;
+    right: 2rem;
     font-size: 0;
     display: flex;
     justify-content: center;
@@ -167,7 +170,7 @@ export const Container = styled.div`
   .react-calendar__navigation__label > span {
     font-size: 1.7rem;
     font-weight: 700;
-    left: 0;
+    left: 0.5rem;
     position: absolute;
     pointer-events: none;
   }

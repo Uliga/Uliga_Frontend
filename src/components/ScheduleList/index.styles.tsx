@@ -32,7 +32,7 @@ export const Wrapper = styled.div`
   width: 100%;
   height: 28rem;
   display: flex;
-  gap: 2rem;
+  gap: 1.5rem;
   flex-direction: column;
   overflow: scroll;
   ::-webkit-scrollbar {
