@@ -32,6 +32,7 @@ describe("main page e2e test", () => {
       );
     });
   });
+
   it("메인 페이지에 필수 컴포넌트들이 모두 존재한다.", () => {
     // 초기 화면에서는 개인 가계부가 체크된 버튼으로 존재한다.
     cy.get('[data-cy="bookNav-checked-button"]')
@@ -82,5 +83,13 @@ describe("main page e2e test", () => {
     cy.get('[data-cy="day-write-submit-button"]').should("be.enabled");
     cy.get('[data-cy="day-write-submit-button"]').click();
     cy.wait("@uploadIncome");
+  });
+
+  it("금융 일정 수정하기 버튼을 누르면 금융 일정 페이지로 이동한다.", () => {
+    cy.get("button").contains("금융 일정 수정하기").click();
+    cy.location("pathname", { timeout: 5000 }).should(
+      "include",
+      `schedule/${localStorage.getItem("privateAccountBookId")}`,
+    );
   });
 });
