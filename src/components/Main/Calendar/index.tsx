@@ -52,7 +52,7 @@ export default function MonthCalendar() {
 
   if (!data) return null;
   return (
-    <Container>
+    <Container data-cy="calendar-day-container">
       {historyDayModalOpen && <HistoryModal date={curDate} />}
       <Calendar
         value={curDate}
