@@ -3,6 +3,7 @@ import IconButton from "../../IconButton";
 import COLORS from "../../../constants/color";
 import Input from "../../Input";
 import Button from "../../Button";
+import media from "../../../styles/media";
 
 export const StyledIconButton = styled(IconButton)`
   width: 100%;
@@ -37,6 +38,9 @@ export const Container = styled.div`
     overflow-y: hidden;
     transition: 0.3s ease-in-out;
     position: relative;
+    ${media.medium} {
+      width: 32.3rem;
+    }
   }
 
   .bottom-sheet.active {
@@ -45,6 +49,9 @@ export const Container = styled.div`
     border-bottom: none;
     border-radius: 0.5rem 0.5rem 0 0;
     padding: 3rem 2.2rem 0 2.2rem;
+  }
+  ${media.medium} {
+    right: 0rem;
   }
 `;
 export const Menu = styled.div`
@@ -146,6 +153,9 @@ export const MultipleButton = styled.div`
   text-decoration: underline;
   &:hover {
     color: ${COLORS.GREY[600]};
+  }
+  ${media.medium} {
+    width: 18rem;
   }
 `;
 

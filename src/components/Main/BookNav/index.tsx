@@ -46,6 +46,7 @@ export default function BookNav({ path }: BookNavProps) {
                   iconName="checkFill"
                   theme="tertiary"
                   color={COLORS.BLUE}
+                  dataCy="bookNav-checked-button"
                 />
               ) : (
                 <S.UnCheckedButton
@@ -66,6 +67,7 @@ export default function BookNav({ path }: BookNavProps) {
                   iconName="checkFill"
                   theme="tertiary"
                   color={COLORS.BLUE}
+                  dataCy="bookNav-checked-button"
                 />
               ) : (
                 <S.UnCheckedButton

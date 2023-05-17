@@ -32,7 +32,6 @@ describe("login e2e test", () => {
     cy.contains("이메일 주소").parent().type("dbscogus4467@naver.com");
     cy.contains("비밀번호").parent().type("wrong password");
     cy.get("button").click();
-    cy.wait(500);
 
     cy.wait("@loginFailure").then(interception => {
       expect(interception?.response?.statusCode).to.equal(401);
