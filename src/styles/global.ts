@@ -34,16 +34,21 @@ font-family: "Pretendard-Web", serif;
 
 @media (min-width: 768px) and (max-width: 1024px) {
   html {
-    font-size: 8px;
+    font-size: 7.5px;
   }
 }
 /* 
   ##Device = Laptops, Desktops
   ##Screen = B/w 1025px to 1280px
 */
-@media (min-width: 1025px) and (max-width: 1919px) {
+@media (min-width: 1025px) and (max-width: 1440px) {
   html {
-    font-size: 9.5px;
+    font-size: 9px;
+  }
+}
+@media (min-width: 1441px) and (max-width: 1919px) {
+  html {
+    font-size: 10px;
   }
 }
 @media (min-width: 1920px) and (max-width: 2559px) {
