@@ -24,12 +24,41 @@ describe("main page e2e test", () => {
         },
       },
     ).as("uploadIncome");
+
     cy.login().then(() => {
       cy.visit(
         `http://localhost:3000/main/${localStorage.getItem(
           "privateAccountBookId",
         )}`,
       );
+      cy.intercept(
+        {
+          method: "GET",
+          url: `/accountBook/${localStorage.getItem(
+            "privateAccountBookId",
+          )}/item/${new Date().getFullYear()}/${
+            new Date().getMonth() + 1
+          }/${new Date().getDate()}`,
+        },
+        {
+          items: [
+            {
+              id: 0,
+              value: 0,
+              payment: "카드/이체/등등",
+              account: "거래처",
+              memo: "simple memo",
+              year: 0,
+              month: 0,
+              day: 0,
+              type: "RECORD",
+              creator: "creatorNickname",
+              category: "category",
+              avatarUrl: "string",
+            },
+          ],
+        },
+      ).as("loadDayHistory");
     });
   });
 
@@ -90,6 +119,17 @@ describe("main page e2e test", () => {
     cy.location("pathname", { timeout: 5000 }).should(
       "include",
       `schedule/${localStorage.getItem("privateAccountBookId")}`,
+    );
+  });
+
+  it("캘린더에서 날짜를 눌렀을 때, 해당 날짜의 가계부 내역이 표시된다.", () => {
+    cy.get(`[data-cy="calendar-day-container"]`)
+      .find("button.react-calendar__tile")
+      .eq(new Date().getDate() - 1)
+      .click();
+    cy.wait("@loadDayHistory");
+    cy.get("div").contains(
+      `${new Date().getMonth() + 1}월 ${new Date().getDate()}일 가계부 내역`,
     );
   });
 });
