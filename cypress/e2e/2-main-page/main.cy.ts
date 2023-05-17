@@ -41,4 +41,46 @@ describe("main page e2e test", () => {
     cy.get("div").contains("이번 달 수입").should("be.visible");
     cy.get("button").contains("금융 일정 수정하기").should("be.visible");
   });
+  it("캘린더에서 해당 날짜의 가계부 작성 버튼을 누르면 일일 가계부 작성이 가능하다.", () => {
+    // 오늘 날짜로 선택
+    cy.get(`[data-cy="calendar-day-${new Date().getDate()}"]`).trigger(
+      "mouseover",
+    );
+    cy.get(`[data-cy="calendar-day-${new Date().getDate()}"]`)
+      .find('[data-cy="write-day-button"]')
+      .click();
+    cy.get('[data-cy ="value-input-conatiner"]').find("input").type("3000");
+    cy.get('[data-cy="bottom-sheet-wrapper"]')
+      .find("label")
+      .contains("수입")
+      .click();
+    // 필수 입력 조건이 완성된 상태가 아니므로 submit button은 disabled 상태여야함
+    cy.get('[data-cy="day-write-submit-button"]').should("be.disabled");
+    cy.get('[data-cy="bottom-sheet-input-container"]')
+      .find("select")
+      .eq(0) // 선택한 인덱스의 컴포넌트를 찾습니다.
+      .select(3);
+    cy.get('[data-cy="bottom-sheet-input-container"]')
+      .find("select")
+      .eq(1) // 선택한 인덱스의 컴포넌트를 찾습니다.
+      .select(2);
+    cy.get('[data-cy="bottom-sheet-wrapper"]')
+      .find("div")
+      .contains("거래처")
+      .parent()
+      .find("input")
+      .parent()
+      .type("거래처 테스트");
+    cy.get('[data-cy="bottom-sheet-wrapper"]')
+      .find("div")
+      .contains("메모")
+      .parent()
+      .find("input")
+      .parent()
+      .type("메모 테스트");
+    // 필수 입력 조건이 완성되었으므로 submit button은 enabled 상태여야함
+    cy.get('[data-cy="day-write-submit-button"]').should("be.enabled");
+    cy.get('[data-cy="day-write-submit-button"]').click();
+    cy.wait("@uploadIncome");
+  });
 });
