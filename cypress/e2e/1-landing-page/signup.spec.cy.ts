@@ -15,12 +15,11 @@ describe("회원가입", () => {
     );
     cy.contains("이메일로 계속하기").click();
   });
-
-  it("회원가입 시나리오", () => {
-    const verificationCode = "000001";
-    const password = "alsgur9893@";
-    const name = "함민혁";
-    const nickname = "james";
+  const verificationCode = "000001";
+  const password = "alsgur9893@";
+  const name = "함민혁";
+  const nickname = "james";
+  it("회원가입 성공", () => {
     cy.intercept(
       {
         method: "POST",
@@ -32,9 +31,7 @@ describe("회원가입", () => {
       },
     );
     cy.contains("인증").click();
-    // 이메일로 전송된 인증번호 6자리 입력
     cy.contains("인증번호 입력").parent().type(verificationCode);
-
     cy.intercept(
       {
         method: "POST",
@@ -45,13 +42,9 @@ describe("회원가입", () => {
       },
     );
     cy.contains("인증 완료").click();
-    // 비밀번호 입력
     cy.contains("비밀번호").parent().type(password);
-    // 비밀번호 확인 입력
     cy.contains("비밀번호 확인").parent().type(password);
-    // 이름 입력
     cy.contains("이름").parent().type(name);
-    // 닉네임 입력
     cy.contains("닉네임").parent().type(nickname);
 
     cy.intercept(
@@ -84,5 +77,70 @@ describe("회원가입", () => {
       },
     );
     cy.contains("계정 만들기").click(); // '확인' 버튼을 포함한 요소 선택
+  });
+
+  it("닉네임 중복으로 회원가입 실패", () => {
+    cy.intercept(
+      {
+        method: "POST",
+        url: API.EMAIL_SEND,
+      },
+      {
+        email: "test@email.com",
+        success: true,
+      },
+    );
+    cy.contains("인증").click();
+    cy.contains("인증번호 입력").parent().type(verificationCode);
+
+    cy.intercept(
+      {
+        method: "POST",
+        url: API.CODE,
+      },
+      {
+        matches: true,
+      },
+    );
+    cy.contains("인증 완료").click();
+    // 비밀번호 입력
+    cy.contains("비밀번호").parent().type(password);
+    // 비밀번호 확인 입력
+    cy.contains("비밀번호 확인").parent().type(password);
+    // 이름 입력
+    cy.contains("이름").parent().type(name);
+    // 닉네임 입력
+    cy.contains("닉네임").parent().type(nickname);
+
+    cy.intercept(
+      {
+        method: "GET",
+        url: `${API.NICK_DUPLICATE}${nickname}`,
+      },
+      {
+        exists: true,
+      },
+    );
+    cy.contains("닉네임") // '닉네임 확인' 라벨을 포함한 요소 선택
+      .parent()
+      .parent() // 다음 형제 요소 선택 (오른쪽에 위치한 요소)
+      .contains("확인") // '확인' 버튼을 포함한 요소 선택
+      .click();
+    cy.get('input[type="checkbox"]').click();
+    cy.intercept(
+      {
+        method: "POST",
+        url: `${API.SIGNUP}`,
+      },
+      {
+        email: "testuser@example.com",
+        password,
+        nickName: nickname,
+        userName: name,
+        applicationPassword: "1234",
+      },
+    );
+    cy.contains("계정 만들기").should("be.disabled");
+    // '확인' 버튼을 포함한 요소 선택
   });
 });
