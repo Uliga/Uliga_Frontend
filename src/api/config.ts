@@ -1,4 +1,4 @@
-const BASE_URL = process.env.REACT_APP_BASE_URL;
+const BASE_URL = process.env.BUILD_ENV;
 const AUTH = "/auth/";
 const MEMBER = "/member";
 const LOGIN = "login";
