@@ -103,13 +103,9 @@ describe("회원가입", () => {
       },
     );
     cy.contains("인증 완료").click();
-    // 비밀번호 입력
     cy.contains("비밀번호").parent().type(password);
-    // 비밀번호 확인 입력
     cy.contains("비밀번호 확인").parent().type(password);
-    // 이름 입력
     cy.contains("이름").parent().type(name);
-    // 닉네임 입력
     cy.contains("닉네임").parent().type(nickname);
 
     cy.intercept(
@@ -141,7 +137,6 @@ describe("회원가입", () => {
       },
     );
     cy.contains("계정 만들기").should("be.disabled");
-    // '확인' 버튼을 포함한 요소 선택
   });
   it("인증번호 불일치로 회원가입 실패", () => {
     cy.intercept(
@@ -201,7 +196,6 @@ describe("회원가입", () => {
       },
     );
     cy.contains("계정 만들기").should("be.disabled");
-    // '확인' 버튼을 포함한 요소 선택
   });
   it("비밀번호 확인 실패로 회원가입 실패", () => {
     const fakePassword = "alsgur9893";
@@ -262,6 +256,5 @@ describe("회원가입", () => {
       },
     );
     cy.contains("계정 만들기").should("be.disabled");
-    // '확인' 버튼을 포함한 요소 선택
   });
 });
