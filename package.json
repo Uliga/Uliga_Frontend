@@ -40,6 +40,26 @@
   },
   "main": "public/electron.js",
   "homepage": "./",
+  "build": {
+    "productName": "우리의 가계부: 우리가",
+    "asar": true,
+    "win": {
+      "target": [
+        "nsis"
+      ],
+    },
+    "nsis": {
+      "oneClick": true,
+      "shortcutName": "우리의 가계부: 우리가",
+      "artifactName" : "우리의 가계부: 우리가",
+      "uninstallDisplayName" : "우리의 가계부: 우리가"
+    },
+    "directories": {
+      "buildResources": "./resources/installer/",
+      "output": "./dist/",
+      "app": "."
+    }
+  },
   "scripts": {
     "react-start": "react-scripts start",
     "react-build": "react-scripts build",
