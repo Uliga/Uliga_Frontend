@@ -7,7 +7,6 @@ import { getDayOfWeek } from "../../../utils/date";
 import { deleteHistory } from "../../../api/book";
 import Badge from "../../Badge";
 import COLORS from "../../../constants/color";
-import Button from "../../Button";
 import toastMsg from "../../Toast";
 
 const Wrapper = styled.div`
@@ -53,9 +52,9 @@ const Buttons = styled.div`
   }
 `;
 
-const CommentButton = styled(Button)`
-  height: 2.5rem;
-`;
+// const CommentButton = styled(Button)`
+//   height: 2.5rem;
+// `;
 
 const EditButton = styled.button`
   border: none;
@@ -134,7 +133,7 @@ export default function HistoryItem({
       <Buttons>
         {setIsEditFormOpen && (
           <>
-            <CommentButton title="💬 코멘트 남기기" theme="basic" />
+            {/* <CommentButton title="💬 코멘트 남기기" theme="basic" /> */}
             <EditButton
               onClick={() => setIsEditFormOpen({ id: history.id, open: true })}
             >

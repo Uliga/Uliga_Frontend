@@ -71,6 +71,7 @@ describe("main page e2e test", () => {
     cy.get("div").contains("이번 달 수입").should("be.visible");
     cy.get("button").contains("금융 일정 수정하기").should("be.visible");
   });
+
   it("캘린더에서 해당 날짜의 가계부 작성 버튼을 누르면 일일 가계부 작성이 가능하다.", () => {
     // 오늘 날짜로 선택
     cy.get(`[data-cy="calendar-day-${new Date().getDate()}"]`).trigger(
