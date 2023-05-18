@@ -198,7 +198,7 @@ export default function Signup() {
           ),
         )}
         <S.PersonalDiv>
-          <S.StyledCheckBox
+          <input
             type="checkbox"
             value=""
             size={1.5}

@@ -6,13 +6,6 @@ describe("회원가입", () => {
   beforeEach(() => {
     cy.visit("http://localhost:3000");
     cy.contains("이메일").parent().type("testuser@example.com");
-    // cy.intercept({ method: "POST", url: API.CHECK_EMAIL }, req => {
-    //   req.body = {
-    //     email: "testuser@example.com",
-    //   };
-    //   // 요청을 진행하기 위해 응답을 반환
-    //   req.continue();
-    // });
     cy.intercept(
       {
         method: "GET",
@@ -60,22 +53,14 @@ describe("회원가입", () => {
     cy.contains("이름").parent().type(name);
     // 닉네임 입력
     cy.contains("닉네임").parent().type(nickname);
-    let result;
-    cy.fixture("nicknameResult").then(data => {
-      const isNicknameAvailable = (nick: string) => {
-        // fixture 데이터와 닉네임 비교
-        const exists = data.nickName.includes(nick);
-        return { exists };
-      };
-      result = isNicknameAvailable(nickname);
-    });
+
     cy.intercept(
       {
         method: "GET",
         url: `${API.NICK_DUPLICATE}${nickname}`,
       },
       {
-        exists: result,
+        exists: false,
       },
     );
     cy.contains("닉네임") // '닉네임 확인' 라벨을 포함한 요소 선택
@@ -84,9 +69,7 @@ describe("회원가입", () => {
       .contains("확인") // '확인' 버튼을 포함한 요소 선택
       .click();
     // cy.contains("우리가 개인정보").next(); // '확인' 버튼을 포함한 요소 선택
-    // cy.get('input[type="checkbox"]').click();
-    // cy.contains("우리가 개인정보").check(); // '확인' 버튼을 포함한 요소 선택
-    cy.get('input[type="input"]');
+    cy.get('input[type="checkbox"]').click();
     cy.intercept(
       {
         method: "POST",
