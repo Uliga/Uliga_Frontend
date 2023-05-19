@@ -33,7 +33,7 @@ jobs:
         run: yarn start report:merge
 
       - name: Generate HTML report
-        run: yarn start report:generate --template ./template.html  mv report.html public/index.html
+        run: yarn start report:generate
 
       - name: Deploy report page
         uses: peaceiris/actions-gh-pages@v3
