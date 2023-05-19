@@ -61,7 +61,6 @@ describe("회원가입", () => {
       .parent() // 다음 형제 요소 선택 (오른쪽에 위치한 요소)
       .contains("확인") // '확인' 버튼을 포함한 요소 선택
       .click();
-    // cy.contains("우리가 개인정보").next(); // '확인' 버튼을 포함한 요소 선택
     cy.get('input[type="checkbox"]').click();
     cy.intercept(
       {
