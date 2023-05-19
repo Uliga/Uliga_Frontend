@@ -28,13 +28,6 @@ jobs:
           mkcert -install
           mkcert localhost 127.0.0.1 ::1
 
-      - name: Create dev envfile
-        run: |
-          echo "REACT_APP_BASE_URL=REACT_APP_BASE_URL" >> .env
-          echo "HTTPS=true" >> .env
-          echo "SSL_CRT_FILE=localhost+2.pem" >> .env
-          echo "SSL_KEY_FILE=localhost+2-key.pem" >> .env
-
         env:
           REACT_APP_BASE_URL: ${{ secrets.REACT_APP_BASE_URL }}
 
