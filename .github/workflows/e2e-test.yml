@@ -1,0 +1,47 @@
+name: Uliga-Frontend E2E test
+
+on: [push]
+
+jobs:
+  cypress-run:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Install yarn
+        run: npm install -g yarn
+
+      - name: Install project dependencies
+        run: yarn install
+
+      - name: Create dev certfile
+        run: |
+          sudo apt-get update
+          sudo apt install libnss3-tools wget
+          wget https://github.com/FiloSottile/mkcert/releases/download/v1.4.3/mkcert-v1.4.3-linux-amd64
+          sudo cp mkcert-v1.4.3-linux-amd64 /usr/local/bin/mkcert
+          sudo chmod +x /usr/local/bin/mkcert
+          mkcert -install
+          mkcert localhost 127.0.0.1 ::1
+
+      - name: Create dev envfile
+        run: |
+          echo "REACT_APP_BASE_URL=REACT_APP_BASE_URL" >> .env
+          echo "HTTPS=true" >> .env
+          echo "SSL_CRT_FILE=localhost+2.pem" >> .env
+          echo "SSL_KEY_FILE=localhost+2-key.pem" >> .env
+
+        env:
+          REACT_APP_BASE_URL: ${{ secrets.REACT_APP_BASE_URL }}
+
+      - name: Run app
+        run: yarn start & yarn wait-on https://localhost:3000
+
+      - name: Run cypress
+        run: |
+          export CYPRESS_PROJECT_ID=${{ secrets.CYPRESS_PROJECT_ID }}
+          yarn cypress run --record --key ${{ secrets.CYPRESS_RECORD_KEY }} --browser chrome
