@@ -123,7 +123,7 @@ const Buttons = styled.div`
   display: flex;
   position: relative;
 `;
-const Buttons2 = styled.div`
+const PersonalDiv = styled.div`
   font-size: 1.3rem;
   color: ${COLORS.GREY[400]};
   display: flex;
@@ -167,7 +167,7 @@ export {
   CertificationStyledButton,
   SignUpStyledButton,
   Buttons,
-  Buttons2,
+  PersonalDiv,
   Signup,
   Warn,
   PartTitle,

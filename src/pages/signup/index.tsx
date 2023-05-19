@@ -197,18 +197,16 @@ export default function Signup() {
             </S.InputContainer>
           ),
         )}
-        <S.Buttons2>
-          <S.StyledCheckBox
+        <S.PersonalDiv>
+          <input
             type="checkbox"
             value=""
             size={1.5}
             onChange={handleCheckboxChange}
           />
           우리가 개인정보 수집 및 동의 (필수)
-          <S.PersonalInfo>
-            <Link to={PATH.LOGIN}>자세히</Link>
-          </S.PersonalInfo>
-        </S.Buttons2>
+          <S.PersonalInfo>자세히</S.PersonalInfo>
+        </S.PersonalDiv>
         <S.Buttons>
           이미 계정이 있으신가요?
           <S.Signup>

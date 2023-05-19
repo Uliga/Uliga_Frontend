@@ -31,7 +31,16 @@ font-family: "Pretendard-Web", serif;
   ##Device = Tablets, Ipads (portrait)
   ##Screen = B/w 768px to 1024px
 */
-
+//
+//@media (min-width: 768px) and (max-width: 1024px) {
+//  html {
+//    font-size: 8px;
+//  }
+//}
+/* 
+  ##Device = Laptops, Desktops
+  ##Screen = B/w 1025px to 1280px
+*/
 @media (min-width: 768px) and (max-width: 1024px) {
   html {
     font-size: 7.5px;
