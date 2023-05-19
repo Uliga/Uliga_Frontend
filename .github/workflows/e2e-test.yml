@@ -28,8 +28,11 @@ jobs:
           mkcert -install
           mkcert localhost 127.0.0.1 ::1
 
-        env:
-          REACT_APP_BASE_URL: ${{ secrets.REACT_APP_BASE_URL }}
+      - name: Set Cypress environment variable
+        run: echo "CYPRESS_API_HOST=${{ secrets.CYPRESS_API_HOST }}" >> $GITHUB_ENV
+
+      - name: Set Api environment variable
+        run: echo "REACT_APP_BASE_URL=${{ secrets.REACT_APP_BASE_URL }}" >> $GITHUB_ENV
 
       - name: Run app
         run: yarn start & yarn wait-on https://localhost:3000
