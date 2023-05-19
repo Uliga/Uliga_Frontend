@@ -72,7 +72,7 @@
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public",
     "test": "jest",
-    "cypress:open": "cypress open"
+    "cy:open": "cypress open"
   },
   "eslintConfig": {
     "extends": [
