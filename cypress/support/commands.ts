@@ -2,9 +2,9 @@ import API from "../../src/api/config";
 
 Cypress.Commands.add("login", () => {
   cy.request({
-    url: `${Cypress.env("apiHost")}${API.LOGIN}`,
+    url: `${process.env.REACT_APP_BASE_URL}${API.LOGIN}`,
     method: "POST",
-    body: { email: Cypress.env("email"), password: Cypress.env("password") },
+    body: { email: "dbscogus4467@naver.com", password: "rhdqngkwk7!" },
   })
     .its("body")
     .then(data => {
