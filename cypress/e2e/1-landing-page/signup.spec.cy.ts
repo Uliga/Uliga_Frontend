@@ -151,7 +151,6 @@ describe("회원가입", () => {
     );
     cy.contains("인증").click();
     cy.contains("인증번호 입력").parent().type(verificationCode);
-
     cy.intercept(
       {
         method: "POST",
