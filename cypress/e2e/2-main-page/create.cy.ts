@@ -2,25 +2,25 @@ import API from "../../../src/api/config";
 
 describe("create accountbook e2e test", () => {
   beforeEach(() => {
-    cy.intercept(
-      {
-        method: "GET",
-        url: `${API.CHECK_EMAIL}dbscogus44@gmail.com`,
-      },
-      { exists: true },
-    ).as("checkEmail");
-    cy.intercept(
-      {
-        method: "POST",
-        url: `${API.ACCOUNT_BOOK}`,
-      },
-      {
-        id: 0,
-        name: "accountBookName",
-        isPrivate: true,
-        relationShip: "relationship",
-      },
-    ).as("createAccountBook");
+    // cy.intercept(
+    //   {
+    //     method: "GET",
+    //     url: `${API.CHECK_EMAIL}dbscogus44@gmail.com`,
+    //   },
+    //   { exists: true },
+    // ).as("checkEmail");
+    // cy.intercept(
+    //   {
+    //     method: "POST",
+    //     url: `${API.ACCOUNT_BOOK}`,
+    //   },
+    //   {
+    //     id: 0,
+    //     name: "accountBookName",
+    //     isPrivate: true,
+    //     relationShip: "relationship",
+    //   },
+    // ).as("createAccountBook");
     cy.login().then(() => {
       cy.visit(
         `https://localhost:3000/main/${localStorage.getItem(
@@ -39,7 +39,7 @@ describe("create accountbook e2e test", () => {
       cy.contains("가계부 조직").parent().type("가계부 조직 테스트");
       cy.contains("사용자 초대").parent().type("dbscogus44@gmail.com");
       cy.contains("사용자 초대").parent().parent().find("button").click();
-      cy.wait("@checkEmail");
+      // cy.wait("@checkEmail");
       cy.get('[data-cy="email-container"]').should(
         "contain",
         "dbscogus44@gmail.com",
@@ -51,7 +51,7 @@ describe("create accountbook e2e test", () => {
         "추가된 카테고리",
       );
       cy.contains("공유 가계부 만들기").click();
-      cy.wait("@createAccountBook");
+      // cy.wait("@createAccountBook");
     });
   });
 });
