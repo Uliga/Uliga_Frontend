@@ -18,15 +18,6 @@ jobs:
       - name: Install project dependencies
         run: yarn
 
-      - name: Install xvfb
-        run: sudo apt-get install xvfb -y
-
-      - name: Start Xvfb
-        run: Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
-
-      - name: Set DISPLAY
-        run: export DISPLAY=:99
-
       - name: Create dev certfile
         run: |
           sudo apt-get update
@@ -40,6 +31,9 @@ jobs:
       - name: Create dev envfile
         run: |
           echo "REACT_APP_BASE_URL=REACT_APP_BASE_URL" >> .env
+          echo "HTTPS=true" >> .env
+          echo "SSL_CRT_FILE=localhost+2.pem" >> .env
+          echo "SSL_KEY_FILE=localhost+2-key.pem" >> .env
 
         env:
           REACT_APP_BASE_URL: ${{ secrets.REACT_APP_BASE_URL }}
