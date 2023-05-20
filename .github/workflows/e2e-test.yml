@@ -44,7 +44,7 @@ jobs:
           }' > cypress.env.json
 
       - name: Run app
-        run: yarn start
+        run: yarn start & yarn wait-on https://localhost:3000
 
       - name: Run cypress
         run: |
