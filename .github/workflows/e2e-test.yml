@@ -4,7 +4,7 @@ on: [push]
 
 jobs:
   cypress-run:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-18.04
 
     steps:
       - uses: actions/checkout@v2
@@ -17,6 +17,15 @@ jobs:
 
       - name: Install project dependencies
         run: yarn
+
+      - name: Install xvfb
+        run: sudo apt-get install xvfb -y
+
+      - name: Start Xvfb
+        run: Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
+
+      - name: Set DISPLAY
+        run: export DISPLAY=:99
 
       - name: Create dev certfile
         run: |
