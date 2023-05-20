@@ -28,13 +28,10 @@ jobs:
           mkcert -install
           mkcert localhost 127.0.0.1 ::1
 
-      - name: Create dev envfile
+      - name: Create envfile
         run: |
-          echo "REACT_APP_BASE_URL=REACT_APP_BASE_URL" >> .env
-          echo "HTTPS=false" >> .env
-
-        env:
-          REACT_APP_BASE_URL: ${{ secrets.REACT_APP_BASE_URL }}
+          echo "REACT_APP_BASE_URL=${{ secrets.REACT_APP_BASE_URL }}" > .env
+          echo "HTTPS=false" >> .env      
 
       - name: Create Cypress envfile
         run: |
