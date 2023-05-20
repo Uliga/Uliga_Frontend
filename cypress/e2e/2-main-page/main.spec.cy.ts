@@ -1,7 +1,7 @@
 import API from "../../../src/api/config";
 
 describe("main page e2e test", () => {
-  beforeEach(() => {
+  beforeEach(async () => {
     cy.intercept(
       {
         method: "POST",
@@ -25,7 +25,8 @@ describe("main page e2e test", () => {
       },
     ).as("uploadIncome");
 
-    cy.login().then(() => {
+    await cy.login().then(() => {
+      cy.wait(5000);
       cy.visit(
         `http://localhost:3000/main/${localStorage.getItem(
           "privateAccountBookId",

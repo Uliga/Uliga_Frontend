@@ -1,7 +1,7 @@
 import API from "../../../src/api/config";
 
 describe("create accountbook e2e test", () => {
-  beforeEach(() => {
+  beforeEach(async () => {
     cy.intercept(
       {
         method: "GET",
@@ -21,7 +21,8 @@ describe("create accountbook e2e test", () => {
         relationShip: "relationship",
       },
     ).as("createAccountBook");
-    cy.login().then(() => {
+    await cy.login().then(() => {
+      cy.wait(5000);
       cy.visit(
         `http://localhost:3000/main/${localStorage.getItem(
           "privateAccountBookId",
