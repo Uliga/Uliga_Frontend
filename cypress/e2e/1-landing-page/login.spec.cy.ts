@@ -5,10 +5,8 @@ describe("login e2e test", () => {
     cy.visit("http://localhost:3000/login");
   });
   it("유효한 아이디와 비밀번호로 로그인에 성공한다.", () => {
-    const apiHost = Cypress.env("CYPRESS_API_HOST");
-
     cy.intercept(
-      { method: "POST", url: `${apiHost}${API.LOGIN}` },
+      { method: "POST", url: `${API.LOGIN}` },
       { fixture: "loginResult.json" },
     ).as("loginSuccess");
 
@@ -27,10 +25,8 @@ describe("login e2e test", () => {
       });
   });
   it("유효하지 않은 아이디와 비밀번호로 로그인에 실패한다.", () => {
-    const apiHost = Cypress.env("CYPRESS_API_HOST");
-
     cy.intercept(
-      { method: "POST", url: `${apiHost}${API.LOGIN}` },
+      { method: "POST", url: `${API.LOGIN}` },
       { statusCode: 401, body: { error: "Login failed" } },
     ).as("loginFailure");
     cy.contains("이메일 주소").parent().type("dbscogus4467@naver.com");
