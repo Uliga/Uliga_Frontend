@@ -23,7 +23,7 @@ describe("create accountbook e2e test", () => {
     // ).as("createAccountBook");
     cy.login().then(() => {
       cy.visit(
-        `https://localhost:3000/main/${localStorage.getItem(
+        `http://localhost:3000/main/${localStorage.getItem(
           "privateAccountBookId",
         )}`,
       );

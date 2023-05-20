@@ -31,9 +31,7 @@ jobs:
       - name: Create dev envfile
         run: |
           echo "REACT_APP_BASE_URL=REACT_APP_BASE_URL" >> .env
-          echo "HTTPS=true" >> .env
-          echo "SSL_CRT_FILE=localhost+2.pem" >> .env
-          echo "SSL_KEY_FILE=localhost+2-key.pem" >> .env
+          echo "HTTPS=false" >> .env
 
         env:
           REACT_APP_BASE_URL: ${{ secrets.REACT_APP_BASE_URL }}
@@ -47,7 +45,7 @@ jobs:
           }' > cypress.env.json
 
       - name: Run app
-        run: yarn test-start & yarn wait-on https://localhost:3000
+        run: yarn test-start & yarn wait-on http://localhost:3000
 
       - name: Run cypress
         run: |

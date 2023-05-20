@@ -27,7 +27,7 @@ describe("main page e2e test", () => {
 
     cy.login().then(() => {
       cy.visit(
-        `https://localhost:3000/main/${localStorage.getItem(
+        `http://localhost:3000/main/${localStorage.getItem(
           "privateAccountBookId",
         )}`,
       );
