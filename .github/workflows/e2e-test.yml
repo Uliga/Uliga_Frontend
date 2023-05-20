@@ -1,4 +1,4 @@
-name: Uliga-Frontend E2E test
+name: uliga E2E test
 
 on: [push]
 
@@ -16,7 +16,7 @@ jobs:
         run: npm install -g yarn
 
       - name: Install project dependencies
-        run: yarn install
+        run: yarn
 
       - name: Create dev certfile
         run: |
@@ -27,20 +27,24 @@ jobs:
           sudo chmod +x /usr/local/bin/mkcert
           mkcert -install
           mkcert localhost 127.0.0.1 ::1
+
       - name: Create dev envfile
         run: |
-          echo "REACT_APP_BASE_URL=${{ secrets.REACT_APP_BASE_URL }}" >> .env
-          echo "HTTPS=true" >> .env
-          echo "SSL_CRT_FILE=localhost+2.pem" >> .env
-          echo "SSL_KEY_FILE=localhost+2-key.pem" >> .env
+          echo "REACT_APP_BASE_URL=REACT_APP_BASE_URL" >> .env
 
-      - name: Set Cypress environment variable
-        run: echo "CYPRESS_API_HOST=${{ secrets.CYPRESS_API_HOST }}" >> $GITHUB_ENV
+        env:
+          REACT_APP_BASE_URL: ${{ secrets.REACT_APP_BASE_URL }}
 
-      - name: Set Api environment variable
-        run: echo "REACT_APP_BASE_URL=${{ secrets.REACT_APP_BASE_URL }}" >> $GITHUB_ENV
+      - name: Create Cypress envfile
+        run: |
+          echo '{
+            "CYPRESS_API_HOST": "'${{ secrets.CYPRESS_API_HOST }}'",
+            "email": "dbscogus4467@naver.com",
+            "password": "rhdqngkwk7!"
+          }' > cypress.env.json
+
       - name: Run app
-        run: yarn react-start
+        run: yarn start
 
       - name: Run cypress
         run: |

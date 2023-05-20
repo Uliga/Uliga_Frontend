@@ -2,7 +2,7 @@ import { defineConfig } from "cypress";
 
 export default defineConfig({
   env: {
-    apiHost: process.env.REACT_APP_BASE_URL,
+    CYPRESS_API_HOST: process.env.REACT_APP_BASE_URL,
     baseUrl: "http://localhost:3000",
     "cypress-react-selector": {
       root: "#root",
