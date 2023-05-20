@@ -2,9 +2,11 @@ import API from "../../../src/api/config";
 
 describe("login e2e test", () => {
   beforeEach(() => {
-    cy.visit("http://localhost:3000/login");
+    cy.waitForReact();
   });
   it("유효한 아이디와 비밀번호로 로그인에 성공한다.", () => {
+    cy.visit("http://localhost:3000/login");
+
     cy.intercept(
       { method: "POST", url: API.LOGIN },
       { fixture: "loginResult.json" },
@@ -25,6 +27,8 @@ describe("login e2e test", () => {
       });
   });
   it("유효하지 않은 아이디와 비밀번호로 로그인에 실패한다.", () => {
+    cy.visit("http://localhost:3000/login");
+
     cy.intercept(
       { method: "POST", url: API.LOGIN },
       { statusCode: 401, body: { error: "Login failed" } },
@@ -38,6 +42,8 @@ describe("login e2e test", () => {
     });
   });
   it("아이디와 비밀번호 필드에 올바르지 않은 값을 입력하여 버튼이 disabled 상태가 된다.", () => {
+    cy.visit("http://localhost:3000/login");
+
     cy.contains("이메일 주소").parent().type("dbscogus4467navercom");
     cy.get("button").should("be.disabled");
   });
