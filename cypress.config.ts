@@ -3,7 +3,7 @@ import { defineConfig } from "cypress";
 export default defineConfig({
   projectId: "vtg9rv",
   env: {
-    CYPRESS_API_HOST: Cypress.env("CYPRESS_API_HOST"),
+    CYPRESS_API_HOST: process.env.REACT_APP_BASE_URL,
     baseUrl: "http://localhost:3000",
     "cypress-react-selector": {
       root: "#root",
