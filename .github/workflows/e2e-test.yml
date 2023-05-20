@@ -41,7 +41,7 @@ jobs:
       - name: Create Cypress envfile
         run: |
           echo '{
-            "CYPRESS_API_HOST": "'${{ secrets.CYPRESS_API_HOST }}'",
+            "CYPRESS_API_HOST": ${{ secrets.CYPRESS_API_HOST }},
             "email": "dbscogus4467@naver.com",
             "password": "rhdqngkwk7!"
           }' > cypress.env.json
