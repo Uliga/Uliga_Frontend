@@ -1,31 +1,8 @@
 import API from "../../../src/api/config";
 
 describe("main page e2e test", () => {
-  beforeEach(async () => {
-    cy.intercept(
-      {
-        method: "POST",
-        url: API.UPLOAD_INCOME,
-      },
-      {
-        accountBookId: 0,
-        incomeInfo: {
-          id: 0,
-          value: 0,
-          payment: "카드/이체/등등",
-          account: "거래처",
-          memo: "simple memo",
-          year: 0,
-          month: 0,
-          day: 0,
-          creator: "creatorNickname",
-          avatarUrl: "string",
-          category: "category",
-        },
-      },
-    ).as("uploadIncome");
-
-    await cy.login().then(() => {
+  beforeEach(() => {
+    cy.login().then(() => {
       cy.wait(5000);
       cy.visit(
         `http://localhost:3000/main/${localStorage.getItem(
@@ -61,6 +38,28 @@ describe("main page e2e test", () => {
         },
       ).as("loadDayHistory");
     });
+    cy.intercept(
+      {
+        method: "POST",
+        url: API.UPLOAD_INCOME,
+      },
+      {
+        accountBookId: 0,
+        incomeInfo: {
+          id: 0,
+          value: 0,
+          payment: "카드/이체/등등",
+          account: "거래처",
+          memo: "simple memo",
+          year: 0,
+          month: 0,
+          day: 0,
+          creator: "creatorNickname",
+          avatarUrl: "string",
+          category: "category",
+        },
+      },
+    ).as("uploadIncome");
   });
 
   it("메인 페이지에 필수 컴포넌트들이 모두 존재한다.", () => {

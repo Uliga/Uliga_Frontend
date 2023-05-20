@@ -6,7 +6,7 @@ export {};
 declare global {
   namespace Cypress {
     interface Chainable {
-      login(): Promise<void>;
+      login(): Chainable<void>;
     }
   }
 }

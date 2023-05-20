@@ -1,7 +1,14 @@
 import API from "../../../src/api/config";
 
 describe("create accountbook e2e test", () => {
-  beforeEach(async () => {
+  beforeEach(() => {
+    cy.login().then(() => {
+      cy.visit(
+        `http://localhost:3000/main/${localStorage.getItem(
+          "privateAccountBookId",
+        )}`,
+      );
+    });
     cy.intercept(
       {
         method: "GET",
@@ -21,20 +28,13 @@ describe("create accountbook e2e test", () => {
         relationShip: "relationship",
       },
     ).as("createAccountBook");
-    await cy.login().then(() => {
-      cy.wait(5000);
-      cy.visit(
-        `http://localhost:3000/main/${localStorage.getItem(
-          "privateAccountBookId",
-        )}`,
-      );
-    });
   });
   it("가계부 생성 버튼이 뜨는지 확인한다.", () => {
-    cy.viewport(1920, 1080);
+    cy.wait(5000);
     cy.get('[data-cy="create-book-button"]').should("be.visible");
   });
   it("새로운 가계부를 생성하는 기능이 잘 작동하는지 확인한다.", () => {
+    cy.wait(5000);
     cy.get('[data-cy="create-book-button"]').click();
     cy.get('[data-cy="create-modal-container"]').within(() => {
       cy.contains("가계부 이름").parent().type("가계부 이름 테스트");
