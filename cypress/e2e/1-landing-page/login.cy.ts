@@ -2,7 +2,7 @@ import API from "../../../src/api/config";
 
 describe("login e2e test", () => {
   beforeEach(() => {
-    cy.visit("http://localhost:3000/login");
+    cy.visit("https://localhost:3000/login");
   });
   it("유효한 아이디와 비밀번호로 로그인에 성공한다.", () => {
     cy.intercept(

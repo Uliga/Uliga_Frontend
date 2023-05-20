@@ -4,7 +4,7 @@ export {};
 
 describe("회원가입", () => {
   beforeEach(() => {
-    cy.visit("http://localhost:3000");
+    cy.visit("https://localhost:3000");
     cy.contains("이메일").parent().type("testuser@example.com");
     cy.intercept(
       {
