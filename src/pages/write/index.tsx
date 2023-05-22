@@ -71,6 +71,7 @@ export default function Write() {
       </S.MiddleWrapper>
       <S.BottomWrapper>
         <S.StyledPlusButton
+          dataCy="write-plus-button"
           title="행 추가 "
           theme="basic"
           iconName="circlePlus"
@@ -88,6 +89,7 @@ export default function Write() {
           <S.UploadButton width="100%" title="빈 칸을 입력해주세요!" disabled />
         ) : (
           <S.UploadButton
+            dataCy="write-submit-button"
             width="100%"
             title="작성 완료"
             theme="primary"
