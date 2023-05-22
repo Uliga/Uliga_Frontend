@@ -75,82 +75,77 @@ describe("write page e2e test", () => {
   });
 
   it("가계부에 2개 이상의 내역을 작성한다.", () => {
-    cy.viewport(1920, 1080);
-
-    cy.get('[data-cy="write-page-container"]').within(() => {
-      // 첫번째 내역 작성
-      cy.get('[data-cy="write-input-container"]')
-        .eq(0)
-        .find("select")
-        .eq(0)
-        .select(2);
-      cy.get('[data-cy="write-input-container"]')
-        .eq(0)
-        .find('input[type="date"]')
-        .type("2023-05-22");
-      cy.get('[data-cy="write-input-container"]')
-        .eq(0)
-        .find("select")
-        .eq(1)
-        .select(2);
-      cy.get('[data-cy="write-input-container"]')
-        .eq(0)
-        .find("select")
-        .eq(2)
-        .select(2);
-      cy.get('[data-cy="write-input-container"]')
-        .eq(0)
-        .find('input[type="text"]')
-        .eq(0)
-        .type("거래처 테스트");
-      cy.get('[data-cy="write-input-container"]')
-        .eq(0)
-        .find('input[type="number"]')
-        .type("3000");
-      cy.get('[data-cy="write-input-container"]')
-        .eq(0)
-        .find('input[type="text"]')
-        .eq(1)
-        .type("첫번째 내역");
-    });
+    // 첫번째 내역 작성
+    cy.get('[data-cy="write-input-container"]')
+      .eq(0)
+      .find("select")
+      .eq(0)
+      .select(2);
+    cy.get('[data-cy="write-input-container"]')
+      .eq(0)
+      .find('input[type="date"]')
+      .type("2023-05-22");
+    cy.get('[data-cy="write-input-container"]')
+      .eq(0)
+      .find("select")
+      .eq(1)
+      .select(2);
+    cy.get('[data-cy="write-input-container"]')
+      .eq(0)
+      .find("select")
+      .eq(2)
+      .select(2);
+    cy.get('[data-cy="write-input-container"]')
+      .eq(0)
+      .find('input[type="text"]')
+      .eq(0)
+      .type("거래처 테스트");
+    cy.get('[data-cy="write-input-container"]')
+      .eq(0)
+      .find('input[type="number"]')
+      .type("3000");
+    cy.get('[data-cy="write-input-container"]')
+      .eq(0)
+      .find('input[type="text"]')
+      .eq(1)
+      .type("첫번째 내역");
+    // 내역 칸 하나 추가
     cy.get('[data-cy="write-plus-button"]').click();
-    cy.get('[data-cy="write-page-container"]').within(() => {
-      // 두번째 내역 작성
-      cy.get('[data-cy="write-input-container"]')
-        .eq(1)
-        .find("select")
-        .eq(0)
-        .select(1);
-      cy.get('[data-cy="write-input-container"]')
-        .eq(1)
-        .find('input[type="date"]')
-        .type("2023-05-22");
-      cy.get('[data-cy="write-input-container"]')
-        .eq(1)
-        .find("select")
-        .eq(1)
-        .select(2);
-      cy.get('[data-cy="write-input-container"]')
-        .eq(1)
-        .find("select")
-        .eq(2)
-        .select(2);
-      cy.get('[data-cy="write-input-container"]')
-        .eq(1)
-        .find('input[type="text"]')
-        .eq(0)
-        .type("거래처 테스트");
-      cy.get('[data-cy="write-input-container"]')
-        .eq(1)
-        .find('input[type="number"]')
-        .type("3000");
-      cy.get('[data-cy="write-input-container"]')
-        .eq(1)
-        .find('input[type="text"]')
-        .eq(1)
-        .type("두번째 내역");
-    });
-    cy.wait(5000);
+    // 두번째 내역 작성
+    cy.get('[data-cy="write-input-container"]')
+      .eq(1)
+      .find("select")
+      .eq(0)
+      .select(1);
+    cy.get('[data-cy="write-input-container"]')
+      .eq(1)
+      .find('input[type="date"]')
+      .type("2023-05-22");
+    cy.get('[data-cy="write-input-container"]')
+      .eq(1)
+      .find("select")
+      .eq(1)
+      .select(2);
+    cy.get('[data-cy="write-input-container"]')
+      .eq(1)
+      .find("select")
+      .eq(2)
+      .select(2);
+    cy.get('[data-cy="write-input-container"]')
+      .eq(1)
+      .find('input[type="text"]')
+      .eq(0)
+      .type("거래처 테스트");
+    cy.get('[data-cy="write-input-container"]')
+      .eq(1)
+      .find('input[type="number"]')
+      .type("3000");
+    cy.get('[data-cy="write-input-container"]')
+      .eq(1)
+      .find('input[type="text"]')
+      .eq(1)
+      .type("두번째 내역");
+    cy.wait(3000);
     cy.contains("작성 완료").click();
     cy.wait("@uploadBook");
   });
