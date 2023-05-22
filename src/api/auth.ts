@@ -35,3 +35,8 @@ export const authLogout = async () => {
   const { data } = await authorizationClient.get(API.LOGOUT);
   return data;
 };
+
+export const authSocialLogin = async (userData: object) => {
+  const { data } = await unAuthorizationClient.post(API.SOCIAL_LOGIN, userData);
+  return data;
+};
