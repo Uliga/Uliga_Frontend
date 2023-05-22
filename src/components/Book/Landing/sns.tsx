@@ -48,7 +48,7 @@ export default function SNSLogin() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // URL에서 인가 코드 값을 추출합니다.
+    // URL에서 인가 코드 값을 추출.
     const searchParams = new URLSearchParams(window.location.search);
     const authCode = searchParams.get("token");
     const authCreate = searchParams.get("created");
