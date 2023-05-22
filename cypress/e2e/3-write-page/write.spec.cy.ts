@@ -75,6 +75,8 @@ describe("write page e2e test", () => {
   });
 
   it("가계부에 2개 이상의 내역을 작성한다.", () => {
+    cy.viewport(1920, 1080);
+
     cy.get('[data-cy="write-page-container"]').within(() => {
       // 첫번째 내역 작성
       cy.get('[data-cy="write-input-container"]')
@@ -149,7 +151,7 @@ describe("write page e2e test", () => {
         .type("두번째 내역");
     });
     cy.wait(5000);
-    cy.get('[data-cy="write-submit-button"]').click();
+    cy.contains("작성 완료").click();
     cy.wait("@uploadBook");
   });
   it("가계부 내역 작성 시 빈 칸이 있어 가계부 작성에 실패한다.", () => {
