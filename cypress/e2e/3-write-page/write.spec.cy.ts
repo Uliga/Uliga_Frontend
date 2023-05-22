@@ -78,7 +78,7 @@ describe("write page e2e test", () => {
     // 첫번째 내역 작성
     cy.get('[data-cy="write-input-container"]')
       .eq(0)
-      .find("select")
+      .get("select")
       .eq(0)
       .select(2);
     cy.get('[data-cy="write-input-container"]')
