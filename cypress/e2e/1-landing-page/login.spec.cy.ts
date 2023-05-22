@@ -10,8 +10,12 @@ describe("login e2e test", () => {
       { fixture: "loginResult.json" },
     ).as("loginSuccess");
 
-    cy.contains("이메일 주소").parent().type("dbscogus4467@naver.com");
-    cy.contains("비밀번호").parent().type("rhdqngkwk7!");
+    cy.contains("이메일 주소")
+      .parent()
+      .type(`${Cypress.env("CYPRESS_TEST_EMAIL")}`);
+    cy.contains("비밀번호")
+      .parent()
+      .type(`${Cypress.env("CYPRESS_TEST_PASSWORD")}`);
     cy.get("button").click();
 
     cy.wait("@loginSuccess")
@@ -29,7 +33,9 @@ describe("login e2e test", () => {
       { method: "POST", url: `${API.LOGIN}` },
       { statusCode: 401, body: { error: "Login failed" } },
     ).as("loginFailure");
-    cy.contains("이메일 주소").parent().type("dbscogus4467@naver.com");
+    cy.contains("이메일 주소")
+      .parent()
+      .type(`${Cypress.env("CYPRESS_TEST_EMAIL")}`);
     cy.contains("비밀번호").parent().type("wrong password");
     cy.get("button").click();
 
