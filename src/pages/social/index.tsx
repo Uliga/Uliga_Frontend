@@ -1,42 +1,23 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
 import Input from "../../components/Input";
 import * as S from "./index.styles";
-import PATH from "../../constants/path";
 import TopSection from "../../components/Book/Signup/TopSection";
 import useSocialSignup from "../../hooks/useSocialSignup";
-import { IUserInfo } from "../../interfaces/user";
-import QUERYKEYS from "../../constants/querykey";
-import { loadMe } from "../../api/user";
-import LoadingBar from "../../components/LoadingBar";
 
 export default function Social() {
   const {
-    onChangeEmail,
-    onChangeName,
     onChangeNickname,
     checkNickname,
     nickName,
+    userName,
     exist,
     handleCheckboxChange,
-    mutateUpdateNickname,
+    mutateSocialLogin,
     isChecked,
+    email,
+    loginType,
   } = useSocialSignup();
   const applicationPassword = "1234";
-  const navigate = useNavigate();
-
-  const { isLoading, data } = useQuery<IUserInfo | undefined>(
-    [QUERYKEYS.LOAD_ME],
-    loadMe,
-  );
-
-  if (isLoading || !data)
-    return (
-      <S.Wrapper>
-        <LoadingBar type={6} />
-      </S.Wrapper>
-    );
   type InputProps = {
     label: string;
     size: number;
@@ -58,8 +39,7 @@ export default function Social() {
     {
       label: "이메일 주소",
       size: 38.38,
-      value: data.memberInfo.email,
-      onChange: onChangeEmail,
+      value: email,
       type: "email",
       placeholder: "",
       readOnly: true,
@@ -73,8 +53,7 @@ export default function Social() {
     {
       label: "이름",
       size: 46.5,
-      value: data.memberInfo.userName,
-      onChange: onChangeName,
+      value: userName,
       type: "text",
       placeholder: "",
       readOnly: false,
@@ -142,12 +121,13 @@ export default function Social() {
             title="계정 만들기"
             width="13.5rem"
             onClick={() => {
-              mutateUpdateNickname.mutate({
+              mutateSocialLogin.mutate({
+                email,
+                userName,
                 nickName,
+                loginType,
                 applicationPassword,
               });
-              localStorage.setItem("created", "false");
-              navigate(`${PATH.MAIN}/${data.memberInfo.privateAccountBookId}`);
             }}
             disabled={!(nickName.length > 1 && exist && isChecked)}
           />

@@ -1,18 +1,18 @@
 /* eslint-disable no-nested-ternary */
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import useInput from "./useInput";
 import REGEX from "../constants/regex";
-import { checkNicknameDuplicate } from "../api/auth";
+import { authSocialLogin, checkNicknameDuplicate } from "../api/auth";
 import toastMsg from "../components/Toast";
-import { patchMe } from "../api/user";
 import QUERYKEYS from "../constants/querykey";
+import PATH from "../constants/path";
 
 export default function useSocialSignup() {
-  const { state } = useLocation();
-  const [email, onChangeEmail] = useInput(state);
-  const [userName, onChangeName] = useInput("");
+  const path = useLocation();
+  const navigate = useNavigate();
+  const { userName, loginType, email } = path.state;
   const [nickName, onChangeNickname] = useInput("");
   const [isValidate, setIsValidate] = useState(true);
   const [code, setCode] = useInput("");
@@ -42,10 +42,17 @@ export default function useSocialSignup() {
     }
   };
 
-  const mutateUpdateNickname = useMutation(["patchMe"], patchMe, {
-    onSuccess: () => {
+  const mutateSocialLogin = useMutation(["authSocialLogin"], authSocialLogin, {
+    onSuccess: ({ memberInfo, tokenInfo }) => {
       toastMsg("회원가입 성공 👏");
+      localStorage.setItem("accessToken", tokenInfo.accessToken);
+      localStorage.setItem("created", "false");
+      localStorage.setItem(
+        "privateAccountBookId",
+        memberInfo.privateAccountBookId,
+      );
       queryClient.invalidateQueries([QUERYKEYS.LOAD_ME]);
+      navigate(`${PATH.MAIN}/${memberInfo.privateAccountBookId}`);
     },
     onError: ({
       response: {
@@ -58,12 +65,10 @@ export default function useSocialSignup() {
   return {
     isValidate,
     email,
-    onChangeEmail,
     code,
     setCode,
     userName,
     nickName,
-    onChangeName,
     onChangeNickname,
     checkNickname,
     match,
@@ -73,6 +78,7 @@ export default function useSocialSignup() {
     isChecked,
     setIsChecked,
     handleCheckboxChange,
-    mutateUpdateNickname,
+    mutateSocialLogin,
+    loginType,
   };
 }
