@@ -3,7 +3,6 @@ import API from "../../../src/api/config";
 describe("main page e2e test", () => {
   beforeEach(() => {
     cy.login().then(() => {
-      cy.wait(5000);
       cy.visit(
         `http://localhost:3000/main/${localStorage.getItem(
           "privateAccountBookId",
