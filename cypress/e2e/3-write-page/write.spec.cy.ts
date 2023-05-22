@@ -148,6 +148,7 @@ describe("write page e2e test", () => {
         .eq(1)
         .type("두번째 내역");
     });
+    cy.wait(3000);
     cy.get('[data-cy="write-submit-button"]').click();
     cy.wait("@uploadBook");
   });
