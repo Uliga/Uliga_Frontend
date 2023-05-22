@@ -161,7 +161,9 @@ exports[`<Login /> 로그인 컴포넌트 스냅샷 테스트 1`] = `
       </div>
     </div>
     <button
-      class="sc-jSUZER bZlVIB sc-pyfCe jgfaNU"
+      class="sc-jSUZER fDKoxe sc-pyfCe jgfaNU"
+      data-cy=""
+      disabled=""
       type="submit"
       width="13.5rem"
     >

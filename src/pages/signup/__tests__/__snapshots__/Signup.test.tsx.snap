@@ -158,6 +158,7 @@ exports[`회원가입 컴포넌트 테스트 스냅샷 일치 확인 1`] = `
         </div>
         <button
           class="sc-eDvSVe ekifOD sc-csuSiG huSFJz"
+          data-cy=""
           type="button"
         >
           인증
@@ -257,6 +258,7 @@ exports[`회원가입 컴포넌트 테스트 스냅샷 일치 확인 1`] = `
         </div>
         <button
           class="sc-eDvSVe ekifOD sc-csuSiG huSFJz"
+          data-cy=""
           type="button"
         >
           확인
@@ -265,29 +267,16 @@ exports[`회원가입 컴포넌트 테스트 스냅샷 일치 확인 1`] = `
       <div
         class="sc-hBxehG dgQBel"
       >
-        <div
-          class="sc-bcXHqe sc-fEXmlR gjmvmx"
-        >
-          <div
-            class="sc-gswNZR cdSGNK"
-          />
-          <input
-            class="sc-dkrFOg gzqPrE"
-            placeholder=""
-            size="1.5"
-            type="checkbox"
-            value=""
-          />
-        </div>
+        <input
+          size="1.5"
+          type="checkbox"
+          value=""
+        />
         우리가 개인정보 수집 및 동의 (필수)
         <div
           class="sc-fnGiBr BNunk"
         >
-          <a
-            href="/login"
-          >
-            자세히
-          </a>
+          자세히
         </div>
       </div>
       <div
@@ -305,6 +294,7 @@ exports[`회원가입 컴포넌트 테스트 스냅샷 일치 확인 1`] = `
         </button>
         <button
           class="sc-eDvSVe cmrfug sc-bqWxrE iYZvZL"
+          data-cy=""
           disabled=""
           type="button"
           width="13.5rem"
