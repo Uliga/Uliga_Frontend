@@ -37,8 +37,8 @@ jobs:
         run: |
           echo '{
             "CYPRESS_API_HOST": ${{ secrets.CYPRESS_API_HOST }},
-            "email": ${{ secrets.CYPRESS_TEST_EMAIL }},
-            "password": ${{ secrets.CYPRESS_TEST_PASSWORD }}
+            "CYPRESS_TEST_EMAIL": ${{ secrets.CYPRESS_TEST_EMAIL }},
+            "CYPRESS_TEST_PASSWORD": ${{ secrets.CYPRESS_TEST_PASSWORD }}
           }' > cypress.env.json
 
       - name: Run app
