@@ -88,11 +88,11 @@ describe("main page e2e test", () => {
     cy.get('[data-cy="day-write-submit-button"]').should("be.disabled");
     cy.get('[data-cy="bottom-sheet-input-container"]')
       .find("select")
-      .eq(0) // 선택한 인덱스의 컴포넌트를 찾습니다.
+      .eq(0)
       .select(3);
     cy.get('[data-cy="bottom-sheet-input-container"]')
       .find("select")
-      .eq(1) // 선택한 인덱스의 컴포넌트를 찾습니다.
+      .eq(1)
       .select(2);
     cy.get('[data-cy="bottom-sheet-wrapper"]')
       .find("div")
