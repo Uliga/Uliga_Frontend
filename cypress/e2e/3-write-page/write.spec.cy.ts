@@ -75,6 +75,9 @@ describe("write page e2e test", () => {
   });
 
   it("가계부에 2개 이상의 내역을 작성한다.", () => {
+    // 내역 칸 하나 추가
+    cy.get('[data-cy="write-plus-button"]').click();
+
     // 첫번째 내역 작성
     cy.get('[data-cy="write-input-container"]')
       .eq(0)
@@ -109,8 +112,7 @@ describe("write page e2e test", () => {
       .find('input[type="text"]')
       .eq(1)
       .type("첫번째 내역");
-    // 내역 칸 하나 추가
-    cy.get('[data-cy="write-plus-button"]').click();
+
     // 두번째 내역 작성
     cy.get('[data-cy="write-input-container"]')
       .eq(1)
