@@ -136,7 +136,7 @@ export default function ShareModal({
           {data?.accountBooks.map(
             book =>
               Number(bookId || 0) !== book.info.accountBookId && (
-                <Box>
+                <Box data-cy="other-account-book">
                   {book.info.accountBookName}
                   <MemberWrapper>
                     {book.members.map(member => (
@@ -171,6 +171,7 @@ export default function ShareModal({
             }}
           />
           <Button
+            dataCy="modal-submit-button"
             title="확인"
             onClick={() => {
               onSubmitModal();

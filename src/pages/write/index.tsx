@@ -32,7 +32,7 @@ export default function Write() {
             list => list[5].value && list[5].value?.toString().length > 0,
           ) && <S.AlarmModal>⚠️ 올바른 금액을 입력해주세요!</S.AlarmModal>}
       </S.Menu>
-      <S.MiddleWrapper>
+      <S.MiddleWrapper data-cy="write-page-container">
         {inputList.map((inputs, listIdx) => (
           <>
             {sharedBookModalOpen.idx === listIdx &&
@@ -71,6 +71,7 @@ export default function Write() {
       </S.MiddleWrapper>
       <S.BottomWrapper>
         <S.StyledPlusButton
+          dataCy="write-plus-button"
           title="행 추가 "
           theme="basic"
           iconName="circlePlus"
@@ -85,9 +86,15 @@ export default function Write() {
         {inputList.some(ele =>
           ele.some(subEle => subEle.value === "" || subEle.value === false),
         ) || !isValidateValue ? (
-          <S.UploadButton width="100%" title="빈 칸을 입력해주세요!" disabled />
+          <S.UploadButton
+            dataCy="write-submit-button-disabled"
+            width="100%"
+            title="빈 칸을 입력해주세요!"
+            disabled
+          />
         ) : (
           <S.UploadButton
+            dataCy="write-submit-button"
             width="100%"
             title="작성 완료"
             theme="primary"

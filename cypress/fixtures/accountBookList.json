@@ -1,0 +1,41 @@
+{
+  "accountBooks": [
+    {
+      "info": {
+        "accountBookId": 0,
+        "isPrivate": true,
+        "accountBookName": "otherAccountBook",
+        "accountBookAuthority": "USER",
+        "relationShip": "relationship",
+        "getNotification": true,
+        "avatarUrl": "avatarUrl"
+      },
+      "numberOfMember": {
+        "count": 0
+      },
+      "members": [
+        {
+          "id": 0,
+          "username": "me",
+          "accountBookAuthority": "memberAuthority",
+          "avatarUrl": "string",
+          "email": "string"
+        },
+        {
+          "id": 1,
+          "username": "accountBookFriend",
+          "accountBookAuthority": "memberAuthority",
+          "avatarUrl": "string",
+          "email": "string"
+        }
+      ],
+      "categories": [
+        {
+          "id": 0,
+          "value": "categoryNameValue",
+          "label": "categoryLabel"
+        }
+      ]
+    }
+  ]
+}

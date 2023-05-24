@@ -32,7 +32,7 @@ export default function oneLine({
   const { setSharedBookModalOpen, setAllModalOpen } = useWrite();
 
   return (
-    <S.InputWrapper>
+    <S.InputWrapper data-cy="write-input-container">
       {inputs.map((input: any, idx: number) =>
         input.options ? (
           <SelectWindow
@@ -56,6 +56,7 @@ export default function oneLine({
         ),
       )}
       <S.StyledButton
+        dataCy="add-otherBook-button"
         reverseIconButton
         title="다른 가계부 내역에 추가"
         iconName={inputList[listIdx][7].value.length > 0 ? "check" : "plus"}
