@@ -86,7 +86,7 @@ export default function EditForm({
   });
 
   return (
-    <Wrapper>
+    <Wrapper data-cy="edit-form-container">
       {inputList.map((input: any) =>
         input.options ? (
           <Selector
@@ -119,6 +119,7 @@ export default function EditForm({
           theme="unfocus"
         />
         <EditButton
+          dataCy="edit-submit-button"
           title="수정"
           disabled={disabled}
           onClick={onSubmitEditForm}
