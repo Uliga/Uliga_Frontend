@@ -42,7 +42,6 @@ describe("write page e2e test", () => {
     });
   });
 
-      cy.get('input[type="date"]').type("2023-05-22");
   it("가계부에 2개 이상의 내역을 작성한다.", () => {
     // 첫번째 내역 작성
     cy.wait(3000);
