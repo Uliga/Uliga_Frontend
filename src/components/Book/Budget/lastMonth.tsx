@@ -121,7 +121,7 @@ export default function LastMonth() {
     {
       title: "지출 분석",
       sub: "보러가기",
-      onClick: () => {},
+      onClick: () => navigate(`${PATH.DATE_RANGE_CHART}/${bookId}`),
     },
   ];
 

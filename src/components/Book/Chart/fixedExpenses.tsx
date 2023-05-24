@@ -75,6 +75,7 @@ export default function FixedExpenses() {
   if (!data) {
     return null;
   }
+
   return (
     <Container>
       <h5>{date.getMonth() + 1}월 고정지출</h5>
