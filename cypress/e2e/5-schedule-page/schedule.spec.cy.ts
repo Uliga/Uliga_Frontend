@@ -19,9 +19,7 @@ describe("schedule page e2e test", () => {
     cy.get('input[type="number"]').eq(0).type("5");
     cy.get('[data-cy="radio-label"]').eq(1).click();
     cy.get('input[type="text"]').type("일정 테스트");
-    cy.get('input[type="number"]').eq(1).invoke("val", 10000).trigger("input");
 
-    cy.wait(2000);
     cy.get('[data-cy="schedule-add-button"]').click();
     cy.get('[data-cy="schedule-submit-button"]').click();
     cy.wait("@addSchedule");
