@@ -58,7 +58,7 @@ export default function MainScheduleList() {
         title={
           data.schedules.length !== 0
             ? "금융 일정 수정하기"
-            : "금융 일정 추가하러 가기"
+            : `금융 일정 추가하기`
         }
         theme="quaternary"
         onClick={() => navigate(`${PATH.SCHEDULE}/${bookId}`)}
