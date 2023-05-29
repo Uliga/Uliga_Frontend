@@ -62,7 +62,6 @@ export default function Login() {
           />
         </div>
       ))}
-
       <S.StyledButton
         type="submit"
         title="로그인"
