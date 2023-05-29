@@ -1,0 +1,24 @@
+{
+  "memberInfo": {
+    "id": 51,
+    "privateAccountBookId": 52,
+    "userName": "testName",
+    "nickName": "testNickName",
+    "email": "test@email.com"
+  },
+  "invitations": [
+    {
+      "id": 1,
+      "memberName": "testUser",
+      "accountBookName": "초대 받은 가계부"
+    }
+  ],
+  "notifications": [
+    {
+      "scheduleName": "scheduleName",
+      "creatorName": "creatorName",
+      "value": 3,
+      "day": 3
+    }
+  ]
+}
