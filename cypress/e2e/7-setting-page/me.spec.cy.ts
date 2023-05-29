@@ -71,7 +71,7 @@ describe("my page e2e test", () => {
     cy.contains("수정하기").click();
   });
   it("회원탈퇴가 되는지 확인한다.", () => {
-    cy.wait(3000);
+    cy.wait(2000);
     cy.contains("회원 탈퇴").click();
     cy.intercept({
       method: "DELETE",
