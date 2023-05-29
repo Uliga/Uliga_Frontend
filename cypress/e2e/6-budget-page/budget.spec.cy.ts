@@ -2,65 +2,63 @@ import API from "../../../src/api/config";
 
 describe("budget page e2e test", () => {
   beforeEach(() => {
-    cy.wrap(null).then(() => {
-      cy.login().then(() => {
-        cy.visit(
-          `http://localhost:3000/budget/${localStorage.getItem(
+    cy.login().then(() => {
+      cy.visit(
+        `http://localhost:3000/budget/${localStorage.getItem(
+          "privateAccountBookId",
+        )}`,
+      );
+      cy.intercept(
+        {
+          method: "GET",
+          url: API.ACCOUNT_BOOK,
+        },
+        { fixture: "accountBookList.json" },
+      ).as("accountBookList");
+      cy.intercept(
+        {
+          method: "GET",
+          url: `${API.ACCOUNT_BOOK}/${localStorage.getItem(
             "privateAccountBookId",
-          )}`,
-        );
-        cy.intercept(
-          {
-            method: "GET",
-            url: API.ACCOUNT_BOOK,
+          )}/${API.ASSET}/2023/4`,
+        },
+        {
+          income: {
+            value: 40000,
           },
-          { fixture: "accountBookList.json" },
-        ).as("accountBookList");
-        cy.intercept(
-          {
-            method: "GET",
-            url: `${API.ACCOUNT_BOOK}/${localStorage.getItem(
-              "privateAccountBookId",
-            )}/${API.ASSET}/2023/4`,
+          record: {
+            value: 20000,
           },
-          {
-            income: {
-              value: 40000,
-            },
-            record: {
-              value: 20000,
-            },
-            budget: {
-              value: 400000,
-            },
+          budget: {
+            value: 400000,
           },
-        ).as("lastMonth");
-        cy.intercept(
-          {
-            method: "GET",
-            url: `${API.ACCOUNT_BOOK}/${localStorage.getItem(
-              "privateAccountBookId",
-            )}/${API.ASSET}/2023/5`,
+        },
+      ).as("lastMonth");
+      cy.intercept(
+        {
+          method: "GET",
+          url: `${API.ACCOUNT_BOOK}/${localStorage.getItem(
+            "privateAccountBookId",
+          )}/${API.ASSET}/2023/5`,
+        },
+        {
+          income: {
+            value: 40000,
           },
-          {
-            income: {
-              value: 40000,
-            },
-            record: {
-              value: 20000,
-            },
-            budget: {
-              value: 400000,
-            },
+          record: {
+            value: 20000,
           },
-        ).as("thisMonth");
-      });
-      cy.wait("@accountBookList");
-      cy.wait("@lastMonth");
-      cy.wait("@thisMonth");
-      cy.wait(3000);
-      cy.wait("@thisMonth");
+          budget: {
+            value: 400000,
+          },
+        },
+      ).as("thisMonth");
     });
+    cy.wait("@accountBookList");
+    cy.wait("@lastMonth");
+    cy.wait("@thisMonth");
+    cy.wait(3000);
+    cy.wait("@thisMonth");
   });
 
   it("예산 설정하러 가기 버튼을 확인한다.", () => {
