@@ -68,8 +68,8 @@ export default function LandingPage() {
         />
         {deleteDialogOpen && loginType === "GOOGLE" && (
           <Dialog
-            size={37}
-            title="해당 이메일로 다른 계정 존재해요!"
+            size={45}
+            title="해당 이메일로 구글 계정이 존재해요!"
             description={googleDescription}
             cancellable
             visible
@@ -84,7 +84,8 @@ export default function LandingPage() {
         )}
         {deleteDialogOpen && loginType === "KAKAO" && (
           <Dialog
-            size={37}
+            size={45}
+            title="해당 이메일로 카카오 계정이 존재해요!"
             description={kakaoDescription}
             cancellable
             visible
