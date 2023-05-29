@@ -49,7 +49,7 @@ export default function EditPrivate() {
         />
       )}
       <EditShareForm curSchedule={curSchedule!} />
-      <S.ListWrapper>
+      <S.ListWrapper data-cy="current-user-schedule">
         <h3>현재 금융 일정 목록</h3>
         {data.schedules.map((schedule: IScheduleDetail) => (
           <S.Box
@@ -58,6 +58,7 @@ export default function EditPrivate() {
               setCurId(schedule.info.id);
             }}
             selected={curId === schedule.info.id}
+            data-cy="schedule-box"
           >
             <S.Badge>{schedule.info.notificationDay}일</S.Badge>
             <div>
