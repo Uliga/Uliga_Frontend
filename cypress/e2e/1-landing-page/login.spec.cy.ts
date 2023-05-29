@@ -21,7 +21,7 @@ describe("login e2e test", () => {
     cy.wait("@loginSuccess")
       .its("response.body")
       .then(data => {
-        expect(data.memberInfo.privateAccountBookId).to.equal(52);
+        expect(data.memberInfo.privateAccountBookId).to.equal(53);
         cy.location("pathname", { timeout: 5000 }).should(
           "include",
           `main/${data.memberInfo.privateAccountBookId}`,

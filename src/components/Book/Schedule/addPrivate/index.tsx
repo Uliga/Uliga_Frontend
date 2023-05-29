@@ -49,7 +49,9 @@ export default function AddPrivate({ schedules }: { schedules: ISchedule[] }) {
                     value={radio.value}
                     onChange={radio.onChange}
                   />
-                  <label htmlFor={radio.htmlFor}>{radio.label}</label>
+                  <label data-cy="radio-label" htmlFor={radio.htmlFor}>
+                    {radio.label}
+                  </label>
                 </div>
               ))}
             </div>
@@ -66,6 +68,7 @@ export default function AddPrivate({ schedules }: { schedules: ISchedule[] }) {
             />
           ))}
           <S.AddButton
+            dataCy="schedule-add-button"
             iconName="plus"
             theme="basic"
             onClick={addInputSchedulePrivate}
@@ -77,6 +80,7 @@ export default function AddPrivate({ schedules }: { schedules: ISchedule[] }) {
         removeSchedules={removeSchedules}
       />
       <S.AddSceduleButton
+        dataCy="schedule-submit-button"
         title="금융 일정 추가하기"
         theme="quaternary"
         width="25rem"

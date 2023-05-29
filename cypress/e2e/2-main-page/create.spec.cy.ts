@@ -12,7 +12,7 @@ describe("create accountbook e2e test", () => {
     cy.intercept(
       {
         method: "GET",
-        url: `${API.CHECK_EMAIL}dbscogus44@gmail.com`,
+        url: `${API.CHECK_EMAIL}ham9893@naver.com`,
       },
       { exists: true },
     ).as("checkEmail");
@@ -42,7 +42,7 @@ describe("create accountbook e2e test", () => {
       cy.wait("@checkEmail");
       cy.get('[data-cy="email-container"]').should(
         "contain",
-        "dbscogus44@gmail.com",
+        "ham9893@naver.com",
       );
       cy.contains("카테고리 추가").parent().type("추가된 카테고리");
       cy.contains("카테고리 추가").parent().parent().find("button").click();
