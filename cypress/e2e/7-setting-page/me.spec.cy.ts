@@ -73,11 +73,10 @@ describe("my page e2e test", () => {
   it("회원탈퇴가 되는지 확인한다.", () => {
     cy.wait(2000);
     cy.contains("회원 탈퇴").click();
-    cy.intercept({
-      method: "DELETE",
-      url: API.MEMBER,
+    cy.intercept("DELETE", API.MEMBER, {
+      statusCode: 200,
     }).as("deleteMember");
     cy.contains("확인").click();
-    localStorage.clear();
+    // localStorage.clear();
   });
 });
