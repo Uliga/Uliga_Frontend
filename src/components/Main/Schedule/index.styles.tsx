@@ -76,13 +76,13 @@ export const dot = styled.span<{ color: string }>`
 `;
 
 export const EditButton = styled(Button)`
-  padding: 1.2rem 6rem;
+  padding: 1.2rem 4.5rem;
   font-size: 1.3rem;
   position: absolute;
   bottom: 0;
   margin: 2rem;
   ${media.medium} {
-    padding: 1.2rem 8rem;
+    padding: 1.2rem 6rem;
     font-size: 1.5rem;
   }
 `;
