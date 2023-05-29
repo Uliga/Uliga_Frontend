@@ -12,7 +12,7 @@ describe("schedule page e2e test", () => {
     cy.intercept("POST", API.ADD_SCHEDULE, {
       statusCode: 200,
     }).as("addSchedule");
-    cy.intercept("GET", `${API.ACCOUNT_BOOK}/52${API.SCHEDULE}`, {
+    cy.intercept("GET", `${API.ACCOUNT_BOOK}/53${API.SCHEDULE}`, {
       schedules: [
         {
           info: {
@@ -86,7 +86,7 @@ describe("schedule page e2e test", () => {
       .within(() => {
         cy.contains("삭제하기").click();
       });
-    cy.intercept("GET", `${API.ACCOUNT_BOOK}/52${API.SCHEDULE}`, {
+    cy.intercept("GET", `${API.ACCOUNT_BOOK}/53${API.SCHEDULE}`, {
       schedules: [],
     });
     cy.contains("확인").click();
