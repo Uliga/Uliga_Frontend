@@ -1,6 +1,6 @@
 import API from "../../../src/api/config";
 
-describe("create accountbook e2e test", () => {
+describe("history page e2e test", () => {
   beforeEach(() => {
     cy.login().then(() => {
       cy.visit(

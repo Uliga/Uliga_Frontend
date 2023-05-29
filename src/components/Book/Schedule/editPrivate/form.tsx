@@ -74,7 +74,9 @@ export default function EditShareForm({
                     onChange={handleIsIncome}
                     checked={isIncome !== undefined && !isIncome}
                   />
-                  <label htmlFor="record">지출</label>
+                  <label htmlFor="record" data-cy="record-radio-label">
+                    지출
+                  </label>
                 </div>
                 <div className="form_radio_btn radio">
                   <input
@@ -85,7 +87,9 @@ export default function EditShareForm({
                     onChange={handleIsIncome}
                     checked={isIncome !== undefined && isIncome}
                   />
-                  <label htmlFor="income">수입</label>
+                  <label data-cy="income-radio-label" htmlFor="income">
+                    수입
+                  </label>
                 </div>
               </div>
             </S.RadioWrapper>

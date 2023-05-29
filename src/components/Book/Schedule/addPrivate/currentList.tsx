@@ -14,7 +14,7 @@ export default function CurrentList({
   return (
     <S.BankingAddList>
       <h4>현재 추가된 목록</h4>
-      <S.BankingAddListWrapper>
+      <S.BankingAddListWrapper data-cy="current-add-schedule">
         {scheduleList.map((schedules: ScheduleProps) => (
           <S.Box key={schedules.name}>
             <S.StyledIcon iconName="wallet" color="#acb9df" size="3rem" />
