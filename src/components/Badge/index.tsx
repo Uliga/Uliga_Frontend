@@ -24,6 +24,7 @@ export default function Badge({
   iconColor,
   onClick,
   className,
+  dataCy,
 }: {
   className?: string;
   size: number;
@@ -32,6 +33,7 @@ export default function Badge({
   bgColor?: string;
   iconColor?: string;
   onClick?: (e?: React.MouseEvent<HTMLButtonElement>) => void;
+  dataCy?: string;
 }) {
   return (
     <Container
@@ -39,6 +41,7 @@ export default function Badge({
       color={color}
       bgColor={bgColor}
       size={size}
+      data-cy={dataCy}
     >
       {title}
       {iconColor && (

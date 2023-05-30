@@ -33,8 +33,8 @@ const COLORS = {
 
 export default COLORS;
 export const AVATAR_COLORS: IStringIndex = {
-  BLUE: {
-    value: "BLUE",
+  default: {
+    value: "default",
     color: COLORS.BLUE,
   },
   YELLOW: {

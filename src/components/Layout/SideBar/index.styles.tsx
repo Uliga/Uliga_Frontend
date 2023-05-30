@@ -20,14 +20,17 @@ const Container = styled.div`
   }
 `;
 
-const Top = styled.div`
+const Top = styled.button`
   width: 100%;
   height: 6.5rem;
   background-color: white;
   align-items: center;
   display: flex;
   padding-left: 2rem;
+  border: none;
+  cursor: pointer;
   gap: 1rem;
+  text-align: start;
   border-bottom: 0.1rem solid ${COLORS.GREY[200]};
 `;
 const Middle = styled.div`

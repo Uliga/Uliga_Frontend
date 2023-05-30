@@ -43,11 +43,14 @@ export default function SideBar({ onClickSideBar }: HeaderProps) {
     }
   };
 
+  const onSetting = () => {
+    navigate(`${PATH.SETTING}${PATH.ME}/${bookId}`);
+  };
   if (!data) return null;
 
   return (
     <Container>
-      <Top>
+      <Top type="button" onClick={onSetting}>
         <Person color={AVATAR_COLORS[data.info.avatarUrl || ""]?.color} />
         <div>
           <BookName>{data.info.accountBookName}</BookName>

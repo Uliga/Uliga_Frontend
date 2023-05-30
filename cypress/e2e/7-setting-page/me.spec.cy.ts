@@ -2,22 +2,20 @@ import API from "../../../src/api/config";
 
 describe("my page e2e test", () => {
   beforeEach(() => {
-    cy.wrap(null).then(() => {
-      cy.login().then(() => {
-        cy.visit(
-          `http://localhost:3000/setting/me/${localStorage.getItem(
-            "privateAccountBookId",
-          )}`,
-        );
-        cy.intercept(
-          {
-            method: "GET",
-            url: API.MEMBER,
-          },
-          { fixture: "memberInfo.json" },
-        ).as("memberInfo");
-        cy.wait("@memberInfo");
-      });
+    cy.login().then(() => {
+      cy.visit(
+        `http://localhost:3000/setting/me/${localStorage.getItem(
+          "privateAccountBookId",
+        )}`,
+      );
+      cy.intercept(
+        {
+          method: "GET",
+          url: API.MEMBER,
+        },
+        { fixture: "memberInfo.json" },
+      ).as("memberInfo");
+      cy.wait("@memberInfo");
     });
   });
   it("이메일,이름,닉네임이 올바르게 들어가있는지 확인한다.", () => {

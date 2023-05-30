@@ -37,7 +37,7 @@ describe("create accountbook e2e test", () => {
     cy.get('[data-cy="create-modal-container"]').within(() => {
       cy.contains("가계부 이름").parent().type("가계부 이름 테스트");
       cy.contains("가계부 조직").parent().type("가계부 조직 테스트");
-      cy.contains("사용자 초대").parent().type("dbscogus44@gmail.com");
+      cy.contains("사용자 초대").parent().type("ham9893@naver.com");
       cy.contains("사용자 초대").parent().parent().find("button").click();
       cy.wait("@checkEmail");
       cy.get('[data-cy="email-container"]').should(

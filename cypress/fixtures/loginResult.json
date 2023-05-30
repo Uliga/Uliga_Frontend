@@ -5,7 +5,7 @@
     "userName": "testUser",
     "nickName": "test",
     "email": "test@email.com",
-    "privateAccountBookId": 52
+    "privateAccountBookId": 53
   },
   "tokenInfo": {
     "accessToken": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiYXV0aCI6IlJPTEVfVVNFUiIsImV4cCI6MTY3NzgyMjg1Nn0.-HYhLn_3WXfHSQ2PF31HJd81f4OGjU8fsTrPSRTo-F6KKKdU28PALAZbiBA0L-kRiBR0AaqtdbrGTxumXZVgIw",
