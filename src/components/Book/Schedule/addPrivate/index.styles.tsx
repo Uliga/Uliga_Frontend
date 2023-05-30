@@ -46,6 +46,9 @@ export const Background = styled.div`
   ${media.medium} {
     height: 39rem;
   }
+  @media (min-width: 1025px) and (max-width: 1440px) {
+    padding: 2.35rem;
+  }
 `;
 
 export const RadioWrapper = styled.div`
