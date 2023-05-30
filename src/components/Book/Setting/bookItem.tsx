@@ -149,6 +149,7 @@ export default function BookItem() {
               ))}
             </Wrapper>
             <StyledIconButton
+              dataCy="dot-button"
               iconName="dots"
               iconSize="2rem"
               iconOnly

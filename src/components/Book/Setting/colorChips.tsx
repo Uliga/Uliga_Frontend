@@ -48,6 +48,7 @@ export default function ColorChips({
           onClick={() => {
             setAvatar(color.value);
           }}
+          data-cy="avatar-color"
         >
           <Chips bgColor={color.color} />
         </CurChip>

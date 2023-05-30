@@ -127,7 +127,7 @@ export default function EditBook({
   }, [dialogOpen.isDeleted]);
 
   return (
-    <Form>
+    <Form data-cy="book-setting-container">
       <Input
         value={book.info.accountBookName}
         label="가계부 이름"
@@ -138,6 +138,7 @@ export default function EditBook({
         value={relationship}
         onChange={onChangeRelationship}
         label="관계"
+        type="text"
         size={38}
       />
       {!book.info.isPrivate && (
@@ -147,6 +148,7 @@ export default function EditBook({
               value={email}
               onChange={onChangeEmail}
               label="사용자 추가"
+              type="email"
               size={29}
             />
             <StyledButton
@@ -187,9 +189,11 @@ export default function EditBook({
           value={category}
           onChange={onChangeCategory}
           label="카테고리 추가"
+          type="text"
           size={29}
         />
         <StyledButton
+          dataCy="add-category-button"
           title="추가"
           theme="quaternary"
           onClick={() => {
@@ -205,6 +209,7 @@ export default function EditBook({
               size={1.2}
               title={ele}
               iconColor={COLORS.GREY[500]}
+              dataCy="default-category"
               onClick={e => {
                 e?.preventDefault();
                 setDialogOpen({ open: true, value: ele, isDeleted: false });
@@ -251,6 +256,7 @@ export default function EditBook({
               },
             });
           }}
+          dataCy="edit-submit-button"
         />
       </ButtonWrapper>
     </Form>
