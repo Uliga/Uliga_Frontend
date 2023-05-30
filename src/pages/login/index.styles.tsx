@@ -8,7 +8,7 @@ const Container = styled.form`
   display: flex;
   flex-direction: column;
   width: 46.5rem;
-  height: 45rem;
+  height: 45.5rem;
   position: relative;
   gap: 4rem;
   padding-top: 2rem;
@@ -40,7 +40,7 @@ const Title = styled.div`
 
 const StyledButton = styled(Button)`
   font-size: 1.4rem;
-  padding: 1.2rem 1rem;
+  padding: 1.4rem 1rem;
   border-radius: 0.7rem;
   position: absolute;
   right: 0;

@@ -10,7 +10,7 @@ type ButtonTheme =
   | "quaternary"
   | "basic";
 type ButtonSize = "large" | "medium" | "small";
-type ButtonType = "button" | "submit" | "reset";
+type ButtonType = "button" | "submit" | "reset" | undefined;
 type ButtonProps = {
   /** 버튼 안의 내용 */
   title?: string;
