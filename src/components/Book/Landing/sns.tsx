@@ -54,13 +54,18 @@ export default function SNSLogin() {
     const authCreate = searchParams.get("created");
     const userName = searchParams.get("userName");
     const loginType = searchParams.get("loginType");
+    const privateAccountBookId = searchParams.get("privateAccountBook");
     const email = searchParams.get("email");
 
     if (typeof authCreate === "string") {
       if (authCreate === "false") {
         if (typeof authCode === "string") {
-          localStorage.setItem("accessToken", authCode);
+          if (typeof privateAccountBookId === "string") {
+            localStorage.setItem("accessToken", authCode);
+            localStorage.setItem("privateAccountBookId", privateAccountBookId);
+          }
         }
+
         localStorage.setItem("created", authCreate);
       } else {
         navigate(PATH.SOCIAL, { state: { userName, loginType, email } });

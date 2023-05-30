@@ -32,6 +32,7 @@ export const Background = styled.div`
   height: 37rem;
   padding: 2.5rem;
   border-radius: 0.5rem;
+  //border: 1px solid red;
   background-color: ${COLORS.GREY[50]};
   display: flex;
   flex-wrap: wrap;
@@ -42,6 +43,7 @@ export const Background = styled.div`
   font-size: 1.3rem;
   input {
     padding: 1rem;
+    //padding: 0.85rem;
   }
   ${media.medium} {
     height: 39rem;
