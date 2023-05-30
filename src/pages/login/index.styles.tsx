@@ -2,6 +2,7 @@ import styled from "styled-components";
 import COLORS from "../../constants/color";
 import Button from "../../components/Button";
 import media from "../../styles/media";
+import IconButton from "../../components/IconButton";
 
 const Container = styled.form`
   display: flex;
@@ -49,4 +50,11 @@ const StyledButton = styled(Button)`
   }
 `;
 
-export { Container, LogoWrapper, Title, StyledButton };
+const PasswordResetButton = styled(IconButton)`
+  font-size: 1.3rem;
+  position: absolute;
+  right: 0;
+  bottom: -4rem;
+`;
+
+export { Container, LogoWrapper, Title, StyledButton, PasswordResetButton };
