@@ -86,6 +86,7 @@ const WhiteBox = styled.div<{
     color: ${COLORS.GREY[400]};
     white-space: pre-line;
     display: flex;
+    line-height: 1.25;
   }
 `;
 const StyledConfirmButton = styled(Button)`

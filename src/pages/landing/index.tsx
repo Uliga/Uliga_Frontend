@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import React, { useEffect } from "react";
 import { useRecoilState } from "recoil";
-import { text } from "@storybook/addon-knobs";
 import { LargeLogo } from "../../assets/logo";
 import Input from "../../components/Input";
 import Detail from "../../components/Book/Landing/detail";
@@ -22,14 +21,12 @@ export default function LandingPage() {
   const [deleteDialogOpen, setDeleteDialogOpen] = useRecoilState(
     deleteScheduleDialogAtom,
   );
-  const googleDescription = text(
-    "google",
-    "해당 이메일로 구글 계정이 존재합니다. \n구글로그인으로 이동하시겠습니까?",
-  );
-  const kakaoDescription = text(
-    "kakao",
-    "해당 이메일로 카카오 계정이 존재합니다. \n카카오 로그인으로 진행하시겠습니까?",
-  );
+  const googleDescription =
+    "해당 이메일로 구글 계정이 존재해요! \n구글 로그인으로 이동하시겠어요?";
+
+  const kakaoDescription =
+    "해당 이메일로 카카오 계정이 존재해요! \n카카오 로그인으로 이동하시겠어요?";
+
   useEffect(() => {
     if (
       localStorage.getItem("accessToken") &&
@@ -66,42 +63,28 @@ export default function LandingPage() {
           size={46.5}
           required
         />
-        {deleteDialogOpen && loginType === "GOOGLE" && (
-          <Dialog
-            size={45}
-            title="해당 이메일로 구글 계정이 존재해요!"
-            description={googleDescription}
-            cancellable
-            visible
-            onCancel={() => {
-              setDeleteDialogOpen(false);
-            }}
-            onConfirm={() => {
-              window.location.href = API.GOOGLE_AUTH_URL;
-              setDeleteDialogOpen(false);
-            }}
-          />
-        )}
-        {deleteDialogOpen && loginType === "KAKAO" && (
-          <Dialog
-            size={45}
-            title="해당 이메일로 카카오 계정이 존재해요!"
-            description={kakaoDescription}
-            cancellable
-            visible
-            onCancel={() => {
-              setDeleteDialogOpen(false);
-            }}
-            onConfirm={() => {
-              window.location.href = API.KAKAO_AUTH_URL;
-              setDeleteDialogOpen(false);
-            }}
-          />
-        )}
         <S.StyledButton type="submit" title="이메일로 계속하기" />
-
         <SNSLogin />
       </S.Wrapper>
+      {deleteDialogOpen && (
+        <Dialog
+          size={40}
+          title="💁🏻‍♀️ 해당 이메일로 다른 계정 존재"
+          description={
+            loginType === "GOOGLE" ? googleDescription : kakaoDescription
+          }
+          cancellable
+          visible
+          onCancel={() => {
+            setDeleteDialogOpen(false);
+          }}
+          onConfirm={() => {
+            window.location.href =
+              loginType === "GOOGLE" ? API.GOOGLE_AUTH_URL : API.KAKAO_AUTH_URL;
+            setDeleteDialogOpen(false);
+          }}
+        />
+      )}
     </S.Container>
   );
 }
