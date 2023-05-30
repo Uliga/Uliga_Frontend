@@ -10,7 +10,10 @@ describe("accountBook setting page e2e test", () => {
       );
       cy.intercept("PATCH", `${API.ACCOUNT_BOOK}/53`, {
         statusCode: 200,
-      }).as("editAccountBook");
+      }).as("editPrivateAccountBook");
+      cy.intercept("PATCH", `${API.ACCOUNT_BOOK}/2402`, {
+        statusCode: 200,
+      }).as("editSharedAccountBook");
     });
   });
   it("가계부 정보를 수정한다.", () => {
@@ -25,7 +28,7 @@ describe("accountBook setting page e2e test", () => {
         cy.get('[data-cy="add-category-button"]').click();
         cy.get('[data-cy="avatar-color"]').eq(3).click();
         cy.get('[data-cy="edit-submit-button"]').click();
-        cy.wait("@editAccountBook");
+        cy.wait("@editPrivateAccountBook");
       });
   });
   it("현재 존재하는 카테고리를 삭제한다.", () => {
@@ -38,7 +41,18 @@ describe("accountBook setting page e2e test", () => {
       });
     cy.contains("확인").click();
     cy.get('[data-cy="edit-submit-button"]').eq(0).click();
-    cy.wait("@editAccountBook");
+    cy.wait("@editPrivateAccountBook");
   });
-  it("기존 가계부에서 새로운 사용자를 추가한다.", () => {});
+  it("기존 가계부에서 새로운 사용자를 추가한다.", () => {
+    cy.get('[data-cy="dot-button"]').eq(1).click();
+    cy.contains("수정하기").click();
+
+    cy.get('[data-cy="book-setting-container"]')
+      .eq(1)
+      .within(() => {
+        cy.get('input[type="email"]').type("ham9893@naver.com");
+        cy.get('[data-cy="edit-submit-button"]').eq(0).click();
+        cy.wait("@editSharedAccountBook");
+      });
+  });
 });
