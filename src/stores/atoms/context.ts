@@ -70,3 +70,8 @@ export const historyDayModalAtom = atom<boolean>({
   key: "historyDayModalAtom",
   default: false,
 });
+
+export const resetPasswordDialogAtom = atom<boolean>({
+  key: "resetPasswordDialogAtom",
+  default: false,
+});

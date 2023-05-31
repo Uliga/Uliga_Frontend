@@ -64,5 +64,6 @@ const API = {
   SOCIAL_LOGIN: `${AUTH}social-login`,
   KAKAO_AUTH_URL: `${BASE_URL}/oauth2/authorization/kakao?redirect_uri=http://localhost:3000`,
   GOOGLE_AUTH_URL: `${BASE_URL}/oauth2/authorization/google?redirect_uri=http://localhost:3000`,
+  RESET_PASSWORD: `${AUTH}password/reset`,
 };
 export default API;

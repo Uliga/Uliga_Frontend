@@ -1,23 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
-import { useQuery } from "@tanstack/react-query";
-import { useRecoilState } from "recoil";
 import COLORS from "../../../constants/color";
 import Input from "../../../components/Input";
 import Button from "../../../components/Button";
-import { IUserInfo } from "../../../interfaces/user";
-import QUERYKEYS from "../../../constants/querykey";
-import { loadMe } from "../../../api/user";
 import LoadingBar from "../../../components/LoadingBar";
-import useInput from "../../../hooks/useInput";
 import useMe from "../../../hooks/book/useMe";
-import { deleteScheduleDialogAtom } from "../../../stores/atoms/context";
 import Dialog from "../../../components/Dialog";
 import IconButton from "../../../components/IconButton";
 
 const Container = styled.div`
   width: 88rem;
-  height: 70rem;
+  height: 83rem;
   border: 0.1rem solid ${COLORS.GREY[200]};
   border-radius: 0.5rem;
   padding: 4rem;
@@ -76,19 +69,20 @@ const Password = styled.div`
 `;
 
 export default function SettingMe() {
-  const { isLoading: loadingInfo, data: infoData } = useQuery<
-    IUserInfo | undefined
-  >([QUERYKEYS.LOAD_ME], loadMe);
-  const { nickName, onChangeNickname, checkNickname, deleteUser } = useMe();
-  const [password, onChangePassword] = useInput("123456");
-  const [deleteDialogOpen, setDeleteDialogOpen] = useRecoilState(
-    deleteScheduleDialogAtom,
-  );
-  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  const {
+    loadingInfo,
+    infoData,
+    inputs,
+    checkNickname,
+    deleteDialogOpen,
+    setDeleteDialogOpen,
+    deleteUser,
+    lookPassword,
+    isValidatePassword,
+    password,
+    passwordCheck,
+  } = useMe();
 
-  const lookPassword = () => {
-    setIsPasswordVisible(!isPasswordVisible);
-  };
   if (loadingInfo || !infoData)
     return (
       <Container>
@@ -96,31 +90,6 @@ export default function SettingMe() {
       </Container>
     );
 
-  const inputs = [
-    {
-      label: "사용자 이메일",
-      value: infoData.memberInfo.email,
-      readOnly: true,
-    },
-    {
-      label: "사용자 이름",
-      value: infoData.memberInfo.userName,
-      readOnly: true,
-    },
-    {
-      label: "사용자 닉네임",
-      value: nickName,
-      placeholder: infoData.memberInfo.nickName,
-      readOnly: false,
-      onChange: onChangeNickname,
-    },
-    {
-      label: "애플리케이션 비밀번호",
-      value: password,
-      type: isPasswordVisible ? "text" : "password",
-      onChange: onChangePassword,
-    },
-  ];
   return (
     <Container>
       {deleteDialogOpen && (
@@ -142,7 +111,9 @@ export default function SettingMe() {
       <Info>
         <h3>기본 정보</h3>
         {inputs.map(input =>
-          input.label === "애플리케이션 비밀번호" ? (
+          input.label === "애플리케이션 비밀번호" ||
+          input.label === "비밀번호" ||
+          input.label === "비밀번호 확인" ? (
             <Password>
               <InfoInput
                 key={input.label}
@@ -151,11 +122,12 @@ export default function SettingMe() {
                 value={input.value}
                 type={input.type}
                 onChange={input.onChange}
+                message={input.message}
               />
               <IconButton
                 iconOnly
-                iconName={isPasswordVisible ? "eyeSlash" : "eye"}
-                onClick={lookPassword}
+                iconName={input.visible ? "eyeSlash" : "eye"}
+                onClick={() => lookPassword(input.label)}
               />
             </Password>
           ) : (
@@ -176,8 +148,11 @@ export default function SettingMe() {
         theme="quaternary"
         title="수정하기"
         onClick={checkNickname}
+        disabled={
+          (password.length > 0 || passwordCheck.length > 0) &&
+          !(isValidatePassword && password === passwordCheck)
+        }
       />
-
       <DeleteButton
         theme="tertiary"
         title="회원 탈퇴"

@@ -30,6 +30,7 @@ type IconButtonProps = {
   /** icon, text 위치 반전 */
   reverseIconButton?: boolean;
   dataCy?: string;
+  type?: "submit" | "button" | "reset" | undefined;
 };
 
 export default function IconButton({
@@ -46,6 +47,7 @@ export default function IconButton({
   className,
   reverseIconButton = false,
   dataCy = "",
+  type,
 }: IconButtonProps) {
   return (
     <Wrapper
@@ -57,6 +59,7 @@ export default function IconButton({
       disabled={disabled}
       reverseIconButton={reverseIconButton}
       data-cy={dataCy}
+      type={type}
     >
       {reverseIconButton === false ? (
         <>

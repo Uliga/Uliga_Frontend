@@ -40,3 +40,8 @@ export const authSocialLogin = async (userData: object) => {
   const { data } = await unAuthorizationClient.post(API.SOCIAL_LOGIN, userData);
   return data;
 };
+
+export const authResetPassword = async (email: object) => {
+  const { data } = await unAuthorizationClient.post(API.RESET_PASSWORD, email);
+  return data;
+};
