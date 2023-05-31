@@ -2,7 +2,11 @@ import API from "../../../src/api/config";
 
 describe("login e2e test", () => {
   beforeEach(() => {
-    cy.visit("http://localhost:3000/login");
+    cy.visit("http://localhost:3000");
+    cy.contains("이메일")
+      .parent()
+      .type(`${Cypress.env("CYPRESS_TEST_EMAIL")}`);
+    cy.contains("이메일로 계속하기").click();
   });
   it("유효한 아이디와 비밀번호로 로그인에 성공한다.", () => {
     cy.intercept(
@@ -10,13 +14,10 @@ describe("login e2e test", () => {
       { fixture: "loginResult.json" },
     ).as("loginSuccess");
 
-    cy.contains("이메일 주소")
-      .parent()
-      .type(`${Cypress.env("CYPRESS_TEST_EMAIL")}`);
     cy.contains("비밀번호")
       .parent()
       .type(`${Cypress.env("CYPRESS_TEST_PASSWORD")}`);
-    cy.get("button").click();
+    cy.get("[data-cy='login-submit-button']").click();
 
     cy.wait("@loginSuccess")
       .its("response.body")
@@ -37,7 +38,7 @@ describe("login e2e test", () => {
       .parent()
       .type(`${Cypress.env("CYPRESS_TEST_EMAIL")}`);
     cy.contains("비밀번호").parent().type("wrong password");
-    cy.get("button").click();
+    cy.get("[data-cy='login-submit-button']").click();
 
     cy.wait("@loginFailure").then(interception => {
       expect(interception?.response?.statusCode).to.equal(401);
