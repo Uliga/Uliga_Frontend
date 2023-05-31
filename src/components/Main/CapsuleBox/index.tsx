@@ -42,22 +42,22 @@ export default function CapsuleBox() {
         theme: "normal",
         color: COLORS.BLUE,
         onClick: () => {
-          // 이번 달 지출 분석 페이지로이동
+          navigate(`${PATH.DATE_RANGE_CHART}/${bookId}`);
         },
       },
     },
     {
       title: "이번 달 수입",
       amount: `${data.income ? getMoneyUnit(data.income.value) : 0}원`,
-      Button: {
-        title: "수입 분석하러 가기",
-        iconName: "check",
-        theme: "normal",
-        color: COLORS.BLUE,
-        onClick: () => {
-          // 이번 달 수입 분석 페이지로 이동
-        },
-      },
+      // Button: {
+      //   title: "수입 분석하러 가기",
+      //   iconName: "check",
+      //   theme: "normal",
+      //   color: COLORS.BLUE,
+      //   onClick: () => {
+      //     // 이번 달 수입 분석 페이지로 이동
+      //   },
+      // },
     },
     {
       title: "예산",
@@ -96,12 +96,14 @@ export default function CapsuleBox() {
           {!box.amount && <S.Subtitle>{box.subtitle}</S.Subtitle>}
 
           <S.Amount>{box.amount}</S.Amount>
-          <S.StyledButton
-            title={box.Button.title}
-            iconName={box.Button.iconName}
-            color={box.Button.color}
-            onClick={box.Button.onClick}
-          />
+          {box.Button && (
+            <S.StyledButton
+              title={box.Button.title}
+              iconName={box.Button.iconName}
+              color={box.Button.color}
+              onClick={box.Button.onClick}
+            />
+          )}
         </S.Wrapper>
       ))}
     </S.Container>
