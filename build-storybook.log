@@ -1,7 +1,7 @@
 info @storybook/react v6.5.16
 info 
-info => Cleaning outputDir: /var/folders/w8/0n1wfbld65b8h8k5txfmdk6w0000gn/T/chromatic--78191-xOBX8H2exNv2
-(node:78210) DeprecationWarning: --static-dir CLI flag is deprecated, see:
+info => Cleaning outputDir: /var/folders/w8/0n1wfbld65b8h8k5txfmdk6w0000gn/T/chromatic--82942-leOYiopPrxZe
+(node:82962) DeprecationWarning: --static-dir CLI flag is deprecated, see:
 
 https://github.com/storybookjs/storybook/blob/next/MIGRATION.md#deprecated---static-dir-cli-flag
 (Use `node --trace-deprecation ...` to show where the warning was created)
@@ -14,7 +14,7 @@ info => Loading Webpack configuration from `node_modules/react-scripts`
 info => Removing existing JavaScript and TypeScript rules.
 info => Modifying Create React App rules.
 info Addon-docs: using MDX1
-(node:78210) ExperimentalWarning: The Fetch API is an experimental feature. This feature could change at any time
+(node:82962) ExperimentalWarning: The Fetch API is an experimental feature. This feature could change at any time
 info => Using default Webpack5 setup
 <s> [webpack.Progress] 0% 
 
@@ -140,27 +140,27 @@ info => Using default Webpack5 setup
 <s> [webpack.Progress] 10% building 0/14 entries 14/34 dependencies 0/13 modules
 <s> [webpack.Progress] 10% building import loader ./node_modules/@storybook/source-loader/dist/cjs/index.js
 <s> [webpack.Progress] 10% building 0/14 entries 38/62 dependencies 2/35 modules
-<s> [webpack.Progress] 10% building 0/14 entries 302/428 dependencies 10/164 modules
-<s> [webpack.Progress] 13% building 1/14 entries 302/428 dependencies 12/164 modules
-<s> [webpack.Progress] 13% building 1/14 entries 1300/1460 dependencies 70/380 modules
+<s> [webpack.Progress] 10% building 0/14 entries 300/428 dependencies 10/164 modules
+<s> [webpack.Progress] 13% building 1/14 entries 323/428 dependencies 12/180 modules
+<s> [webpack.Progress] 13% building 1/14 entries 765/862 dependencies 30/300 modules
 <s> [webpack.Progress] 13% building import loader ./node_modules/mini-css-extract-plugin/dist/loader.js
 <s> [webpack.Progress] 13% building import loader ./node_modules/react-scripts/node_modules/css-loader/dist/cjs.js
 <s> [webpack.Progress] 13% building import loader ./node_modules/postcss-loader/dist/cjs.js
-<s> [webpack.Progress] 13% building 1/14 entries 1397/1460 dependencies 74/390 modules
-<s> [webpack.Progress] 13% building 1/14 entries 2200/2261 dependencies 275/485 modules
-<s> [webpack.Progress] 14% building 1/14 entries 3076/3200 dependencies 390/657 modules
-<s> [webpack.Progress] 17% building 1/14 entries 4100/4143 dependencies 715/912 modules
-<s> [webpack.Progress] 20% building 2/14 entries 4648/4670 dependencies 933/1033 modules
-<s> [webpack.Progress] 21% building 3/14 entries 4648/4670 dependencies 933/1033 modules
-<s> [webpack.Progress] 25% building 4/14 entries 4648/4670 dependencies 933/1033 modules
-<s> [webpack.Progress] 29% building 5/14 entries 4648/4670 dependencies 933/1033 modules
-<s> [webpack.Progress] 33% building 6/14 entries 4648/4670 dependencies 933/1033 modules
-<s> [webpack.Progress] 37% building 7/14 entries 4648/4670 dependencies 933/1033 modules
-<s> [webpack.Progress] 41% building 8/14 entries 4648/4670 dependencies 933/1033 modules
-<s> [webpack.Progress] 45% building 9/14 entries 4648/4670 dependencies 933/1033 modules
-<s> [webpack.Progress] 49% building 10/14 entries 4648/4670 dependencies 934/1033 modules
-<s> [webpack.Progress] 53% building 11/14 entries 4862/4875 dependencies 1002/1072 modules
-<s> [webpack.Progress] 57% building 12/14 entries 4947/4953 dependencies 1074/1089 modules
+<s> [webpack.Progress] 13% building 1/14 entries 1337/1386 dependencies 73/391 modules
+<s> [webpack.Progress] 13% building 1/14 entries 1913/2200 dependencies 206/465 modules
+<s> [webpack.Progress] 14% building 1/14 entries 2778/3100 dependencies 371/586 modules
+<s> [webpack.Progress] 17% building 1/14 entries 4100/4133 dependencies 713/916 modules
+<s> [webpack.Progress] 20% building 2/14 entries 4629/4651 dependencies 926/1028 modules
+<s> [webpack.Progress] 21% building 3/14 entries 4629/4651 dependencies 927/1028 modules
+<s> [webpack.Progress] 25% building 4/14 entries 4629/4651 dependencies 927/1028 modules
+<s> [webpack.Progress] 29% building 5/14 entries 4629/4651 dependencies 927/1028 modules
+<s> [webpack.Progress] 33% building 6/14 entries 4629/4651 dependencies 927/1028 modules
+<s> [webpack.Progress] 37% building 7/14 entries 4629/4651 dependencies 927/1028 modules
+<s> [webpack.Progress] 41% building 8/14 entries 4629/4651 dependencies 927/1028 modules
+<s> [webpack.Progress] 45% building 9/14 entries 4629/4651 dependencies 927/1028 modules
+<s> [webpack.Progress] 49% building 10/14 entries 4629/4651 dependencies 927/1028 modules
+<s> [webpack.Progress] 53% building 11/14 entries 4842/4862 dependencies 1002/1063 modules
+<s> [webpack.Progress] 57% building 12/14 entries 4953/4953 dependencies 1074/1093 modules
 <s> [webpack.Progress] 61% building 13/14 entries 4955/4955 dependencies 1094/1094 modules
 <s> [webpack.Progress] 64% building 14/14 entries 4955/4955 dependencies 1094/1094 modules
 <s> [webpack.Progress] 65% building
@@ -182,10 +182,9 @@ DeprecationWarning: 'createLiteral' has been deprecated since v4.0.0. Use `facto
 DeprecationWarning: 'createBinaryExpression' has been deprecated since v4.0.0. Use the appropriate method on 'ts.factory' or the 'factory' supplied by your transformation context instead.
 DeprecationWarning: 'createExpressionStatement' has been deprecated since v4.0.0. Use the appropriate method on 'ts.factory' or the 'factory' supplied by your transformation context instead.
 DeprecationWarning: 'createPropertyAssignment' has been deprecated since v4.0.0. Use the appropriate method on 'ts.factory' or the 'factory' supplied by your transformation context instead.
-DeprecationWarning: 'createNull' has been deprecated since v4.0.0. Use the appropriate method on 'ts.factory' or the 'factory' supplied by your transformation context instead.
-DeprecationWarning: 'createFalse' has been deprecated since v4.0.0. Use the appropriate method on 'ts.factory' or the 'factory' supplied by your transformation context instead.
 DeprecationWarning: 'createObjectLiteralExpression' has been deprecated since v4.0.0. Use the appropriate method on 'ts.factory' or the 'factory' supplied by your transformation context instead.
-DeprecationWarning: 'createArrayLiteralExpression' has been deprecated since v4.0.0. Use the appropriate method on 'ts.factory' or the 'factory' supplied by your transformation context instead.
+DeprecationWarning: 'createFalse' has been deprecated since v4.0.0. Use the appropriate method on 'ts.factory' or the 'factory' supplied by your transformation context instead.
+DeprecationWarning: 'createNull' has been deprecated since v4.0.0. Use the appropriate method on 'ts.factory' or the 'factory' supplied by your transformation context instead.
 DeprecationWarning: 'createExpressionStatement' has been deprecated since v4.0.0. Use the appropriate method on 'ts.factory' or the 'factory' supplied by your transformation context instead.
 DeprecationWarning: 'createTypeOfExpression' has been deprecated since v4.0.0. Use the appropriate method on 'ts.factory' or the 'factory' supplied by your transformation context instead.
 DeprecationWarning: 'createElementAccessExpression' has been deprecated since v4.0.0. Use the appropriate method on 'ts.factory' or the 'factory' supplied by your transformation context instead.
@@ -194,6 +193,7 @@ DeprecationWarning: 'createBlock' has been deprecated since v4.0.0. Use the appr
 DeprecationWarning: 'createVariableDeclaration' has been deprecated since v4.0.0. Use the appropriate method on 'ts.factory' or the 'factory' supplied by your transformation context instead.
 DeprecationWarning: 'createCatchClause' has been deprecated since v4.0.0. Use the appropriate method on 'ts.factory' or the 'factory' supplied by your transformation context instead.
 DeprecationWarning: 'createTryStatement' has been deprecated since v4.0.0. Use the appropriate method on 'ts.factory' or the 'factory' supplied by your transformation context instead.
+DeprecationWarning: 'createArrayLiteralExpression' has been deprecated since v4.0.0. Use the appropriate method on 'ts.factory' or the 'factory' supplied by your transformation context instead.
 DeprecationWarning: 'createTrue' has been deprecated since v4.0.0. Use the appropriate method on 'ts.factory' or the 'factory' supplied by your transformation context instead.
 <s> [webpack.Progress] 70% sealing plugins WarnCaseSensitiveModulesPlugin
 <s> [webpack.Progress] 70% sealing plugins
@@ -283,7 +283,7 @@ DeprecationWarning: 'createTrue' has been deprecated since v4.0.0. Use the appro
 <s> [webpack.Progress] 92% sealing asset processing ESLintWebpackPlugin_1
 <s> [webpack.Progress] 92% sealing asset processing PersistentChildCompilerSingletonPlugin
 <s> [webpack.Progress] 92% sealing asset processing TerserPlugin
-info => Manager built (19 s)
+info => Manager built (15 s)
 <s> [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin
 <s> [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin
 <s> [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin main.3f794269.iframe.bundle.js generate SourceMap
@@ -375,7 +375,7 @@ info => Manager built (19 s)
 <s> [webpack.Progress] 99% cache begin idle
 <s> [webpack.Progress] 100% 
 
-info => Preview built (21 s)
+info => Preview built (17 s)
 WARN asset size limit: The following asset(s) exceed the recommended size limit (244 KiB).
 WARN This can impact web performance.
 WARN Assets: 
@@ -394,4 +394,4 @@ WARN
 <s> [webpack.Progress] 99% cache shutdown
 <s> [webpack.Progress] 100% 
 
-info => Output directory: /var/folders/w8/0n1wfbld65b8h8k5txfmdk6w0000gn/T/chromatic--78191-xOBX8H2exNv2
+info => Output directory: /var/folders/w8/0n1wfbld65b8h8k5txfmdk6w0000gn/T/chromatic--82942-leOYiopPrxZe
