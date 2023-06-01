@@ -20,7 +20,7 @@ describe("budget page e2e test", () => {
           method: "GET",
           url: `${API.ACCOUNT_BOOK}/${localStorage.getItem(
             "privateAccountBookId",
-          )}/${API.ASSET}/2023/4`,
+          )}/${API.ASSET}/${new Date().getFullYear()}/${new Date().getMonth()}`,
         },
         {
           income: {
@@ -39,7 +39,9 @@ describe("budget page e2e test", () => {
           method: "GET",
           url: `${API.ACCOUNT_BOOK}/${localStorage.getItem(
             "privateAccountBookId",
-          )}/${API.ASSET}/2023/5`,
+          )}/${API.ASSET}/${new Date().getFullYear()}/${
+            new Date().getMonth() + 1
+          }`,
         },
         {
           income: {
@@ -77,8 +79,8 @@ describe("budget page e2e test", () => {
       },
       {
         id: 0,
-        year: 2023,
-        month: 5,
+        year: new Date().getFullYear(),
+        month: new Date().getMonth() + 1,
         value: 777777,
       },
     ).as("modified");
@@ -87,7 +89,9 @@ describe("budget page e2e test", () => {
         method: "GET",
         url: `${API.ACCOUNT_BOOK}/${localStorage.getItem(
           "privateAccountBookId",
-        )}/${API.ASSET}/2023/5`,
+        )}/${API.ASSET}/${new Date().getFullYear()}/${
+          new Date().getMonth() + 1
+        }`,
       },
       {
         income: {
