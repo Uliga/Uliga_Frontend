@@ -43,7 +43,7 @@ export default function useSignup() {
   const mutateSignup = useMutation(["signUp"], authSignup, {
     onSuccess: () => {
       toastMsg("회원가입 성공 👏");
-      navigate(PATH.LOGIN);
+      navigate(PATH.LOGIN, { state: email });
     },
     onError: ({
       response: {

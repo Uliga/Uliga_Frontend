@@ -73,6 +73,7 @@ export default function Login() {
         type="submit"
         title="로그인"
         width="100%"
+        dataCy="login-submit-button"
         disabled={email.length <= 0 || password.length <= 0 || !isValidateEmail}
       />
       <S.PasswordResetButton
