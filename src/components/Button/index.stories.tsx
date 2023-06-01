@@ -38,3 +38,13 @@ export function Medium() {
 export function Small() {
   return <Button title="Small" size="small" />;
 }
+export function StoryBookTest() {
+  return <Button title="Primary" size="medium" theme="secondary" />;
+}
+
+export function StoryBookTest2() {
+  return <Button title="Primary" size="medium" theme="secondary" />;
+}
+export function StoryBookTest3() {
+  return <Button title="Primary" size="large" theme="secondary" />;
+}
