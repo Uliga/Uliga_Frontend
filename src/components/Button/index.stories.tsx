@@ -45,3 +45,6 @@ export function StoryBookTest() {
 export function StoryBookTest2() {
   return <Button title="Primary" size="medium" theme="secondary" />;
 }
+export function StoryBookTest3() {
+  return <Button title="Primary" size="large" theme="secondary" />;
+}
