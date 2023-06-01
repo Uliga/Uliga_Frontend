@@ -39,7 +39,7 @@
     "web-vitals": "^2.1.0"
   },
   "main": "public/electron.js",
-  "homepage": "./",
+  "homepage": "http://./",
   "build": {
     "productName": "우리의 가계부: 우리가",
     "asar": true,
@@ -51,8 +51,8 @@
     "nsis": {
       "oneClick": true,
       "shortcutName": "우리의 가계부: 우리가",
-      "artifactName" : "우리의 가계부: 우리가",
-      "uninstallDisplayName" : "우리의 가계부: 우리가"
+      "artifactName": "우리의 가계부: 우리가",
+      "uninstallDisplayName": "우리의 가계부: 우리가"
     },
     "directories": {
       "buildResources": "./resources/installer/",
@@ -73,7 +73,8 @@
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public",
     "test": "jest",
-    "cy:open": "cypress open"
+    "cy:open": "cypress open",
+    "chromatic": "npx chromatic --project-token=chpt_9f5d331b17c0cbd"
   },
   "eslintConfig": {
     "extends": [
@@ -123,6 +124,7 @@
     "@typescript-eslint/eslint-plugin": "^5.53.0",
     "babel-jest": "^29.5.0",
     "babel-plugin-named-exports-order": "^0.0.2",
+    "chromatic": "^6.18.0",
     "concurrently": "^7.6.0",
     "cross-env": "^7.0.3",
     "cypress": "^12.12.0",
@@ -139,5 +141,7 @@
   },
   "jest": {
     "testEnvironment": "jsdom"
-  }
+  },
+  "readme": "ERROR: No README data found!",
+  "_id": "uliga@0.1.0"
 }
