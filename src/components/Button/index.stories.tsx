@@ -39,5 +39,5 @@ export function Small() {
   return <Button title="Small" size="small" />;
 }
 export function StoryBookTest() {
-  return <Button title="Primary" size="medium" theme="primary" />;
+  return <Button title="Primary" size="medium" theme="secondary" />;
 }
