@@ -44,8 +44,8 @@ export function ControlTest(args: any) {
   return <Dialog {...args} />;
 }
 ControlTest.args = {
-  title: "함민혁님의 가계부 삭제",
-  description: "정말 함민혁님의 가계부를 삭제하시겠어요?",
+  title: "김동준님의 가계부 삭제",
+  description: "정말 김동준님의 가계부를 삭제하시겠어요?",
   cancellable: true,
   visible: true,
 };
