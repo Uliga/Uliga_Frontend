@@ -58,7 +58,6 @@ const Result = styled.div`
   position: absolute;
   bottom: -3rem;
   right: 0;
-  font-weight: 700;
   p {
     font-weight: 300;
     color: ${COLORS.GREY[400]};
