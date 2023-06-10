@@ -3,6 +3,7 @@ import COLORS from "../../constants/color";
 import * as S from "./index.styles";
 import { ISchedule } from "../../interfaces/schedule";
 import { getRemainDate } from "../../utils/date";
+import getMoneyUnit from "../../utils/money";
 
 export default function ScheduleList({
   schedules,
@@ -46,8 +47,10 @@ export default function ScheduleList({
             <div>
               <h6>{schedule.name}</h6>
               <p>
-                {schedule.value !== -1 ? `${schedule.value}원` : "변동"} /{" "}
-                {schedule.isIncome ? <>수입</> : <>지출</>}
+                {schedule.value !== -1
+                  ? `${getMoneyUnit(schedule.value)}원`
+                  : "변동"}{" "}
+                / {schedule.isIncome ? <>수입</> : <>지출</>}
               </p>
             </div>
           </S.ScheduleWrapper>
