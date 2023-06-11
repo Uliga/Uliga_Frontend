@@ -60,3 +60,11 @@ export function Reverse() {
 export function OnlyBook() {
   return <IconButton iconOnly iconName="book" />;
 }
+export function ControlTest(args: any) {
+  return <IconButton {...args} />;
+}
+ControlTest.args = {
+  iconName: "book",
+  theme: "normal",
+  title: "작성",
+};

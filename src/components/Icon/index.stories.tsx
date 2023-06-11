@@ -27,3 +27,9 @@ export function Bank() {
 export function PersonGear() {
   return <Icon iconName="personGear" color={COLORS.GREY[600]} />;
 }
+export function ControlTest(args: any) {
+  return <Icon {...args} />;
+}
+ControlTest.args = {
+  iconName: "personGear 가계부 삭제",
+};

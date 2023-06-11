@@ -17,3 +17,10 @@ export function CheckBox() {
 export function LabelInput() {
   return <Input size={30} value="label" label="label" />;
 }
+export function ControlTest(args: any) {
+  return <Input {...args} />;
+}
+ControlTest.args = {
+  value: "test",
+  size: "30rem",
+};
