@@ -49,15 +49,6 @@ export default function CapsuleBox() {
     {
       title: "이번 달 수입",
       amount: `${data.income ? getMoneyUnit(data.income.value) : 0}원`,
-      // Button: {
-      //   title: "수입 분석하러 가기",
-      //   iconName: "check",
-      //   theme: "normal",
-      //   color: COLORS.BLUE,
-      //   onClick: () => {
-      //     // 이번 달 수입 분석 페이지로 이동
-      //   },
-      // },
     },
     {
       title: "예산",
