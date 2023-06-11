@@ -111,10 +111,11 @@ export default function SideBar({ onClickSideBar }: HeaderProps) {
                 ele.path.split("/")[1] === currentPath
               }
               onClick={() => {
-                navigate(`${ele.path}/${bookId}`);
                 onClickSideBar();
                 if (ele.title === "로그아웃") {
                   onLogout();
+                } else {
+                  navigate(`${ele.path}/${bookId}`);
                 }
               }}
             />
