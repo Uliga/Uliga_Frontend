@@ -63,7 +63,7 @@ const API = {
   ANALYZE: `${ANALYZE}`,
   SOCIAL_LOGIN: `${AUTH}social-login`,
   KAKAO_AUTH_URL: `${BASE_URL}/oauth2/authorization/kakao?redirect_uri=https://main.d211p9c5e1szy2.amplifyapp.com`,
-  GOOGLE_AUTH_URL: `${BASE_URL}/oauth2/authorization/google?redirect_uri= https://main.d211p9c5e1szy2.amplifyapp.com`,
+  GOOGLE_AUTH_URL: `${BASE_URL}/oauth2/authorization/google?redirect_uri=https://main.d211p9c5e1szy2.amplifyapp.com`,
   RESET_PASSWORD: `${AUTH}password/reset`,
 };
 export default API;
