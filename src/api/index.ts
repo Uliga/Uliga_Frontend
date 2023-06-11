@@ -107,7 +107,8 @@ const unAuthorizationClient = axios.create({
 
 unAuthorizationClient.interceptors.response.use(
   response => {
-    response.headers["Access-Control-Allow-Origin"] = "http://localhost:3000";
+    response.headers["Access-Control-Allow-Origin"] =
+      "https://main.d211p9c5e1szy2.amplifyapp.com/";
     return response;
   },
   error => {
