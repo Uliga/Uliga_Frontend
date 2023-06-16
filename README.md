@@ -10,7 +10,7 @@
 
 ## 배포 링크
 
-> **우리가** : https://main.d211p9c5e1szy2.amplifyapp.com/
+> **우리가** : https://www.ouruliga.com
 > <br/>
 > **스토리북 배포 링크** : [https://647831b8f0964779f9711319-ljusgjkpyl.chromatic.com/](https://647831b8f0964779f9711319-ssniochwiu.chromatic.com/?path=/story/components-button--primary)
 
