@@ -79,7 +79,7 @@
 <br/>
 
 ## 프론트엔드 개발 스택 **🛠**
-<div>
+<!-- <div>
   <img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black">
   <img src="https://img.shields.io/badge/typescript-3178C6?style=for-the-badge&logo=typescript&logoColor=white">
   <img src="https://img.shields.io/badge/electron-47848F?style=for-the-badge&logo=electron&logoColor=white">
@@ -98,9 +98,7 @@
   <img src="https://img.shields.io/badge/slack-4A154B?style=for-the-badge&logo=slack&logoColor=white">
   <img src="https://img.shields.io/badge/figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white">
 
-</div>
-
-<br/>
+</div> -->
 
 ![프론트엔드 기술스택](https://github.com/Uliga/Uliga_Frontend/assets/79246447/9682432f-6d07-4a7f-8f0a-1427cc209a44)
 
