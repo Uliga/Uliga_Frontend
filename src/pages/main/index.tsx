@@ -11,11 +11,17 @@ import Calendar from "../../components/Main/Calendar";
 import BottomSheet from "../../components/Main/BottomSheet";
 import MainScheduleList from "../../components/Main/Schedule";
 import * as S from "./index.styles";
+// import NoExist from "../noExist";
 
 export default function Main() {
   const navigate = useNavigate();
   const { bookId } = useParams();
   const [createModalOpen, setCreateModalOpen] = useRecoilState(createModalAtom);
+  console.log("dsfsdf", bookId);
+  if (bookId === null) {
+    console.log("ddd");
+    navigate(`${PATH.MAIN}/${localStorage.getItem("privateAccountBookId")}`);
+  }
 
   return (
     <S.Container>
