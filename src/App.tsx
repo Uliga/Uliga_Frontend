@@ -60,6 +60,7 @@ function App() {
           </Route>
           <Route path={PATH.MAIN} element={<MainLayout />}>
             <Route path=":bookId" element={<Main />} />
+            <Route path="/main" element={<NoExist />} />
           </Route>
           <Route path={PATH.WRITE} element={<MainLayout />}>
             <Route path=":bookId" element={<Write />} />
