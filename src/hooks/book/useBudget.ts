@@ -93,7 +93,7 @@ export default function useBudget() {
   useEffect(() => {
     setThisDataGage((thisRemainData / thisMonthData.budget.value) * 100);
     setLastDataGage((lastRemainData / lastMonthData.budget.value) * 100);
-    setOneDayBudget(Math.trunc(thisRemainData / lastDate));
+    setOneDayBudget(Math.trunc(thisRemainData / (lastDate - date.getDate())));
   }, [thisRemainData, lastRemainData]);
 
   return {
