@@ -62,8 +62,8 @@ const API = {
   COMPARE_WEEKLY_ANALYZE: `${ANALYZE}${WEEKLY}`,
   ANALYZE: `${ANALYZE}`,
   SOCIAL_LOGIN: `${AUTH}social-login`,
-  KAKAO_AUTH_URL: `${BASE_URL}/oauth2/authorization/kakao?redirect_uri=https://ouruliga.com`,
-  GOOGLE_AUTH_URL: `${BASE_URL}/oauth2/authorization/google?redirect_uri=https://ouruliga.com`,
+  KAKAO_AUTH_URL: `${BASE_URL}/oauth2/authorization/kakao?redirect_uri=https://www.ouruliga.com`,
+  GOOGLE_AUTH_URL: `${BASE_URL}/oauth2/authorization/google?redirect_uri=https://www.ouruliga.com`,
   RESET_PASSWORD: `${AUTH}password/reset`,
 };
 export default API;
