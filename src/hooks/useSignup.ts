@@ -75,10 +75,13 @@ export default function useSignup() {
 
   const checkNickname = async () => {
     const data = await checkNicknameDuplicate(nickName);
-
     if (!data.exists) {
-      toastMsg("사용 가능한 닉네임 입니다.");
-      setExist(!data.exists);
+      if (nickName > 1) {
+        toastMsg("사용 가능한 닉네임 입니다.");
+        setExist(!data.exists);
+      } else {
+        toastMsg("두 글자 이상 입력해주세요!");
+      }
     } else {
       toastMsg("이미 존재하는 닉네임입니다.");
       setExist(!data.exists);
