@@ -11,15 +11,15 @@ import Calendar from "../../components/Main/Calendar";
 import BottomSheet from "../../components/Main/BottomSheet";
 import MainScheduleList from "../../components/Main/Schedule";
 import * as S from "./index.styles";
+import NoExist from "../noExist";
 
 export default function Main() {
   const navigate = useNavigate();
   const { bookId } = useParams();
   const [createModalOpen, setCreateModalOpen] = useRecoilState(createModalAtom);
-  if (bookId === null) {
-    navigate(`${PATH.MAIN}/${localStorage.getItem("privateAccountBookId")}`);
+  if (bookId !== localStorage.getItem("privateAccountBookId")) {
+    return <NoExist />;
   }
-
   return (
     <S.Container>
       {createModalOpen && (
