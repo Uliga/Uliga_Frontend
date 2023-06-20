@@ -60,7 +60,6 @@ function App() {
           </Route>
           <Route path={PATH.MAIN} element={<MainLayout />}>
             <Route path=":bookId" element={<Main />} />
-            <Route path="/main" element={<NoExist />} />
           </Route>
           <Route path={PATH.WRITE} element={<MainLayout />}>
             <Route path=":bookId" element={<Write />} />
@@ -97,6 +96,9 @@ function App() {
           </Route>
           <Route path={PATH.FINANCIAL} element={<MainLayout />}>
             <Route path=":bookId" element={<ComingSoon />} />
+          </Route>
+          <Route path="/main" element={<DefaultLayout />}>
+            <Route index element={<NoExist />} />
           </Route>
           <Route path="*" element={<NoExist />} />
         </Routes>
