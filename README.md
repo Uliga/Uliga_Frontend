@@ -12,7 +12,7 @@
 
 > **우리가** : https://www.ouruliga.com
 > <br/>
-> **스토리북 배포 링크** : [https://647831b8f0964779f9711319-ljusgjkpyl.chromatic.com/](https://647831b8f0964779f9711319-ssniochwiu.chromatic.com/?path=/story/components-button--primary)
+> **스토리북 배포 링크** : https://647831b8f0964779f9711319-xjxnsnhdnh.chromatic.com/?path=/story/components-button--primary
 
 <br/>
 
