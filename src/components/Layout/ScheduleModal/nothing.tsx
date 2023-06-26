@@ -21,8 +21,6 @@ export default function Nothing() {
     <Container>
       <Money />
       새로운 알림이 없습니다.
-      <br />
-      초대가 오면 저희가 알려드릴게요!
     </Container>
   );
 }
