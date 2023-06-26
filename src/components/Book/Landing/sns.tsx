@@ -46,6 +46,7 @@ const Label = styled.div`
 
 export default function SNSLogin() {
   const navigate = useNavigate();
+  const currentURL = window.location.href;
 
   useEffect(() => {
     // URL에서 인가 코드 값을 추출.
@@ -78,19 +79,36 @@ export default function SNSLogin() {
       SNS로 간편하게 로그인
       <SNSWrapper>
         <ImgWrapper>
-          <SNSIMG
-            href={API.GOOGLE_AUTH_URL}
-            size={5}
-            ImgSrc="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/320px-Google_%22G%22_Logo.svg.png"
-          />
+          {currentURL.includes("localhost:3000") ? (
+            <SNSIMG
+              href={API.LOCAL_GOOGLE_AUTH_URL}
+              size={5}
+              ImgSrc="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/320px-Google_%22G%22_Logo.svg.png"
+            />
+          ) : (
+            <SNSIMG
+              href={API.GOOGLE_AUTH_URL}
+              size={5}
+              ImgSrc="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/320px-Google_%22G%22_Logo.svg.png"
+            />
+          )}
           <Label>Google</Label>
         </ImgWrapper>
         <ImgWrapper>
-          <SNSIMG
-            href={API.KAKAO_AUTH_URL}
-            size={5}
-            ImgSrc="https://cdn.imweb.me/upload/S20210304872ba49a108a8/89a68d1e3674a.png"
-          />
+          {currentURL.includes("localhost:3000") ? (
+            <SNSIMG
+              href={API.LOCAL_KAKAO_AUTH_URL}
+              size={5}
+              ImgSrc="https://cdn.imweb.me/upload/S20210304872ba49a108a8/89a68d1e3674a.png"
+            />
+          ) : (
+            <SNSIMG
+              href={API.KAKAO_AUTH_URL}
+              size={5}
+              ImgSrc="https://cdn.imweb.me/upload/S20210304872ba49a108a8/89a68d1e3674a.png"
+            />
+          )}
+
           <Label>Kakao</Label>
         </ImgWrapper>
       </SNSWrapper>
