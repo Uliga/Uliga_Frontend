@@ -94,5 +94,6 @@ export default function useLogin() {
     setResetPasswordDialogOpen,
     onClickResetPassword,
     state,
+    navigate,
   };
 }

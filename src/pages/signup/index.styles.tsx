@@ -35,13 +35,16 @@ const Container = styled.div`
   position: relative;
   gap: 3rem;
 `;
-const LogoWrapper = styled.div`
+const LogoWrapper = styled.button`
   display: flex;
   align-items: center;
   gap: 0.3rem;
   font-weight: 700;
   font-size: 1.6rem;
   color: ${COLORS.BLUE};
+  background-color: white;
+  border: none;
+  cursor: pointer;
   span {
     margin-top: 0.2rem;
     font-family: GmarketSans;
@@ -115,7 +118,6 @@ const SignUpStyledButton = styled(Button)`
   top: 0;
   right: 0;
 `;
-
 const Buttons = styled.div`
   font-size: 1.3rem;
   color: ${COLORS.GREY[400]};
@@ -123,11 +125,13 @@ const Buttons = styled.div`
   display: flex;
   position: relative;
 `;
+
 const PersonalDiv = styled.div`
   font-size: 1.3rem;
   color: ${COLORS.GREY[400]};
   display: flex;
   position: relative;
+  gap: 0.7rem;
 `;
 
 const PersonalInfo = styled.div`
@@ -136,6 +140,7 @@ const PersonalInfo = styled.div`
   color: ${COLORS.GREY[400]};
   display: flex;
   position: relative;
+  gap: 0.7rem;
 `;
 
 const StyledCheckBox = styled(Input)`

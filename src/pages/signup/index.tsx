@@ -210,7 +210,7 @@ export default function Signup() {
         <S.Buttons>
           이미 계정이 있으신가요?
           <S.Signup>
-            <Link to={PATH.LANDING}>로그인</Link>
+            <Link to={PATH.LANDING}>메인으로 가기</Link>
           </S.Signup>
           <S.SignUpStyledButton
             title="계정 만들기"

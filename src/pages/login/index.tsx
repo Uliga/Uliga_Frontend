@@ -7,6 +7,7 @@ import Dialog from "../../components/Dialog";
 
 export default function Login() {
   const {
+    navigate,
     isValidateEmail,
     email,
     onChangeEmail,
@@ -50,7 +51,11 @@ export default function Login() {
         mutateLogin.mutate({ email, password });
       }}
     >
-      <S.LogoWrapper>
+      <S.LogoWrapper
+        onClick={() => {
+          navigate("/");
+        }}
+      >
         <Logo />
         <span>우리가</span>
       </S.LogoWrapper>

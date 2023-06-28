@@ -1,11 +1,17 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import Logo from "../../../assets/logo";
 import * as S from "../../../pages/signup/index.styles";
 
 export default function TopSection() {
+  const navigate = useNavigate();
   return (
     <>
-      <S.LogoWrapper>
+      <S.LogoWrapper
+        onClick={() => {
+          navigate("/");
+        }}
+      >
         <Logo />
         <span>우리가</span>
       </S.LogoWrapper>

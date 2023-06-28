@@ -18,11 +18,14 @@ const Container = styled.form`
     }
   }
 `;
-const LogoWrapper = styled.div`
+const LogoWrapper = styled.button`
   display: flex;
   align-items: center;
   gap: 0.3rem;
   font-weight: 700;
+  background-color: white;
+  border: none;
+  cursor: pointer;
   font-size: 1.6rem;
   color: ${COLORS.BLUE};
   span {
