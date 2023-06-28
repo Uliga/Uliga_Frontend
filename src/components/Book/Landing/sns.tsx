@@ -79,36 +79,27 @@ export default function SNSLogin() {
       SNS로 간편하게 로그인
       <SNSWrapper>
         <ImgWrapper>
-          {currentURL.includes("localhost:3000") ? (
-            <SNSIMG
-              href={API.LOCAL_GOOGLE_AUTH_URL}
-              size={5}
-              ImgSrc="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/320px-Google_%22G%22_Logo.svg.png"
-            />
-          ) : (
-            <SNSIMG
-              href={API.GOOGLE_AUTH_URL}
-              size={5}
-              ImgSrc="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/320px-Google_%22G%22_Logo.svg.png"
-            />
-          )}
+          <SNSIMG
+            href={
+              currentURL.includes("localhost:3000")
+                ? API.LOCAL_GOOGLE_AUTH_URL
+                : API.GOOGLE_AUTH_URL
+            }
+            size={5}
+            ImgSrc="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/320px-Google_%22G%22_Logo.svg.png"
+          />
           <Label>Google</Label>
         </ImgWrapper>
         <ImgWrapper>
-          {currentURL.includes("localhost:3000") ? (
-            <SNSIMG
-              href={API.LOCAL_KAKAO_AUTH_URL}
-              size={5}
-              ImgSrc="https://cdn.imweb.me/upload/S20210304872ba49a108a8/89a68d1e3674a.png"
-            />
-          ) : (
-            <SNSIMG
-              href={API.KAKAO_AUTH_URL}
-              size={5}
-              ImgSrc="https://cdn.imweb.me/upload/S20210304872ba49a108a8/89a68d1e3674a.png"
-            />
-          )}
-
+          <SNSIMG
+            href={
+              currentURL.includes("localhost:3000")
+                ? API.LOCAL_KAKAO_AUTH_URL
+                : API.KAKAO_AUTH_URL
+            }
+            size={5}
+            ImgSrc="https://cdn.imweb.me/upload/S20210304872ba49a108a8/89a68d1e3674a.png"
+          />
           <Label>Kakao</Label>
         </ImgWrapper>
       </SNSWrapper>
