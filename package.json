@@ -38,7 +38,7 @@
     "typescript": "^4.9.5",
     "web-vitals": "^2.1.0"
   },
-  "main": "public/electron.js",
+  "main": "public/main.js",
   "homepage": "http://./",
   "build": {
     "productName": "우리의 가계부: 우리가",
