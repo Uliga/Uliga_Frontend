@@ -17,16 +17,23 @@ export const Container = styled.div`
   z-index: 10;
 `;
 
+export const NavigateButton = styled(IconButton)`
+  position: absolute;
+  left: 2rem;
+  ${media.medium} {
+    left: 1.5rem;
+  }
+`;
+
 export const Wrapper = styled.div`
   width: 192rem;
   display: flex;
   position: relative;
-  padding-left: 2rem;
   align-items: center;
 `;
 export const StyledIconButton = styled(IconButton)`
   cursor: pointer;
-  margin-left: 2rem;
+  margin-left: 4rem;
   visibility: hidden;
   background-color: transparent;
   &:hover {

@@ -74,6 +74,16 @@ export default function Header({
 
   return (
     <S.Container>
+      <S.NavigateButton
+        iconName="arrowLeft"
+        iconSize="1.5rem"
+        border={1}
+        color={COLORS.GREY[500]}
+        theme="normal"
+        onClick={() => {
+          navigate(-1);
+        }}
+      />
       <S.StyledIconButton
         iconName="list"
         iconSize="2rem"
