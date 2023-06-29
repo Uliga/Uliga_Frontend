@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@babel/preset-react": "^7.18.6",
+    "@electron/remote": "^2.0.10",
     "@tanstack/react-query": "^4.24.10",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.0.0",
@@ -39,37 +40,45 @@
     "web-vitals": "^2.1.0"
   },
   "main": "public/main.js",
-  "homepage": "http://./",
+  "homepage": "./",
   "build": {
-    "productName": "우리의 가계부: 우리가",
+    "productName": "우리가",
     "asar": true,
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "Uliga",
+        "repo": "Uliga_Frontend"
+      }
+    ],
     "win": {
-      "target": [
-        "nsis"
-      ]
+      "target": "nsis",
+      "icon": "./public/newLogo.png"
     },
     "nsis": {
-      "oneClick": true,
-      "shortcutName": "우리의 가계부: 우리가",
-      "artifactName": "우리의 가계부: 우리가",
-      "uninstallDisplayName": "우리의 가계부: 우리가"
+      "oneClick": true
     },
+    "files": [
+      "dist/**/*",
+      "build/**/*",
+      "node_modules/**/*",
+      "package.json"
+    ],
     "directories": {
-      "buildResources": "./resources/installer/",
-      "output": "./dist/",
-      "app": "."
-    }
+      "buildResources": "assets"
+    },
+    "extends": null
   },
   "scripts": {
     "react-start": "react-scripts start",
     "react-build": "react-scripts build",
     "react-test": "react-scripts test",
-    "compile-main": "tsc ./public/electron.ts",
+    "compile-main": "tsc public/main.ts",
     "react-eject": "react-scripts eject",
     "start": "concurrently \"cross-env NODE_ENV=development yarn react-start\" \"wait-on http://127.0.0.1:3000 && electron .\"",
-    "test-start": "cross-env NODE_ENV=development yarn react-start",
+    "test:start": "cross-env NODE_ENV=development yarn react-start",
     "build": "yarn react-build",
-    "release": "yarn react-build && electron-builder --publish=always",
+    "electron:build": "yarn build && electron-builder -c.extraMetadata.main=build/main.js",
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public",
     "test": "jest",
