@@ -53,7 +53,7 @@
     ],
     "win": {
       "target": "nsis",
-      "icon": "./public/newLogo.png"
+      "icon": "./public/electron_favicon.png"
     },
     "nsis": {
       "oneClick": true
@@ -78,7 +78,8 @@
     "start": "concurrently \"cross-env NODE_ENV=development yarn react-start\" \"wait-on http://127.0.0.1:3000 && electron .\"",
     "test:start": "cross-env NODE_ENV=development yarn react-start",
     "build": "yarn react-build",
-    "electron:build": "yarn build && electron-builder -c.extraMetadata.main=build/main.js",
+    "electron-build:win": "yarn build && electron-builder -c.extraMetadata.main=build/main.js --win --x64 && electron-builder -c.extraMetadata.main=build/main.js --win --ia32",
+    "electron-build:osx": "yarn build && electron-builder -c.extraMetadata.main=build/main.js --mac",
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public",
     "test": "jest",
