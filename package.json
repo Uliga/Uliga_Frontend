@@ -40,7 +40,6 @@
     "web-vitals": "^2.1.0"
   },
   "main": "public/main.js",
-  "homepage": "./",
   "build": {
     "productName": "우리가",
     "asar": true,
@@ -51,12 +50,32 @@
         "repo": "Uliga_Frontend"
       }
     ],
+    "mac": {
+      "target": [
+        "default"
+      ],
+      "icon": "./public/electron_favicon.png"
+    },
+    "dmg": {
+      "title": "우리가",
+      "icon": "./public/electron_favicon.png"
+    },
     "win": {
-      "target": "nsis",
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64",
+            "ia32"
+          ]
+        }
+      ],
       "icon": "./public/electron_favicon.png"
     },
     "nsis": {
-      "oneClick": true
+      "warningsAsErrors": false,
+      "perMachine": false,
+      "oneClick": false
     },
     "files": [
       "dist/**/*",

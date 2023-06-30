@@ -14,6 +14,7 @@ import InvitationModal from "../InvitationModal";
 import PATH from "../../../constants/path";
 import ScheduleModal from "../ScheduleModal";
 import useDetectOutside from "../../../hooks/book/useDetectOutside";
+import toastMsg from "../../Toast";
 
 type HeaderProps = {
   onToggleSideBar: () => void;
@@ -128,7 +129,13 @@ export default function Header({
             )}
           </S.ModalWrapper>
         ))}
-        <S.TutorialButton title="튜토리얼" theme="basic" />
+        <S.TutorialButton
+          onClick={() => {
+            toastMsg("준비중인 기능입니다.");
+          }}
+          title="튜토리얼"
+          theme="basic"
+        />
       </S.UtilWrapper>
     </S.Container>
   );
