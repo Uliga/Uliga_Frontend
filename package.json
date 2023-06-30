@@ -1,6 +1,7 @@
 {
   "name": "uliga",
   "version": "0.1.0",
+  "homepage": "https://ouruliga.com/",
   "private": true,
   "dependencies": {
     "@babel/preset-react": "^7.18.6",
