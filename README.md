@@ -12,6 +12,8 @@
 
 > **우리가** : https://www.ouruliga.com
 > <br/>
+> **우리가 데스크톱 앱 다운로드** : https://github.com/Uliga/Uliga_Frontend/releases/tag/%EC%9A%B0%EB%A6%AC%EA%B0%80v1.1.0
+> <br/>
 > **스토리북 배포 링크** : https://647831b8f0964779f9711319-xjxnsnhdnh.chromatic.com/?path=/story/components-button--primary
 
 <br/>
