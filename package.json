@@ -53,9 +53,13 @@
       }
     ],
     "mac": {
-      "target": [
-        "default"
-      ],
+      "target": {
+        "target": "default",
+        "arch": [
+          "x64",
+          "arm64"
+        ]
+      },
       "icon": "./public/electron_favicon.png"
     },
     "dmg": {
