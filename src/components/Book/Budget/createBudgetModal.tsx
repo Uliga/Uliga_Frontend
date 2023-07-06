@@ -118,7 +118,7 @@ export default function Create() {
       <InputWrapper>
         <BudgetInput
           size={38}
-          value={budgets}
+          value={budgets.replace(/\D/g, "")}
           label="금액"
           placeholder={
             getMoneyUnit(thisMonthData.budget.value) ||
