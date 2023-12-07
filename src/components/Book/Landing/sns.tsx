@@ -86,7 +86,7 @@ export default function SNSLogin() {
                 : API.GOOGLE_AUTH_URL
             }
             size={5}
-            ImgSrc="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/320px-Google_%22G%22_Logo.svg.png"
+            ImgSrc="https://scontent-gmp1-1.xx.fbcdn.net/v/t39.30808-6/386747770_334969355719214_550912831526851437_n.png?_nc_cat=109&ccb=1-7&_nc_sid=efb6e6&_nc_ohc=RJcxPL59psQAX8NmVol&_nc_ht=scontent-gmp1-1.xx&oh=00_AfBmg-QBM9cTbkn7_6KtnQ1t9einLbBHUnhvOwqDQdiCFQ&oe=6575F97F"
           />
           <Label>Google</Label>
         </ImgWrapper>
